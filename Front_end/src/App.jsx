@@ -6,6 +6,7 @@ function App() {
     <>
     <h1>Hola soy app</h1>
     <h1>hola que tal</h1>
+    <h3>hola que tal xd</h3>
     </>
   )
 }
