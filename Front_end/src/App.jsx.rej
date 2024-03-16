@@ -1,0 +1,9 @@
+diff a/Front_end/src/App.jsx b/Front_end/src/App.jsx	(rejected hunks)
+@@ -6,6 +6,7 @@
+     <>
+     <h1>Hola soy app</h1>
+     <h2>hola que tal</h2>
++    <h3>hola que tal 3</h3>
+     </>
+   )
+ }
