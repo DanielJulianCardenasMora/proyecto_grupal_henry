@@ -1,7 +1,7 @@
 import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
-import rootReducer from "../reducer/reducer"; // Asegúrate de tener la ruta correcta a tus reducers
+import rootReducer from "../reducer/reducer";
 
 // Middleware personalizado si lo necesitas en el futuro
 const customMiddleware = store => next => action => {
