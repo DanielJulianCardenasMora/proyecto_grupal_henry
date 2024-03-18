@@ -1,12 +1,15 @@
+import './App.css'
+
+import { Detail } from './Components'
+
 
 
 function App() {
 
   return (
-    <>
-    <h1>Hola soy app</h1>
-    <h1>hola que tal</h1>
-    </>
+    <div className='App'>
+      <Detail />
+    </div>
   )
 }
 
