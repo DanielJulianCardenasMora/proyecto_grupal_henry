@@ -1,3 +1,4 @@
+import React from 'react'
 import style from './Detail.module.css'
 import fondo from '../../assets/Imagenes/Detail_fondo_aplicar.png'
 
