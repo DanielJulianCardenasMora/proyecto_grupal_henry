@@ -39,11 +39,16 @@ function Detail() {
       </div>
 
       <div className={style.box2}>
-        <div className={style.difuminado2}>asd</div>
+        <div className={style.difuminado2}>Descripcion</div>
       </div>
       
 
       <div className={style.box_derecha}>
+        <div className={style.boxDetalle}>
+          <h1 className={style.detalle1}>Categoria</h1>
+          <h1 className={style.detalle2}>Genero</h1>
+          <h1 className={style.detalle3}>Precio</h1>
+        </div>
         <div className={style.boton}>
           {/* <img className={style.boton1} src={hover} /> */}
           <img className={style.boton2} src={boton} />
