@@ -1,9 +1,9 @@
 import React from "react";
 import { AboutPage } from "./Aboutpage/Aboutpage";
 import { HomePage } from "./Homepage/Homepage";
-import { LandingPage } from "./Landingpage/Landingpage";
-import { DetailPage } from "./Detailpage/Detailpage";
+import Landing from "./Landing/landing";
+import Detail from "./Detail/Detail"
 
 
 
-export {AboutPage, LandingPage, HomePage, DetailPage}
+export {AboutPage, Landing, HomePage, Detail}
