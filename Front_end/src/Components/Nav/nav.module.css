@@ -1,0 +1,46 @@
+.nav{
+    height: 15%;
+    width: 100%;
+    /* background-color: brown; */
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2%;
+    padding-right:2% ;
+    box-sizing: border-box;
+ 
+}
+.boxLogo{
+    width: 15%;
+    height: 100%;
+    background-image: url('../../assets/Imagenes/circulo-negro.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display:flex ;
+    align-items: center;
+  justify-content: space-around;
+  font-size: 2em;
+  font-weight: bold;
+}
+.boxList{
+    /* background-color: rgb(63, 63, 63); */
+    width: 50%;
+}
+.boxList ul{
+    display: flex; justify-content: space-around;
+}
+.boxList li{
+    list-style-type: none;
+    cursor: pointer;
+}
+.boxList li:hover{
+    border-bottom: 1px solid;
+}
+
+.logIn{
+    width: 15%;
+    /* background-color: chocolate; */
+}

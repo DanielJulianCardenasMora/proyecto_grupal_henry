@@ -1,5 +1,5 @@
 import './App.css'
-
+import  Landing  from './Components/Landing/landing'
 import { Detail } from './Components'
 
 
@@ -8,7 +8,8 @@ function App() {
 
   return (
     <div className='App'>
-      <Detail />
+      {/* <Detail /> */}
+      <Landing />
     </div>
   )
 }
