@@ -1,0 +1,95 @@
+.cont{
+  top: 40%;
+  left:50%;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: instrucciones;
+  color: rgb(0, 0, 0);
+}
+.cont label{
+  font-size: 20px;
+}
+
+.background{
+  position: relative;
+  height: 100vh;
+  background-color: rgb(6, 4, 97);
+  background: linear-gradient(180deg, rgb(30, 36, 143) 0%, rgba(0, 202, 212, 1) 41%, rgba(255, 255, 255, 1) 100%);
+}
+
+
+.bg2{
+  height: 110%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: -10%;
+}
+
+.inp {
+  background-color: rgb(255, 255, 255, 80%);
+  height: 23px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 11px;
+  color: black;
+  width: 130px;
+  margin-left: 30px;
+}    
+
+.select{
+  background-color: rgb(57, 78, 200);
+  border-radius: 5px;
+  height: 25px;
+  width: 133px;
+  margin-left: 29px;
+  font-family: instrucciones;
+}
+
+.seleccionados{
+  color: rgb(84, 244, 255);
+  line-height: 1;
+  margin: 12px auto;
+  text-align: right;
+}
+.formCont::placeholder{
+  font-size: 16px;
+  font-family: instrucciones;
+}
+
+.formCont p{
+  line-height: 2px;
+  color: red;
+}
+
+.formCont{
+  display:flex;
+  flex-wrap: wrap;
+  width: 380px;
+  height: 530px;
+  justify-content: flex-end;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 15px;
+  padding: 40px 95px 0px 45px;
+  background-color: hsla(0, 0%, 89%, 0.864);
+  filter: blur();
+  font-size: 15px;
+}
+
+.buttonForm{
+  margin-top: 5%;
+  margin-right: 25%;
+  padding: 10px 20px;
+  line-height: 0.5px;
+  background-color: rgb(18, 192, 2)
+}
+
+.font{
+  color: rgb(0, 9, 172);
+  position: relative;
+  right: 45%;
+  transform: translate(50%);
+}
