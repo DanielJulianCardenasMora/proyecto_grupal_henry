@@ -40,8 +40,12 @@
 }
 
 .section{
-    height: 170vh;
+    height: 200vh;
   background-color: #01000A;
+  padding-top: 2em;
+}
+.landingCards{
+    padding-top: 5%;
 }
 .description {
     height: 50% ;
@@ -77,13 +81,12 @@
     width: 50%;
     background-color: rgb(9, 9, 9);
     position: relative;
-    left: 42%;
-   bottom: 30%;
+    left: 40%;
+   margin-bottom: 2%;
    padding: 2%;
    display: flex;
-   border: 1px solid rgba(255, 255, 255, 0.388);
-
-   /* border-bottom: 1px solid white; */
+ border-top: 1px solid rgba(255, 255, 255, 0.388);
+ border-right: 1px solid rgba(255, 255, 255, 0.388);
 }
 
 .card2{
@@ -93,11 +96,11 @@
     position: relative;
    padding: 2%;
    display: flex;
-   border: 1px solid rgba(255, 255, 255, 0.388);
+   border-left: 1px solid rgba(255, 255, 255, 0.388);
    position: relative;
    left: 5%;
-   bottom: 10vh;
-   /* border-bottom: 1px solid white; */
+  
+   border-bottom: 1px solid rgba(255, 255, 255, 0.388);
 }
 
 .imageCard, .descriptionCard{
@@ -124,7 +127,7 @@
     background-image: url('../../assets/Imagenes/imageCardLanding2.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: #af96afd5;
+    background-color: #ffffffd5;
 }
 .cardButton{
     color: white;
@@ -138,7 +141,10 @@
     height: 20vh;
     width: 50%;
     margin: auto;
-    background-color: violet;
+    /* background-color: violet; */
+    background-image: url('../../assets/Imagenes/Landing_banner_aplicar.png');
+    background-repeat: no-repeat;
+    background-size: contain;
     position: relative;
-    bottom: 18%;
+  
 }

@@ -30,7 +30,13 @@ function Landing() {
 
     </div>
     <div className={style.section}>
- <div className={style.card1}>
+
+
+ <div className={style.banner}>
+
+ </div>
+<div className={style.landingCards}>
+<div className={style.card1}>
   <div className={style.imageCard}></div>
   <div className={style.descriptionCard}>
     <h3>Title Card</h3>
@@ -39,16 +45,13 @@ function Landing() {
   </div>
 
  </div>
-
- <div className={style.banner}>
-
- </div>
  <div className={style.card2}>
  <div className={style.imageCard2}></div>
   <div className={style.descriptionCard}>    <h3>Title Card</h3>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam suscipit quaerat numquam facilis cum repellendus ex soluta accusamus quos omnis, distinctio tempora voluptas eos, expedita, quas possimus! Placeat, obcaecati nemo?</p>
     <button className={style.cardButton}>See more</button></div>
  </div>
+</div>
 
     </div>
 <Footer/>
