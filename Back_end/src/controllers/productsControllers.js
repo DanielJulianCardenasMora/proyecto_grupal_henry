@@ -1,17 +1,60 @@
-const getAllProducts = async () => {
+const { Product } = require('../db')
+const axios = require('axios')
 
+const getProducts = async () => {
+    try {
+        const response = await axios.get('https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json');
+        const getInfo = response.data.map(element => {
+            return {
+                id: element.id,
+                name: element.name,
+                image: element.image,
+                description: element.description,
+                price: element.price,
+                stock: element.stock,
+                genero: element.genero,
+                category: element.category,
+            };
+        });
+    
+        return getInfo;
+
+    } catch (error) {
+        console.error("Error al obtener productos:", error);
+        throw error; // Propagar el error para que sea manejado por el código que llama a esta función
+    }
 };
+// console.log(getProducts)
+const productsDataBase = async () => {
+    try {
+        const productsApi = await getProducts();
+        
 
-const getProductsByName = async (name) => {
+        const existingProducts = await Product.findAll();
+        console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de datos
 
+        if (!existingProducts.length) {
+            const createdProducts = await Product.bulkCreate(productsApi);
+            console.log('Productos creados en la base de datos:', createdProducts); // Registro de los productos creados en la base de datos
+            return createdProducts;
+        } else {
+            // Lógica para manejar productos existentes
+            return existingProducts;
+        }
+    } catch (error) {
+        console.error('Error al procesar los productos en la base de datos:', error);
+        throw error;
+    }
 };
-
+const getAllProducts = async () => {        //Obtenemos los products de bd
+    const allPro = await Product.findAll()
+    return allCountries;
+}
 const getProductDetail = async (id) => {
 
 }
 
 module.exports = {
-    getProductsByName,
-    getAllProducts,
+    productsDataBase,
     getProductDetail,
 };

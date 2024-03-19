@@ -40,9 +40,11 @@ const { Category } = sequelize.models;
 const { Order } = sequelize.models;
 
 // Aca vendrian las relaciones
-// User.belongsToMany(Order, { through: "user_order" });
+//  User.belongsToMany(Order, { through: "user_order" });
 Product.belongsToMany(Order, { through: "order_product" });
 Product.belongsToMany(Category, { through: "product_category" });
+User.hasMany(Order);
+Order.belongsTo(User);
 
 module.exports = {
     ...sequelize.models,
