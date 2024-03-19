@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+    background-size: cover;
+}
+.workteam{
+    margin: 0;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background{
+    max-width: 100%;
+}
+
+.container :hover{
+  transform: scale(1.05);
+
+}

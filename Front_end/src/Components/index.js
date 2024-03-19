@@ -1,5 +1,5 @@
 import React from "react";
 import Detail from "./Detail/Detail";
-import { NavBar } from "./Navbar/Navbar";
+import CardProfile from "./cardprofile/CardProfile";
 
-export { Detail, NavBar} 
+export { Detail, CardProfile} 
