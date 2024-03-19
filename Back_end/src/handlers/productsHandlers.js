@@ -1,4 +1,4 @@
-const { getProductsByName, getAllProducts, getProductDetail } = require('../controllers/productsControllers')
+const { getProductsByName, getAllProducts, getProductDetail ,productsDataBase} = require('../controllers/productsControllers')
 
 const getProducts = async (req, res) => {
     const { name } = req.query;
@@ -7,7 +7,7 @@ const getProducts = async (req, res) => {
             const productsByName = await getProductsByName(name);
             res.status(200).json(productsByName);
         } else {
-            const response = await getAllProducts();
+            const response = await productsDataBase();
             res.status(200).json(response);
         }
     } catch (error) {

@@ -1,0 +1,22 @@
+{
+    "category" :[
+        {
+            "name": "Jeans"
+        },
+        {
+            "name": "Remeras"
+        },
+        {
+            "name": "Chaquetas"
+        },
+        {
+            "name": "Buzos"
+        },
+        {
+            "name": "Camisas"
+        },
+        {
+            "name": "Faldas"
+        }
+    ]
+}
