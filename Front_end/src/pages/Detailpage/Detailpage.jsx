@@ -1,10 +1,11 @@
 import React from "react";
+import { Detail } from "../../Components";
 
 
 export const DetailPage = () => {
     return (
         <div>
-            <h1>Detailpage</h1>
+            <Detail />
         </div>
     )
 }
