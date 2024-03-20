@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const productsRouter = require('./productsRouter');
 const usersRouter = require('./usersRouter');
-const categoryRouter = require('./categotyRuter');
+const categoryRouter = require('./categoryRuter');
 const router = Router();
 
 router.use('/products', productsRouter)

@@ -21,15 +21,15 @@ const getProducts = async () => {
     return getInfo;
   } catch (error) {
     console.error("Error al obtener productos:", error);
-    throw error; 
+    throw error;
   }
 };
 
-const productsDataBase = async (page = 1, pageSize = 10) => {
+const productsDataBase = async (page = 1, pageSize = 5) => {
   try {
     const productsApi = await getProducts();
 
-    // const offset = (page - 1) * pageSize;     //determino donde comienza la pagina y du tamaño
+    const offset = (page - 1) * pageSize;     //determino donde comienza la pagina y du tamaño
 
     const existingProducts = await Product.findAll({
       include: [{
@@ -37,8 +37,8 @@ const productsDataBase = async (page = 1, pageSize = 10) => {
         attributes: ["name"],
         through: { attributes: [] },
       }],
-      // limit: pageSize,
-      // offset: offset
+      limit: pageSize,
+      offset: offset
     });
     // console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de dato
     if (!existingProducts.length) {
