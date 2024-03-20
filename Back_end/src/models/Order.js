@@ -6,9 +6,10 @@ module.exports = (sequelize) => {
     sequelize.define(
         'order', {
         id: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING,
+            allowNull: false,
             primaryKey: true,
-            defaultValue: DataTypes.UUIDV4,
+            unique: true,
         },
         userId: {
             type: DataTypes.UUID, // Cambiado a UUID para relacionar con el usuario

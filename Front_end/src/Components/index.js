@@ -1,5 +1,6 @@
 import React from "react";
-import Detail from "./Detail/Detail";
+import {Detail} from "../pages/Detail/Detail";
+import Create_form from './Create_form/Create_form'
 
 
-export { Detail } 
+export { Detail, Create_form } 

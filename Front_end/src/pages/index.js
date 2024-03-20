@@ -3,7 +3,6 @@ import { AboutPage } from "./Aboutpage/Aboutpage";
 import { HomePage } from "./Homepage/Homepage";
 import {Landing} from "./Landing/Landing";
 import {Detail} from "./Detail/Detail"
+import { CreatePage } from "./Createpage/Createpage";
+export {AboutPage, Landing, HomePage, Detail, CreatePage}
 
-
-
-export {AboutPage, Landing, HomePage, Detail}
