@@ -84,8 +84,9 @@
 }
 
 
+
+
 .box{
-  z-index: 1;
+  z-index: 200;
   position: relative;
-  top: -100vh;
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import { Products } from "../../Components/Products/Products";
 import { Menu } from "../../Components/Menu/Menu";
+import { Card } from "../../Components/Card/card";
+import { Cards } from "../../Components/Cards/Cards";
 
 
 
@@ -9,10 +11,10 @@ export const ProductsPage = () => {
     <div style={
       {
         position: 'relative',
-        overflow: 'hidden',
         height: '100vh'
       }
     } >
+      <Cards />
       <Products />
       <Menu />
     </div>
