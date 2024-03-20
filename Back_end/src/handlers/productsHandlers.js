@@ -1,4 +1,4 @@
-const { getProductsByName, getProductDetail ,productsDataBase} = require('../controllers/productsControllers')
+const { getProductsByName, getProductDetail, createProductDB, productsDataBase, deleteProductDB} = require('../controllers/productsControllers')
 
 const getProducts = async (req, res) => {
     const { name } = req.query;
@@ -24,15 +24,47 @@ const getDetail = async (req, res) => {
         if (productDetail) {
             res.status(200).json(productDetail);
         } else {
-            res.status(404).send(`No se encontraron productos con el id: ${id}`);
+            res.status(404).json(`No se encontraron productos con el id: ${id}`);
         }
     } catch (error) {
-        console.error('Error al obtener el detalle del producto elegido:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
+
+const postProduct = async (req, res) => {
+
+    const { id, name, description, price, image, stock, category, genero } = req.body;
+
+    try {
+        const newProduct = await createProductDB( id, name, description, price, image, stock, category, genero );
+        // console.log("Producto creado con exito!", newProduct.dataValues);
+        res.status(201).json(newProduct);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Error al crear tu nuevo producto' });
+    }
+}
+
+const deleteProduct = async (req, res) => {
+
+    let { id } = req.params;
+    
+    try {
+        const deletedProductCount = await deleteProductDB(id);
+        if (deletedProductCount > 0) {
+            res.status(200).json(`Producto con ID ${id} eliminado correctamente.`);
+        } else {
+            res.status(404).json('Producto no encontrado.'); // Si no se encontró el producto o no se pudo eliminar
+        }
+    } catch (error) {
+        console.error('Error al eliminar el producto:', error);
+        res.status(500).json({ error: 'Error interno al eliminar el producto' });
     }
 }
 
 module.exports = {
     getProducts,
-    getDetail
+    getDetail,
+    postProduct,
+    deleteProduct
 }

@@ -1,0 +1,12 @@
+.cardsContainer{
+  background-color: aqua;
+  gap: 10%;
+  padding: 6% 10% 50px 10%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  column-count: 4;
+}
+

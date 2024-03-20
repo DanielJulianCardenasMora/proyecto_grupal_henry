@@ -1,29 +1,31 @@
-.cardcontainer {
-    box-sizing: border-box;
-    padding: 5px;
-    width: 30%;
-    flex-grow: 1;
+.box{
+  z-index: 100;
+  /* top: -100vh; */
+  height: 30%;
+  width: 30%;
+  background-color: blue;
+  margin-bottom: 5%;
+}
+.imgContainer{
+  line-height: 0;
+  background-color: red;
+}
+.imgContainer img{
+  width: 50%;
+  height: 50%;
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo transparente */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra negra ligera */
-    padding: 15px;
-    margin: 10px;
-    min-width: 180px;
+.container{
+  position: static;
+  margin: 10%;
+  background-color: blueviolet;
 }
 
-.title {
-    margin-bottom: 10px;
+.card{
+  margin: 10%;
 }
 
-.pokemonImg {
-    display: block;
-    margin: 0 auto;
-    border-radius: 50%;
-}
-
-h5 {
-    margin-top: 10px;
+.texto{
+  background-color: yellow;
+  font-size: 1vw;
 }
