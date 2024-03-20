@@ -1,4 +1,4 @@
-const { getProductsByName, getAllProducts, getProductDetail ,productsDataBase} = require('../controllers/productsControllers')
+const { getProductsByName, getProductDetail ,productsDataBase} = require('../controllers/productsControllers')
 
 const getProducts = async (req, res) => {
     const { name } = req.query;

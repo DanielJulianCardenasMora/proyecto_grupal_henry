@@ -1,0 +1,21 @@
+.footer{
+    height: 50vh;
+    padding: 2%;
+    display: flex;
+justify-content: space-evenly;
+}
+.footer ul li{
+    list-style-type: none;
+
+
+}
+.footer ul li a{
+    color: white;
+}
+
+.ubi, .list{
+    width: 30%;
+    text-align: left;
+    border-left: 1px solid rgba(245, 222, 179, 0.444);
+    padding: 1%;
+}

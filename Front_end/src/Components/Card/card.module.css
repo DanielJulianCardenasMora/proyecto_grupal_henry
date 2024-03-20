@@ -1,0 +1,29 @@
+.cardcontainer {
+    box-sizing: border-box;
+    padding: 5px;
+    width: 30%;
+    flex-grow: 1;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra negra ligera */
+    padding: 15px;
+    margin: 10px;
+    min-width: 180px;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.pokemonImg {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+h5 {
+    margin-top: 10px;
+}
