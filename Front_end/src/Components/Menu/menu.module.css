@@ -1,0 +1,84 @@
+.container{
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 1) 100%);  height: 100vh;
+  width: 40%;
+  transition: all 0.3s ease-out; 
+}
+.columnas{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  text-align: left;
+  font-size: 1.3vw;
+}
+.columnas div h1,
+.columnas div h3{
+  padding-left: 5%;
+  cursor: pointer;
+}
+.columnas h1:hover,
+.columnas h3:hover{
+  color: aqua;
+}
+.columna3 h1:hover{
+  color: rgb(255, 255, 255);
+  cursor: default;
+}
+.columna1{
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.columna2{
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid rgb(140, 0, 255);
+  border-right: 1px solid rgb(140, 0, 255);
+}
+.columna2 h1{
+  padding: 4% 0;
+}
+.columna3{
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.c3h3{
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  color: rgb(59, 80, 236);
+  cursor: pointer;
+}
+.hidden{
+  background-color: black;
+  height: 100vh;
+  width: 40%;
+  transform: translate(-100%);
+  transition: all 0.3s ease-out; 
+}
+.boton{
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  height: 4%;
+  width: 4%;
+  background-image: url("../../assets/Imagenes/Products_burger_aplicar.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 100;
+}
+.boton:hover,
+.botton_hidden:hover{
+  cursor: pointer;
+}
+.botton_hidden{
+  opacity: 0;
+}
