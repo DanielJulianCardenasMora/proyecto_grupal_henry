@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import style from "./menu.module.css";
 
@@ -5,14 +6,14 @@ import style from "./menu.module.css";
 
 
 
-function Menu() {
+export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
 
   return (
-    <div>
+    <div className={style.box}>
       <div className={ !isHidden ? style.boton: style.botton_hidden} onClick={toggleMenu}></div>
       <div className={ isHidden ? style.container: style.hidden}>
         <div className={style.columnas}>
