@@ -18,6 +18,10 @@ function App() {
         <Route path="/create" element={<CreatePage />} />
         <Route path="/menutest" element={<Menu />} />
         <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>
     </>
   );
