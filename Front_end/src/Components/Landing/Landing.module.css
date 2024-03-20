@@ -1,0 +1,148 @@
+.main{
+    height: 150vh;
+    width: 100%;
+    background-image: linear-gradient(#01000a00 70%, #01000A),url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
+    
+    background-color: #01000A;
+    box-sizing: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+
+}
+
+.logo{
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    width: 20%;
+    height: 92vh;
+   position: relative;
+   top: 2%;
+}
+
+.logo h1{
+    font-size: 55px;
+    color: #8f96d6d7;
+}
+
+
+
+.image{
+    height: 90%;
+    width: 47%;
+    margin: auto;
+    position: relative;
+    bottom: 52%;
+    transform: translate(-10%);
+    background-image: linear-gradient(#01000a00 75%, #01000A),url('../../assets/Imagenes/landingPhoto.png');
+    background-size: cover;
+     background-position: top; 
+}
+
+.section{
+    height: 150vh;
+  background-color: #01000A;
+  padding-top: 2em;
+}
+.landingCards{
+    padding-top: 5%;
+}
+.description {
+    height: 50% ;
+    width: 35%;
+    /* background-color: teal; */
+    position: absolute;
+    bottom: 25%;
+    left: 60%;
+    border-right: 1px solid white;
+    padding-right: 1%;
+ 
+}
+
+.description h1{
+    font-size: 50px;
+}
+
+.learnMore{
+    background: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 1em;
+}
+.learnMore:hover{
+    background-color: #01000A;
+}
+.description p{
+    color: black;
+}
+
+.card1{
+    height: 300px;
+    width: 50%;
+    background-color: rgb(9, 9, 9);
+    position: relative;
+    left: 40%;
+   margin-bottom: 2%;
+   padding: 2%;
+   display: flex;
+ 
+ border: 1px solid rgba(255, 255, 255, 0.388);
+}
+
+.card2{
+    height: 300px;
+    width: 50%;
+    background-color: rgb(9, 9, 9);
+    position: relative;
+   padding: 2%;
+   display: flex;
+   border: 1px solid rgba(255, 255, 255, 0.388);
+   position: relative;
+   left: 5%;
+}
+
+.imageCard, .descriptionCard{
+    width: 50%;
+
+}
+
+.descriptionCard{
+    border-left: 1px solid white;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imageCard{
+    background-image: url('../../assets/Imagenes/imageCardLanding1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #af96afd5;
+}
+.imageCard2{
+    width: 50%;
+    background-image: url('../../assets/Imagenes/imageCardLanding2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #ffffffd5;
+}
+.cardButton{
+    color: white;
+    border: 1px solid white;
+}
+.cardButton:hover{
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.banner{
+    height: 20vh;
+    width: 50%;
+    margin: auto;
+    /* background-color: violet; */
+    background-image: url('../../assets/Imagenes/Landing_banner_aplicar.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+  
+}
