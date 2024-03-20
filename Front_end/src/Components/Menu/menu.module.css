@@ -1,0 +1,27 @@
+.container{
+  background-color: black;
+  height: 100vh;
+  width: 40%;
+}
+.columnas{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  text-align: left;
+}
+.columna1{
+  background-color: rgb(50, 50, 214);
+  height: 100%;
+  width: 33%;
+}
+.columna2{
+  background-color: rgb(77, 255, 0);
+  height: 100%;
+  width: 33%;
+}
+.columna3{
+  background-color: rgb(212, 255, 0);
+  height: 100%;
+  width: 33%;
+}
