@@ -1,5 +1,6 @@
 const { Product } = require("../db");
 const axios = require("axios");
+const { Op } = require('sequelize');
 
 const getProducts = async () => {
   try {
@@ -63,7 +64,24 @@ const getProductDetail = async (id) => {
   }
 };
 
+const getProductsByName = async (name) => {
+    try {
+        const productFiltered = await Product.findAll({
+            where: {
+                name: {
+                    [Op.iLike]: `%${name}%`
+                }
+            }
+        });
+        return productFiltered;
+    } catch (error) {
+        console.error('Error fetching or processing country data:', error);
+        throw error;
+    }
+};
+
 module.exports = {
   productsDataBase,
   getProductDetail,
+  getProductsByName
 };
