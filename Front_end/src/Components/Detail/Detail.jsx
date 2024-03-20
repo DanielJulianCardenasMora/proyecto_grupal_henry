@@ -7,7 +7,7 @@ import hover from '../../assets/Imagenes/Boton_seguirViendo_hover.png'
 
 
 
-export const Detail=()=> {
+function Detail() {
 
 
 
@@ -65,3 +65,4 @@ export const Detail=()=> {
   )
 }
 
+export default Detail
