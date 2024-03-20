@@ -1,0 +1,28 @@
+.container{
+  background-color: blue;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+.bg{
+  background-color: red;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+.imagen{
+  background-color:violet;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.btnNav{
+  background-color: purple;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
