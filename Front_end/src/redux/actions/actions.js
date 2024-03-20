@@ -11,7 +11,8 @@ import {
     GENDER_FILTER ,
     POST_ITEM ,
 
-} from "./action-types";
+} from "./types";
+const URL = 'https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json'
 
 export const getAllProducts = () => {
 
