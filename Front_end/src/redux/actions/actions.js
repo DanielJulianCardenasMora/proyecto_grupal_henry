@@ -11,20 +11,22 @@ import {
     GENDER_FILTER ,
     POST_ITEM ,
 
-} from "./types";
+} from "./type";
 const URL = 'https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json'
 
 export const getAllProducts = () => {
 
     return async function (dispatch) {
       try {
-        const response = await axios.get("");
+        const response = await axios.get('https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json');
        
         dispatch({ type: GET_PRODUCTS, payload: response.data });
+   
       } catch (error) {
         alert(error.message);
       }
     }}
+
 
 export const getOrders = () => {
 
@@ -74,7 +76,7 @@ export function getProductDetail(id) {
 export function searchByName(name){
     return async function(dispatch){
         try{
-            const response = await axios.get(`http:///?name=${name}`)
+            const response = await axios.get(`https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json/?name=${name}`)
           
             return dispatch({
                 type: SEARCH_BY_NAME,

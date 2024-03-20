@@ -1,0 +1,33 @@
+
+.SearchBar{
+    width: 70%;
+     display: flex;
+     justify-content:  center;  
+margin: auto;
+
+     
+ }
+ 
+ #inputSearch{
+     width: 50%;
+     border: 1px solid gray;
+     border-radius: 50px;
+     margin-right: 2em;
+     height: 3em;
+     margin-left: 1em;
+     background-color: rgba(240, 248, 255, 0.379);
+     color: whitesmoke;
+     padding: 1em;
+ }
+ 
+ .SearchBar button {
+ 
+     border: none;
+     background: none;
+     color: azure;
+     border: 1px solid azure;
+     border-radius: 10px;
+     height: 3em;
+     
+   
+ }
