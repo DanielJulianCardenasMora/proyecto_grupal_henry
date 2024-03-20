@@ -2,7 +2,8 @@
   background-color: blue;
   height: 100vh;
   width: 100%;
-  position: relative;
+  position: fixed;
+  top: 0;
 }
 .bg{
   height: 100vh;
