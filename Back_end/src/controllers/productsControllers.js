@@ -16,7 +16,6 @@ const getProducts = async () => {
                 category: element.category,
             };
         });
-    
         return getInfo;
 
     } catch (error) {
@@ -24,21 +23,19 @@ const getProducts = async () => {
         throw error; // Propagar el error para que sea manejado por el código que llama a esta función
     }
 };
-// console.log(getProducts)
+
 const productsDataBase = async () => {
     try {
         const productsApi = await getProducts();
-        
 
         const existingProducts = await Product.findAll();
-        console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de datos
+        // console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de datos
 
         if (!existingProducts.length) {
             const createdProducts = await Product.bulkCreate(productsApi);
-            console.log('Productos creados en la base de datos:', createdProducts); // Registro de los productos creados en la base de datos
+            //console.log('Productos creados en la base de datos:', createdProducts); // Registro de los productos creados en la base de datos
             return createdProducts;
         } else {
-            // Lógica para manejar productos existentes
             return existingProducts;
         }
     } catch (error) {
@@ -46,10 +43,8 @@ const productsDataBase = async () => {
         throw error;
     }
 };
-const getAllProducts = async () => {        //Obtenemos los products de bd
-    const allPro = await Product.findAll()
-    return allCountries;
-}
+
+
 const getProductDetail = async (id) => {
 
 }
