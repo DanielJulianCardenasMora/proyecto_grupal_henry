@@ -5,7 +5,7 @@ import Footer from '../../Components/Footer/Footer'
 
 
 
-function Landing() {
+export const Landing=()=> {
 
 
 
@@ -63,4 +63,3 @@ function Landing() {
   )
 }
 
-export default Landing

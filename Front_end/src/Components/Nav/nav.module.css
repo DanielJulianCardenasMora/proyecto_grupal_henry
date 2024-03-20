@@ -46,3 +46,14 @@
     width: 15%;
     /* background-color: chocolate; */
 }
+
+.logInB{
+    background: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 1em;
+}
+
+.logInB:hover{
+    background-color: rgba(255, 255, 255, 0.16);
+}

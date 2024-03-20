@@ -19,7 +19,7 @@ function Nav() {
      </ul></div>
 
      <div className={style.logIn}>
-             Log In
+           <button className={style.logInB} >Log In</button>
      </div>
      
 
