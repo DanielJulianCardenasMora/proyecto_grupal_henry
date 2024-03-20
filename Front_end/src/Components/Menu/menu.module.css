@@ -82,3 +82,10 @@
 .botton_hidden{
   opacity: 0;
 }
+
+
+.box{
+  z-index: 1;
+  position: relative;
+  top: -100vh;
+}
