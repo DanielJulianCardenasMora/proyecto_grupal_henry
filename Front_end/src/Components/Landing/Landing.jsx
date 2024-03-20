@@ -1,6 +1,6 @@
 import style from './Landing.module.css'
-import Nav from '../../Components/Nav/Nav'
-import Footer from '../../Components/Footer/Footer'
+import Nav from '../Nav/Nav'
+import Footer from '../Footer/Footer'
 
 
 
