@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import { LandingPage, HomePage, AboutPage, DetailPage, CreatePage } from './pages';
 import './App.css'
-import Menu from '../src/Components/Menu/Menu'
 import Card from './Components/Card/card';
 
 
