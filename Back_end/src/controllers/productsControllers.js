@@ -54,7 +54,7 @@ const getProductDetail = async (id) => {
     const product = await Product.findByPk(id);
 
     if (!product) {
-      throw new Error(`No se encontró ningún producto con el ID ${id}`);
+      return null
     }
 
     return product;
@@ -80,8 +80,29 @@ const getProductsByName = async (name) => {
     }
 };
 
+const createProductDB = async ( id, name, description, price, image, stock, category, genero ) => {
+  const newProduct = { id, name, description, price, image, stock, category, genero }
+  try {
+      const productCreatedDB = await Product.create(newProduct);
+      return productCreatedDB
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+const deleteProductDB = async (id) => {
+  const productDeleted = Product.destroy({
+    where: {
+        id: id
+    }
+  });
+  return productDeleted
+}
+
 module.exports = {
   productsDataBase,
   getProductDetail,
-  getProductsByName
+  getProductsByName,
+  createProductDB,
+  deleteProductDB
 };
