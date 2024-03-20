@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage } from './pages';
+// import Card from './Components/Card/card';
 import './App.css'
 import Card from './Components/Card/card';
 
