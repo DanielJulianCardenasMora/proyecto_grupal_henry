@@ -18,7 +18,7 @@
   bottom: 0;
   right: 0;
   display: flex;
-  z-index: 500;
+  z-index: 00;
   left:50%;
   transform: translate(-50%);
   justify-content: space-between;
