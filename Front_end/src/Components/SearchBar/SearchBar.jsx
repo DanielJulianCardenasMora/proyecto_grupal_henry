@@ -1,4 +1,4 @@
-import './SearchBar.module.css'
+import style from './SearchBar.module.css'
 import { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import {  searchByName } from '../../redux/actions/actions'
@@ -55,10 +55,10 @@ const [inputsErrors, setInputsErrors] = useState();
    
 
    return (
-      <div className='SearchBar' >
+      <div className={style.box} >
                       
         <button type='submit' onClick = {(e)=> handleSubmit(e)} >Search</button> 
-          <input id='inputSearch' name='search' type='search' onChange={(e)=>handleSearch(e)} />
+          <input className={style.inputS} name='search' type='search' onChange={(e)=>handleSearch(e)} />
           
          
       </div>

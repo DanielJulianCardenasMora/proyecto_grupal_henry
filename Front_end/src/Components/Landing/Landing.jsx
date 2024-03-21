@@ -1,6 +1,7 @@
 import style from './Landing.module.css'
 import Nav from '../Nav/Nav'
 import Footer from '../Footer/Footer'
+import SearchBar from '../SearchBar/SearchBar'
 
 
 
@@ -35,6 +36,7 @@ export const Landing=()=> {
  <div className={style.banner}>
 
  </div>
+
 <div className={style.landingCards}>
 <div className={style.card1}>
   <div className={style.imageCard}></div>
