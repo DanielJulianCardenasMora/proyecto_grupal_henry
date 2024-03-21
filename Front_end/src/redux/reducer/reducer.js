@@ -3,6 +3,7 @@ import {
     SEARCH_BY_NAME,
     PRICE_FILTER,
     GENDER_FILTER,
+    DETAIL,
   } from "../actions/type";
   
   const initialstate = {
@@ -65,7 +66,12 @@ export default function rootReducer(state = initialstate, { type, payload }){
 
           }
   
-      
+          case DETAIL:
+          console.log(payload)
+            return {
+              ...state,
+              Detail: payload
+            }
         default:
           return { ...state };
       }

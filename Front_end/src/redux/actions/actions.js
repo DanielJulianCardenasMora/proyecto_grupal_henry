@@ -58,11 +58,11 @@ export function getProductDetail(id) {
       return async function (dispatch) {
   
           try {
-              const response = await axios.get('' + id)
+              const {data} = await axios.get('http://localhost:3001/products/' + id)
               
               return dispatch({
                   type: DETAIL,
-                  payload: response.data
+                  payload: data
               })
           }
           catch(error) {

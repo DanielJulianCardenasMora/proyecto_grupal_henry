@@ -3,13 +3,22 @@ import style from './Detail.module.css'
 import fondo from '../../assets/Imagenes/Detail_fondo_aplicar.png'
 import boton from '../../assets/Imagenes/Boton_seguirViendo.png'
 import hover from '../../assets/Imagenes/Boton_seguirViendo_hover.png'
-
-
-
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react'
+import { getProductDetail } from '../../redux/actions/actions'
 
 function Detail() {
+  const dispatch = useDispatch()
+  const {id} = useParams()
+
+  //Caracteristicas del producto con el ID correspondiente
+  const {description, name, image, price, stock, genero} = useSelector((state) => state.Detail)
 
 
+  useEffect(() => {
+    dispatch(getProductDetail(id))
+  }, [id])
 
   return (
     <div className={style.container}>
