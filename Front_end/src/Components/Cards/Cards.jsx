@@ -1,7 +1,6 @@
 import Card from '../Card/card';
 import style from './Cards.module.css'
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import derecha from '../../assets/Imagenes/Products_flechaDer_aplicar.png'
 import izquierda from '../../assets/Imagenes/Products_flechaIzq_aplicar.png'

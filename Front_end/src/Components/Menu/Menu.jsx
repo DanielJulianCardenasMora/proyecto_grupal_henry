@@ -1,5 +1,11 @@
+import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import style from "./menu.module.css";
+
+import { priceFilter } from "../../redux/actions/actions";
+
+
 import { useSelector, useDispatch } from "react-redux";
 import { genderFilter } from '../../redux/actions/actions';
 
@@ -8,18 +14,26 @@ import { genderFilter } from '../../redux/actions/actions';
 
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
+  const dispatch = useDispatch()
+
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
 
 
+  const handlePrice = (value) => {
+    dispatch(priceFilter(value))
+  }
 
-  // const productsScreen = useSelector((state) => state.ProductsScreen)
-  // const dispatch = useDispatch()
 
-  // const clickMan = () => {
-  //   dispatch(genderFilter('Masculino'))
-  // }
+
+
+  const productsScreen = useSelector((state) => state.ProductsScreen)
+
+
+  const clickMan = () => {
+    dispatch(genderFilter('Masculino'))
+  }
 
 
 
@@ -32,7 +46,7 @@ export const Menu = () => {
       <div className={ isHidden ? style.container: style.hidden}>
         <div className={style.columnas}>
           <div className={style.columna1}>
-            {/* <h1 onClick={clickMan}>Man</h1> */}
+            <h1 onClick={clickMan}>Man</h1>
             <h1>Women</h1>
             <h1>Unisex</h1>
           </div>
@@ -46,8 +60,8 @@ export const Menu = () => {
           </div>
           <div className={style.columna3}>
             <h1>Price order</h1>
-            <h3>Lower to higher</h3>
-            <h3>Higher to lower</h3>
+            <h3 onClick={() => handlePrice("asc")}>Lower to higher</h3>
+            <h3 onClick={() => handlePrice("des")}>Higher to lower</h3>
             <h3 className={style.c3h3} onClick={toggleMenu}>back</h3>
           </div>
         </div>
