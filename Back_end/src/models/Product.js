@@ -1,10 +1,4 @@
 const { DataTypes } = require("sequelize");
-const {
-  validateName,
-  validatePrice,
-  validateDescription,
-  validateStock,
-} = require("../utils/validacion");
 
 module.exports = (sequelize) => {
   sequelize.define(
