@@ -1,4 +1,4 @@
-const { Product } = require("../db");
+const { Product, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require('sequelize');
 
@@ -15,24 +15,32 @@ const getProducts = async () => {
         description: element.description,
         price: element.price,
         stock: element.stock,
-        genero: element.genero,
-        category: element.category,
+        genero: element.genero
       };
     });
     return getInfo;
   } catch (error) {
     console.error("Error al obtener productos:", error);
-    throw error; // Propagar el error para que sea manejado por el código que llama a esta función
+    throw error;
   }
 };
 
-const productsDataBase = async () => {
+const productsDataBase = async (page = 1, pageSize = 5) => {
   try {
     const productsApi = await getProducts();
 
-    const existingProducts = await Product.findAll();
-    // console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de datos
+    const offset = (page - 1) * pageSize;     //determino donde comienza la pagina y du tamaño
 
+    const existingProducts = await Product.findAll({
+      include: [{
+        model: Category,
+        attributes: ["name"],
+        through: { attributes: [] },
+      }],
+      limit: pageSize,
+      offset: offset
+    });
+    // console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de dato
     if (!existingProducts.length) {
       const createdProducts = await Product.bulkCreate(productsApi);
       //console.log('Productos creados en la base de datos:', createdProducts); // Registro de los productos creados en la base de datos
@@ -65,19 +73,19 @@ const getProductDetail = async (id) => {
 };
 
 const getProductsByName = async (name) => {
-    try {
-        const productFiltered = await Product.findAll({
-            where: {
-                name: {
-                    [Op.iLike]: `%${name}%`
-                }
-            }
-        });
-        return productFiltered;
-    } catch (error) {
-        console.error('Error fetching or processing country data:', error);
-        throw error;
-    }
+  try {
+    const productFiltered = await Product.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`
+        }
+      }
+    });
+    return productFiltered;
+  } catch (error) {
+    console.error('Error fetching or processing country data:', error);
+    throw error;
+  }
 };
 
 const createProductDB = async ( id, name, description, price, image, stock, category, genero ) => {
