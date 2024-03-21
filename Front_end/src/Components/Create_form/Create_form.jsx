@@ -97,15 +97,9 @@ const Create_form = () => {
           
         <label  className={style.genero} htmlFor="genre">
           Genre:{''}
-<<<<<<< HEAD
           <select className={style.select} defaultValue='All' onChange={handleFilter}>
             <option disabled='disabled' value='All'>- Gender -</option>
               {genres ? genres.map((option) => {
-=======
-          <select className={style.select} defaultValue='All' onChange={handleFilterGenre}>
-            <option disabled='disabled' value='All'>- Genre -</option>
-              {genres ? genres.map((option, i) => {
->>>>>>> 5462b9daace9b701ba293d8c06df48a3e5cf101c
                 return (
                   <option key={i} data-nombre={i} value={i}>{option}</option>
                 )
@@ -164,11 +158,7 @@ const Create_form = () => {
 
 
 
-<<<<<<< HEAD
         <button className={style.buttonForm}>Create</button>
-=======
-        <button type='submit' className={style.buttonForm}>Create product</button>
->>>>>>> 5462b9daace9b701ba293d8c06df48a3e5cf101c
         <h3 className={style.font}>Press the button when you are ready</h3>
         </form>
       </div>
