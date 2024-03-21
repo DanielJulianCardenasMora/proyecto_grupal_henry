@@ -9,13 +9,11 @@ export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
   const dispatch = useDispatch()
   const productsScreen = useSelector((state) => state.ProductsScreen)
-
-
   const [actualFilters,setActualFilters] =useState([])
+
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
-
 
   const handlePrice = (value) => {
     dispatch(priceFilter(value))
@@ -29,7 +27,6 @@ export const Menu = () => {
   const handleCategory = (category) => {
     dispatch(categoriesFilter(category))
   }
-
   //para probar el filtro: categoria
   //es con click, despues ver si se hacen de a dos quizas
   const handleCategoryClick = (e) => {
@@ -54,9 +51,7 @@ export const Menu = () => {
   // const handleGender = (gender) => {
   //   dispatch(genderFilter(gender))
   // }
-
-
-  const selectedButton = (option)=> actualFilters.includes(option)&& style.optionSelected
+const selectedButton = (option)=> actualFilters.includes(option)&& style.optionSelected
   return (
     <div className={style.box}>
       <div className={ !isHidden ? style.boton: style.botton_hidden} onClick={toggleMenu}></div>
