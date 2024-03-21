@@ -14,8 +14,8 @@ export const ProductsPage = () => {
         height: '100vh'
       }
     } >
-      <Cards />
       <Products />
+      <Cards />
       <Menu />
     </div>
   )

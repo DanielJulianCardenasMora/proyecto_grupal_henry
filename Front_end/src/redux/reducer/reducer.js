@@ -1,8 +1,7 @@
 import {
     GET_PRODUCTS,
     SEARCH_BY_NAME,
-    PRICE_FILTER,
- 
+    PRICE_FILTER
   } from "../actions/type";
   
   const initialstate = {
@@ -14,6 +13,7 @@ import {
 export default function rootReducer(state = initialstate, { type, payload }){
     switch (type) {
         case SEARCH_BY_NAME:
+            console.log(payload);
        
           return {
             ...state,
@@ -22,7 +22,6 @@ export default function rootReducer(state = initialstate, { type, payload }){
 
 
         case GET_PRODUCTS:
-
             // console.log(payload);
        
           return {

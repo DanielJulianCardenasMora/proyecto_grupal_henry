@@ -19,10 +19,17 @@
   right: 0;
 }
 .btnNav{
-  background-color: rgba(128, 0, 128, 0.401);
-  height: 10vh;
-  width: 100%;
+  height: 8vh;
+  width: 80%;
   position: absolute;
   bottom: 0;
   right: 0;
+  display: flex;
+  z-index: 500;
+  left:50%;
+  transform: translate(-50%);
+  justify-content: space-between;
+}
+.btnNav img{
+  height: 70%;
 }
