@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import style from "./menu.module.css";
 import { priceFilter } from "../../redux/actions/actions";
+import { useSelector, useDispatch } from "react-redux";
 import { genderFilter } from '../../redux/actions/actions';
-
-
 
 
 export const Menu = () => {
@@ -21,8 +19,9 @@ export const Menu = () => {
     dispatch(priceFilter(value))
   }
 
-  const clickMan = () => {
-    dispatch(genderFilter('Masculino'))
+
+  const handleGender = (gender) => {
+    dispatch(genderFilter(gender))
   }
 
   return (
@@ -31,9 +30,9 @@ export const Menu = () => {
       <div className={ isHidden ? style.container: style.hidden}>
         <div className={style.columnas}>
           <div className={style.columna1}>
-            <h1 onClick={clickMan}>Man</h1>
-            <h1>Women</h1>
-            <h1>Unisex</h1>
+            <h1 onClick={() => handleGender("Masculino")}>Man</h1>
+            <h1 onClick={() => handleGender("Femenino")}>Women</h1>
+            <h1 onClick={() => handleGender("Unisex")}>Unisex</h1>
           </div>
           <div className={style.columna2}>
             <h1>Jackets</h1>
