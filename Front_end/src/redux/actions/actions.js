@@ -91,7 +91,7 @@ export function searchByName(name){
 export function getCategories(){
   return async function(dispatch){
     try {
-      const response = await axios.get('')
+      const response = await axios.get(URL)
    
       return dispatch({
         type: CATEGORY,
