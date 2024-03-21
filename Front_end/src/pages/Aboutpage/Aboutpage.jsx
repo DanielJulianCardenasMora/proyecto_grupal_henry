@@ -8,7 +8,7 @@ import { Nav } from "../../Components"
 export const AboutPage = () => {
     return (
       <>
-      <Nav></Nav>
+   
         <img  className={style.figuras} src={figuras}/>
         <h3 className={style.workteam}>Workteam</h3>
         <div className={style.container}>

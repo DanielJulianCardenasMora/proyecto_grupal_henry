@@ -131,7 +131,7 @@ const Create_form = () => {
         <label  className={style.genero} htmlFor="genre">
           Genre:{''}
           <select className={style.select} defaultValue='All' onChange={handleFilter}>
-            <option disabled='disabled' value='All'>- Genre -</option>
+            <option disabled='disabled' value='All'>- Gender -</option>
               {genres ? genres.map((option) => {
                 return (
                   <option key={option.id} data-nombre={option.Nombre} value={option.id}>{option.Nombre}</option>
@@ -191,7 +191,7 @@ const Create_form = () => {
 
 
 
-        <button className={style.buttonForm}>Create product</button>
+        <button className={style.buttonForm}>Create</button>
         <h3 className={style.font}>Press the button when you are ready</h3>
         </form>
       </div>

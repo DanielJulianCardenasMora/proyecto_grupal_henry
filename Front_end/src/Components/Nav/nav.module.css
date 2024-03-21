@@ -10,6 +10,7 @@
     padding-left: 2%;
     padding-right:2% ;
     box-sizing: border-box;
+    z-index: 3000;
  
 }
 .boxLogo{
