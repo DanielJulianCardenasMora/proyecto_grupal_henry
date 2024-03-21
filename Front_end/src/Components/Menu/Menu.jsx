@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import style from "./menu.module.css";
+import { priceFilter } from "../../redux/actions/actions";
 
 
 
@@ -8,9 +10,15 @@ import style from "./menu.module.css";
 
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
+  const dispatch = useDispatch()
+
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
+
+  const handlePrice = (value) => {
+    dispatch(priceFilter(value))
+  }
 
   return (
     <div className={style.box}>
@@ -32,8 +40,8 @@ export const Menu = () => {
           </div>
           <div className={style.columna3}>
             <h1>Price order</h1>
-            <h3>Lower to higher</h3>
-            <h3>Higher to lower</h3>
+            <h3 onClick={() => handlePrice("asc")}>Lower to higher</h3>
+            <h3 onClick={() => handlePrice("des")}>Higher to lower</h3>
             <h3 className={style.c3h3} onClick={toggleMenu}>back</h3>
           </div>
         </div>
