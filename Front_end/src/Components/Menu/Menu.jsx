@@ -1,12 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import style from "./menu.module.css";
-
 import { priceFilter } from "../../redux/actions/actions";
-
-
-import { useSelector, useDispatch } from "react-redux";
 import { genderFilter } from '../../redux/actions/actions';
 
 
@@ -15,30 +11,19 @@ import { genderFilter } from '../../redux/actions/actions';
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
   const dispatch = useDispatch()
+  const productsScreen = useSelector((state) => state.ProductsScreen)
 
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
 
-
   const handlePrice = (value) => {
     dispatch(priceFilter(value))
   }
 
-
-
-
-  const productsScreen = useSelector((state) => state.ProductsScreen)
-  const dispatch = useDispatch()
-
   const clickMan = () => {
     dispatch(genderFilter('Masculino'))
   }
-
-
-
-
-
 
   return (
     <div className={style.box}>
