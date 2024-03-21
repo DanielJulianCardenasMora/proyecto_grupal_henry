@@ -3,6 +3,7 @@ import {
     SEARCH_BY_NAME,
     PRICE_FILTER,
     GENDER_FILTER,
+    CATEGORY_FILTER
   } from "../actions/type";
   
   const initialstate = {
@@ -57,14 +58,24 @@ export default function rootReducer(state = initialstate, { type, payload }){
           const products = state.Products
           const productoPorGenero = products.filter((producto) => {
             return producto.genero === opcion;
-          });
+          })
           return {
             ...state,
             Products: [...state.Products],
             ProductsScreen: productoPorGenero,
 
           }
-  
+          case CATEGORY_FILTER:
+          let combinedResults = []
+          payload.forEach((f)=>{
+            const filterProductsxCateg = state.Products.filter(products => products.category === f);
+            combinedResults =[...combinedResults,...filterProductsxCateg]
+          })
+          
+            return {
+                ...state,
+                ProductsScreen: combinedResults.length?combinedResults:state.Products,
+            }
       
         default:
           return { ...state };

@@ -93,5 +93,7 @@
   z-index: 200;
   position: relative;
 }
- */
-
+*/
+.optionSelected {
+  color: aqua;
+}
