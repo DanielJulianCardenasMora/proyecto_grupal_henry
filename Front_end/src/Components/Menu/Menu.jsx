@@ -2,10 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import style from "./menu.module.css";
-
 import { priceFilter } from "../../redux/actions/actions";
-
-
 import { useSelector, useDispatch } from "react-redux";
 import { genderFilter } from '../../redux/actions/actions';
 
