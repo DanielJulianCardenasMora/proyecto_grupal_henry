@@ -11,11 +11,11 @@ function Nav() {
 
   return (
     <nav className={style.nav}>
-    <div className={style.boxLogo}>WF</div>
+    <div className={style.boxLogo}><Link to='/' className={style.link} >WF</Link></div>
      <div  className={style.boxList}><ul>
      <Link to='/products' className={style.link}> <li>Products</li></Link>
      <Link to='/about' className={style.link} > <li>About</li></Link>
-     <li>Contact</li>
+     <Link to='/create' className={style.link} ><li>Create</li></Link>
       <li>Cart</li>
      </ul></div>
 
