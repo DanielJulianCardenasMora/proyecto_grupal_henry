@@ -11,3 +11,24 @@
   transform: translate(-50%);
 }
 
+.btnNav{
+  height: 8vh;
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  z-index: 500;
+  left:50%;
+  transform: translate(-50%);
+  justify-content: space-between;
+}
+.btnNav img{
+  height: 70%;
+}
+.btnNav button{
+  padding: 0em 0em;
+  background-color: rgba(255, 0, 0, 0);
+  cursor: pointer;
+  outline: none;
+}

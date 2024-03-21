@@ -18,7 +18,7 @@ export const getAllProducts = () => {
 
     return async function (dispatch) {
       try {
-        const response = await axios.get('http://localhost:3001/products');
+        const response = await axios.get(URL);
        
         dispatch({ type: GET_PRODUCTS, payload: response.data });
    
