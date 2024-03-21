@@ -1,10 +1,10 @@
 .box{
   z-index: 100;
   /* top: -100vh; */
-  height: 30%;
-  width: 30%;
+  height: 28%;
+  width: 28%;
   background-color: blue;
-  margin-bottom: 5%;
+  margin-top: 2%;
 }
 .imgContainer{
   line-height: 0;
@@ -17,7 +17,6 @@
 
 .container{
   position: static;
-  margin: 10%;
   background-color: blueviolet;
 }
 

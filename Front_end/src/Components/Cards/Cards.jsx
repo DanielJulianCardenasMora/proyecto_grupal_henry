@@ -8,10 +8,19 @@ import axios from "axios";
 
 
 export const Cards = () => {
-
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4; 
+  const startIndex = (currentPage - 1) * itemsPerPage;
 
-  
+
+  const getProductsShow = () => {
+    return products.slice(startIndex, startIndex + itemsPerPage);
+  };
+  const productsShow = getProductsShow();
+
+
+
   useEffect(() => {
     axios.get('https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json')
     .then(response => {
@@ -30,7 +39,7 @@ export const Cards = () => {
       <div>
 
         <div className={style.cardsContainer}>
-          {products.map(product => (
+          {productsShow.map(product => (
             <Card
               key={product.id}
               Id={product.id}
