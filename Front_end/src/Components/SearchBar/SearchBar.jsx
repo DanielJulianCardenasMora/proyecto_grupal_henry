@@ -52,7 +52,7 @@ const [inputsErrors, setInputsErrors] = useState();
   })
 
   }
-   
+   console.log("hola search")
 
    return (
       <div className={style.box} >
