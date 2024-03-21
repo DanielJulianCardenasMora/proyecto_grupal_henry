@@ -1,6 +1,7 @@
 import { useState } from "react";
 import style from "./menu.module.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import { genderFilter } from '../../redux/actions/actions';
 
 
 
@@ -11,13 +12,27 @@ export const Menu = () => {
     setIsHidden(!isHidden);
   };
 
+
+
+  const productsScreen = useSelector((state) => state.ProductsScreen)
+  const dispatch = useDispatch()
+
+  const clickMan = () => {
+    dispatch(genderFilter('Masculino'))
+  }
+
+
+
+
+
+
   return (
     <div className={style.box}>
       <div className={ !isHidden ? style.boton: style.botton_hidden} onClick={toggleMenu}></div>
       <div className={ isHidden ? style.container: style.hidden}>
         <div className={style.columnas}>
           <div className={style.columna1}>
-            <h1>Man</h1>
+            <h1 onClick={clickMan}>Man</h1>
             <h1>Women</h1>
             <h1>Unisex</h1>
           </div>
