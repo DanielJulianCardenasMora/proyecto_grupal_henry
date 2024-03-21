@@ -1,5 +1,5 @@
 const regexValue = /^(?=.{1,500}$).+/
-const regexDecimal = /^\d*\.\d+$/
+const regexDecimal = /^[0-9]+([,][0-9]+)?$/
 
 
 // regexValue: permite maximo 500 caracteres y minimo 1
@@ -13,7 +13,7 @@ const regexDecimal = /^\d*\.\d+$/
 function validation(data) {
     const errors = {}
     if (!regexValue.test(data.name)) errors.name = 'No dejes el campo vacio y no repitas nombres'
-    if (!regexDecimal.test(data.price)) errors.price = 'Numero incluyendo decimal'
+    if (!regexDecimal.test(data.price)) errors.price = 'Precio invalido'
     if (!regexValue.test(data.description)) errors.description = 'Debe tener un valor de maximo 500 caracteres'
     return errors
 }
