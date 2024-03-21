@@ -32,23 +32,23 @@ export default function rootReducer(state = initialstate, { type, payload }){
 
           case PRICE_FILTER:
           const sorted = state.ProductsScreen.slice(); // Crea una copia del estado
-
-
           if(payload === 'asc'){
-            console.log("asc")
-            console.log(sorted)
-            
-            sorted.sort((a, b) => {
+            sorted.sort((a, b) => {  
+              const priceA = a.price
+              const priceB = b.price            
+                return priceB - priceA
             })
           }
-
           if(payload === 'des'){
-            console.log("des")
-            console.log(sorted)
-
-            sorted.sort((a, b) => {
-
+            sorted.sort((a, b) => {  
+              const priceA = a.price
+              const priceB = b.price            
+                return priceA - priceB
             })
+          }
+          return {
+            ...state,
+            ProductsScreen: sorted,
           }
   
         default:
