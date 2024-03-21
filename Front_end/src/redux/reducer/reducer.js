@@ -1,7 +1,8 @@
 import {
     GET_PRODUCTS,
     SEARCH_BY_NAME,
-    PRICE_FILTER
+    PRICE_FILTER,
+    GENDER_FILTER,
   } from "../actions/type";
   
   const initialstate = {
@@ -20,10 +21,8 @@ export default function rootReducer(state = initialstate, { type, payload }){
             Products: [...payload],
           };
 
-
+      
         case GET_PRODUCTS:
-            // console.log(payload);
-       
           return {
             ...state,
             Products: [...payload],
@@ -49,8 +48,24 @@ export default function rootReducer(state = initialstate, { type, payload }){
           return {
             ...state,
             ProductsScreen: sorted,
+
+        };
+      
+      
+        case GENDER_FILTER:
+          const opcion = payload
+          const products = state.Products
+          const productoPorGenero = products.filter((producto) => {
+            return producto.genero === opcion;
+          });
+          return {
+            ...state,
+            Products: [...state.Products],
+            ProductsScreen: productoPorGenero,
+
           }
   
+      
         default:
           return { ...state };
       }
