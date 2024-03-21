@@ -1,7 +1,7 @@
 import style from "./Create_form.module.css";
 import { useState } from "react";
 import validacion from './validacion'
-const URL_SERVER = ''
+const URL_SERVER = 'localhost:3001/'
 import axios from 'axios'
 import { useSelector } from "react-redux";
 
@@ -9,17 +9,18 @@ import { useSelector } from "react-redux";
 
 
 const Create_form = () => {
-  const genres = []
+  const genres = ['genro1', 'genero2']
+  const [errors, setErrors] = useState({});
   const [productData, setProductData] = useState({
     name: '',
     description: '',
-    photo: '',
+    image: '',
     price: '',
-    categorie: '',
+    category: '',
+    image: '',
     genre: []
   });
-  const [productGenreShow, setProductGenreShow] = useState([])
-  const [errors, setErrors] = useState({});
+
   const handleChange = (evento) => {
     setErrors(
       validacion({ ...productData, [evento.target.name]: evento.target.value })
@@ -27,31 +28,29 @@ const Create_form = () => {
     setProductData({ ...productData, [evento.target.name]: evento.target.value });
   };
   
-  const handleFilter = (event) => {
+  // Esta funcion suma multiples genero escogidos al estado local.
+  const handleFilterGenre = (event) => {
     setProductData({
       ...productData,
       genre: [...productData.genre, event.target.value]
     })
     const selectedGenreId = event.target.value;
-    const selectedGenre = genres.find(
-      (genre) => genre.id === parseInt(selectedGenreId, 10)
-      );
-      setProductGenreShow([...productGenreShow, selectedGenre.Nombre])
   }
-
 
 
   const createproduct = async (productData) => {
     try {
-      const { name, description, photo, price, categorie, genre } = productData;
+      const { name, description, image, price, category, genre } = productData;
+      const obj = {name:name.value}
       const { data } = await axios
-        .post(`${URL_SERVER}videoproducts/?name=${name}&description=${description}&photo=${photo}&price=${price}&categorie=${categorie}&genre=${genre}`);
+        .post(`${URL_SERVER}products, obj   `);
       alert(data)
     }
     catch (error) {
       alert(error.response.data.message)
     }
   }
+
   const handleSubmit = (evento) => {
     evento.preventDefault();
     createproduct(productData);
@@ -61,8 +60,8 @@ const Create_form = () => {
 
   return (
     <div className={style.background}>
-    <img className={style.bg2} src={'../../../src/z_imagesFonts/Images/robot.png'} alt={"fondo"} />
     <div className={style.cont}>
+      
       <form className={style.formCont} onSubmit={handleSubmit}>
         <label htmlFor="name">
           Name:
@@ -80,39 +79,6 @@ const Create_form = () => {
 
 
 
-        {/* <label htmlFor="date">
-          Creation date:
-          <input
-            className={style.inp}
-            type="text"
-            placeholder="DD/MM/AAAA"
-            id="date"
-            name="date"
-            value={productData.date}
-            onChange={handleChange}
-          />
-        </label>
-        {errors.date && <p>{errors.date}</p>} */}
-
-
-
-        {/* <label htmlFor="categorie">
-          Categorie:
-          <input
-            className={style.inp}
-            type="text"
-            placeholder=""
-            id="categorie"
-            name="categorie"
-            value={productData.categorie}
-            onChange={handleChange}
-          />
-        </label>
-        {errors.categorie && <p>{errors.categorie}</p>} */}
-
-          
-
-
         <label htmlFor="price">
           Price:
           <input
@@ -128,13 +94,14 @@ const Create_form = () => {
         {errors.price && <p>{errors.price}</p>}
 
 
+          
         <label  className={style.genero} htmlFor="genre">
           Genre:{''}
-          <select className={style.select} defaultValue='All' onChange={handleFilter}>
+          <select className={style.select} defaultValue='All' onChange={handleFilterGenre}>
             <option disabled='disabled' value='All'>- Genre -</option>
-              {genres ? genres.map((option) => {
+              {genres ? genres.map((option, i) => {
                 return (
-                  <option key={option.id} data-nombre={option.Nombre} value={option.id}>{option.Nombre}</option>
+                  <option key={i} data-nombre={i} value={i}>{option}</option>
                 )
               })
               :null}
@@ -143,10 +110,10 @@ const Create_form = () => {
           
 
 
-        <label  className={style.genero} htmlFor="categorie">
-          Categorie:{''}
-          <select className={style.select} defaultValue='All' onChange={handleFilter}>
-            <option disabled='disabled' value='All'>- Categorie -</option>
+        <label  className={style.genero} htmlFor="category">
+          Category:{''}
+          <select className={style.select} defaultValue='All' onChange={handleFilterGenre}>
+            <option disabled='disabled' value='All'>- Category -</option>
               {genres ? genres.map((option) => {
                 return (
                   <option key={option.id} data-nombre={option.Nombre} value={option.id}>{option.Nombre}</option>
@@ -158,19 +125,19 @@ const Create_form = () => {
 
 
 
-        <label htmlFor="photo">
+        <label htmlFor="image">
           Image link:
           <input
             className={style.inp}
             type="text"
             placeholder=""
-            id="photo"
-            name="photo"
-            value={productData.photo}
+            id="image"
+            name="image"
+            value={productData.image}
             onChange={handleChange}
           />
         </label>
-        {errors.photo && <p>{errors.photo}</p>}
+        {errors.image && <p>{errors.image}</p>}
 
 
 
@@ -191,7 +158,7 @@ const Create_form = () => {
 
 
 
-        <button className={style.buttonForm}>Create product</button>
+        <button type='submit' className={style.buttonForm}>Create product</button>
         <h3 className={style.font}>Press the button when you are ready</h3>
         </form>
       </div>
