@@ -117,11 +117,11 @@ export function postItem(i){
 
 }
 
-export const priceFilter = (event) => {
+export const priceFilter = (order) => {
   try {
     return {
       type: PRICE_FILTER,
-      payload: event,
+      payload: order,
     };
   } catch (error) {
     alert(error.message);
