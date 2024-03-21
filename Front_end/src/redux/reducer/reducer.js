@@ -17,6 +17,7 @@ export default function rootReducer(state = initialstate, { type, payload }){
 
  
         case SEARCH_BY_NAME:
+            console.log(payload);
        
           return {
             ...state,

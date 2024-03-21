@@ -18,7 +18,7 @@ export const getAllProducts = () => {
 
     return async function (dispatch) {
       try {
-        const response = await axios.get('https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json');
+        const response = await axios.get('http://localhost:3001/products');
        
         dispatch({ type: GET_PRODUCTS, payload: response.data });
    
@@ -76,7 +76,7 @@ export function getProductDetail(id) {
 export function searchByName(name){
     return async function(dispatch){
         try{
-            const response = await axios.get(`https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json/?name=${name}`)
+            const response = await axios.get(`http://localhost:3001/products?name=${name}`)
           
             return dispatch({
                 type: SEARCH_BY_NAME,
