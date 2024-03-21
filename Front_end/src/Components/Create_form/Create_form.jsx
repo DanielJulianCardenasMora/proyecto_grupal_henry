@@ -97,9 +97,9 @@ const Create_form = () => {
           
         <label  className={style.genero} htmlFor="genre">
           Genre:{''}
-          <select className={style.select} defaultValue='All' onChange={handleFilter}>
+          <select className={style.select} defaultValue='All' >
             <option disabled='disabled' value='All'>- Gender -</option>
-              {genres ? genres.map((option) => {
+              {genres ? genres.map((option, i) => {
                 return (
                   <option key={i} data-nombre={i} value={i}>{option}</option>
                 )
