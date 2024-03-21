@@ -142,15 +142,12 @@ export const categoriesFilter = (event) => {
 };
 
 
-export const genderFilter = (d) => {
+export const genderFilter = (gender) => {
   try {
-    return (dispatch) => {
-      return dispatch({
+      return {
         type: GENDER_FILTER,
-        payload: d,
-      });
-      }
-     
+        payload: gender,
+      };
   } catch (error) {
     alert(error.message);
   }
