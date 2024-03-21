@@ -34,15 +34,19 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Product } = sequelize.models;
-const { User } = sequelize.models;
-const { Category } = sequelize.models;
-const { Order } = sequelize.models;
-
+// const { Product } = sequelize.models;
+// const { User } = sequelize.models;
+// const { Category } = sequelize.models;
+// const { Order } = sequelize.models;
+const { Order ,Product,User,Category} = sequelize.models;
+console.log(sequelize.models)
 // Aca vendrian las relaciones
 //  User.belongsToMany(Order, { through: "user_order" });
 Product.belongsToMany(Order, { through: "order_product" });
+
 Product.belongsToMany(Category, { through: "product_category" });
+Category.belongsToMany(Product, { through: "product_category" });
+
 User.hasMany(Order);
 Order.belongsTo(User);
 

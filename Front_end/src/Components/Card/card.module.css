@@ -1,11 +1,14 @@
 .box{
   z-index: 100;
   /* top: -100vh; */
-  height: 10%;
-  width: 10%;
+  height: 28%;
+  width: 28%;
+  background-color: blue;
+  margin-top: 2%;
 }
 .imgContainer{
   line-height: 0;
+  background-color: red;
 }
 .imgContainer img{
   width: 50%;
@@ -14,10 +17,14 @@
 
 .container{
   position: static;
-  margin: 10%;
+  background-color: blueviolet;
 }
 
 .card{
-  background-color: red;
   margin: 10%;
+}
+
+.texto{
+  background-color: yellow;
+  font-size: 1vw;
 }

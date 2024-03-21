@@ -18,7 +18,7 @@ export const getAllProducts = () => {
 
     return async function (dispatch) {
       try {
-        const response = await axios.get('https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json');
+        const response = await axios.get(URL);
        
         dispatch({ type: GET_PRODUCTS, payload: response.data });
    
@@ -76,7 +76,7 @@ export function getProductDetail(id) {
 export function searchByName(name){
     return async function(dispatch){
         try{
-            const response = await axios.get(`https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json/?name=${name}`)
+            const response = await axios.get(`http://localhost:3001/products?name=${name}`)
           
             return dispatch({
                 type: SEARCH_BY_NAME,
@@ -117,11 +117,11 @@ export function postItem(i){
 
 }
 
-export const priceFilter = (event) => {
+export const priceFilter = (order) => {
   try {
     return {
       type: PRICE_FILTER,
-      payload: event,
+      payload: order,
     };
   } catch (error) {
     alert(error.message);
@@ -142,15 +142,13 @@ export const categoriesFilter = (event) => {
 };
 
 
-export const genderFilter = (d) => {
+export const genderFilter = (gender) => {
   try {
-    return (dispatch) => {
-      return dispatch({
+      return {
         type: GENDER_FILTER,
-        payload: d,
-      });
-      }
-     
+        payload: gender,
+      };
+      
   } catch (error) {
     alert(error.message);
   }

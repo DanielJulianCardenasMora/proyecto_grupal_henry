@@ -1,6 +1,6 @@
 
-.SearchBar{
-    width: 70%;
+.box{
+
      display: flex;
      justify-content:  center;  
 margin: auto;
@@ -8,19 +8,19 @@ margin: auto;
      
  }
  
- #inputSearch{
-     width: 50%;
+ .inputS{
+     width: 30%;
      border: 1px solid gray;
      border-radius: 50px;
      margin-right: 2em;
-     height: 3em;
+   
      margin-left: 1em;
      background-color: rgba(240, 248, 255, 0.379);
      color: whitesmoke;
      padding: 1em;
  }
  
- .SearchBar button {
+ .box button {
  
      border: none;
      background: none;
