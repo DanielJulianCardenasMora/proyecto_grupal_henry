@@ -1,7 +1,7 @@
 import style from "./Create_form.module.css";
 import { useState } from "react";
 import validacion from './validacion'
-const URL_SERVER = 'localhost:3001/'
+const URL_SERVER = 'http://localhost:3001/products'
 import axios from 'axios'
 import { useSelector } from "react-redux";
 
@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 
 
 const Create_form = () => {
-  const genres = ['genro1', 'genero2']
+  const genres = ['Masculino', 'Femenino', 'Unisex']
+  const category = ['Pantalones', 'Remeras', 'Chaquetas', 'Buzos', 'Faldas', 'Camisas']
   const [errors, setErrors] = useState({});
   const [productData, setProductData] = useState({
     name: '',
@@ -18,7 +19,7 @@ const Create_form = () => {
     price: '',
     category: '',
     image: '',
-    genre: []
+    genero: ''
   });
 
   const handleChange = (evento) => {
@@ -26,25 +27,23 @@ const Create_form = () => {
       validacion({ ...productData, [evento.target.name]: evento.target.value })
     );
     setProductData({ ...productData, [evento.target.name]: evento.target.value });
+    console.log(evento.target.value);
   };
-  
-  // Esta funcion suma multiples genero escogidos al estado local.
-  const handleFilterGenre = (event) => {
-    setProductData({
-      ...productData,
-      genre: [...productData.genre, event.target.value]
-    })
-    const selectedGenreId = event.target.value;
-  }
-
 
   const createproduct = async (productData) => {
     try {
-      const { name, description, image, price, category, genre } = productData;
-      const obj = {name:name.value}
-      const { data } = await axios
-        .post(`${URL_SERVER}products, obj   `);
-      alert(data)
+      const { name, description, image, price, category, genero } = productData;
+      const obj = {
+        name: name,
+        description: description,
+        image: image,
+        price: price,
+        category: category,
+        genero: genero
+      }
+      await axios
+        .post(`${URL_SERVER}`, obj);
+        alert(`Producto añadido con exito:  ${obj.name}`)
     }
     catch (error) {
       alert(error.response.data.message)
@@ -97,11 +96,11 @@ const Create_form = () => {
           
         <label  className={style.genero} htmlFor="genre">
           Genre:{''}
-          <select className={style.select} defaultValue='All' onChange={handleFilterGenre}>
-            <option disabled='disabled' value='All'>- Genre -</option>
+          <select className={style.select} name='genero' value={productData.genero} onChange={handleChange}>
+            <option disabled='disabled' >- Genre -</option>
               {genres ? genres.map((option, i) => {
                 return (
-                  <option key={i} data-nombre={i} value={i}>{option}</option>
+                  <option key={i} name={option} value={option}>{option}</option>
                 )
               })
               :null}
@@ -112,11 +111,11 @@ const Create_form = () => {
 
         <label  className={style.genero} htmlFor="category">
           Category:{''}
-          <select className={style.select} defaultValue='All' onChange={handleFilterGenre}>
-            <option disabled='disabled' value='All'>- Category -</option>
-              {genres ? genres.map((option) => {
+          <select className={style.select} name='category' defaultValue='All' onChange={handleChange}>
+            <option disabled='disabled' name='category' value={productData.category}>- Category -</option>
+              {category ? category.map((option, i) => {
                 return (
-                  <option key={option.id} data-nombre={option.Nombre} value={option.id}>{option.Nombre}</option>
+                  <option key={i} name={category} value={option}>{option}</option>
                 )
               })
               :null}
