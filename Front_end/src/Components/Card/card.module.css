@@ -1,0 +1,31 @@
+.box{
+  z-index: 100;
+  /* top: -100vh; */
+  height: 30%;
+  width: 30%;
+  background-color: blue;
+  margin-bottom: 5%;
+}
+.imgContainer{
+  line-height: 0;
+  background-color: red;
+}
+.imgContainer img{
+  width: 50%;
+  height: 50%;
+}
+
+.container{
+  position: static;
+  margin: 10%;
+  background-color: blueviolet;
+}
+
+.card{
+  margin: 10%;
+}
+
+.texto{
+  background-color: yellow;
+  font-size: 1vw;
+}

@@ -2,9 +2,6 @@ const { User } = require("../db");
 
 const getAllUsers = async (req, res) => {
     const usersInDB = await User.findAll();
-
-
-
     return usersInDB
 }
 
@@ -19,7 +16,17 @@ const createUserDB = async ( name, email, password, phone, country, city ) => {
     }
 }
 
+const deleteUserDB = async (id) => {
+    const deleted = User.destroy({
+        where: {
+            id: id
+        }
+    });
+    return deleted
+}
+
 module.exports = {
     getAllUsers,
-    createUserDB
+    createUserDB,
+    deleteUserDB
 }
