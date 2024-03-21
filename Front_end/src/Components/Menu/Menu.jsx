@@ -1,15 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import style from "./menu.module.css";
-import { priceFilter } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
-import { genderFilter } from '../../redux/actions/actions';
+import { genderFilter ,priceFilter,categoriesFilter } from '../../redux/actions/actions';
 
 
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
   const dispatch = useDispatch()
   const productsScreen = useSelector((state) => state.ProductsScreen)
+  const [actualFilters,setActualFilters] =useState([])
 
   const toggleMenu = () => {
     setIsHidden(!isHidden);
@@ -24,6 +24,34 @@ export const Menu = () => {
     dispatch(genderFilter(gender))
   }
 
+  const handleCategory = (category) => {
+    dispatch(categoriesFilter(category))
+  }
+  //para probar el filtro: categoria
+  //es con click, despues ver si se hacen de a dos quizas
+  const handleCategoryClick = (e) => {
+    const filter=e.target.name
+    // Ocultar el menú después de seleccionar una categoría
+    if(!actualFilters.includes(filter)){
+      console.log([...actualFilters,filter],"filters log")
+      handleCategory([...actualFilters,filter])
+      setActualFilters([...actualFilters,filter])
+    }else{
+      const cleanFilter = actualFilters.filter(f=>f!==filter)
+      handleCategory(cleanFilter)
+      setActualFilters(cleanFilter)
+    }
+    setIsHidden(true);
+  };
+  // const handlePrice = (value) => {
+  //   dispatch(priceFilter(value))
+  // }
+
+
+  // const handleGender = (gender) => {
+  //   dispatch(genderFilter(gender))
+  // }
+const selectedButton = (option)=> actualFilters.includes(option)&& style.optionSelected
   return (
     <div className={style.box}>
       <div className={ !isHidden ? style.boton: style.botton_hidden} onClick={toggleMenu}></div>
@@ -35,12 +63,12 @@ export const Menu = () => {
             <h1 onClick={() => handleGender("Unisex")}>Unisex</h1>
           </div>
           <div className={style.columna2}>
-            <h1>Jackets</h1>
-            <h1>Coats</h1>
-            <h1>Pants</h1>
-            <h1>Skirts</h1>
-            <h1>Shirts</h1>
-            <h1>Tshirts</h1>
+            <button name="Chaquetas" className={selectedButton("Chaquetas")}  onClick={handleCategoryClick}>Jackets</button>
+            <button name="Buzos" className={selectedButton("Buzos")} onClick={handleCategoryClick}>Coats</button>
+            <button name="Pantalones" className={selectedButton("Pantalones")} onClick={handleCategoryClick}>Pants</button>
+            <button name="Faldas" className={selectedButton("Faldas")} onClick={handleCategoryClick}>Skirts</button>
+            <button name="Camisas" className={selectedButton("Camisas")} onClick={handleCategoryClick}>Shirts</button>
+            <button name="Remeras" className={selectedButton("Remeras")} onClick={handleCategoryClick}>Tshirts</button>
           </div>
           <div className={style.columna3}>
             <h1>Price order</h1>
