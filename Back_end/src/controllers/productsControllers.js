@@ -9,7 +9,6 @@ const getProducts = async () => {
     );
     const getInfo = response.data.map((element) => {
       return {
-        // id: element.id,
         name: element.name,
         image: element.image,
         description: element.description,
@@ -33,12 +32,12 @@ const productsDataBase = async (page = 1, pageSize = 5) => {
     //const offset = (page - 1) * pageSize;     //determino donde comienza la pagina y du tamaño
 
     const existingProducts = await Product.findAll({
-      include: [Category]
-      // include: [{
-      //   model: Category,
-      //   attributes: ["name"],
-      //   through: { attributes: [] },
-      // }],
+      // include: [Category]
+      include: [{
+        model: Category,
+        attributes: ["name"],
+        through: { attributes: [] },
+      }],
       // limit: pageSize,
       // offset: offset
     });
@@ -90,19 +89,25 @@ const getProductsByName = async (name) => {
   }
 };
 
-const createProductDB = async (name, description, price, image, stock, genero,category) => {
-  const newProduct = { name, description, price, image, stock, genero,category }
+const createProductDB = async (name, description, price, image, stock, genero, category) => {
+  const newProduct = { name, description, price, image, stock, genero, category }
   try {
     const productCreatedDB = await Product.create(newProduct);
 
-    await productCreatedDB.addCategory(category);
+    
+    const categoryName = await Category.findOne({ where: { name: category } });
 
+    if (!categoryName) {
+      console.log("La categoría especificada no existe.");
+      return null;
+    }
+    await productCreatedDB.addCategory(categoryName);
+    console.log("Nombre de la categoría encontrada:", categoryName.name);
     return productCreatedDB
   } catch (error) {
     console.log(error);
   }
 }
-
 const deleteProductDB = async (id) => {
   const productDeleted = Product.destroy({
     where: {
