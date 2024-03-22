@@ -8,9 +8,10 @@ import { Nav } from "../../Components"
 export const AboutPage = () => {
     return (
       <>
-   
+  <div className={style.abBg}>
+  
         <img  className={style.figuras} src={figuras}/>
-        <h3 className={style.workteam}>Workteam</h3>
+        <h2 className={style.workteam}>WORKTEAM</h2>
         <div className={style.container}>
           <CardProfile
             nombre="Alejo Borracci"
@@ -60,9 +61,12 @@ export const AboutPage = () => {
             linkedin="https://www.linkedin.com/in/shirley-balbuena-0b5bab295/"
             github=" https://github.com/ShirleyBal"
           />
-
-          <img src={background} className={style.background} />
+  </div> 
+         <div className={style.background}>
+         <div className={style.runner}></div>
+         </div>
         </div>
+      
       </>
     );
 }
