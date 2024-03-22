@@ -4,6 +4,16 @@
   transition: all 0.3s ease-out; 
   position: absolute;
 }
+.columna2 button{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  text-align: left;
+  font-size: 3vw;
+  font-weight: 700;
+  padding: 5% 0;
+  padding-left: 5%;
+}
+
 .columnas{
   display: flex;
   width: 100%;
@@ -97,3 +107,4 @@
 .optionSelected {
   color: aqua;
 }
+

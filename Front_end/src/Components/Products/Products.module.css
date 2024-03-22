@@ -32,4 +32,8 @@
 }
 .btnNav img{
   height: 70%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
