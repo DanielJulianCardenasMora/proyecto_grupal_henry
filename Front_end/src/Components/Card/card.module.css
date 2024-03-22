@@ -1,23 +1,30 @@
 .box{
   z-index: 100;
   /* top: -100vh; */
-  height: 28%;
-  width: 28%;
+  width: 17vw;
+  height: 55vh;
   background-color: blue;
   margin-top: 2%;
+  border-radius: 4vw;
+  border: 1px solid  black;
 }
 .imgContainer{
   line-height: 0;
-  background-color: red;
+  background: linear-gradient(180deg, rgba(95, 0, 153, 1) 0%, rgba(38, 0, 58, 1) 100%);
+  border-radius: 4vw;
+  width: 17vw;
+  height: 55vh;
 }
 .imgContainer img{
-  width: 50%;
-  height: 50%;
+  border-radius: 4vw;
+  height: 100%;
+  width: 100%;
 }
 
 .container{
-  position: static;
+  position: relative;
   background-color: blueviolet;
+  border-radius: 4vw;
 }
 
 .card{
@@ -25,6 +32,59 @@
 }
 
 .texto{
-  background-color: yellow;
-  font-size: 1vw;
+  font-size: 0.6vw;
+  width: 100%;
+  height: 15%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 0 0 4vw 4vw;
+}
+
+.texto2{
+  color: rgb(12, 12, 12);
+  font-size: 0.6vw;
+  width: 50%;
+  height: 15%;
+  position: absolute;
+  top: 3%;
+  left: 8%;
+  border-radius: 0 0 4vw 4vw;
+}
+
+.texto3{
+  background: radial-gradient(circle at 75% 81%, rgba(1, 0, 239, 0.76) 0%, rgba(12, 1, 75, 0.73) 100%);  font-size: 0.6vw;
+  height: 12%;
+  width: 20%;
+  position: absolute;
+  bottom: 12%;
+  left: 80%;
+  transform: translate(-50%);
+  border-radius: 100%;
+  box-shadow: 0.12vw 0.12vw 2px rgba(255, 255, 255, 0.3) ;
+}
+.nombre{
+  background: linear-gradient(15deg, rgba(152, 164, 255, 0.73) 0%, rgba(1, 0, 239, 0.66) 43%);
+  line-height: 1;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 0.4vw;
+  color: rgb(12, 12, 12);
+  padding: 2%;
+  border-radius: 1vw;
+  width: 70%;
+}
+.precio{
+  position: absolute;
+  top: 0;
+}
+.comprar{
+  font-size: 0.3vw;
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translate(-50%);
 }

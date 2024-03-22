@@ -22,6 +22,7 @@ export default function rootReducer(state = initialstate, { type, payload }){
           return {
             ...state,
             Products: [...payload],
+            ProductsScreen: [...payload],
           };
             
         case GET_PRODUCTS:

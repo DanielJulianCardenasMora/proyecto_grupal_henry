@@ -6,9 +6,7 @@ import {  searchByName } from '../../redux/actions/actions'
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [searchString, setSearchString] = useState("");
- 
-
-const [inputsErrors, setInputsErrors] = useState();
+  const [inputsErrors, setInputsErrors] = useState();
 
   function validate (searchString) {
     const errors= {}
@@ -52,13 +50,13 @@ const [inputsErrors, setInputsErrors] = useState();
   })
 
   }
-   console.log("hola search")
+
 
    return (
       <div className={style.box} >
                       
-        <button type='submit' onClick = {(e)=> handleSubmit(e)} >Search</button> 
           <input className={style.inputS} name='search' type='search' onChange={(e)=>handleSearch(e)} />
+        <button type='submit' onClick = {(e)=> handleSubmit(e)} >Search</button> 
           
          
       </div>
