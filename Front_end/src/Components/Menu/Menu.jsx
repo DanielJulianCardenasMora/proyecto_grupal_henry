@@ -74,7 +74,7 @@ const selectedButton = (option)=> actualFilters.includes(option)&& style.optionS
             <h1>Price order</h1>
             <h3 onClick={() => handlePrice("asc")}>Lower to higher</h3>
             <h3 onClick={() => handlePrice("des")}>Higher to lower</h3>
-            <h3 className={style.c3h3} onClick={toggleMenu}>back</h3>
+            <h2 className={style.c3h3} onClick={toggleMenu}>back</h2>
           </div>
         </div>
       </div>
