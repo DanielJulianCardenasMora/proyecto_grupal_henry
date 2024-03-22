@@ -63,12 +63,12 @@ const selectedButton = (option)=> actualFilters.includes(option)&& style.optionS
             <h1 onClick={() => handleGender("Unisex")}>Unisex</h1>
           </div>
           <div className={style.columna2}>
-            <button name="Chaquetas" className={selectedButton("Chaquetas")}  onClick={handleCategoryClick}>Jackets</button>
-            <button name="Buzos" className={selectedButton("Buzos")} onClick={handleCategoryClick}>Coats</button>
-            <button name="Pantalones" className={selectedButton("Pantalones")} onClick={handleCategoryClick}>Pants</button>
-            <button name="Faldas" className={selectedButton("Faldas")} onClick={handleCategoryClick}>Skirts</button>
-            <button name="Camisas" className={selectedButton("Camisas")} onClick={handleCategoryClick}>Shirts</button>
-            <button name="Remeras" className={selectedButton("Remeras")} onClick={handleCategoryClick}>Tshirts</button>
+            <button name="Chaquetas" onClick={handleCategoryClick}>Jackets</button>
+            <button name="Buzos" onClick={handleCategoryClick}>Coats</button>
+            <button name="Pantalones" onClick={handleCategoryClick}>Pants</button>
+            <button name="Faldas" onClick={handleCategoryClick}>Skirts</button>
+            <button name="Camisas" onClick={handleCategoryClick}>Shirts</button>
+            <button name="Remeras" onClick={handleCategoryClick}>Tshirts</button>
           </div>
           <div className={style.columna3}>
             <h1>Price order</h1>
