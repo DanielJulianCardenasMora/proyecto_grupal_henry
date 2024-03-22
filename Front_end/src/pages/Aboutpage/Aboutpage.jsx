@@ -9,9 +9,21 @@ import Footer from "../../Components/Footer/Footer"
 export const AboutPage = () => {
     return (
       <>
+      
   <div className={style.abBg}>
-  
-        <img  className={style.figuras} src={figuras}/>
+  <div className={style.background}>
+         <div className={style.runner}></div>
+         <div className={style.desc}>
+     
+     <h1>THE SCIENCE BEHIND WEARFASHION</h1>
+   
+     <p >La empresa WEARFASHION es una marca que surge al notar la demanda del mercado   por una mayor disponibilidad  de   ropa   urbana   para   jóvenes,   enfocándose principalmente en la combinación de tendencias del diseño actual.</p>
+   <p>El objetivo de este proyecto es hacer que nuestros clientes estén satisfechos con nuestro trabajo y que la imagen de nuestra marca inspire confianza, apuntando a desarrollar mejoras y cubrir necesidades que puedan surgir en el camino .</p>
+   <button className={style.learnMore}>Learn more</button>
+   
+          </div>
+         </div>
+        {/* <img  className={style.figuras} src={figuras}/> */}
         <h2 className={style.workteam}>WORKTEAM</h2>
         <div className={style.container}>
           <CardProfile
@@ -63,18 +75,7 @@ export const AboutPage = () => {
             github=" https://github.com/ShirleyBal"
           />
   </div> 
-         <div className={style.background}>
-         <div className={style.runner}></div>
-         <div className={style.desc}>
-     
-     <h1>THE SCIENCE BEHIND WEARFASHION</h1>
-   
-     <p >La empresa WEARFASHION es una marca que surge al notar la demanda del mercado   por una mayor disponibilidad  de   ropa   urbana   para   jóvenes,   enfocándose principalmente en la combinación de tendencias del diseño actual.</p>
-   <p>El objetivo de este proyecto es hacer que nuestros clientes estén satisfechos con nuestro trabajo y que la imagen de nuestra marca inspire confianza, apuntando a desarrollar mejoras y cubrir necesidades que puedan surgir en el camino .</p>
-   <button className={style.learnMore}>Learn more</button>
-   
-          </div>
-         </div>
+
         </div>
         <Footer/>
       </>
