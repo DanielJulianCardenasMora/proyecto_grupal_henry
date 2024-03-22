@@ -1,5 +1,5 @@
 import React from "react"
-import CardProfile from "../../Components/cardprofile/cardprofile"
+import CardProfile from "../../Components/Cardprofile/CardProfile"
 import background from "../../assets/Imagenes/About_fondoInferior_aplicar.png"
 import figuras from "../../assets/Imagenes/About_figuras_aplicar.png"
 import style from './about.module.css'
@@ -8,7 +8,7 @@ import { Nav } from "../../Components"
 export const AboutPage = () => {
     return (
       <>
-      <Nav></Nav>
+   
         <img  className={style.figuras} src={figuras}/>
         <h3 className={style.workteam}>Workteam</h3>
         <div className={style.container}>

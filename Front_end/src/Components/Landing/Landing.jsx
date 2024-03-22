@@ -12,7 +12,7 @@ export const Landing=()=> {
 
   return (
     <>
-    <Nav/>
+   
         <div className={style.main}>
         <div className={style.logo}><h1>WEARFASHION</h1></div>
 
