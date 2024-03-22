@@ -6,4 +6,4 @@ import { Products } from './Products/Products'
 import CardProfile from './Cardprofile/Cardprofile'
 import Nav from "./Nav/Nav";
 
-export { Detail, Create_form, Landing, Products, Nav, CardProfile } 
+export { Detail, Create_form, Landing, Products, Nav, CardProfile };
