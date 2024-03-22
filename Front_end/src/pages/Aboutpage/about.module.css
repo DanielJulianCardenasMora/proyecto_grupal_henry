@@ -72,6 +72,10 @@
 .desc button:hover{
   background-color: rgba(255, 192, 203, 0.207);
 }
+
+.desc p{
+  margin-top: 5%;
+}
 .runner{
     height: 100%;
     /* background-color: bisque; */

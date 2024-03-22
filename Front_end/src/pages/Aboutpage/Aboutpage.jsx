@@ -69,7 +69,8 @@ export const AboutPage = () => {
      
      <h1>THE SCIENCE BEHIND WEARFASHION</h1>
    
-     <p >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto qui fugit magnam reprehenderit ut animi nihil nisi sapiente nobis commodi. Suscipit quasi quibusdam fugit cum qui quis accusantium deleniti odit!</p>
+     <p >La empresa WEARFASHION es una marca que surge al notar la demanda del mercado   por una mayor disponibilidad  de   ropa   urbana   para   jóvenes,   enfocándose principalmente en la combinación de tendencias del diseño actual.</p>
+   <p>El objetivo de este proyecto es hacer que nuestros clientes estén satisfechos con nuestro trabajo y que la imagen de nuestra marca inspire confianza, apuntando a desarrollar mejoras y cubrir necesidades que puedan surgir en el camino .</p>
    <button className={style.learnMore}>Learn more</button>
    
           </div>
