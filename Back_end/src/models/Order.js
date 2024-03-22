@@ -6,15 +6,22 @@ module.exports = (sequelize) => {
     sequelize.define(
         'Order', {
         id: {
+            type: DataTypes.UUID,
+            primaryKey: true,
+            defaultValue: DataTypes.UUIDV4,
+        },
+        detalle: {
             type: DataTypes.STRING,
             allowNull: false,
-            primaryKey: true,
-            unique: true,
-        },
-        userId: {
-            type: DataTypes.UUID, // Cambiado a UUID para relacionar con el usuario
-            allowNull: true,
-        },
+          },
+        // userId: {
+        //     type: DataTypes.UUID, // Cambiado a UUID para relacionar con el usuario
+        //     allowNull: true,
+        // },
+        // productId: {
+        //     type: DataTypes.UUID, // Cambiado a UUID para relacionar con el usuario
+        //     allowNull: true,
+        // },
     },
         { timestamps: false }
     );

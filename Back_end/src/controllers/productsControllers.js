@@ -9,13 +9,14 @@ const getProducts = async () => {
     );
     const getInfo = response.data.map((element) => {
       return {
-        id: element.id,
+        // id: element.id,
         name: element.name,
         image: element.image,
         description: element.description,
         price: element.price,
         stock: element.stock,
-        genero: element.genero
+        genero: element.genero,
+        category: element.category
       };
     });
     return getInfo;
@@ -29,16 +30,17 @@ const productsDataBase = async (page = 1, pageSize = 5) => {
   try {
     const productsApi = await getProducts();
 
-    const offset = (page - 1) * pageSize;     //determino donde comienza la pagina y du tamaño
+    //const offset = (page - 1) * pageSize;     //determino donde comienza la pagina y du tamaño
 
     const existingProducts = await Product.findAll({
-      include: [{
-        model: Category,
-        attributes: ["name"],
-        through: { attributes: [] },
-      }],
-      limit: pageSize,
-      offset: offset
+      include: [Category]
+      // include: [{
+      //   model: Category,
+      //   attributes: ["name"],
+      //   through: { attributes: [] },
+      // }],
+      // limit: pageSize,
+      // offset: offset
     });
     // console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de dato
     if (!existingProducts.length) {
@@ -88,20 +90,23 @@ const getProductsByName = async (name) => {
   }
 };
 
-const createProductDB = async ( id, name, description, price, image, stock, category, genero ) => {
-  const newProduct = { id, name, description, price, image, stock, category, genero }
+const createProductDB = async (name, description, price, image, stock, genero,category) => {
+  const newProduct = { name, description, price, image, stock, genero,category }
   try {
-      const productCreatedDB = await Product.create(newProduct);
-      return productCreatedDB
+    const productCreatedDB = await Product.create(newProduct);
+
+    await productCreatedDB.addCategory(category);
+
+    return productCreatedDB
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 }
 
 const deleteProductDB = async (id) => {
   const productDeleted = Product.destroy({
     where: {
-        id: id
+      id: id
     }
   });
   return productDeleted

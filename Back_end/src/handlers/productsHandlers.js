@@ -1,9 +1,9 @@
-const { getProductsByName, getProductDetail, createProductDB, productsDataBase, deleteProductDB} = require('../controllers/productsControllers')
+const { getProductsByName, getProductDetail, createProductDB, productsDataBase, deleteProductDB } = require('../controllers/productsControllers')
 
 const getProducts = async (req, res) => {
     const { name } = req.query;
     try {
-        if(name){
+        if (name) {
             const productsByName = await getProductsByName(name);
             res.status(200).json(productsByName);
         } else {
@@ -33,11 +33,11 @@ const getDetail = async (req, res) => {
 
 const postProduct = async (req, res) => {
 
-    const { id, name, description, price, image, stock, category, genero } = req.body;
+    const { name, description, price, image, stock, genero,category } = req.body;
 
     try {
-        const newProduct = await createProductDB( id, name, description, price, image, stock, category, genero );
-        // console.log("Producto creado con exito!", newProduct.dataValues);
+        const newProduct = await createProductDB(name, description, price, image, stock, genero, category);
+        console.log("Producto creado con exito!", newProduct.dataValues);
         res.status(201).json(newProduct);
     } catch (error) {
         console.log(error);
@@ -48,7 +48,7 @@ const postProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
 
     let { id } = req.params;
-    
+
     try {
         const deletedProductCount = await deleteProductDB(id);
         if (deletedProductCount > 0) {
