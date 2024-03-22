@@ -1,10 +1,8 @@
-
 import React from "react"
-import CardProfile from "../../Components/Cardprofile/Cardprofile"
+import {CardProfile} from "../../Components"
 import background from "../../assets/Imagenes/About_fondoInferior_aplicar.png"
 import figuras from "../../assets/Imagenes/About_figuras_aplicar.png"
 import style from './about.module.css'
-import { Nav } from "../../Components"
 
 export const AboutPage = () => {
   return (
