@@ -1,4 +1,3 @@
-
 import React from "react"
 import CardProfile from "../../Components/Cardprofile/CardProfile"
 import background from "../../assets/Imagenes/About_fondoInferior_aplicar.png"
