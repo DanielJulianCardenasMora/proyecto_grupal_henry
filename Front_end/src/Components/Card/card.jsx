@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import style from "./card.module.css";
 
 
@@ -13,6 +14,8 @@ export const Card = ( {Id, Nombre, Imagen, Stock, Precio, Genero, Categoria}) =>
 
   return (
     <div className={style.box}>
+      <Link to={`/detail/${Id}`}>
+      
       <div className={style.container}>
         <div className={style.imgRow}>
           <div className={style.imgContainer}>
@@ -39,6 +42,7 @@ export const Card = ( {Id, Nombre, Imagen, Stock, Precio, Genero, Categoria}) =>
         </div>
 
       </div>
+      </Link>
     </div>
   );
 }

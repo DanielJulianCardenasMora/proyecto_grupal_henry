@@ -23,7 +23,6 @@ function Detail() {
   return (
     <div className={style.container}>
 
-      <h1 className={style.texto1}>Fecha de lanzamiento:</h1>
       <h1 className={style.texto2}>DETALLE</h1>
       <h1 className={style.texto3}>TIENDA</h1>
       <h1 className={style.texto4}>EN</h1>
@@ -45,19 +44,20 @@ function Detail() {
       </div>
 
       <div className={style.producto}>
-        <img src="" alt="" />  
+        <img src={image} alt="" />  
       </div>
 
       <div className={style.box2}>
-        <div className={style.difuminado2}>Descripcion</div>
+        <div className={style.difuminado2}>{description}</div>
       </div>
       
 
       <div className={style.box_derecha}>
+        <h1 className={style.name}>{name}</h1>
         <div className={style.boxDetalle}>
           <h1 className={style.detalle1}>Categoria</h1>
-          <h1 className={style.detalle2}>Genero</h1>
-          <h1 className={style.detalle3}>Precio</h1>
+          <h1 className={style.detalle2}>{genero}</h1>
+          <h1 className={style.detalle3}>${price}</h1>
         </div>
         <div className={style.boton}>
           {/* <img className={style.boton1} src={hover} /> */}

@@ -4,6 +4,7 @@ import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage } from './
 import './App.css'
 import Card from './Components/Card/card';
 import { Nav } from './Components';
+import Footer from './Components/Footer/Footer';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/create" element={<CreatePage />} />
         <Route path="/cards" element={<Card />} />
       </Routes>
+      
     </>
   );
 
