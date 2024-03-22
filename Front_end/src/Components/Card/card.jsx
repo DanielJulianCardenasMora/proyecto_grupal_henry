@@ -19,12 +19,12 @@ export const Card = ( {Id, Nombre, Imagen, Stock, Precio, Genero, Categoria}) =>
             <img className='imgCard'src={Imagen} alt='image' />
           </div>
         </div>
-
         <div className={style.texto}>
           <div className={style.nombre}>
             <h1>{Nombre}</h1>
           </div>
         </div>
+
       </div>
     </div>
   );

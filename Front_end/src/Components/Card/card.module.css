@@ -1,23 +1,28 @@
 .box{
   z-index: 100;
   /* top: -100vh; */
-  height: 28%;
-  width: 28%;
+  width: 15vw;
+  height: 55vh;
   background-color: blue;
   margin-top: 2%;
+  border-radius: 20px;
+  border: 1px solid  black;
 }
 .imgContainer{
   line-height: 0;
-  background-color: red;
+  background: linear-gradient(180deg, rgba(95, 0, 153, 1) 0%, rgba(38, 0, 58, 1) 100%);
+  border-radius: 20px;
 }
 .imgContainer img{
-  width: 50%;
-  height: 50%;
+  width: 15vw;
+  height: 55vh;
+  border-radius: 20px;
 }
 
 .container{
-  position: static;
+  position: relative;
   background-color: blueviolet;
+  border-radius: 20px;
 }
 
 .card{
@@ -25,6 +30,13 @@
 }
 
 .texto{
-  background-color: yellow;
-  font-size: 1vw;
+  background-color: rgba(1, 31, 163, 0.52);
+  font-size: 0.6vw;
+  width: 100%;
+  height: 15%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 0px 0px 20px 20px;
 }

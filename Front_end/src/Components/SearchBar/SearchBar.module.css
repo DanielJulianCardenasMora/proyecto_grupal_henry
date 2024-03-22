@@ -4,7 +4,9 @@
   display: flex;
   justify-content:  center;  
   margin: auto;
-
+  position: absolute;
+  top: 30%;
+  
   
 }
 
@@ -18,7 +20,7 @@
   background-color: rgba(240, 248, 255, 0.379);
   color: whitesmoke;
   padding: 1em;
-  z-index: 1000;
+
 }
 
 .box button {
@@ -29,6 +31,5 @@
   border: 1px solid azure;
   border-radius: 10px;
   height: 3em;
-  z-index: 1000;
 
 }

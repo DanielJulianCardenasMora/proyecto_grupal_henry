@@ -1,12 +1,17 @@
-const { User } = require("../db");
+const { User, Order } = require("../db");
+
 
 const getAllUsers = async (req, res) => {
-    const usersInDB = await User.findAll();
+    const usersInDB = await User.findAll({
+        include: {
+            model: Order
+        }
+    });
     return usersInDB
 }
 
-const createUserDB = async ( name, email, password, phone, country, city ) => {
-    const user = {name, email, password, phone, country, city }
+const createUserDB = async (name, email, password, phone, country, city) => {
+    const user = { name, email, password, phone, country, city }
     try {
         const userCreatedDB = await User.create(user);
         console.log(`usuario creado! ${userCreatedDB}`);

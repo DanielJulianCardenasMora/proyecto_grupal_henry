@@ -1,9 +1,10 @@
-import React from "react";
-import CardProfile from "../../Components/cardprofile/CardProfile";
-import background from "../../assets/Imagenes/About_fondoInferior_aplicar.png";
-import figuras from "../../assets/Imagenes/About_figuras_aplicar.png";
-import style from "./about.module.css";
-import { Nav } from "../../Components";
+
+import React from "react"
+import CardProfile from "../../Components/Cardprofile/Cardprofile"
+import background from "../../assets/Imagenes/About_fondoInferior_aplicar.png"
+import figuras from "../../assets/Imagenes/About_figuras_aplicar.png"
+import style from './about.module.css'
+import { Nav } from "../../Components"
 
 export const AboutPage = () => {
   return (
