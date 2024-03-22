@@ -5,11 +5,5 @@ import { LandingPage } from "./Landingpage/Landingpage";
 import { DetailPage } from "./Detailpage/Detailpage";
 import { CreatePage } from "./Createpage/Createpage";
 import { ProductsPage } from "./Productspage/Productspage";
-export {
-  AboutPage,
-  LandingPage,
-  HomePage,
-  DetailPage,
-  CreatePage,
-  ProductsPage,
-};
+
+export {AboutPage, LandingPage, HomePage, DetailPage, CreatePage, ProductsPage}
