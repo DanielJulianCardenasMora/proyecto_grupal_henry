@@ -8,7 +8,7 @@ const getCategory = async () => {
         );
         const getInfo = response.data.map((element) => {
             return {
-                id: element.id,
+                //id: element.id,
                 name: element.name,
             };
         });
@@ -29,6 +29,7 @@ const categoryDataBase = async () => {
         if (!existingCategory.length) {
             const createCategory = await Category.bulkCreate(categoryApi);
           //  console.log('Productos creados en la base de datos:', createCategory); 
+          return createCategory;
         } else {
             return existingCategory;
         }
