@@ -1,10 +1,11 @@
 
 import React from "react"
-import CardProfile from "../../Components/Cardprofile/Cardprofile"
+import CardProfile from "../../Components/Cardprofile/CardProfile"
 import background from "../../assets/Imagenes/About_fondoInferior_aplicar.png"
 import figuras from "../../assets/Imagenes/About_figuras_aplicar.png"
 import style from './about.module.css'
 import { Nav } from "../../Components"
+import Footer from "../../Components/Footer/Footer"
 
 export const AboutPage = () => {
     return (
@@ -65,9 +66,17 @@ export const AboutPage = () => {
   </div> 
          <div className={style.background}>
          <div className={style.runner}></div>
+         <div className={style.desc}>
+     
+     <h1>THE SCIENCE BEHIND WEARFASHION</h1>
+   
+     <p >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto qui fugit magnam reprehenderit ut animi nihil nisi sapiente nobis commodi. Suscipit quasi quibusdam fugit cum qui quis accusantium deleniti odit!</p>
+   <button className={style.learnMore}>Learn more</button>
+   
+          </div>
          </div>
         </div>
-      
+        <Footer/>
       </>
     );
 }

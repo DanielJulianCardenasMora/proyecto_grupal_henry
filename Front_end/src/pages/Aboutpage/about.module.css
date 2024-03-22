@@ -1,13 +1,13 @@
 .abBg{
-    height: 150vh;
-    background-image: linear-gradient(  rgba(0, 0, 0, 0), #010100 45%);
+    height: 240vh;
+    background-image: linear-gradient(  rgba(59, 59, 59, 0.448), #010100 45%);
     background-size: cover;
     
 }
 .workteam{
     position: absolute;
     margin: 0;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     width: 20%;
     font-size: 2vw;
     transform: translate(+200%);
@@ -15,11 +15,11 @@
 }
 .figuras{
     position: relative;
-    padding: 10px;
-    top: 10%;
-    left: 40%;
-    width: 15%;
-    height: 20%;
+    
+    top: 5%;
+    left: 35%;
+    width: 20%;
+    height: 12%;
 }
 .container{
     display: flex;
@@ -31,15 +31,52 @@
 }
 .background{
     max-width: 100%;
-    height: 100vh;
+    height: 120vh;
+    margin-top: 10%;
     background-image: url('../../assets/Imagenes/About_fondoInferior_aplicar.png');
     background-position: bottom;
+    display: flex;
+    background-repeat: no-repeat;
     
+}
+
+.desc{
+    height:100%;
+    width: 50%;
+    
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    box-sizing: border-box;
+
+    background-color: rgba(0, 0, 0, 0.212);
+}
+.desc h1{
+    font-size: 70px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+    color: rgba(255, 255, 255, 0);
+    line-height: 1.2;
+    letter-spacing: 1px;
+    margin-top: 15%;
+}
+.desc button{
+  width: 40%;
+  background: none;
+  color: white;
+  border: 1px solid rgb(255, 119, 198);
+  margin: auto;
+}
+
+
+.desc button:hover{
+  background-color: rgba(255, 192, 203, 0.207);
 }
 .runner{
     height: 100%;
     /* background-color: bisque; */
-    margin-left: 10%;
+   padding: 5%;
+   box-sizing: border-box;
     width: 50%;
   margin-top: 5%;
     background-image: url('../../assets/Imagenes/running.png');
