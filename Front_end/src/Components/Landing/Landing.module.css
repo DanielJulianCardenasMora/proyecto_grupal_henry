@@ -146,3 +146,149 @@
     position: relative;
   
 }
+
+@media (max-width: 1366px) { 
+
+    .main{
+        height: 100vh;
+        background-image: linear-gradient(#01000a00 70%, #01000A),url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
+    }
+    .logo{
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        width: 21%;
+        height: 92vh;
+       position: relative;
+       top: 5%;
+    }
+    
+    .logo h1{
+        font-size: 48px;
+    }
+    
+    
+    
+    .image{
+        height: 85%;
+        width: 45%;
+        bottom: 75%;
+        transform: translate(-18%);
+        background-image: linear-gradient(0deg,#01000A 8%,#01000a00 24% ,#01000a00 50%),url('../../assets/Imagenes/landingPhoto.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top; 
+    }
+    
+    .section{
+        height: 150vh;
+      background-color: #01000A;
+      padding-top: 5%;
+    }
+    .description {
+        height: 75% ;
+        width: 35%;
+        position: absolute;
+        bottom: 3%;
+    }
+    
+    .description h1{
+        font-size: 50px;
+    }
+    
+    .learnMore{
+        background: none;
+        color: white;
+        border: 1px solid white;
+        border-radius: 1em;
+    }
+    .learnMore:hover{
+        background-color: #53228134;
+    }
+    .description p{
+        color: rgb(186, 186, 186);
+    }
+    
+    
+    .banner{
+        height: 1vh;
+        width: 50%;
+        margin: auto;
+        /* background-color: violet; */
+        background-image: none;
+  border-top: 1px solid white;
+      
+    }
+}
+
+@media (max-width: 1150px)  {
+    .main{
+        height: 100vh;
+         background-image: linear-gradient(#01000a00 70%, #01000A),url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
+    }
+    .logo{
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        width: 21%;
+        height: 92vh;
+       position: relative;
+       top: 5%;
+    }
+    
+    .logo h1{
+        font-size: 48px;
+    }
+    
+    
+    
+    .image{
+        height: 65%;
+        width: 35%;
+        bottom: 65%;
+        transform: translate(-25%);
+        background-image: linear-gradient(0deg,#01000A 8%,#01000a00 24% ,#01000a00 50%),url('../../assets/Imagenes/landingPhoto.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top; 
+    }
+    
+    .section{
+        height: 150vh;
+      background-color: #01000A;
+      padding-top: 5%;
+    }
+    .description {
+        height: 65% ;
+        width: 30%;
+        position: absolute;
+        bottom: 3%;
+        /* background-color: brown; */
+    }
+    
+    .description h1{
+        font-size: 30px;
+    }
+    
+    .learnMore{
+        background: none;
+        color: white;
+        border: 1px solid white;
+        border-radius: 1em;
+    }
+    .learnMore:hover{
+        background-color: #53228134;
+    }
+    .description p{
+        color: rgb(186, 186, 186);
+    }
+    
+    
+    .banner{
+        height: 1vh;
+        width: 50%;
+        margin: auto;
+        /* background-color: violet; */
+        background-image: none;
+  border-top: 1px solid white;
+      
+    }
+}
