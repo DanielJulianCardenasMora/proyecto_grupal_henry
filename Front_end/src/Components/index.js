@@ -4,7 +4,7 @@ import { Landing } from "./Landing/Landing";
 
 import Create_form from './Create_form/Create_form'
 import { Products } from './Products/Products'
-import { CardProfile } from "./Cardprofile/CardProfile";
+import { CardProfile } from "./cardprofile/CardProfile";
 
 
 import Nav from "./Nav/Nav";

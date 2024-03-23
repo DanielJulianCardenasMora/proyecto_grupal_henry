@@ -103,8 +103,8 @@ const postProduct = async (req, res) => {
       genero,
       category
     );
-    console.log("Producto creado con exito!", newProduct.dataValues);
-    res.status(201).json(newProduct);
+    // console.log("Producto creado con exito!", newProduct);
+    res.status(201).json("Producto creado con exito!");
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error al crear tu nuevo producto" });
