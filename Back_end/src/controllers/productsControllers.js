@@ -25,21 +25,16 @@ const getProducts = async () => {
   }
 };
 
-const productsDataBase = async (page = 1, pageSize = 5) => {
+const productsDataBase = async () => {
   try {
     const productsApi = await getProducts();
 
-    //const offset = (page - 1) * pageSize;     //determino donde comienza la pagina y du tamaño
-
     const existingProducts = await Product.findAll({
-      // include: [Category]
       include: [{
         model: Category,
         attributes: ["name"],
         through: { attributes: [] },
       }],
-      // limit: pageSize,
-      // offset: offset
     });
     // console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de dato
     if (!existingProducts.length) {
@@ -94,7 +89,7 @@ const createProductDB = async (name, description, price, image, stock, genero, c
   try {
     const productCreatedDB = await Product.create(newProduct);
 
-    
+
     const categoryName = await Category.findOne({ where: { name: category } });
 
     if (!categoryName) {
