@@ -12,7 +12,7 @@ import {
     POST_ITEM ,
 
 } from "./type";
-const URL = 'https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json'
+const URL = 'http://localhost:3001/products'
 
 export const getAllProducts = () => {
 
@@ -58,7 +58,7 @@ export function getProductDetail(id) {
       return async function (dispatch) {
   
           try {
-              const {data} = await axios.get('http://localhost:3001/products/' + id)
+              const {data} = await axios.get(`${URL}/${id}`)
               
               return dispatch({
                   type: DETAIL,

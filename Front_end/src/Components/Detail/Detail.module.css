@@ -15,7 +15,7 @@
 }
 .producto{
   width: 100%;
-  height:100vh;
+  height:100%;
   background-color: rgb(90, 0, 128);
   position: absolute;
   top: 0;
@@ -23,6 +23,10 @@
   opacity: 0.5;
   border: 5px solid black;
   box-sizing: border-box;
+}
+.producto img{
+  width: 100%;
+  height: 100%;
 }
 
 .texto1{
@@ -37,8 +41,9 @@
 .texto2{
   position: absolute;
   z-index: 100;
-  top:6%;
-  font-size: 5vw;
+  top:15%;
+  left: 2%;
+  font-size: 3vw;
   color:white;
 }
 .texto3{
@@ -53,7 +58,7 @@
   z-index: 100;
   bottom: 7%;
   left: 3.5%;
-  font-size: 4vw;
+  font-size: 3vw;
 }
 .texto5_cont{
   display: flex;
@@ -68,8 +73,8 @@
 .texto5{
   z-index: 100;
   bottom: 7%;
-  left: 3.5%;
-  font-size: 6vw;
+  left: 10%;
+  font-size: 5vw;
   line-height: 0.8;
 }
 .box2{
@@ -126,5 +131,12 @@
   opacity: 1;
   bottom: 0;
   border-radius: 10px;
+}
+
+.name{
+  font-family: 'Times New Roman', Times, serif;
+  position: absolute;
+  top: 20%;
+  left: 20%;
 }
 

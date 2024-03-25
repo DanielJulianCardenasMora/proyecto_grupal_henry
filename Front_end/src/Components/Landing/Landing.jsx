@@ -22,8 +22,8 @@ export const Landing=()=> {
        <div className={style.description}>
      
   <h1>New Season AW 24 50% off !!</h1>
-
-  <p >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto qui fugit magnam reprehenderit ut animi nihil nisi sapiente nobis commodi. Suscipit quasi quibusdam fugit cum qui quis accusantium deleniti odit!</p>
+  <p>Esta es la tienda online de la marca WEARFASHION. Nuestro objetivo es extender el alcance del diseño de indumentaria urbana.</p>
+  <p >Te invitamos a explorar nuestro catálogo en línea y descubrir la última moda masculina y femenina que se adapte a tu estilo único. </p>
 <button className={style.learnMore}>Learn more</button>
 
        </div>

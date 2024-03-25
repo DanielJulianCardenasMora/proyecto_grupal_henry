@@ -14,7 +14,7 @@ export const Card = ( {Id, Nombre, Imagen, Stock, Precio, Genero, Categoria}) =>
 
   return (
     <div className={style.box}>
-      <Link to='/detail/:id'>
+      <Link to={`/detail/${Id}`}>
       
       <div className={style.container}>
         <div className={style.imgRow}>

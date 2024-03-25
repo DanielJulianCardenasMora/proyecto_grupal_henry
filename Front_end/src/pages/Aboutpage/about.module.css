@@ -1,36 +1,91 @@
-.box{
-    background-color: rgb(0, 0, 0);
-    height: 160vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.abBg{
+    height: 240vh;
+    background-image: linear-gradient(  rgba(59, 59, 59, 0.448), #010100 45%);
+    background-size: cover;
+    
 }
 .workteam{
     position: absolute;
     margin: 0;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     width: 20%;
-    font-size: 1.5vw;
+    font-size: 2vw;
     transform: translate(+200%);
     top: 13%;
 }
 .figuras{
-    position: absolute;
-    width: 35%;
-    top: 0;
-    right: 0;
-    z-index: 1;
+    position: relative;
+    
+    top: 5%;
+    left: 35%;
+    width: 20%;
+    height: 12%;
 }
 .container{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 5% 25% 0 2%;
-    position: relative;
-    top: 6%;
+    overflow: hidden;
+  width: 90%;
+  margin: auto;
 }
 .background{
-    width: 100%;
+    max-width: 100%;
+    height: 120vh;
+    margin-top: 10%;
+    background-image: url('../../assets/Imagenes/About_fondoInferior_aplicar.png');
+    background-position: bottom;
+    display: flex;
+    background-repeat: no-repeat;
+    
+}
+
+.desc{
+    height:100%;
+    width: 50%;
+    
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    box-sizing: border-box;
+
+    background-color: rgba(0, 0, 0, 0.212);
+}
+.desc h1{
+    font-size: 70px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+    color: rgba(255, 255, 255, 0);
+    line-height: 1.2;
+    letter-spacing: 1px;
+    margin-top: 15%;
+}
+.desc button{
+  width: 40%;
+  background: none;
+  color: white;
+  border: 1px solid rgb(255, 119, 198);
+  margin: auto;
+}
+
+
+.desc button:hover{
+  background-color: rgba(255, 192, 203, 0.207);
+}
+
+.desc p{
+  margin-top: 5%;
+}
+.runner{
+    height: 100%;
+    /* background-color: bisque; */
+   padding: 5%;
+   box-sizing: border-box;
+    width: 50%;
+  margin-top: 5%;
+    background-image: url('../../assets/Imagenes/running.png');
+  background-size:contain;
+    background-repeat: no-repeat;
 }
 .container :hover{
   transform: scale(1.05);
