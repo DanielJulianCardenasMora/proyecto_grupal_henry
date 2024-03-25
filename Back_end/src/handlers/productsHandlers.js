@@ -15,22 +15,40 @@ const {
   validateGenre,
 } = require("../utils/validacion");
 
+const { filtrarPorNombre, filtrarPorPrecio } = require('../utils/filter');
+
+const paginarDatos = require("../utils/pagination");
+
 const getProducts = async (req, res) => {
-  const { name } = req.query;
+  const { name, page, currentPage, sortBy, sortOrder } = req.query;
   try {
+    let response;
+    let filteredProducts;
+
+    //obtener los productos paginados
+    const allProducts = await productsDataBase();
+    const paginatedProducts = paginarDatos(allProducts, page, currentPage);
+
     if (name) {
-      const productsByName = await getProductsByName(name);
-      res.status(200).json(productsByName);
+      filteredProducts = getProductsByName(name);
     } else {
-      const response = await productsDataBase();
-      res.status(200).json(response);
+      filteredProducts = paginatedProducts.data;
     }
+    
+    filteredProducts = filtrarPorNombre(filteredProducts, sortBy);
+    filteredProducts = filtrarPorPrecio(filteredProducts, sortBy, sortOrder);
+
+    response = {
+      products: filteredProducts,
+      currentPage: paginatedProducts.currentPage,
+      totalPage: paginatedProducts.totalPages,
+    };
+    res.status(200).json(response);
   } catch (error) {
     console.error("Error al obtener datos:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
-
 const getDetail = async (req, res) => {
   let { id } = req.params;
 
