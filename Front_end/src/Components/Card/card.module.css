@@ -1,30 +1,30 @@
 .box{
   z-index: 100;
   /* top: -100vh; */
-  width: 17vw;
+  width: 15vw;
   height: 55vh;
-  background-color: blue;
+
   margin-top: 2%;
-  border-radius: 4vw;
-  border: 1px solid  black;
+  border-radius: 3.5vw;
 }
 .imgContainer{
   line-height: 0;
   background: linear-gradient(180deg, rgba(95, 0, 153, 1) 0%, rgba(38, 0, 58, 1) 100%);
-  border-radius: 4vw;
-  width: 17vw;
+  border-radius: 3.5vw;
+  border: 2px solid  rgb(149, 0, 255);
+  width: 15vw;
   height: 55vh;
 }
 .imgContainer img{
-  border-radius: 4vw;
+  border-radius: 3.5vw;
   height: 100%;
   width: 100%;
 }
 
 .container{
   position: relative;
-  background-color: blueviolet;
-  border-radius: 4vw;
+  /* background-color: blueviolet; */
+  border-radius: 3.5vw;
 }
 
 .card{
@@ -39,7 +39,6 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
-  border-radius: 0 0 4vw 4vw;
 }
 
 .texto2{
@@ -50,11 +49,10 @@
   position: absolute;
   top: 3%;
   left: 8%;
-  border-radius: 0 0 4vw 4vw;
 }
 
 .texto3{
-  background: radial-gradient(circle at 75% 81%, rgba(1, 0, 239, 0.76) 0%, rgba(12, 1, 75, 0.73) 100%);  font-size: 0.6vw;
+  background: radial-gradient(circle at 75% 81%, rgba(0, 100, 239, 0.76) 0%, rgba(1, 54, 75, 0.73) 100%);  font-size: 0.6vw;
   height: 12%;
   width: 20%;
   position: absolute;
@@ -65,7 +63,7 @@
   box-shadow: 0.12vw 0.12vw 2px rgba(255, 255, 255, 0.3) ;
 }
 .nombre{
-  background: linear-gradient(15deg, rgba(152, 164, 255, 0.73) 0%, rgba(1, 0, 239, 0.66) 43%);
+  background: linear-gradient(15deg, rgba(189, 234, 251, 0.73) 0%, rgba(41, 166, 229, 0.66) 43%);
   line-height: 1;
   position: absolute;
   bottom: 10%;
@@ -82,6 +80,7 @@
   top: 0;
 }
 .comprar{
+  color: white;
   font-size: 0.3vw;
   position: absolute;
   bottom: 40%;

@@ -8,4 +8,5 @@ export const CATEGORY_FILTER = "CATEGORY_FILTER";
 export const PRICE_FILTER = "PRICE_FILTER";
 export const GENDER_FILTER = "GENDER_FILTER";
 export const POST_ITEM = "POST_ITEM" ; 
+export const NAVEGACION = "NAVEGACION" ; 
 
