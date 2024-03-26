@@ -1,32 +1,39 @@
 import Card from '../Card/card';
 import style from './Cards.module.css'
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import derecha from '../../assets/Imagenes/Products_flechaDer_aplicar.png'
 import izquierda from '../../assets/Imagenes/Products_flechaIzq_aplicar.png'
+import { getAllProducts, getIndex } from '../../redux/actions/actions';
 
 
 
 
 export const Cards = () => {
   const productsScreen = useSelector((state) => state.ProductsScreen);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4; 
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const index = useSelector((state) => state.Index);
+  const dispatch = useDispatch()
+  const totalPages = 7
 
+  
+  const siguientePagina = () => {
+    dispatch(getIndex('as'))
+    dispatch(getAllProducts(index))
+  }
+  const anteriorPagina = () => {
+    dispatch(getIndex('de'))
+    dispatch(getAllProducts(index))
+  }
+  console.log(index)
 
-  const getProductsShow = () => {
-    return productsScreen.slice(startIndex, startIndex + itemsPerPage);
-  };
-  const productsShow = getProductsShow();
-
-
+  
+  
   return (
     <div>
       <div>
 
         <div className={style.cardsContainer}>
-          {productsShow.map(product => (
+          {productsScreen.map(product => (
             <Card
               key={product.id}
               Id={product.id}
@@ -42,13 +49,14 @@ export const Cards = () => {
       </div>  
       <div className={style.btnNav}>
         <button
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}>
+          onClick={() => anteriorPagina()}
+        disabled={index === 0}
+        >
           <img src={izquierda}/>
         </button>
         <button
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === Math.ceil(productsScreen.length / itemsPerPage)}>
+          onClick={() => siguientePagina() }
+          disabled={index > 8}>
           <img src={derecha}/>
         </button>
         </div>
