@@ -156,14 +156,14 @@
     .logo{
         writing-mode: vertical-rl;
         text-orientation: upright;
-        width: 21%;
+        width: 20%;
         height: 92vh;
        position: relative;
-       top: 5%;
+       top: 4%;
     }
     
     .logo h1{
-        font-size: 48px;
+        font-size: 42px;
     }
     
     
@@ -210,12 +210,10 @@
     
     
     .banner{
-        height: 1vh;
+        height: 20vh;
         width: 50%;
         margin: auto;
-        /* background-color: violet; */
-        background-image: none;
-  border-top: 1px solid white;
+   
       
     }
 }
@@ -228,25 +226,27 @@
     .logo{
         writing-mode: vertical-rl;
         text-orientation: upright;
-        width: 21%;
+        width: 19%;
         height: 92vh;
        position: relative;
-       top: 5%;
+       top: 4%;
+     
     }
     
     .logo h1{
-        font-size: 48px;
+        font-size: 37px;
     }
     
     
     
     .image{
-        height: 65%;
-        width: 35%;
+        height: 70%;
+        width: 40%;
         bottom: 65%;
+
         transform: translate(-25%);
         background-image: linear-gradient(0deg,#01000A 8%,#01000a00 24% ,#01000a00 50%),url('../../assets/Imagenes/landingPhoto.png');
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: top; 
     }
@@ -258,7 +258,7 @@
     }
     .description {
         height: 65% ;
-        width: 30%;
+        width: 35%;
         position: absolute;
         bottom: 3%;
         /* background-color: brown; */
@@ -290,5 +290,324 @@
         background-image: none;
   border-top: 1px solid white;
       
+    }
+
+    .card1{
+        height: 50%;
+        width: 70%;
+        background-color: rgb(9, 9, 9);
+        position: relative;
+        left: 0%;
+       padding: 2%;
+       display: flex;
+       margin: auto;
+       margin-bottom: 5%;
+     border: 1px solid rgba(255, 255, 255, 0.388);
+    }
+    
+    .card2{
+        height: 50%;
+        width: 70%;
+        background-color: rgb(9, 9, 9);
+       padding: 2%;
+       display: flex;
+       border: 1px solid rgba(255, 255, 255, 0.388);
+       position: relative;
+       left: 0%;
+       margin: auto;
+    }
+    
+    .imageCard, .descriptionCard{
+        width: 50%;
+    
+    }
+    
+    .descriptionCard{
+        border-left: 1px solid white;
+        padding: 1%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .imageCard{
+        background-image: url('../../assets/Imagenes/imageCardLanding1.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #af96afd5;
+        background-position:center ;
+    }
+    .imageCard2{
+        width: 50%;
+        background-image: url('../../assets/Imagenes/imageCardLanding2.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #ffffffd5;
+    }
+}
+
+@media (max-width: 800px){
+    .main{
+       
+        height: 100vh;
+         background-image: linear-gradient(#01000a00 70%, #01000A),url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
+   
+        }
+    .logo{
+
+        width: 17%;
+        height: 92vh;
+       position: relative;
+       top: 4%;
+       display: none;
+     
+    }
+ 
+
+    .image{
+        height: 78%;
+        width: 50%;
+        top: 20%;
+        bottom: 0%;
+    right: 10%;
+        transform: translate(-25%);
+        background-image: linear-gradient(0deg,#01000A 8%,#01000a00 24% ,#01000a00 50%),url('../../assets/Imagenes/landingPhoto.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top; 
+    }
+    
+    .section{
+        height: 170vh;
+      background-color: #01000A;
+      padding-top: 5%;
+    }
+    .description {
+        height:75% ;
+        width: 46%;
+        padding: 2%;
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0%;
+        left: 53%;
+        background-color: rgba(0, 0, 0, 0.192);
+        border: none;
+        
+    }
+    
+    .description h1{
+        font-size: 30px;
+    }
+
+    .description p{
+        color: hsl(0, 0%, 100%);
+    }
+    
+    .learnMore{
+        background: none;
+        color: white;
+        border: 1px solid white;
+        border-radius: 1em;
+    }
+    .learnMore:hover{
+        background-color: #53228134;
+    }
+
+    
+    
+    .banner{
+        height: 1vh;
+        width: 50%;
+        margin: auto;
+        /* background-color: violet; */
+        background-image: none;
+  border-top: 1px solid white;
+      
+    }
+
+    .card1{
+        height: 50%;
+        width: 70%;
+        background-color: rgb(9, 9, 9);
+        position: relative;
+        left: 0%;
+       padding: 2%;
+       display: flex;
+       margin: auto;
+       margin-bottom: 5%;
+     border: 1px solid rgba(255, 255, 255, 0.388);
+    }
+    
+    .card2{
+        height: 50%;
+        width: 70%;
+        background-color: rgb(9, 9, 9);
+       padding: 2%;
+       display: flex;
+       border: 1px solid rgba(255, 255, 255, 0.388);
+       position: relative;
+       left: 0%;
+       margin: auto;
+    }
+    
+    .imageCard, .descriptionCard{
+        width: 50%;
+    
+    }
+    
+    .descriptionCard{
+        border-left: 1px solid white;
+        padding: 1%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .imageCard{
+        background-image: url('../../assets/Imagenes/imageCardLanding1.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #af96afd5;
+        background-position:center ;
+    }
+    .imageCard2{
+        width: 50%;
+        background-image: url('../../assets/Imagenes/imageCardLanding2.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #ffffffd5;
+    }
+}
+
+@media (max-width: 600px){
+.main{
+    height: 120vh;
+}
+    .logo{
+       display: none;
+
+    }
+ 
+
+    .image{
+        height: 78%;
+        width: 100%;
+        top: 20%;
+        bottom: 0%;
+    right: 0%;
+        transform: translate(-0%);
+        background-image: linear-gradient(0deg,#01000A 8%,#01000a00 24% ,#01000a00 50%),url('../../assets/Imagenes/landingPhoto.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top; 
+    }
+    
+    .section{
+        height: 260vh;
+      background-color: #01000A;
+      padding-top: 5%;
+    }
+    .description {
+        height:100% ;
+        width: 100%;
+        padding: 3%;
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0%;
+        top: 14%;
+        left: 0%;
+        background-color: rgba(0, 0, 0, 0.336);
+        border: none;
+        
+    }
+    
+    .description h1{
+        margin-bottom: 45%;
+        font-size: 35px;
+    }
+
+    .description p{
+        
+        color: hsl(0, 0%, 100%);
+    }
+    
+ 
+    
+    .banner{
+        height: 1vh;
+        width: 50%;
+        margin: auto;
+        /* background-color: violet; */
+        background-image: none;
+  border-top: 1px solid white;
+      
+    }
+
+    .landingCards{
+        height: 100%;
+    }
+
+    .card1{
+        height: 40%;
+        width: 85%;
+        background-color: rgba(59, 59, 59, 0.445);
+        position: relative;
+        left: 1%;
+       padding: 2%;
+       display: flex;
+       flex-direction: column;
+       margin: auto;
+       margin-bottom: 5%;
+     border: none;
+
+    }
+    
+    .card2{
+        height: 50%;
+        width: 85%;
+        background-color: rgba(59, 59, 59, 0.445);
+       padding: 2%;
+       display: flex;
+       flex-direction: column;
+       border: none;
+       position: relative;
+       left: 1%;
+       margin: auto;
+       top: 2%;
+     
+    }
+    
+    .imageCard, .descriptionCard{
+        width: 100%;
+    
+    }
+    
+    .descriptionCard{
+        border-left: none;
+        padding: 1%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 50%;
+        
+    
+    }
+    
+    .imageCard{
+        background-image: url('../../assets/Imagenes/imageCardLanding1.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #af96afd5;
+        background-position:center ;
+        height: 40%;
+    }
+    .imageCard2{
+        margin: auto;
+        width: 80%;
+        height: 40%;
+        background-image: url('../../assets/Imagenes/imageCardLanding2.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #ffffffd5;
     }
 }
