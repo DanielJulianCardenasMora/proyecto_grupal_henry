@@ -1,13 +1,13 @@
 
 .box{
-
   display: flex;
   justify-content:  center;  
   margin: auto;
   position: absolute;
-  top: 30%;
-  left: 1.5%;
+  top: 77%;
+  left: 0%;
   height: 5vh;
+  width: 17.5vw;
   flex-direction: column;
   align-items: center;
   flex-direction: column;
@@ -15,15 +15,13 @@
 
 .inputS{
   width: 30%;
-  border: 1px solid gray;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 25px;
-  margin-right: 2em;
   margin-bottom: 4%;
-  margin-left: 1em;
-  background-color: rgba(240, 248, 255, 0.379);
+  background-color: rgba(244, 0, 158, 0.379);
   color: whitesmoke;
   padding: 1em;
-  width: 80%;
+  width: 60%;
 }
 
 .box button {
@@ -34,6 +32,6 @@
   border: 1px solid azure;
   border-radius: 10px;
   height: 3em;
-  width: 33%;
+  width: 30%;
   padding: 2% 5%;
 }

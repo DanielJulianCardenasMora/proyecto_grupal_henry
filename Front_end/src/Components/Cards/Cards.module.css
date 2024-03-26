@@ -1,25 +1,25 @@
 .cardsContainer{
-  gap: 1%;
+  gap: 0%;
   top: 50%;
   justify-content: space-around;
   flex-wrap: wrap;
   display: flex;
   align-items: flex-start;
   position: absolute;
-  width:80%;
-  left: 50%;
+  width:72%;
+  left: 48.5%;
   transform: translate(-45%, -65%);
 }
 
 .btnNav{
   height: 8vh;
-  width: 80%;
+  width: 38%;
   position: absolute;
   bottom: 5%;
   right: 0;
   display: flex;
   z-index: 00;
-  left:50%;
+  left:52.5%;
   transform: translate(-50%);
   justify-content: space-between;
 }
