@@ -129,7 +129,21 @@ export function postItem(i){
 
 }
 
-export const priceFilter = (order) => {
+export const priceFilter = (order, index) => {
+  //http://localhost:3001/products?sortBy=price&sortOrder=asc
+
+  return async function(dispatch){
+    try {
+        const response = await axios(`${URL}?page=${index}&sortBy=price&sortOrder=${order}`)
+
+        return dispatch({
+          type: PRICE_FILTER,
+          payload: response.data.products
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   try {
     return {
       type: PRICE_FILTER,

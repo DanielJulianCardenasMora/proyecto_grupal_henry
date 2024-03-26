@@ -8,7 +8,7 @@ import { genderFilter ,priceFilter,categoriesFilter } from '../../redux/actions/
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
   const dispatch = useDispatch()
-  const productsScreen = useSelector((state) => state.ProductsScreen)
+  const {productsScreen, Index} = useSelector((state) => state)
   const [actualFilters,setActualFilters] =useState([])
 
   const toggleMenu = () => {
@@ -16,7 +16,7 @@ export const Menu = () => {
   };
 
   const handlePrice = (value) => {
-    dispatch(priceFilter(value))
+    dispatch(priceFilter(value, Index))
   }
 
   const handleGender = (gender) => {

@@ -47,24 +47,10 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       }
       
     case PRICE_FILTER:
-      const sorted = state.ProductsScreen.slice(); // Crea una copia del estado
-      if (payload === "asc") {
-        sorted.sort((a, b) => {
-          const priceA = a.price;
-          const priceB = b.price;
-          return priceB - priceA;
-        });
-      }
-      if (payload === "des") {
-        sorted.sort((a, b) => {
-          const priceA = a.price;
-          const priceB = b.price;
-          return priceA - priceB;
-        });
-      }
+      console.log(payload)
       return {
         ...state,
-        ProductsScreen: sorted,
+        ProductsScreen: [...payload],
       };
 
     case GENDER_FILTER:

@@ -24,7 +24,6 @@ export const Cards = () => {
     dispatch(getIndex('de'))
     dispatch(getAllProducts(index))
   }
-  console.log(index)
 
   
   
