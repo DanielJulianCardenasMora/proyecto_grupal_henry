@@ -1,5 +1,5 @@
 .nav{
-    height: 15%;
+    height: 10%;
     width: 100%;
     /* background-color: brown; */
     position: absolute;
@@ -7,29 +7,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 2%;
-    padding-right:2% ;
+    padding-left: 3%;
+    padding-right:3% ;
     box-sizing: border-box;
     z-index: 1000;
- 
+
 }
 .boxLogo{
-    width: 15%;
+    width: 5%;
     height: 99%;
     margin-top: 1%;
-    background-image: url('../../assets/Imagenes/circulo-negro.png');
+    background-image: url('../../assets/Imagenes/circulo-negro2.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display:flex ;
     align-items: center;
-  justify-content: space-around;
-  font-size: 2em;
-  font-weight: bold;
+    justify-content: space-around;
+    font-size: 2.5vw;
+    font-weight: bold;
+    font-family: f5;
+    padding-top: 0.5%;
 }
 .boxList{
     /* background-color: rgb(63, 63, 63); */
-    width: 50%;
+    width: 45%;
 }
 .boxList ul{
     display: flex; justify-content: space-around;
@@ -49,7 +51,7 @@
 }
 
 .logIn{
-    width: 15%;
+    width: 5%;
     /* background-color: chocolate; */
 }
 

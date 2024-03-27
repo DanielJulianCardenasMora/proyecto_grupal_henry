@@ -9,24 +9,36 @@ import {
     CATEGORY_FILTER,
     PRICE_FILTER ,
     GENDER_FILTER ,
-    POST_ITEM ,
+  POST_ITEM,
+  NAVEGACION,
 
 } from "./type";
 const URL = 'http://localhost:3001/products'
 
-export const getAllProducts = () => {
-
+export const getAllProducts = (index) => {
     return async function (dispatch) {
       try {
-        const response = await axios.get(URL);
-       
-        dispatch({ type: GET_PRODUCTS, payload: response.data });
+        
+        const response = await axios.get(`${URL}?page=${index}`);
+        if (index <= response.data.totalPage || index === undefined) {
+          dispatch({ type: GET_PRODUCTS, payload: [response.data.products, response.data.totalPage] });
+        } else {
+          return
+        }
+
    
       } catch (error) {
         alert(error.message);
       }
-    }}
+  }}
 
+
+export const getIndex = (tipo) => {
+  return async function (dispatch) {
+    dispatch({ type: NAVEGACION, payload: tipo });
+  }
+}
+        
 
 export const getOrders = () => {
 

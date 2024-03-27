@@ -11,7 +11,7 @@
     width: 20%;
     font-size: 2vw;
     transform: translate(+200%);
-    top: 20%;
+    top: 13%;
 }
 .figuras{
     position: relative;
@@ -89,5 +89,4 @@
 }
 .container :hover{
   transform: scale(1.05);
-
 }
