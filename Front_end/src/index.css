@@ -1,3 +1,24 @@
+@font-face{
+  font-family: f1;
+  src:url(../src/assets/Fonts/geoparody.hv-regular.otf)
+}
+@font-face{
+  font-family: f2;
+  src:url(../src/assets/Fonts/geoparody.rg-regular.otf)
+}
+@font-face{
+  font-family: f3;
+  src:url(../src/assets/Fonts/united-kingdom.regular.otf)
+}
+@font-face{
+  font-family: f4;
+  src:url(../src/assets/Fonts/klemer-display-demo.regular.ttf)
+}
+@font-face{
+  font-family: f5;
+  src:url(../src/assets/Fonts/bradley-gratis.regular.ttf)
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

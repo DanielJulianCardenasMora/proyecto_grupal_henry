@@ -11,9 +11,9 @@ import { getAllProducts, getIndex } from '../../redux/actions/actions';
 
 export const Cards = () => {
   const productsScreen = useSelector((state) => state.ProductsScreen);
+  const totalPages = useSelector((state) => state.TotalPages);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch()
-  const totalPages = 7
 
 
   useEffect(() => {
@@ -33,7 +33,6 @@ export const Cards = () => {
   return (
     <div>
       <div>
-
         <div className={style.cardsContainer}>
           {productsScreen.map(product => (
             <Card
@@ -49,19 +48,20 @@ export const Cards = () => {
           ))}
         </div>
       </div>  
+
       <div className={style.btnNav}>
         <button
           onClick={() => anteriorPagina()}
-        disabled={currentPage === 1}
-        >
-          <img src={izquierda}/>
+          disabled={currentPage === 1}>
+        <img src={izquierda}/>
         </button>
+
         <button
           onClick={() => siguientePagina() }
           disabled={currentPage >= totalPages}>
-          <img src={derecha}/>
+        <img src={derecha}/>
         </button>
-        </div>
+      </div>
     </div>
   )
 }
