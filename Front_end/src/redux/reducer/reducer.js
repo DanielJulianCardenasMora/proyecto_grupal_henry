@@ -13,13 +13,12 @@ const initialstate = {
   ProductsScreen: [],
   Detail: [],
   Index: 2,
+  TotalPages: 0,
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
     case SEARCH_BY_NAME:
-      console.log(payload);
-
       return {
         ...state,
         Products: [...payload],
@@ -27,25 +26,14 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       };
 
     case GET_PRODUCTS:
+
       return {
         ...state,
-        Products: [...payload],
-        ProductsScreen: [...payload],
+        Products: [...payload[0]],
+        ProductsScreen: [...payload[0]],
+        TotalPages: payload[1],
       };
-    
-    case NAVEGACION:
-      if (payload === 'as') {
-        return {
-          ...state,
-          Index: state.Index + 1,
-        };
-      }else if(payload === 'de') {
-        return {
-          ...state,
-          Index: state.Index - 1,
-        };
-      }
-      
+
     case PRICE_FILTER:
       console.log(payload)
       return {

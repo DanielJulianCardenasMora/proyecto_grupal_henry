@@ -19,12 +19,12 @@ export const getAllProducts = (index) => {
     return async function (dispatch) {
       try {
         
-        const response = await axios.get(`${URL}?page=${index}`);
-        if (index <= response.data.totalPage || index === undefined) {
-          dispatch({ type: GET_PRODUCTS, payload: response.data.products });
-        } else {
-          return
-        }
+        // const response = await axios.get(`${URL}?page=${index}`);
+        // if (index <= response.data.totalPage || index === undefined) {
+        //   dispatch({ type: GET_PRODUCTS, payload: [response.data.products, response.data.totalPage] });
+        // } else {
+        //   return
+        // }
 
    
       } catch (error) {

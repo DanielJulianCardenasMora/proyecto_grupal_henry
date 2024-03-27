@@ -3,16 +3,20 @@
         {
             "name": "Jeans Tokio",
             "description": "Jeans Skini Premium color celeste, con roturas",
-            "image": "https://revston.b-cdn.net/Content/UploadDirectory/Products/216/image_760da7d9-fe62-48dd-a3f7-f171db073157.jpg?width=800",
+            "images": [
+                "https://revston.b-cdn.net/Content/UploadDirectory/Products/216/image_760da7d9-fe62-48dd-a3f7-f171db073157.jpg?width=800"
+            ],
             "stock": 15,
             "price": 14000,
             "genero": "Masculino",
-            "category":"Pantalones"
+            "category": "Pantalones"
         },
         {
             "name": "Jeans Palermo",
             "description": "Jeans Skini Premium color gris, con roturas",
-            "image": "https://revston.b-cdn.net/Content/UploadDirectory/Products/48/image_1c9e5217-5c01-4ac1-ab53-d1b129ae0feb.jpg?width=800",
+            "images": [
+                "https://revston.b-cdn.net/Content/UploadDirectory/Products/48/image_1c9e5217-5c01-4ac1-ab53-d1b129ae0feb.jpg?width=800"
+            ],
             "stock": 15,
             "price": 15000,
             "genero": "Masculino",
@@ -21,16 +25,20 @@
         {
             "name": "Jeans Mexico",
             "description": "Jeans Skini Premium color blanco, sin roturas",
-            "image": "https://revston.b-cdn.net/Content/UploadDirectory/Products/163/image_83c62b7f-18ed-4a9d-a775-8f564e4a0af9.jpg?width=800",
+            "images": [
+                "https://revston.b-cdn.net/Content/UploadDirectory/Products/163/image_83c62b7f-18ed-4a9d-a775-8f564e4a0af9.jpg?width=800"
+            ],
             "stock": 4,
             "price": 16000,
             "genero": "Masculino",
-            "category":"Pantalones"
+            "category": "Pantalones"
         },
         {
             "name": "Pantalon Saturno",
             "description": "Pantalon de vesir, color rosa",
-            "image": "https://acdn.mitiendanube.com/stores/704/419/products/img_8825-73eab5f2123338f9db17099219845796-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/704/419/products/img_8825-73eab5f2123338f9db17099219845796-1024-1024.webp"
+            ],
             "stock": 4,
             "price": 13000,
             "genero": "Femenino",
@@ -39,7 +47,9 @@
         {
             "name": "Pantalon Tirol ",
             "description": "Pantalon de vesir, color verde marino",
-            "image": "https://acdn.mitiendanube.com/stores/704/419/products/img_8804-d7c4b1553e0b55b8af17102526646878-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/704/419/products/img_8804-d7c4b1553e0b55b8af17102526646878-1024-1024.webp"
+            ],
             "stock": 12,
             "price": 13000,
             "genero": "Femenino",
@@ -48,7 +58,9 @@
         {
             "name": "Pantalon CARHUE",
             "description": "Pantalon de vesir, color Verde",
-            "image": "https://acdn.mitiendanube.com/stores/704/419/products/img_5267-f47236aae26c6b66df17017902926321-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/704/419/products/img_5267-f47236aae26c6b66df17017902926321-1024-1024.webp"
+            ],
             "stock": 4,
             "price": 13000,
             "genero": "Femenino",
@@ -57,7 +69,9 @@
         {
             "name": "Remera CREW RAGLAN BLANCO",
             "description": "Jersey 24/1 peinado 100% algodon. Estampado en frente. Grifa tejida de marca en manga, frente e interior",
-            "image": "https://acdn.mitiendanube.com/stores/989/662/products/crew-ranglan-blanco1-d50c27b4d742f1338116765491288303-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/989/662/products/crew-ranglan-blanco1-d50c27b4d742f1338116765491288303-1024-1024.webp"
+            ],
             "stock": 4,
             "price": 9000,
             "genero": "Masculino",
@@ -66,16 +80,20 @@
         {
             "name": "Remera TRADI MOSTAZA",
             "description": "Jersey 24/1 peinado 100% algodon. Estampado en frente. Grifa tejida de marca en manga. ",
-            "image": "https://acdn.mitiendanube.com/stores/989/662/products/tradi-mostaza-e1-96b3fa33ed5ee8669c16630882594004-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/989/662/products/tradi-mostaza-e1-96b3fa33ed5ee8669c16630882594004-1024-1024.webp"
+            ],
             "stock": 7,
             "price": 9000,
             "genero": "Masculino",
-            "category":"Remeras"
+            "category": "Remeras"
         },
         {
             "name": "Remera KABAL TEE BORDO",
             "description": "Jersey 24/1 peinado 100% algodon. Estampado en frente. Grifa tejida de marca en manga. ",
-            "image": "https://acdn.mitiendanube.com/stores/989/662/products/kabal-bordo-a262e537c25f200d0917107901343174-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/989/662/products/kabal-bordo-a262e537c25f200d0917107901343174-1024-1024.webp"
+            ],
             "stock": 4,
             "price": 9000,
             "genero": "Masculino",
@@ -84,7 +102,9 @@
         {
             "name": "Remera BUTTERFLY TEE LILA",
             "description": "Remera de fit relajado, mangas caidas con roll up. Full Print batik y estampa central delantera a 1 color. ",
-            "image": "https://acdn.mitiendanube.com/stores/001/180/816/products/mujer-baja-_-4511-47ac093f9a8706fa0816469262434997-640-0.jpg",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/001/180/816/products/mujer-baja-_-4511-47ac093f9a8706fa0816469262434997-640-0.jpg"
+            ],
             "stock": 6,
             "price": 7000,
             "genero": "Femenino",
@@ -93,7 +113,9 @@
         {
             "name": "Remera Lovers",
             "description": "REMERA MANGA CORTA ESCOTE REDONDO DE MODAL CON LYCRA MOTIVO RAYADO. RUEDO RECTO",
-            "image": "https://acdn.mitiendanube.com/stores/697/557/products/remera-lovers-jean-quinn-48bd251911b310221c17103501357647-640-0.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/697/557/products/remera-lovers-jean-quinn-48bd251911b310221c17103501357647-640-0.webp"
+            ],
             "stock": 6,
             "price": 6000,
             "genero": "Femenino",
@@ -102,7 +124,9 @@
         {
             "name": "Remera CHACHACHA",
             "description": "REMERA MANGA CORTA ESCOTE REDONDO DE MODAL CON LYCRA MOTIVO RAYADO. RUEDO RECTO",
-            "image": "https://acdn.mitiendanube.com/stores/697/557/products/remera-chachacha-detalle-pantalon-marine-da1ed94f92bbb2f82517103386248296-640-0.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/697/557/products/remera-chachacha-detalle-pantalon-marine-da1ed94f92bbb2f82517103386248296-640-0.webp"
+            ],
             "stock": 6,
             "price": 6000,
             "genero": "Femenino",
@@ -111,7 +135,9 @@
         {
             "name": "Chaqueta LIBRAS ESTERLINAS",
             "description": "Cazadora bomber italiana de poliamida reciclada con estampado integral Lands Between Map. Bolsillos delanteros verticales dobles y bolsillos laterales.",
-            "image": "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1200x1681%2F4ad8e7555a%2Fbj040er_1684.png&w=640&q=90",
+            "images": [
+                "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1200x1681%2F4ad8e7555a%2Fbj040er_1684.png&w=640&q=90"
+            ],
             "stock": 9,
             "price": 22000,
             "genero": "Masculino",
@@ -120,7 +146,9 @@
         {
             "name": "Chaqueta UNIVERSITARIA VCLA",
             "description": "Chaqueta universitaria de tejido pesado en negro con mangas y detalles en amarillo suave. Con el logotipo de VCLA BOBCATS y un parche bordado con la mascota.",
-            "image": "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1428x2000%2F40d4bcb62c%2Fvj010di_0022.png&w=640&q=90",
+            "images": [
+                "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1428x2000%2F40d4bcb62c%2Fvj010di_0022.png&w=640&q=90"
+            ],
             "stock": 3,
             "price": 22000,
             "genero": "Masculino",
@@ -129,7 +157,9 @@
         {
             "name": "Chaqueta D.VA TOKKI",
             "description": "Chaqueta deportiva de ajuste relajado. Con detalles TOKKI del aspecto especial D.Va de Overwatch 2. Logos bordados en mangas y pecho. ",
-            "image": "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1600x2240%2Fcdf4c70f36%2Ftjr001ow2_01383.png&w=640&q=90",
+            "images": [
+                "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1600x2240%2Fcdf4c70f36%2Ftjr001ow2_01383.png&w=640&q=90"
+            ],
             "stock": 31,
             "price": 22000,
             "genero": "Masculino",
@@ -138,7 +168,9 @@
         {
             "name": "ChaquetaPIEL SINTÉTICA",
             "description": "Abrigo de pelo sintético ECOPEL en color marrón. Forrado con estampado integral del mapa The Lands Between. ",
-            "image": "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1200x1681%2F07d3a8d8bd%2Fcoat040er_00089.png&w=640&q=90",
+            "images": [
+                "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1200x1681%2F07d3a8d8bd%2Fcoat040er_00089.png&w=640&q=90"
+            ],
             "stock": 3,
             "price": 27000,
             "genero": "Femenino",
@@ -147,7 +179,9 @@
         {
             "name": "Chaqueta RUNES CON CUELLO",
             "description": "Cazadora bomber italiana de poliamida reciclada en color negro. Forrado con estampado integral del mapa The Lands Between. ",
-            "image": "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1428x2000%2Fd2ce4945d8%2Fbj041er_0712.png&w=640&q=90",
+            "images": [
+                "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1428x2000%2Fd2ce4945d8%2Fbj041er_0712.png&w=640&q=90"
+            ],
             "stock": 91,
             "price": 20000,
             "genero": "Femenino",
@@ -156,7 +190,9 @@
         {
             "name": "Buzo Hoodie Make Negro ",
             "description": "Buzo canguro algodon premium con capucha, forrado con frizza",
-            "image": "https://acdn.mitiendanube.com/stores/003/142/131/products/_mg_27691-c7d5fe65535820f34916920370502471-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/003/142/131/products/_mg_27691-c7d5fe65535820f34916920370502471-1024-1024.webp"
+            ],
             "stock": 9,
             "price": 15000,
             "genero": "Masculino",
@@ -165,7 +201,9 @@
         {
             "name": "Buzo Urban Cire 1/2 Cierre Black & White",
             "description": "Buzo Urban Cire 1/2 Cierre Black & White algodon premium con capucha, forrado con frizza",
-            "image": "https://acdn.mitiendanube.com/stores/003/142/131/products/_mg_8992-77ae6daf58b2faf3a117017062647503-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/003/142/131/products/_mg_8992-77ae6daf58b2faf3a117017062647503-1024-1024.webp"
+            ],
             "stock": 15,
             "price": 19000,
             "genero": "Masculino",
@@ -174,7 +212,9 @@
         {
             "name": "Buzo Hoodie Tour White",
             "description": "Buzo Urban Hoodie Tour White algodon premium con capucha, forrado con frizza",
-            "image": "https://acdn.mitiendanube.com/stores/003/142/131/products/_mg_0055-82fe2367c5e211514617091358943734-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/003/142/131/products/_mg_0055-82fe2367c5e211514617091358943734-1024-1024.webp"
+            ],
             "stock": 13,
             "price": 14000,
             "genero": "Masculino",
@@ -183,7 +223,9 @@
         {
             "name": "Buzo HOODIE PURPURA | HEY",
             "description": "Buzo Urban Hoodie Tour White algodon premium con capucha, forrado con frizza",
-            "image": "https://acdn.mitiendanube.com/stores/001/594/095/products/capucha-purpura1_mesa-de-trabajo-1-copia-7-8878ac2cdefd2da19217043918696564-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/001/594/095/products/capucha-purpura1_mesa-de-trabajo-1-copia-7-8878ac2cdefd2da19217043918696564-1024-1024.webp"
+            ],
             "stock": 16,
             "price": 19000,
             "genero": "Femenino",
@@ -192,7 +234,9 @@
         {
             "name": "Buzo BUZO CROP LILA | BMB",
             "description": "Hoodie púrpura. Cordones color crudo y estampa en frente y espalda.",
-            "image": "https://acdn.mitiendanube.com/stores/001/594/095/products/crop-lila_mesa-de-trabajo-1-copia-9-b47b246adaf8239ef817013564867775-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/001/594/095/products/crop-lila_mesa-de-trabajo-1-copia-9-b47b246adaf8239ef817013564867775-1024-1024.webp"
+            ],
             "stock": 12,
             "price": 18000,
             "genero": "Femenino",
@@ -201,7 +245,9 @@
         {
             "name": "Buzo HOODIE VERDE | ORIGINALS",
             "description": " Hoodie verde. Cordones amarillos y bordado en frente.",
-            "image": "https://acdn.mitiendanube.com/stores/001/594/095/products/capucha-verde_mesa-de-trabajo-1-copia-12-bbdd07d6c6aca53ea817043917914630-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/001/594/095/products/capucha-verde_mesa-de-trabajo-1-copia-12-bbdd07d6c6aca53ea817043917914630-1024-1024.webp"
+            ],
             "stock": 11,
             "price": 19000,
             "genero": "Femenino",
@@ -210,7 +256,9 @@
         {
             "name": "FALDA AMAZONAS",
             "description": "Falda maxi larga loc tajo delantero sw0903",
-            "image": "https://minnakazzira.com.ar/catalogo/1068/20b.jpg",
+            "images": [
+                "https://minnakazzira.com.ar/catalogo/1068/20b.jpg"
+            ],
             "stock": 15,
             "price": 33000,
             "genero": "Femenino",
@@ -219,7 +267,9 @@
         {
             "name": "FALDA MELBOURNE BLACK",
             "description": "Falda midi black- ajustable al cuerpo",
-            "image": "https://minnakazzira.com.ar/catalogo/1067/MONOS9.jpg",
+            "images": [
+                "https://minnakazzira.com.ar/catalogo/1067/MONOS9.jpg"
+            ],
             "stock": 3,
             "price": 30000,
             "genero": "Femenino",
@@ -228,7 +278,9 @@
         {
             "name": "FALDA JACKIE",
             "description": "Falda  jackie bengalina.",
-            "image": "https://minnakazzira.com.ar/catalogo/699/7.jpg",
+            "images": [
+                "https://minnakazzira.com.ar/catalogo/699/7.jpg"
+            ],
             "stock": 11,
             "price": 29000,
             "genero": "Femenino",
@@ -237,7 +289,9 @@
         {
             "name": "FALDA BARROW",
             "description": "Falda BARROW larga loc tajo delantero sw0903",
-            "image": "https://minnakazzira.com.ar/catalogo/1066/1c.jpg",
+            "images": [
+                "https://minnakazzira.com.ar/catalogo/1066/1c.jpg"
+            ],
             "stock": 1,
             "price": 43000,
             "genero": "Femenino",
@@ -246,7 +300,9 @@
         {
             "name": "FALDA CHANDANCE",
             "description": "Falda maxi larga loc tajo delantero sw0903",
-            "image": "https://minnakazzira.com.ar/catalogo/1042/2c.jpg",
+            "images": [
+                "https://minnakazzira.com.ar/catalogo/1042/2c.jpg"
+            ],
             "stock": 5,
             "price": 27000,
             "genero": "Femenino",
@@ -255,7 +311,9 @@
         {
             "name": "FALDA HOWERD",
             "description": "Falda maxi larga loc tajo delantero sw0903",
-            "image": "https://minnakazzira.com.ar/catalogo/958/5b.jpg",
+            "images": [
+                "https://minnakazzira.com.ar/catalogo/958/5b.jpg"
+            ],
             "stock": 17,
             "price": 40000,
             "genero": "Femenino",
@@ -264,16 +322,20 @@
         {
             "name": "Camisa ESTAMPADA 'BRUCE'",
             "description": "Camisa manga corta en poplin 60/1 algodón 100% estampado",
-            "image": "https://acdn.mitiendanube.com/stores/238/782/products/30-08-discobolo-ecom50821-075642b652423c736316939367912598-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/238/782/products/30-08-discobolo-ecom50821-075642b652423c736316939367912598-1024-1024.webp"
+            ],
             "stock": 32,
             "price": 19000,
             "genero": "Masculino",
-            "category":"Camisas"
+            "category": "Camisas"
         },
         {
             "name": "Camisa ESTLINO 'MUSHROOM'",
             "description": "Camisa manga corta en poplin 60/1 algodón 100% estampado",
-            "image": "https://acdn.mitiendanube.com/stores/238/782/products/30-08-discobolo-ecom50821-075642b652423c736316939367912598-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/238/782/products/30-08-discobolo-ecom50821-075642b652423c736316939367912598-1024-1024.webp"
+            ],
             "stock": 32,
             "price": 19000,
             "genero": "Masculino",
@@ -282,7 +344,9 @@
         {
             "name": "Camisa MAO LINO",
             "description": "Camisa lisa cuello mao manga larga. Esta confeccionada con tela de lino con elastano de la mayor calidad y la molderia es slim.",
-            "image": "https://acdn.mitiendanube.com/stores/238/782/products/30-08-discobolo-ecom51421-c3f5c9fcb30a6efecc16939374765687-1024-1024.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/238/782/products/30-08-discobolo-ecom51421-c3f5c9fcb30a6efecc16939374765687-1024-1024.webp"
+            ],
             "stock": 11,
             "price": 23000,
             "genero": "Masculino",
@@ -291,7 +355,9 @@
         {
             "name": "Camisa DONNA",
             "description": "Camisa manga corta, viene en unos colores divinos y vibrantes, re veraniegos! Lleva botones carey en la cartera divinos y el largo es a la cadera.",
-            "image": "https://acdn.mitiendanube.com/stores/001/235/896/products/juvia_0316-9b109adf1ca88b275b17006781051268-480-0.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/001/235/896/products/juvia_0316-9b109adf1ca88b275b17006781051268-480-0.webp"
+            ],
             "stock": 12,
             "price": 12000,
             "genero": "Femenino",
@@ -300,7 +366,9 @@
         {
             "name": "Camisa ROSALIA",
             "description": "Camisa clásica de fibrana, tiene una caida divina y es super suave al tacto. Lleva botones transparentes en la cartera y puños.",
-            "image": "https://acdn.mitiendanube.com/stores/001/235/896/products/juvia_11201-efc3f2674702a9605e16915169272507-480-0.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/001/235/896/products/juvia_11201-efc3f2674702a9605e16915169272507-480-0.webp"
+            ],
             "stock": 22,
             "price": 19000,
             "genero": "Femenino",
@@ -309,7 +377,9 @@
         {
             "name": "Camisa Lotto",
             "description": "Camisa tipo oversize de poplin, bien grandota con hombros caídos y larga abajo de la cola. . Lleva botones transparentes en la cartera y puños.",
-            "image": "https://acdn.mitiendanube.com/stores/001/235/896/products/juvia_0040-98a8e3c12eee8532b617006697552921-480-0.webp",
+            "images": [
+                "https://acdn.mitiendanube.com/stores/001/235/896/products/juvia_0040-98a8e3c12eee8532b617006697552921-480-0.webp"
+            ],
             "stock": 12,
             "price": 22000,
             "genero": "Femenino",

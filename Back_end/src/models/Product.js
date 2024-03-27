@@ -21,8 +21,8 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      image: {
-        type: DataTypes.STRING,
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
       stock: {
