@@ -14,6 +14,10 @@
   font-family: f4;
   src:url(../src/assets/Fonts/klemer-display-demo.regular.ttf)
 }
+@font-face{
+  font-family: f5;
+  src:url(../src/assets/Fonts/bradley-gratis.regular.ttf)
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
