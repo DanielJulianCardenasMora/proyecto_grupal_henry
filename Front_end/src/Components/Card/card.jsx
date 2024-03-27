@@ -11,7 +11,7 @@ import style from "./card.module.css";
 
 
 export const Card = ( {Id, Nombre, Imagen, Stock, Precio, Genero, Categoria}) => {
-
+console.log(Imagen)
   return (
     <div className={style.box}>
       <Link to={`/detail/${Id}`}>
