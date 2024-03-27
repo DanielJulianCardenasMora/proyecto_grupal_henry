@@ -8,7 +8,6 @@ import { genderFilter ,priceFilter,categoriesFilter } from '../../redux/actions/
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
   const dispatch = useDispatch()
-  const {productsScreen, Index} = useSelector((state) => state)
   const [actualFilters,setActualFilters] =useState([])
 
   const toggleMenu = () => {
@@ -16,7 +15,7 @@ export const Menu = () => {
   };
 
   const handlePrice = (value) => {
-    dispatch(priceFilter(value, Index))
+    dispatch(priceFilter(`?sortBy=price&sortOrder=${value}`))
   }
 
   const handleGender = (gender) => {
@@ -88,8 +87,8 @@ export const Menu = () => {
           </div>
           <div className={style.columna3}>
             <h1>Price order</h1>
-            <h3 data-name="des" className={selectedButton("des")} onClick={handlePriceClick}>Lower to higher</h3>
-            <h3 data-name="asc" className={selectedButton("asc")} onClick={handlePriceClick}>Higher to lower</h3>
+            <h3 data-name="asc" className={selectedButton("asc")} onClick={handlePriceClick}>Lower to higher</h3>
+            <h3 data-name="desc" className={selectedButton("desc")} onClick={handlePriceClick}>Higher to lower</h3>
             <h2 className={style.c3h3} onClick={toggleMenu}>back</h2>
           </div>
         </div>

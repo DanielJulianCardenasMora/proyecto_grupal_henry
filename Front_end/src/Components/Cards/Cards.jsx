@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import derecha from '../../assets/Imagenes/Products_flechaDer_aplicar.png'
 import izquierda from '../../assets/Imagenes/Products_flechaIzq_aplicar.png'
 import { getAllProducts, getIndex } from '../../redux/actions/actions';
+import axios from 'axios';
 
 
 
@@ -14,11 +15,27 @@ export const Cards = () => {
   const totalPages = useSelector((state) => state.TotalPages);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch()
+  const urlFiltrada = useSelector((state) => state.UrlFiltrada)
+  const urlActual = useSelector((state) => state.UrlActual)
+  console.log(urlActual)
 
-
+  const filtro = []
   useEffect(() => {
-    dispatch(getAllProducts(currentPage));
-  }, [currentPage, dispatch]);
+      // dispatch(getAllProducts(currentPage));
+      const obtenerDatos = (params) => {
+        return async (dispatch) => {
+          {
+            try {
+              const {data} = await axios.get(`${urlActual}?page=${currentPage}`)
+              filtro = data.products
+              console.log(filtro)
+            } catch (error) {
+              console.log(error)
+            }
+          }
+        }
+      } 
+  }, [ dispatch, currentPage]);
   
   const siguientePagina = () => {
     setCurrentPage(currentPage + 1);
@@ -26,9 +43,8 @@ export const Cards = () => {
   const anteriorPagina = () => {
     setCurrentPage(currentPage - 1);
   }
-  console.log(currentPage)
 
-  
+ 
   
   return (
     <div>

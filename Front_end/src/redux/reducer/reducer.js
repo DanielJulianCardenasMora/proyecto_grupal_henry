@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {
   GET_PRODUCTS,
   SEARCH_BY_NAME,
@@ -14,6 +16,8 @@ const initialstate = {
   Detail: [],
   Index: 2,
   TotalPages: 0,
+  UrlActual: "http://localhost:3001/products",
+  UrlFiltrada: []
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -35,10 +39,13 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       };
 
     case PRICE_FILTER:
-      console.log(payload)
+
       return {
         ...state,
-        ProductsScreen: [...payload],
+        UrlActual: state.UrlActual + "?sortBy=price&sortOrder=desc",
+        Products: [...payload[0]],
+        ProductsScreen: [...payload[0]],
+        TotalPages: payload[1],
       };
 
     case GENDER_FILTER:
