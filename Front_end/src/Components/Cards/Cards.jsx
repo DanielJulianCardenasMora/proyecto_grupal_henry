@@ -11,27 +11,28 @@ import { getAllProducts, getIndex } from '../../redux/actions/actions';
 
 export const Cards = () => {
   const productsScreen = useSelector((state) => state.ProductsScreen);
-  const index = useSelector((state) => state.Index);
+  const totalPages = useSelector((state) => state.TotalPages);
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch()
-  const totalPages = 7
 
+
+  useEffect(() => {
+    dispatch(getAllProducts(currentPage));
+  }, [currentPage, dispatch]);
   
   const siguientePagina = () => {
-    dispatch(getIndex('as'))
-    dispatch(getAllProducts(index))
+    setCurrentPage(currentPage + 1);
   }
   const anteriorPagina = () => {
-    dispatch(getIndex('de'))
-    dispatch(getAllProducts(index))
+    setCurrentPage(currentPage - 1);
   }
-  console.log(index)
+  console.log(currentPage)
 
   
   
   return (
     <div>
       <div>
-
         <div className={style.cardsContainer}>
           {productsScreen.map(product => (
             <Card
@@ -47,19 +48,20 @@ export const Cards = () => {
           ))}
         </div>
       </div>  
+
       <div className={style.btnNav}>
         <button
           onClick={() => anteriorPagina()}
-        disabled={index === 0}
-        >
-          <img src={izquierda}/>
+          disabled={currentPage === 1}>
+        <img src={izquierda}/>
         </button>
+
         <button
           onClick={() => siguientePagina() }
-          disabled={index > 8}>
-          <img src={derecha}/>
+          disabled={currentPage >= totalPages}>
+        <img src={derecha}/>
         </button>
-        </div>
+      </div>
     </div>
   )
 }
