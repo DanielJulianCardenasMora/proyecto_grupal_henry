@@ -2,7 +2,7 @@ import React from "react";
 import { FaLinkedin, FaGithub } from 'react-icons/fa'; // Importa íconos de redes sociales
 import './cardprofile.css'
 
-const CardProfile = ({nombre, localidad, linkedin, github}) => {
+export const CardProfile = ({nombre, localidad, linkedin, github}) => {
     return (
         <div className="card-container">
             <div className="card-header">
@@ -19,4 +19,4 @@ const CardProfile = ({nombre, localidad, linkedin, github}) => {
     )
 }
 
-export default CardProfile;
+

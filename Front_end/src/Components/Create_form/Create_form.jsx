@@ -1,7 +1,7 @@
 import style from "./Create_form.module.css";
 import { useState } from "react";
 import validacion from './validacion'
-const URL_SERVER = 'http://localhost:3001/products'
+const URL_SERVER = 'http://localhost:3001/products/create'
 import axios from 'axios'
 import { useSelector } from "react-redux";
 
@@ -27,7 +27,6 @@ const Create_form = () => {
       validacion({ ...productData, [evento.target.name]: evento.target.value })
     );
     setProductData({ ...productData, [evento.target.name]: evento.target.value });
-    console.log(evento.target.value);
   };
 
   const createproduct = async (productData) => {

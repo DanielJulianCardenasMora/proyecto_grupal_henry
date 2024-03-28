@@ -8,7 +8,6 @@ const getCategory = async () => {
         );
         const getInfo = response.data.map((element) => {
             return {
-                //id: element.id,
                 name: element.name,
             };
         });
