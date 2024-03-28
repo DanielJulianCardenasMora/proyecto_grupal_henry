@@ -1,13 +1,14 @@
 import axios from "axios";
 
 import {
-  GET_PRODUCTS,
+  RENDER,
   SEARCH_BY_NAME,
   PRICE_FILTER,
   GENDER_FILTER,
   DETAIL,
   CATEGORY_FILTER,
   NAVEGACION,
+  ALL_PRODUCTS
 } from "../actions/type";
 
 const initialstate = {
@@ -16,8 +17,8 @@ const initialstate = {
   Detail: [],
   Index: 2,
   TotalPages: 0,
-  UrlActual: "http://localhost:3001/products",
-  UrlFiltrada: []
+  Api: "http://localhost:3001/products",
+  Filtrado: ""
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -29,23 +30,24 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ProductsScreen: [...payload],
       };
 
-    case GET_PRODUCTS:
-
+    case ALL_PRODUCTS:
       return {
         ...state,
-        Products: [...payload[0]],
-        ProductsScreen: [...payload[0]],
-        TotalPages: payload[1],
+        Products: [...payload.products],
+        ProductsScreen: [...payload.products],
+        TotalPages: payload.TotalPage
+      };
+
+    case RENDER:
+      return {
+        ...state,
+        ProductsScreen: payload
       };
 
     case PRICE_FILTER:
-
       return {
         ...state,
-        UrlActual: state.UrlActual + "?sortBy=price&sortOrder=desc",
-        Products: [...payload[0]],
-        ProductsScreen: [...payload[0]],
-        TotalPages: payload[1],
+        Filtrado: payload
       };
 
     case GENDER_FILTER:

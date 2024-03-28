@@ -1,4 +1,4 @@
-export const GET_PRODUCTS = "GET_PRODUCTS";
+export const RENDER = "RENDER";
 export const GET_USERS="GET_USERS";
 export const CATEGORY = "CATEGORY";
 export const ORDERS= "ORDERS";
@@ -9,4 +9,5 @@ export const PRICE_FILTER = "PRICE_FILTER";
 export const GENDER_FILTER = "GENDER_FILTER";
 export const POST_ITEM = "POST_ITEM" ; 
 export const NAVEGACION = "NAVEGACION" ; 
+export const ALL_PRODUCTS = "ALL_PRODUCTS"
 

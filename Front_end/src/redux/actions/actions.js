@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    GET_PRODUCTS, 
+    RENDER, 
     GET_USERS,
     CATEGORY,
     ORDERS,
@@ -11,26 +11,42 @@ import {
     GENDER_FILTER ,
   POST_ITEM,
   NAVEGACION,
+  ALL_PRODUCTS,
+
 
 } from "./type";
 
 const URL = 'http://localhost:3001/products'
 //URL = http://localhost:3001/products
 //sortBy=price&sortOrder=desc --> precio filtro
+export const getAll = (payload) => {
+  return{
+    type: ALL_PRODUCTS,
+    payload: payload
+  }
+}
 
-export const getAllProducts = (page) => {
-    return async function (dispatch) {
-      try {
-        const response = await axios.get(`${URL}?page=${page}`);
+export const render = (products) => {
+  return{
+    type: RENDER,
+    payload: products
+  }
+}
 
-        dispatch({
-          type: GET_PRODUCTS,
-          payload: [response.data.products, response.data.totalPage],
-        });
-      } catch (error) {
-        alert(error.message);
-      }
-  }}
+export const priceFilter = (url) => {
+  console.log("action pricefilter: " + url)
+  return async function(dispatch){
+    try {
+
+        return dispatch({
+          type: PRICE_FILTER,
+          payload: url
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
 
 
 export const getIndex = (tipo) => {
@@ -129,22 +145,7 @@ export function postItem(i){
 
 }
 
-export const priceFilter = (ruta) => {
-  //http://localhost:3001/products?sortBy=price&sortOrder=asc
-  console.log(ruta)
-  return async function(dispatch){
-    try {
-      const response = await axios.get(`${URL}${ruta}`)
 
-        return dispatch({
-          type: PRICE_FILTER,
-          payload: [response.data.products, response.data.totalPage],
-        })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-};
 
 
 

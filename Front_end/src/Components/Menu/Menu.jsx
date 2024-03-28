@@ -7,15 +7,17 @@ import { genderFilter ,priceFilter,categoriesFilter } from '../../redux/actions/
 
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
-  const dispatch = useDispatch()
   const [actualFilters,setActualFilters] =useState([])
+  const api = useSelector((state) => state.Api)
+  const dispatch = useDispatch()
 
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
 
   const handlePrice = (value) => {
-    dispatch(priceFilter(`?sortBy=price&sortOrder=${value}`))
+    const url = `${api}?sortBy=price&sortOrder=${value}`
+    dispatch(priceFilter(url))
   }
 
   const handleGender = (gender) => {
