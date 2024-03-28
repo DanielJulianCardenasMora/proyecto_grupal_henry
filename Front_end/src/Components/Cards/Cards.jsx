@@ -4,39 +4,53 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import derecha from '../../assets/Imagenes/Products_flechaDer_aplicar.png'
 import izquierda from '../../assets/Imagenes/Products_flechaIzq_aplicar.png'
-import { getAllProducts, getIndex } from '../../redux/actions/actions';
-import axios from 'axios';
-
+import { getAllProducts, priceFilterAsc, priceFilterDes } from '../../redux/actions/actions';
 
 
 
 export const Cards = () => {
   const productsScreen = useSelector((state) => state.ProductsScreen);
+  const filtroActivo = useSelector((state) => state.FiltroActivo);
   const totalPages = useSelector((state) => state.TotalPages);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch()
-  const urlFiltrada = useSelector((state) => state.UrlFiltrada)
   const urlActual = useSelector((state) => state.UrlActual)
-  console.log(urlActual)
 
-  const filtro = []
-  useEffect(() => {
-      // dispatch(getAllProducts(currentPage));
-      const obtenerDatos = (params) => {
-        return async (dispatch) => {
-          {
-            try {
-              const {data} = await axios.get(`${urlActual}?page=${currentPage}`)
-              filtro = data.products
-              console.log(filtro)
-            } catch (error) {
-              console.log(error)
-            }
-          }
-        }
-      } 
-  }, [ dispatch, currentPage]);
   
+  console.log(urlActual)
+  console.log(filtroActivo)
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //     const url = urlActual.includes('?')
+  //       ? `${urlActual}&page=${currentPage}`
+  //       : `${urlActual}?page=${currentPage}`;
+  //       const { data } = await axios.get(url)
+  //       setMiData(data.products)
+  //       console.log(miData)
+  //     }
+  //     catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   fetchData()
+
+      
+  // }, [currentPage]);
+
+  useEffect(() => {
+    if (filtroActivo.includes('priceAes')) {
+      dispatch(priceFilterAsc(currentPage));
+    } else if (filtroActivo.includes('priceDes')) {
+      dispatch(priceFilterDes(currentPage));
+    } else {
+      dispatch(getAllProducts(currentPage));
+    }
+  }, [currentPage]);
+
+
   const siguientePagina = () => {
     setCurrentPage(currentPage + 1);
   }
@@ -50,7 +64,8 @@ export const Cards = () => {
     <div>
       <div>
         <div className={style.cardsContainer}>
-          {productsScreen.map(product => (
+          {productsScreen.length > 0 ? (
+            productsScreen.map((product) => (
             <Card
               key={product.id}
               Id={product.id}
@@ -61,7 +76,10 @@ export const Cards = () => {
               Genero={product.genero}
               Categoria={product.category}
             />
-          ))}
+            ))
+          ) : (
+            <p>cargando productos</p>  
+          )}
         </div>
       </div>  
 
