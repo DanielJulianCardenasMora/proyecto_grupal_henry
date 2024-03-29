@@ -6,6 +6,9 @@ import Card from './Components/Card/card';
 import Cart from './Components/Cart/Cart';
 import { Nav } from './Components';
 import Footer from './Components/Footer/Footer';
+import { useEffect, useState } from 'react'
+
+
 
 
 
@@ -13,6 +16,16 @@ import Footer from './Components/Footer/Footer';
 
 function App() {
 
+  const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
+
+const [carrito, agregarProducto] = useState(carritoGuardado);
+
+useEffect(() => {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  console.log(carrito);
+}, [ carrito])
+
+console.log(carrito);
   //Aca solo se van a renderizar las pages
   return (
 
@@ -21,11 +34,11 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/products" element={<ProductsPage />} />
-        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/detail/:id" element={<DetailPage carrito={carrito} agregarProducto={ agregarProducto }  />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/cards" element={<Card />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
       </Routes>
       
     </>

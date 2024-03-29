@@ -16,6 +16,7 @@
     margin-top: 2%;
     border-radius: 1em;
     padding: 2%;
+    padding-top: 1%;
     box-sizing: border-box;
 }
 
@@ -97,9 +98,29 @@
 }
 
 .image{
-    background-image: url('../../assets/Img_Products/buzo-mujer-kitty-black.jpg');
+    /* background-image: url('../../assets/Img_Products/buzo-mujer-kitty-black.jpg'); */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    color: gray;
 }
 
+.vaciar{
+   color: rgb(99, 0, 0);
+   background: none;
+   cursor: pointer;
+
+}
+
+.link{
+    color: rgb(194, 194, 194);
+    text-decoration: none;
+   
+}
+
+.back{
+    background-color: rgba(0, 0, 0, 0.329);
+}
+.content p{
+color: rgb(56, 56, 56);
+}

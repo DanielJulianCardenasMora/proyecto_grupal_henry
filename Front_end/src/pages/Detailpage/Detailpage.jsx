@@ -3,10 +3,12 @@ import { Detail } from "../../Components";
 
 
 
-export const DetailPage = () => {
+export const DetailPage = (props) => {
+
+    const {carrito, agregarProducto}= props
     return (
         <div>
-            <Detail />
+            <Detail carrito={carrito} agregarProducto={agregarProducto}  />
         </div>
     )
 }

@@ -26,7 +26,7 @@ export const Cards = () => {
   const anteriorPagina = () => {
     setCurrentPage(currentPage - 1);
   }
-  console.log(currentPage)
+ 
 
   
   
