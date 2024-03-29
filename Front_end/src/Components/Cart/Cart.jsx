@@ -39,12 +39,12 @@ console.log(carrito);
       <div className={style.count}>
 <ItemCount stock={item.stock} initial={1} item={item}/>
 </div>
-      
+     
   </div>)
   })}
 
 { carrito.length 
-   ?     <button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>Vaciar Carrito</button>
+   ?  <div className={style.buy}> <button  className={style.back}>Continuar con la compra</button><button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>Vaciar Carrito</button></div>
    : <button className={style.back}><Link className={style.link} to='/products'>Ver productos disponibles</Link> </button>
    }
 
