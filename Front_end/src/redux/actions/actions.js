@@ -9,7 +9,6 @@ import {
     CATEGORY_FILTER,
     PRICE_FILTER ,
     GENDER_FILTER ,
-  POST_ITEM,
   NAVEGACION,
 
 } from "./type";
@@ -21,7 +20,7 @@ export const getAllProducts = (index) => {
         
         const response = await axios.get(`${URL}?page=${index}`);
         if (index <= response.data.totalPage || index === undefined) {
-          dispatch({ type: GET_PRODUCTS, payload: response.data.products });
+          dispatch({ type: GET_PRODUCTS, payload: [response.data.products, response.data.totalPage] });
         } else {
           return
         }

@@ -17,7 +17,8 @@ function Nav() {
      <Link to='/products' className={style.link}> <li>Products</li></Link>
      <Link to='/about' className={style.link} > <li>About</li></Link>
      <Link to='/create' className={style.link} ><li>Create</li></Link>
-      <li>Cart</li>
+     <Link to='/cart' className={style.link}><li>Cart</li></Link>
+      
      </ul></div>
 
      <div className={style.logIn}>
