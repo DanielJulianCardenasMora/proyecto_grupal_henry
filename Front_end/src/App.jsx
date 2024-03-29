@@ -16,16 +16,15 @@ import { useEffect, useState } from 'react'
 
 function App() {
 
-  const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
-
+const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
 const [carrito, agregarProducto] = useState(carritoGuardado);
 
 useEffect(() => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
   console.log(carrito);
-}, [ carrito])
+}, [carrito])
 
-console.log(carrito);
+
   //Aca solo se van a renderizar las pages
   return (
 

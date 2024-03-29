@@ -9,7 +9,6 @@ import {
     CATEGORY_FILTER,
     PRICE_FILTER ,
     GENDER_FILTER ,
-  POST_ITEM,
   NAVEGACION,
 
 } from "./type";

@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
-
-
-
-
-
-
-
+import ItemCount from './ItemCount'
 
 
 
 export const Cart = ({carrito, agregarProducto} ) => {
+
+
+  
 const eliminarProducto=(item)=>{
 
 const filtrados= carrito.filter((p)=> {return p.id !== item.id})
@@ -40,11 +37,9 @@ console.log(carrito);
         <button onClick={()=> {eliminarProducto(item)}}>Delete</button>
       </div>
       <div className={style.count}>
-       <div className={style.buttons}>
-       <button>+</button><p>0</p><button>-</button>
-       </div>
-      </div>
-      <div className={style.price}><p>{item.price}</p></div>
+<ItemCount stock={item.stock} initial={1} item={item}/>
+</div>
+      
   </div>)
   })}
 
