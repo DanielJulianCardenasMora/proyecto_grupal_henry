@@ -1,0 +1,31 @@
+.countContainter{
+    width: 100%;
+    display: flex;
+    /* background-color: brown ; */
+}
+.buttons{
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-evenly;
+    border-right: 1px solid gray;;
+}
+.countContainer button{
+    background: none;
+  
+    height: 30%;
+    font-size: 20px;
+    padding: 3%;
+    box-sizing: border-box;
+    width: 30%;
+  
+   
+
+}
+.price{
+    width: 10%;
+    display: flex;
+    align-items: center;
+  margin: auto;
+}
+

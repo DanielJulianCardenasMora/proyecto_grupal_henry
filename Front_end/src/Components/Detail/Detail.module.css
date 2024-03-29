@@ -6,6 +6,16 @@
   font-family: f1;
   line-height: 0;
 }
+.buy button{
+  background: none;
+  color: white;
+  font-weight: bold;
+  height: 30px;
+  border: 1px solid white;
+  font-size: 15px;
+  padding: 1%;
+  box-sizing: border-box;
+}
 .box_fondo{
   background-color: blueviolet;
   height: 100vh;

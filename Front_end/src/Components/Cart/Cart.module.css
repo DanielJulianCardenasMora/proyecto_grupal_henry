@@ -1,0 +1,128 @@
+.boxCart{
+    height: 160vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
+    padding-top: 5%;
+    background-image: url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
+    background-position: center;
+    background-size: cover;
+}
+.content{
+    height: 90%;
+    background-color: rgba(255, 255, 255, 0.349);
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
+    border-radius: 1em;
+    padding: 2%;
+    padding-top: 1%;
+    box-sizing: border-box;
+}
+
+.cards{
+    height: 18%;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    border-bottom: 1px solid rgb(24, 24, 24);
+    margin-top: 1%;
+    border-radius: 5px;
+    padding: 1%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.image{
+    width: 20%;
+    /* background-color: tomato; */
+    height: 100%;
+    border-right: 1px solid gray;
+}
+.count{
+    display: flex;
+    color: black;
+   justify-content: center;
+   width: 30%;
+   
+}
+.buttons{
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.count button{
+    background: none;
+    border: 1px solid gray;
+    height: 30%;
+    font-size: 20px;
+    padding: 3%;
+    box-sizing: border-box;
+    width: 30%;
+  
+   
+
+}
+
+.desc{
+    width: 46%;
+    padding-left: 1%;
+    /* background-color: brown; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    color: black;
+    border-right: 1px solid gray;
+
+}
+
+.desc h4{
+    font-size: 20px;
+}
+
+.desc button{
+    width: 10%;
+    background: none;
+    cursor: pointer;
+    color: rgb(219, 0, 0);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.image{
+    /* background-image: url('../../assets/Img_Products/buzo-mujer-kitty-black.jpg'); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: gray;
+}
+
+.vaciar{
+   color: rgb(99, 0, 0);
+   background: none;
+   cursor: pointer;
+   border: 1px solid black;
+
+}
+
+.link{
+    color: rgb(194, 194, 194);
+    text-decoration: none;
+   
+}
+
+.back{
+    background-color: rgba(0, 0, 0, 0.329);
+    margin-right: 1%;
+    color: wheat;
+}
+.content p{
+color: rgb(56, 56, 56);
+}
+
+.buy{
+    margin-top: 1%;
+
+}
