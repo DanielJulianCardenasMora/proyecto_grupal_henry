@@ -11,7 +11,7 @@ function Detail() {
   const { id } = useParams()
   const navigate = useNavigate();
   const [buttonClass, setButtonClass] = useState(true);
-  const {description, name, image, price, stock, genero} = useSelector((state) => state.Detail)
+  const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
 
   useEffect(() => {
     dispatch(getProductDetail(id))
@@ -41,7 +41,7 @@ function Detail() {
       </div>
 
       <div className={style.producto}>
-        <img src={image} alt="" />  
+        <img src={images} alt="" />  
         <div className={style.shape}>
           <img className={style.shape} src={shape} alt="" />  
         </div>
