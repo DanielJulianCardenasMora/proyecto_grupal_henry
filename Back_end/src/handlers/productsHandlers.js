@@ -5,17 +5,9 @@ const {
   productsDataBase,
   deleteProductDB,
 } = require("../controllers/productsControllers");
-const {
-  validateName,
-  validatePrice,
-  validateDescription,
-  validateStock,
-  validateImage,
-  validateCategory,
-  validateGenre,
-} = require("../utils/validacion");
+const validate = require("../utils/validacion");
 
-const { filtrarPorNombre, filtrarPorPrecio } = require('../utils/filter');
+const { filtrarPorNombre, filtrarPorPrecio } = require("../utils/filter");
 
 const paginarDatos = require("../utils/pagination");
 
@@ -34,7 +26,7 @@ const getProducts = async (req, res) => {
     } else {
       filteredProducts = paginatedProducts.data;
     }
-    
+
     filteredProducts = filtrarPorNombre(filteredProducts, sortBy);
     filteredProducts = filtrarPorPrecio(filteredProducts, sortBy, sortOrder);
 
@@ -68,45 +60,41 @@ const postProduct = async (req, res) => {
   const { name, description, price, image, stock, genero, category } = req.body;
 
   // Perform validations
-  const errors = [];
-  try {
-    validateName(name);
-  } catch (error) {
-    errors.push(error.message);
-  }
+  const validateFields = (fields) => {
+    const validators = {
+      name: validate.bind(null, "name"),
+      price: validate.bind(null, "price"),
+      description: validate.bind(null, "description"),
+      stock: validate.bind(null, "stock"),
+      image: validate.bind(null, "image"),
+      category: validate.bind(null, "category"),
+      genero: validate.bind(null, "genero"),
+    };
 
-  try {
-    validateDescription(description);
-  } catch (error) {
-    errors.push(error.message);
-  }
+    const errors = [];
 
-  try {
-    validatePrice(price);
-  } catch (error) {
-    errors.push(error.message);
-  }
+    Object.keys(fields).forEach((field) => {
+      try {
+        validators[field](fields[field]);
+      } catch (error) {
+        errors.push(error.message);
+      }
+    });
 
-  try {
-    validateStock(stock);
-  } catch (error) {
-    errors.push(error.message);
-  }
-  try {
-    validateImage(image);
-  } catch (error) {
-    errors.push(error.message);
-  }
-  try {
-    validateCategory(category);
-  } catch (error) {
-    errors.push(error.message);
-  }
-  try {
-    validateGenre(genero);
-  } catch (error) {
-    errors.push(error.message);
-  }
+    return errors;
+  };
+
+  // Ejemplo de uso:
+  const errors = validateFields({
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    image: req.body.image,
+    stock: req.body.stock,
+    genero: req.body.genero,
+    category: req.body.category,
+  });
+
   if (errors.length > 0) {
     return res.status(400).json({ errors });
   }
