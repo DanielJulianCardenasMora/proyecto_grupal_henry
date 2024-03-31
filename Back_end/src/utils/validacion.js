@@ -1,59 +1,60 @@
 const validate = (type, value) => {
+  const errors = [];
+
   switch (type) {
     case "name":
       if (!value) {
-        throw new Error("El nombre es requerido");
+        errors.push("El nombre es requerido");
       }
       break;
     case "price":
       if (!value || isNaN(value)) {
-        throw new Error("El precio debe ser un número");
+        errors.push("El precio debe ser un número");
       }
       if (value < 0) {
-        throw new Error("El precio debe ser mayor o igual que cero");
+        errors.push("El precio debe ser mayor o igual que cero");
       }
       break;
-    case "image":
-      if (typeof value !== "string") {
+    case "images":
+  const allowedExtensions = [".jpg", ".jpeg", ".png"];
+  const isURL = /^https?:\/\//.test(value);
+  
+  if (typeof value === "string" && !isURL && allowedExtensions.some((extension) => value.toLowerCase().endsWith(extension))) {
+    throw new Error("Debe ser una URL o tener una extensión .jpg, .jpeg o .png");
+  }
+      if (typeof value !== "string" || value.trim() === "") {
         throw new Error("La imagen debe ser una cadena de caracteres");
       }
-      const allowedExtensions = [".jpg", ".jpeg", ".png"];
-      const isValidExtension = allowedExtensions.some((extension) =>
-        value.toLowerCase().endsWith(extension)
-      );
-      const isURL = /^https?:\/\//.test(value);
-      if (!isValidExtension && !isURL) {
-        throw new Error(
-          "Debe ser una URL o tener una extensión .jpg, .jpeg o .png"
-        );
-      }
       break;
+
     case "description":
       if (!value && value && typeof value !== "string") {
-        throw new Error("La descripción debe ser una cadena de caracteres");
+        errors.push("La descripción debe ser una cadena de caracteres");
       }
       if (!value) {
-        throw new Error("La descripción es requerida");
+        errors.push("La descripción es requerida");
       }
       break;
     case "stock":
       if (value && (!Number.isInteger(value) || value < 0)) {
-        throw new Error("El stock debe ser un número entero positivo");
+        errors.push("El stock debe ser un número entero positivo");
       }
       break;
     case "genero":
       if (!value) {
-        throw new Error("Genero es requerido");
+        errors.push("Genero es requerido");
       }
       break;
     case "category":
       if (!value) {
-        throw new Error("Categoria es requerida");
+        errors.push("Categoria es requerida");
       }
       break;
     default:
-      throw new Error("Tipo de validación desconocido");
+      errors.push("Tipo de validación desconocido");
   }
+
+  return errors;
 };
 
 module.exports = validate;
