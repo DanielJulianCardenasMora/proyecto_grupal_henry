@@ -1,11 +1,4 @@
-const {
-  getProductsByName,
-  getProductDetail,
-  createProductDB,
-  productsDataBase,
-  deleteProductDB,
-} = require("../controllers/productsControllers");
-const validate = require("../utils/validacion");
+const { getProductsByName, getProductDetail, createProductDB, productsDataBase, deleteProductDB } = require("../controllers/productsControllers");
 
 const { filtrarPorNombre, filtrarPorPrecio } = require("../utils/filter");
 
@@ -15,23 +8,22 @@ const getProducts = async (req, res) => {
   const { name, page, currentPage, sortBy, sortOrder } = req.query;
   try {
     let response;
-    let filteredProducts;
+
+    const allProducts = await productsDataBase();
 
     //obtener los productos paginados
-    const allProducts = await productsDataBase();
-    const paginatedProducts = paginarDatos(allProducts, page, currentPage);
-
+    let filteredProducts = allProducts;
     if (name) {
       filteredProducts = getProductsByName(name);
-    } else {
-      filteredProducts = paginatedProducts.data;
     }
 
     filteredProducts = filtrarPorNombre(filteredProducts, sortBy);
     filteredProducts = filtrarPorPrecio(filteredProducts, sortBy, sortOrder);
 
+    const paginatedProducts = paginarDatos(filteredProducts, page, currentPage);
+
     response = {
-      products: filteredProducts,
+      products: paginatedProducts.data,
       currentPage: paginatedProducts.currentPage,
       totalPage: paginatedProducts.totalPages,
     };
@@ -56,66 +48,23 @@ const getDetail = async (req, res) => {
   }
 };
 
+
 const postProduct = async (req, res) => {
-  const { name, description, price, image, stock, genero, category } = req.body;
+  const { name, description, price, stock, genero, category } = req.body;
 
-  // Perform validations
-  const validateFields = (fields) => {
-    const validators = {
-      name: validate.bind(null, "name"),
-      price: validate.bind(null, "price"),
-      description: validate.bind(null, "description"),
-      stock: validate.bind(null, "stock"),
-      image: validate.bind(null, "image"),
-      category: validate.bind(null, "category"),
-      genero: validate.bind(null, "genero"),
-    };
-
-    const errors = [];
-
-    Object.keys(fields).forEach((field) => {
-      try {
-        validators[field](fields[field]);
-      } catch (error) {
-        errors.push(error.message);
-      }
-    });
-
-    return errors;
-  };
-
-  // Ejemplo de uso:
-  const errors = validateFields({
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    image: req.body.image,
-    stock: req.body.stock,
-    genero: req.body.genero,
-    category: req.body.category,
-  });
-
-  if (errors.length > 0) {
-    return res.status(400).json({ errors });
+  if (!name || !price || !req.files || !description || !stock) {
+    return res.status(400).json({ error: "El campo 'name', 'price' y 'images' son obligatorios." });
   }
 
   try {
-    const newProduct = await createProductDB(
-      name,
-      description,
-      price,
-      image,
-      stock,
-      genero,
-      category
-    );
-    // console.log("Producto creado con exito!", newProduct);
-    res.status(201).json("Producto creado con exito!");
+    const newProduct = await createProductDB(name, description, price, req.files, stock, genero, category);
+    res.status(201).json(newProduct);
+
   } catch (error) {
-    console.log(error);
+    console.error('Error creating product:', error);
     res.status(500).json({ error: "Error al crear tu nuevo producto" });
   }
-};
+}
 
 const deleteProduct = async (req, res) => {
   let { id } = req.params;
