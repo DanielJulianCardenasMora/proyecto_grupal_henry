@@ -17,7 +17,8 @@ const getProducts = async () => {
         price: element.price,
         stock: element.stock,
         genero: element.genero,
-        category: element.category
+        category: element.category,
+        quantity: 1
       };
     });
     return getInfo;
