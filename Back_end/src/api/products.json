@@ -223,7 +223,7 @@
         {
             "name": "Buzo HOODIE PURPURA | HEY",
             "description": "Buzo Urban Hoodie Tour White algodon premium con capucha, forrado con frizza",
-            "image": [
+            "images": [
                 "https://acdn.mitiendanube.com/stores/001/594/095/products/capucha-purpura1_mesa-de-trabajo-1-copia-7-8878ac2cdefd2da19217043918696564-1024-1024.webp"
             ],
             "stock": 16,
@@ -344,7 +344,7 @@
         {
             "name": "Camisa MAO LINO",
             "description": "Camisa lisa cuello mao manga larga. Esta confeccionada con tela de lino con elastano de la mayor calidad y la molderia es slim.",
-            "image": [
+            "images": [
                 "https://acdn.mitiendanube.com/stores/238/782/products/30-08-discobolo-ecom51421-c3f5c9fcb30a6efecc16939374765687-1024-1024.webp"
             ],
             "stock": 11,

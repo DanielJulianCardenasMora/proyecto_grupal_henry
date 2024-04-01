@@ -1,59 +1,60 @@
-const validateName = (name) => {
-  if (!name || name.trim() === "") {
-    throw new Error("El nombre es requerido");
-  }
-};
+const validate = (type, value) => {
+  const errors = [];
 
-const validatePrice = (price) => {
-  if (!price || price === "") {
-    throw new Error("El precio es requerido");
-  }
-  if (price !== undefined && (isNaN(price) || price < 0)) {
-    throw new Error("El precio debe ser un número mayor o igual que cero");
-  }
-};
-const validateDescription = (description) => {
-  if (typeof description !== "string" || description.trim() === "") {
-    throw new Error("La descripción debe ser una cadena de caracteres");
-  }
-};
-
-const validateImage = (image) => {
-  if (typeof image !== "string") {
-    throw new Error("La imagen debe ser una cadena de caracteres");
-  }
+  switch (type) {
+    case "name":
+      if (!value) {
+        errors.push("El nombre es requerido");
+      }
+      break;
+    case "price":
+      if (!value || isNaN(value)) {
+        errors.push("El precio debe ser un número");
+      }
+      if (value < 0) {
+        errors.push("El precio debe ser mayor o igual que cero");
+      }
+      break;
+    case "images":
   const allowedExtensions = [".jpg", ".jpeg", ".png"];
-  const isValidExtension = allowedExtensions.some((extension) =>
-    image.toLowerCase().endsWith(extension)
-  );
-  const isURL = /^https?:\/\//.test(image);
-  if (!isValidExtension && !isURL) {
-    throw new Error("Debe ser archivos URL , .jpg, .jpeg o .png");
+  const isURL = /^https?:\/\//.test(value);
+  
+  if (typeof value === "string" && !isURL && allowedExtensions.some((extension) => value.toLowerCase().endsWith(extension))) {
+    throw new Error("Debe ser una URL o tener una extensión .jpg, .jpeg o .png");
   }
+      if (typeof value !== "string" || value.trim() === "") {
+        throw new Error("La imagen debe ser una cadena de caracteres");
+      }
+      break;
+
+    case "description":
+      if (!value && value && typeof value !== "string") {
+        errors.push("La descripción debe ser una cadena de caracteres");
+      }
+      if (!value) {
+        errors.push("La descripción es requerida");
+      }
+      break;
+    case "stock":
+      if (value && (!Number.isInteger(value) || value < 0)) {
+        errors.push("El stock debe ser un número entero positivo");
+      }
+      break;
+    case "genero":
+      if (!value) {
+        errors.push("Genero es requerido");
+      }
+      break;
+    case "category":
+      if (!value) {
+        errors.push("Categoria es requerida");
+      }
+      break;
+    default:
+      errors.push("Tipo de validación desconocido");
+  }
+
+  return errors;
 };
 
-const validateStock = (stock) => {
-  if (stock !== undefined && (!Number.isInteger(stock) || stock < 0)) {
-    throw new Error("El stock debe ser un número entero positivo");
-  }
-};
-const validateCategory = (category) => {
-  if (!category || category.trim() === "") {
-    throw new Error("La categoría es requerida");
-  }
-};
-const validateGenre = (genre) => {
-  if (!genre || genre.trim() === "") {
-    throw new Error("El género es requerido");
-  }
-};
-
-module.exports = {
-  validateName,
-  validatePrice,
-  validateDescription,
-  validateStock,
-  validateImage,
-  validateCategory,
-  validateGenre,
-};
+module.exports = validate;
