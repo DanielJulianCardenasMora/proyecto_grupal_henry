@@ -17,7 +17,7 @@ const getProducts = async (req, res) => {
     let response;
 
     const allProducts = await productsDataBase();
-
+    
     //obtener los productos paginados
     let filteredProducts = allProducts;
     if (name) {

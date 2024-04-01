@@ -17,8 +17,12 @@ function Nav() {
      <Link to='/products' className={style.link}> <li>Products</li></Link>
      <Link to='/about' className={style.link} > <li>About</li></Link>
      <Link to='/create' className={style.link} ><li>Create</li></Link>
+<<<<<<< HEAD
      <Link to='/cart' className={style.link}><li>Cart</li></Link>
       
+=======
+     <Link className={style.link}><li>Cart</li> </Link>
+>>>>>>> copia2_features_alejo
      </ul></div>
 
      <div className={style.logIn}>
