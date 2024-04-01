@@ -39,7 +39,7 @@ export const Cards = () => {
               key={product.id}
               Id={product.id}
               Nombre={product.name}
-              Imagen={product.image}
+              Imagen={product.images}
               Stock={product.stock}
               Precio={product.price}
               Genero={product.genero}
