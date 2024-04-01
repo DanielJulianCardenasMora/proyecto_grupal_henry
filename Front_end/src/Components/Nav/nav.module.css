@@ -1,5 +1,5 @@
 .nav{
-    height: 15%;
+    height: 10%;
     width: 100%;
     /* background-color: brown; */
     position: absolute;
@@ -7,29 +7,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 2%;
-    padding-right:2% ;
+    padding-left: 3%;
+    padding-right:3% ;
     box-sizing: border-box;
     z-index: 1000;
- 
+
 }
 .boxLogo{
-    width: 15%;
+    width: 5%;
     height: 99%;
     margin-top: 1%;
-    background-image: url('../../assets/Imagenes/circulo-negro.png');
+    background-image: url('../../assets/Imagenes/circulo-negro2.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display:flex ;
     align-items: center;
-  justify-content: space-around;
-  font-size: 2em;
-  font-weight: bold;
+    justify-content: space-around;
+    font-size: 2.5vw;
+    font-weight: bold;
+    font-family: f5;
+    padding-top: 0.5%;
 }
 .boxList{
     /* background-color: rgb(63, 63, 63); */
-    width: 50%;
+    width: 45%;
 }
 .boxList ul{
     display: flex; justify-content: space-around;
@@ -63,3 +65,167 @@
 .logInB:hover{
     background-color: rgba(255, 255, 255, 0.16);
 }
+
+@media (max-width: 1350px){
+
+    .nav{
+        height: 14%;
+
+    }
+    .boxLogo{
+        width: 10%;
+      font-size: 25px;
+    }
+
+    .logIn{
+        width: 15%;
+        /* background-color: chocolate; */
+    }
+
+}
+
+@media (max-width: 1050px){
+    .nav{
+        height: 14%;
+
+    }
+    .boxLogo{
+        width: 10%;
+      font-size: 25px;
+    }
+
+    .logIn{
+        width: 15%;
+        /* background-color: chocolate; */
+    }
+
+}
+
+@media (max-width: 800px){
+ .nav{
+    height: 15%;
+
+}
+.boxLogo{
+    width: 10%;
+    height: 99%;
+    margin-top: 1%;
+    background-image: url('../../assets/Imagenes/circulo-negro2.png');
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display:flex ;
+    align-items: center;
+  justify-content: space-around;
+  font-size: 25px;
+  font-weight: bold;
+}
+.boxList{
+    /* background-color: rgb(63, 63, 63); */
+    width: 45%;
+
+}
+.boxList ul{
+    display: flex; justify-content: space-around;
+}
+.boxList li{
+    list-style-type: none;
+    cursor: pointer;
+    font-size: 17px;
+}
+.boxList li:hover{
+    border-bottom: 1px solid;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+}
+
+.logIn{
+    width: 15%;
+    /* background-color: chocolate; */
+}
+
+.logInB{
+    background: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 1em;
+}
+
+.logInB:hover{
+    background-color: rgba(255, 255, 255, 0.16);
+}
+}
+
+@media (max-width: 600px){
+    .nav{
+        height: 15%;
+        width: 100%;
+        /* background-color: brown; */
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 3%;
+        padding-right:3% ;
+        box-sizing: border-box;
+        z-index: 1000;
+    
+    }
+    .boxLogo{
+        width: 20%;
+        height: 99%;
+        margin-top: 1%;
+        background-image: url('../../assets/Imagenes/circulo-negro2.png');
+        
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display:flex ;
+        align-items: center;
+      justify-content: space-around;
+      font-size: 1em;
+      font-weight: bold;
+    }
+    .boxList{
+        /* background-color: rgb(63, 63, 63); */
+        width: 50%;
+    }
+    .boxList ul{
+display: none;
+    }
+    .boxList li{
+        list-style-type: none;
+        cursor: pointer;
+        font-size: 10px;
+    }
+    .boxList li:hover{
+        border-bottom: 1px solid;
+    }
+    
+    .link{
+        color: white;
+        text-decoration: none;
+    }
+    
+    .logIn{
+        width: 50%;
+        /* background-color: chocolate; */
+    }
+    
+    .logInB{
+        height: 80%;
+        background: none;
+        color: white;
+        border: 1px solid white;
+        border-radius: 1em;
+    }
+    
+    .logInB:hover{
+        background-color: rgba(255, 255, 255, 0.16);
+    }
+    }
