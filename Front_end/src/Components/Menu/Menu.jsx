@@ -2,21 +2,23 @@ import React from "react";
 import { useState } from "react";
 import style from "./menu.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { genderFilter ,priceFilter,categoriesFilter } from '../../redux/actions/actions';
+import { genderFilter, priceFilterAsc, priceFilterDes, categoriesFilter } from '../../redux/actions/actions';
 
 
 export const Menu = () => {
   const [isHidden, setIsHidden] = useState(false);
   const dispatch = useDispatch()
-  const productsScreen = useSelector((state) => state.ProductsScreen)
   const [actualFilters,setActualFilters] =useState([])
 
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
 
-  const handlePrice = (value) => {
-    dispatch(priceFilter(value))
+  const handlePriceAsc = () => {
+    dispatch(priceFilterAsc())
+  }
+  const handlePriceDes = () => {
+    dispatch(priceFilterDes())
   }
 
   const handleGender = (gender) => {
@@ -51,18 +53,6 @@ export const Menu = () => {
     }
   };
 
-  const handlePriceClick = (e) => {
-    const filter=e.target.dataset.name
-    if(!actualFilters.includes(filter)){
-      handlePrice(filter)
-      setActualFilters([...actualFilters,filter])
-    }else{
-      const cleanFilter = actualFilters.filter(f=>f!==filter)
-      handlePrice(cleanFilter)
-      setActualFilters(cleanFilter)
-    }
-  };
-
 
 
   const selectedButton = (option) => actualFilters.includes(option) ? style.optionSelected : ''
@@ -88,8 +78,8 @@ export const Menu = () => {
           </div>
           <div className={style.columna3}>
             <h1>Price order</h1>
-            <h3 data-name="des" className={selectedButton("des")} onClick={handlePriceClick}>Lower to higher</h3>
-            <h3 data-name="asc" className={selectedButton("asc")} onClick={handlePriceClick}>Higher to lower</h3>
+            <h3 data-name="asc" className={selectedButton("asc")} onClick={handlePriceAsc}>Lower to higher</h3>
+            <h3 data-name="desc" className={selectedButton("desc")} onClick={handlePriceDes}>Higher to lower</h3>
             <h2 className={style.c3h3} onClick={toggleMenu}>back</h2>
           </div>
         </div>
