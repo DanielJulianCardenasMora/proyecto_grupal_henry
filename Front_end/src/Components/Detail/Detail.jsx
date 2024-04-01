@@ -12,8 +12,7 @@ function Detail(props) {
   const { id } = useParams()
   const navigate = useNavigate();
   const [buttonClass, setButtonClass] = useState(true);
-<<<<<<< HEAD
-  const {description, name, image, price, stock, genero} = useSelector((state) => state.Detail)
+  const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
   const product = useSelector((state)=>state.Detail)
 
 
@@ -35,9 +34,6 @@ function Detail(props) {
   }
   
 
-=======
-  const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
->>>>>>> copia2_features_alejo
 
   useEffect(() => {
 
