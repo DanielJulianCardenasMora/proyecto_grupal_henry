@@ -17,7 +17,7 @@ import { useEffect, useState } from 'react'
 function App() {
 
 const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
-const [carrito, agregarProducto] = useState(carritoGuardado);
+const [carrito, agregarProducto] = useState(carritoGuardado.map(item => ({ ...item, quantity: 1 })));
 
 useEffect(() => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
