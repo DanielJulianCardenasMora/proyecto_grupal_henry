@@ -15,7 +15,7 @@ const Create_form = () => {
   const [productData, setProductData] = useState({
     name: '',
     description: '',
-    image: '',
+    images: [],
     price: '',
     category: '',
     image: '',
@@ -26,16 +26,22 @@ const Create_form = () => {
     setErrors(
       validacion({ ...productData, [evento.target.name]: evento.target.value })
     );
-    setProductData({ ...productData, [evento.target.name]: evento.target.value });
+    setProductData({ ...productData, images: image });
   };
+
+  const handleImage = (evento) => {
+    const image = evento.target.files[0];
+    setProductData({ ...productData, images: [...productData.images, image] });
+  }
 
   const createproduct = async (productData) => {
     try {
-      const { name, description, image, price, category, genero } = productData;
+      console.log(productData.images)
+      const { name, description, images, price, category, genero } = productData;
       const obj = {
         name: name,
         description: description,
-        image: image,
+        images: images,
         price: price,
         category: category,
         genero: genero
@@ -94,7 +100,7 @@ const Create_form = () => {
 
           
         <label  className={style.genero} htmlFor="genre">
-          Genre:{''}
+          Genre:
 
           <select className={style.select} name='genero' value={productData.genero} onChange={handleChange}>
             <option disabled='disabled' >- Gender -</option>
@@ -125,16 +131,17 @@ const Create_form = () => {
 
 
 
-        <label htmlFor="image">
-          Image link:
+        <label htmlFor="images" enctype="multipart/form-data">
+          Images:
           <input
             className={style.inp}
-            type="text"
+            type="file"
             placeholder=""
-            id="image"
-            name="image"
-            value={productData.image}
-            onChange={handleChange}
+            id="images"
+            name="images"
+            value={productData.images}
+            onChange={handleImage}
+            multiple
           />
         </label>
         {errors.image && <p>{errors.image}</p>}
