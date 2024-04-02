@@ -40,7 +40,6 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       const priceAsc = ['priceAsc'];
       const urlAsc = state.UrlActual + "?sortBy=price&sortOrder=asc";
       
-      console.log('filtroaes')
       return {
         ...state,
         FiltroActivo: priceAsc,
@@ -53,7 +52,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
     case PRICE_FILTER_DES:
       const priceDes = ['priceDes'];
       const urlDes = state.UrlActual + "?sortBy=price&sortOrder=desc"
-      console.log('filtrodes')
+
       return {
         ...state,
         FiltroActivo: priceDes,
