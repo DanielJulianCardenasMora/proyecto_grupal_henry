@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    'Product',
+    "Product",
     {
       id: {
         type: DataTypes.UUID,
@@ -21,14 +21,18 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
       },
       stock: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
       },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
       genero: {
         type: DataTypes.STRING,
         allowNull: true,

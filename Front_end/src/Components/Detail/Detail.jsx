@@ -6,16 +6,39 @@ import { useEffect, useState } from 'react'
 import { getProductDetail } from '../../redux/actions/actions'
 import shape from '../../assets/Imagenes/Detail_shape_aplicar.png'
 
-function Detail() {
+function Detail(props) {
   const dispatch = useDispatch()
+  const {carrito, agregarProducto}=props 
   const { id } = useParams()
   const navigate = useNavigate();
   const [buttonClass, setButtonClass] = useState(true);
-  const {description, name, image, price, stock, genero} = useSelector((state) => state.Detail)
+  const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
+  const product = useSelector((state)=>state.Detail)
+
+
+  const seleccionarProducto = (product) => {
+   
+    
+    const productoEnCarrito = carrito.find(producto => producto.id === product.id);
+    console.log(productoEnCarrito);
+    
+    if (!productoEnCarrito) {
+      // El producto no está en el carrito, así que lo agregamos
+      agregarProducto([...carrito, product]);
+      alert('Producto agregado')
+    } else {
+      // El producto ya está en el carrito
+      agregarProducto([...carrito])
+      alert("El producto ya está en el carrito");
+    }
+  }
+  
+
 
   useEffect(() => {
+
     dispatch(getProductDetail(id))
-  }, [id])
+  }, [id, carrito])
 
   const handleMouseEnter = () => {
     setButtonClass(!buttonClass);
@@ -41,7 +64,7 @@ function Detail() {
       </div>
 
       <div className={style.producto}>
-        <img src={image} alt="" />  
+        <img src={images} alt="" />  
         <div className={style.shape}>
           <img className={style.shape} src={shape} alt="" />  
         </div>
@@ -71,7 +94,14 @@ function Detail() {
           <h1 className={style.detalle3}>${price}</h1>
         </div>
         
+       
         <div className={style.boton}>
+        <div className={style.buy}>
+          <button
+          type="button"
+          onClick={() => seleccionarProducto(product)}
+          >COMPRAR</button>
+        </div>
           <div className={buttonClass ? style.boton_img : style.boton_img_hover }></div>
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>

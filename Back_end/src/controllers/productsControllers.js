@@ -2,6 +2,8 @@ const { Product, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require('sequelize');
 
+const cloudinary = require('../utils/cloudinaryConfig'); // Importa la configuración de Cloudinary
+
 const getProducts = async () => {
   try {
     const response = await axios.get(
@@ -10,12 +12,13 @@ const getProducts = async () => {
     const getInfo = response.data.map((element) => {
       return {
         name: element.name,
-        image: element.image,
+        images: Array.isArray(element.images) ? element.images : [element.images],
         description: element.description,
         price: element.price,
         stock: element.stock,
         genero: element.genero,
-        category: element.category
+        category: element.category,
+        quantity: 1
       };
     });
     return getInfo;
@@ -36,10 +39,10 @@ const productsDataBase = async () => {
         through: { attributes: [] },
       }],
     });
-    // console.log('Productos existentes en la base de datos:', existingProducts); // Registro de productos existentes en la base de dato
+
     if (!existingProducts.length) {
       const createdProducts = await Product.bulkCreate(productsApi);
-      //console.log('Productos creados en la base de datos:', createdProducts); // Registro de los productos creados en la base de datos
+
       return createdProducts;
     } else {
       return existingProducts;
@@ -84,9 +87,19 @@ const getProductsByName = async (name) => {
   }
 };
 
-const createProductDB = async (name, description, price, image, stock, genero, category) => {
-  const newProduct = { name, description, price, image, stock, genero, category }
+const createProductDB = async (name, description, price, images, stock, genero, category) => {
+  const newProduct = { name, description, price, images, stock, genero, category }
   try {
+    const imageUrls = []; // Creamos un array para almacenar las URLs de las imágenes
+
+
+    for (const image of images) {
+      const result = await cloudinary.uploader.upload(image.path);
+      imageUrls.push(result.secure_url);
+    }
+    newProduct.images = imageUrls;
+
+
     const productCreatedDB = await Product.create(newProduct);
 
 
@@ -103,6 +116,7 @@ const createProductDB = async (name, description, price, image, stock, genero, c
     console.log(error);
   }
 }
+
 const deleteProductDB = async (id) => {
   const productDeleted = Product.destroy({
     where: {
