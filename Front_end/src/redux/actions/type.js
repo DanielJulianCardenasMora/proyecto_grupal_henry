@@ -11,3 +11,6 @@ export const GENDER_FILTER = "GENDER_FILTER";
 export const POST_ITEM = "POST_ITEM" ; 
 export const NAVEGACION = "NAVEGACION" ; 
 
+
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+
