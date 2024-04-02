@@ -1,6 +1,6 @@
 .container{
   background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 1) 100%);  height: 100vh;
-  width: 40%;
+  width: 25%;
   transition: all 0.3s ease-out; 
   position: absolute;
   z-index: 2000;
@@ -9,7 +9,7 @@
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0);
   text-align: left;
-  font-size: 3vw;
+  font-size: 2vw;
   font-weight: 700;
   padding: 5% 0;
   padding-left: 5%;
@@ -21,7 +21,7 @@
   height: 100%;
   justify-content: space-between;
   text-align: left;
-  font-size: 1.3vw;
+  font-size: 1vw;
 }
 .columnas div h1,
 .columnas div h3{
@@ -29,7 +29,8 @@
   cursor: pointer;
 }
 .columnas h1:hover,
-.columnas h3:hover{
+.columnas h3:hover,
+.columna2 button:hover{
   color: aqua;
 }
 .columna3 h1{
@@ -72,11 +73,12 @@
   right: 8%;
   color: rgb(59, 80, 236);
   cursor: pointer;
+  font-size: 1.6vw;
 }
 .hidden{
   background-color: black;
   height: 100vh;
-  width: 40%;
+  width: 25%;
   transform: translate(-100%);
   transition: all 0.3s ease-out; 
 }
@@ -98,13 +100,6 @@
 .botton_hidden{
   opacity: 0;
 }
-
-
-/* .box{
-  z-index: 200;
-  position: relative;
-}
-*/
 .optionSelected {
   color: aqua;
 }

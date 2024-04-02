@@ -6,6 +6,7 @@ import {
   GENDER_FILTER,
   DETAIL,
   CATEGORY_FILTER,
+  ADD_PRODUCT
 } from "../actions/type";
 
 const initialstate = {
@@ -16,7 +17,14 @@ const initialstate = {
   TotalPages: 0,
   UrlActual: "http://localhost:3001/products",
   FiltroActivo: [],
-  FiltroNuevo: (false)
+  FiltroNuevo: (false),
+  name: '',
+  description: '',
+  price: '',
+  stock: '',
+  genero: '',
+  category: '',
+  images: []
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -35,7 +43,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ProductsScreen: [...payload[0]],
         TotalPages: payload[1],
       };
-    
+
     case PRICE_FILTER_ASC:
       const priceAsc = ['priceAsc'];
       const urlAsc = state.UrlActual + "?sortBy=price&sortOrder=asc";
@@ -48,7 +56,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ProductsScreen: [...payload[0]],
         TotalPages: payload[1],
       };
-    
+
     case PRICE_FILTER_DES:
       const priceDes = ['priceDes'];
       const urlDes = state.UrlActual + "?sortBy=price&sortOrder=desc"
@@ -73,14 +81,14 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         Products: [...state.Products],
         ProductsScreen: productoPorGenero,
       };
-    
+
     case DETAIL:
       console.log(payload);
       return {
         ...state,
         Detail: payload,
       };
-    
+
     case CATEGORY_FILTER:
       let combinedResults = [];
       payload.forEach((f) => {
@@ -95,7 +103,13 @@ export default function rootReducer(state = initialstate, { type, payload }) {
           ? combinedResults
           : state.Products,
       };
-    
+    case ADD_PRODUCT:
+      console.log('Reducer Add', payload)
+      return {
+        ...state,
+        Products: [payload, ...state.Products], // Asegúrate de incluir correctamente la información del nuevo producto
+        loading: false
+      };
     default:
       return { ...state };
   }
