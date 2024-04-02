@@ -1,6 +1,5 @@
 const { User, Order } = require("../db");
 
-
 const getAllUsers = async (req, res) => {
     const usersInDB = await User.findAll({
         include: {
@@ -8,17 +7,6 @@ const getAllUsers = async (req, res) => {
         }
     });
     return usersInDB
-}
-
-const createUserDB = async (name, email, password, phone, country, city) => {
-    const user = { name, email, password, phone, country, city }
-    try {
-        const userCreatedDB = await User.create(user);
-        console.log(`usuario creado! ${userCreatedDB}`);
-        return userCreatedDB
-    } catch (error) {
-        console.log(error);
-    }
 }
 
 const deleteUserDB = async (id) => {
@@ -32,6 +20,5 @@ const deleteUserDB = async (id) => {
 
 module.exports = {
     getAllUsers,
-    createUserDB,
     deleteUserDB
 }
