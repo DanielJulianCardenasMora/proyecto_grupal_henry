@@ -21,27 +21,9 @@ export const Cards = () => {
   console.log(filtroActivo)
 
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //     const url = urlActual.includes('?')
-  //       ? `${urlActual}&page=${currentPage}`
-  //       : `${urlActual}?page=${currentPage}`;
-  //       const { data } = await axios.get(url)
-  //       setMiData(data.products)
-  //       console.log(miData)
-  //     }
-  //     catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchData()
-
-      
-  // }, [currentPage]);
 
   useEffect(() => {
-    if (filtroActivo.includes('priceAes')) {
+    if (filtroActivo.includes('priceAsc')) {
       dispatch(priceFilterAsc(currentPage));
     } else if (filtroActivo.includes('priceDes')) {
       dispatch(priceFilterDes(currentPage));
