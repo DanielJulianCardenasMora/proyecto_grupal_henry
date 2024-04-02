@@ -1,0 +1,21 @@
+.fondo{
+  height: 150vh;
+  width: 100%;
+}
+.container{
+  line-height: 0;
+}
+.iconos_box{
+  position: absolute;
+  top: 44.4%;
+  right: 33.1%;
+  width: 5%;
+  display: flex;
+  justify-content: flex-end
+}
+.iconos_box div{
+  height: 20px;
+  width: 17px;
+  margin-left: 5%;
+  border: 1px solid black;
+}

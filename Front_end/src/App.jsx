@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage } from './pages';
+import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage, UserProfilePage } from './pages';
 import './App.css';
+
+
 import Card from './Components/Card/card';
 import Cart from './Components/Cart/Cart';
 import { Nav } from './Components';
@@ -39,6 +41,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/cards" element={<Card />} />
+        <Route path="/myprofile" element={<UserProfilePage />} />
         <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
       </Routes>
     </>
