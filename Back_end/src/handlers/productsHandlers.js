@@ -17,7 +17,7 @@ const getProducts = async (req, res) => {
     let response;
 
     const allProducts = await productsDataBase();
-    
+
     //obtener los productos paginados
     let filteredProducts = allProducts;
     if (name) {
@@ -56,20 +56,19 @@ const getDetail = async (req, res) => {
 };
 
 const postProduct = async (req, res) => {
-  const { name, description, price, stock, category, genero } = req.body;
+  const { name, description, price, stock, genero, category } = req.body;
 
   try {
     validate("name", name);
     validate("description", description);
     validate("price", price);
-    validate("stock", stock);
-    // validate("images", images);
+  
   } catch (error) {
     return res.status(400).json({ errors: [error.message] });
   }
 
   try {
-    const newProduct = await createProductDB(name, description, price, stock, req.files, category, genero);
+    const newProduct = await createProductDB(name, description, price, req.files, stock, genero, category);
     console.log("Producto creado con éxito!", newProduct, name);
     res.status(201).json(newProduct);
   } catch (error) {
