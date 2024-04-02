@@ -7,37 +7,65 @@ import {
     DETAIL ,
     SEARCH_BY_NAME,
     CATEGORY_FILTER,
-    PRICE_FILTER ,
+    PRICE_FILTER_ASC,
+    PRICE_FILTER_DES,
     GENDER_FILTER ,
   NAVEGACION,
 
 } from "./type";
+
 const URL = 'http://localhost:3001/products'
 
-export const getAllProducts = (index) => {
+
+export const getAllProducts = (page) => {
     return async function (dispatch) {
       try {
-        
-        const response = await axios.get(`${URL}?page=${index}`);
-        if (index <= response.data.totalPage || index === undefined) {
-          dispatch({ type: GET_PRODUCTS, payload: [response.data.products, response.data.totalPage] });
-        } else {
-          return
-        }
+        const response = await axios.get(`${URL}?page=${page}`);
 
-   
+        dispatch({
+          type: GET_PRODUCTS,
+          payload: [response.data.products, response.data.totalPage],
+        });
       } catch (error) {
         alert(error.message);
       }
   }}
-
-
-export const getIndex = (tipo) => {
-  return async function (dispatch) {
-    dispatch({ type: NAVEGACION, payload: tipo });
-  }
-}
         
+
+
+export const priceFilterAsc = (currentPage) => {
+  console.log(currentPage)
+  return async function(dispatch){
+    try {
+      const response = await axios.get(`${URL}?sortBy=price&sortOrder=asc&page=${currentPage}`)
+        return dispatch({
+          type: PRICE_FILTER_ASC,
+          payload: [response.data.products, response.data.totalPage],
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
+
+
+export const priceFilterDes = (currentPage) => {
+  console.log(currentPage)
+  return async function(dispatch){
+    try {
+      const response = await axios.get(`${URL}?sortBy=price&sortOrder=desc&page=${currentPage}`)
+        return dispatch({
+          type: PRICE_FILTER_DES,
+          payload: [response.data.products, response.data.totalPage],
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
+
+
+
 
 export const getOrders = () => {
 
@@ -128,16 +156,7 @@ export function postItem(i){
 
 }
 
-export const priceFilter = (order) => {
-  try {
-    return {
-      type: PRICE_FILTER,
-      payload: order,
-    };
-  } catch (error) {
-    alert(error.message);
-  }
-};
+
 
 
 

@@ -1,8 +1,15 @@
-const { getProductsByName, getProductDetail, createProductDB, productsDataBase, deleteProductDB } = require("../controllers/productsControllers");
+const {
+  getProductsByName,
+  getProductDetail,
+  createProductDB,
+  productsDataBase,
+  deleteProductDB,
+} = require("../controllers/productsControllers");
 
-const { filtrarPorNombre, filtrarPorPrecio } = require('../utils/filter');
+const { filtrarPorNombre, filtrarPorPrecio } = require("../utils/filter");
 
 const paginarDatos = require("../utils/pagination");
+const validate = require("../utils/validacion");
 
 const getProducts = async (req, res) => {
   const { name, page, currentPage, sortBy, sortOrder } = req.query;
@@ -48,23 +55,27 @@ const getDetail = async (req, res) => {
   }
 };
 
-
 const postProduct = async (req, res) => {
   const { name, description, price, stock, genero, category } = req.body;
 
-  if (!name || !price || !req.files || !description || !stock) {
-    return res.status(400).json({ error: "El campo 'name', 'price' y 'images' son obligatorios." });
+  try {
+    validate("name", name);
+    validate("description", description);
+    validate("price", price);
+  
+  } catch (error) {
+    return res.status(400).json({ errors: [error.message] });
   }
 
   try {
     const newProduct = await createProductDB(name, description, price, req.files, stock, genero, category);
+    console.log("Producto creado con éxito!", newProduct, name);
     res.status(201).json(newProduct);
-
   } catch (error) {
-    console.error('Error creating product:', error);
+    console.log(error);
     res.status(500).json({ error: "Error al crear tu nuevo producto" });
   }
-}
+};
 
 const deleteProduct = async (req, res) => {
   let { id } = req.params;
