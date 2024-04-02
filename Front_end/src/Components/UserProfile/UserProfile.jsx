@@ -8,22 +8,22 @@ const UserProfile = () => {
   const URL_USUARIO = 'http://localhost:3001/findone/'
   const userLocalStorage = 'user'
   const [modoEdicion, setModoEdicion] = useState({ name: false, email: false, contraseña: false, lugar: false });
-  const [datosUsuario, setDatosUsuario] = useState(null);
+  // const [datosUsuario, setDatosUsuario] = useState(null);
   // se usa el estado comentado, este es para iniciar prueba.
-  // const [datosUsuario, setDatosUsuario] = useState({ name: false, email: false, contraseña: false, lugar: false });
+  const [datosUsuario, setDatosUsuario] = useState({ name: false, email: false, contraseña: false, lugar: false });
 
-  useEffect( async () => {
-    // peticion de findOne
-    const obtenerDatosUsuario = async () => {
-      try {
-        const { data } = await axios.get(`${URL_USUARIO}${userLocalStorage}`);
-        setDatosUsuario(data);
-      } catch (error) {
-        alert(error)
-      }
-    }
-    obtenerDatosUsuario();
-  }, [])
+  // useEffect( async () => {
+  //   // peticion de findOne
+  //   const obtenerDatosUsuario = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${URL_USUARIO}${userLocalStorage}`);
+  //       setDatosUsuario(data);
+  //     } catch (error) {
+  //       alert(error)
+  //     }
+  //   }
+  //   obtenerDatosUsuario();
+  // }, [])
 
   const manejarClicEditar = (campo) => {
     setModoEdicion({ ...modoEdicion, [campo]: !modoEdicion[campo] });
