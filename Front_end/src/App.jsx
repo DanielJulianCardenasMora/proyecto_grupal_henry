@@ -7,6 +7,7 @@ import Cart from './Components/Cart/Cart';
 import { Nav } from './Components';
 import Footer from './Components/Footer/Footer';
 import { useEffect, useState } from 'react'
+import Login from './pages/Loginpage/Loginpage';
 
 
 
@@ -31,7 +32,8 @@ useEffect(() => {
     <>
     <Nav/>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/landing" element={<LandingPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/detail/:id" element={<DetailPage carrito={carrito} agregarProducto={ agregarProducto }  />} />
         <Route path="/about" element={<AboutPage />} />
