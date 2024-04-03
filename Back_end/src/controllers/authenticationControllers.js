@@ -26,28 +26,28 @@ const register = async ( req, res ) => {
     try {
         const userCreatedDB = await User.create(newUser);
         console.log(`usuario: ${userCreatedDB.name} creado! `);
-        return res.status(201).send({status: "ok", message: `usuario ${newUser.name} agregado`, redirect:'/login'})
+        return res.status(201).send({status: "ok", message: `email ${newUser.email} registrado correctamente en la base de datos`, redirect:'/login'})
     } catch (error) {
         console.log(error);
-        return res.status(500).send({ status: "Error", message: "Error al crear el usuario" });
+        return res.status(500).send({ status: "Error", message: "Error al registrar el usuario" });
     }
 }
 
 const login = async (req, res) => {
     // console.log(req.body);
-    const name = req.body.name;
+    const email = req.body.email;
     const password = req.body.password;
     console.log(req.body);
 
-    if(!name || !password){
+    if(!email || !password){
         return res.status(400).send({status: "Error", message: "Los campos estan incompletos!"})
     }
 
     // Verificar si el usuario existe
-    const user = await User.findOne({ where: { name: name } });
+    const user = await User.findOne({ where: { email: email } });
     
     if(!user){
-        return res.status(400).send({status: "Error", message: "Usuario no encontrado" })
+        return res.status(400).send({status: "Error", message: "Email no encontrado" })
     }
 
     // Verificar la contraseña
@@ -72,7 +72,7 @@ const login = async (req, res) => {
     res.cookie("jwt", token, cookieOption);
     
     //Enviar respuesta al usuario
-    res.send({status: "ok", message: "usuario loggeado", redirect:"/admin"})
+    res.send({status: "ok", message: `usuario con email ${email} registrado correctamente`, redirect:"/admin"})
 }
 
 module.exports = {
