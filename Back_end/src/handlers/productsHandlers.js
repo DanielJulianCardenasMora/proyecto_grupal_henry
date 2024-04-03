@@ -56,26 +56,29 @@ const getDetail = async (req, res) => {
 };
 
 const postProduct = async (req, res) => {
+  console.log("Datos del cuerpo de la solicitud:", req.body);
+  console.log("Archivos recibidos:", req.files);
+
+
   const { name, description, price, stock, genero, category } = req.body;
 
   try {
+    // Validar los campos del formulario
     validate("name", name);
     validate("description", description);
     validate("price", price);
-  
-  } catch (error) {
-    return res.status(400).json({ errors: [error.message] });
-  }
 
-  try {
+    // Crear el producto en la base de datos
     const newProduct = await createProductDB(name, description, price, req.files, stock, genero, category);
-    console.log("Producto creado con éxito!", newProduct, name);
+
+    console.log(`El producto ${name} fue creado con exito!!`);
     res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error al crear tu nuevo producto" });
   }
 };
+
 
 const deleteProduct = async (req, res) => {
   let { id } = req.params;

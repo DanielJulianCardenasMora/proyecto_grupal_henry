@@ -12,6 +12,14 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        // Implementa tu lógica de filtro de archivo aquí si es necesario
+        cb(null, true); // Acepta todos los archivos por ahora
+    }
+}).array('images');
+
+console.log("Middleware de Multer ejecutado");
 
 module.exports = upload;

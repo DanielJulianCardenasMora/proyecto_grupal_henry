@@ -13,3 +13,4 @@ function paginarDatos(datos, page, pageSize) {
 }
 
 module.exports = paginarDatos;
+

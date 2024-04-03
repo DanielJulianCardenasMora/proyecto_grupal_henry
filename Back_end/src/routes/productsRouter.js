@@ -5,7 +5,7 @@ const productsRouter = Router();
 
 productsRouter.get('/', getProducts);
 productsRouter.get('/:id', getDetail);
-productsRouter.post('/create', upload.array('images', 5), postProduct);
+productsRouter.post('/create', upload, postProduct);
 productsRouter.delete('/:id', deleteProduct);
 
 module.exports = productsRouter;

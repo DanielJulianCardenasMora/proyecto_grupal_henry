@@ -6,21 +6,34 @@
  background-size: cover;
  width: 100%;
 }
+.formDiv{
+  /* background-color: brown; */
+  height: 13%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: auto;
+}
 .cont{
-  top: 45%;
+  top: 55%;
   left:50%;
+  padding: 2%;
   align-items: center;
   position: absolute;
   transform: translate(-50%, -50%);
   font-family: Arial, Helvetica, sans-serif;
-  width: 25%;
-  height: 60vh;
+  width: 30%;
+  height: 75vh;
+  background-color: rgba(255, 255, 255, 0.422);
+  border-radius: 10px;
 }
 .cont label{
   font-size: 18px;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.779);
-  display: flex;
+  width: 27%;
+  margin-right: 2%;
+  color: rgb(36, 36, 36);
+  text-align: right;
 }
 .inp {
   background-color: rgb(255, 255, 255, 80%);
@@ -30,17 +43,26 @@
   outline: none;
   font-size: 11px;
   color: black;
-  width: 10%;
-  margin-left: 30px;
-  position: relative;
-}    
+  width: 98%;
+
+}   
+.desc{
+ width: 98%;
+  background-color: rgb(255, 255, 255, 80%);
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 11px;
+} 
 
 .select{
-  
+  border: none;
+  outline: none;
   border-radius: 5px;
   height: 25px;
-  width: 133px;
-  margin-left: 29px;
+  width: 100%;
+  background-color: rgb(255, 255, 255, 80%);
+
   font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -50,58 +72,13 @@
   margin: 12px auto;
   text-align: right;
 }
-.formCont::placeholder{
-  font-size: 16px;
-  font-family: instrucciones;
-}
 
-.formCont p{
-  line-height: 2px;
-  color: rgb(246, 73, 174);
-}
-
-.formCont{
-  display:flex;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-  justify-content: space-between;
-  border: 1px solid black;
-  border-radius: 15px;
-  background-color: hsla(0, 0%, 0%, 0.397);
-  filter: blur();
-  font-size: 15px;
-  flex-direction: column;
-  align-items: center;
-  padding: 8% 0;
-}
-.formCont label {
-  width: 90%;
-  height: 10%;
-  text-align: right;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0%;
-}
-.formCont input{
-  width: 15vw;
-  height: 55%;
-  border-radius: 2em;
-  
-}
-.formCont select{
-  width: 15vw;
-  height: 55%;
-  border-radius: 2em;
-  text-align: center;
-}
 
 .buttonForm{
-  margin-top: 5%;
-  width: 30%;
+  margin-top: 3%;
+  width: 20%;
 height: 8%;
- background: none;
+ background: rgba(128, 128, 128, 0.511);
  color: white;
  border: 1px solid white;
  border-radius: 1em ;
@@ -113,4 +90,9 @@ height: 8%;
 
 .font{
   color: rgba(255, 255, 255, 0.647);
+}
+
+.input{
+  /* background-color: blueviolet; */
+  width: 50%;
 }
