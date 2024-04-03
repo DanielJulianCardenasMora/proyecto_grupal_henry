@@ -26,7 +26,7 @@ const categoryDataBase = async () => {
         //console.log('Productos existentes en la base de datos:', existingCategory); 
 
         if (!existingCategory.length) {
-            const createCategory = await Category.bulkCreate(categoryApi);
+            const createCategory = await Category.bulkCreate(categoryApi,{ include: Product });
           //  console.log('Productos creados en la base de datos:', createCategory); 
           return createCategory;
         } else {
@@ -39,4 +39,4 @@ const categoryDataBase = async () => {
     }
 };
 
-module.exports = { categoryDataBase };
+module.exports = { categoryDataBase,getCategory };
