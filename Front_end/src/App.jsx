@@ -7,18 +7,15 @@ import './App.css';
 import Card from './Components/Card/card';
 import Cart from './Components/Cart/Cart';
 import { Nav } from './Components';
-import Footer from './Components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import Login from './pages/Loginpage/Loginpage';
 
 function App() {
   const location = useLocation(); // Obtener la ubicación actual
-
   // Función para determinar si se debe mostrar la barra de navegación
   const shouldShowNavbar = () => {
-    return location.pathname !== '/login'; // Mostrar la barra de navegación si la ruta no es /login
+    return location.pathname !== '/'; // Mostrar la barra de navegación si la ruta no es /login
   };
-
   const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];
   const [carrito, agregarProducto] = useState(carritoGuardado);
 
@@ -34,7 +31,7 @@ function App() {
     <>
       {renderNavbar}
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/detail/:id" element={<DetailPage carrito={carrito} agregarProducto={agregarProducto} />} />
