@@ -12,7 +12,10 @@ import Login from './pages/Loginpage/Loginpage';
 
 function App() {
   const location = useLocation(); // Obtener la ubicación actual
-
+  // Función para determinar si se debe mostrar la barra de navegación
+  const shouldShowNavbar = () => {
+    return location.pathname !== '/'; // Mostrar la barra de navegación si la ruta no es /login
+  };
   const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];
   const [carrito, agregarProducto] = useState(carritoGuardado);
 

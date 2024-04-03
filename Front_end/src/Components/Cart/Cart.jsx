@@ -45,6 +45,8 @@ const Cart = ({ carrito, agregarProducto }) => {
 
   };
 
+  
+
   return (
     <div className={style.boxCart}>
       <div className={style.content}>
