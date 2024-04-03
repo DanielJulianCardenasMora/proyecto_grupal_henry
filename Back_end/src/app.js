@@ -11,6 +11,16 @@ const server = express();
 
 server.name = 'WearFashion';
 
+server.use((req, res, next) => {
+    // Redirige las solicitudes con una barra diagonal al final
+    if (req.url.substr(-1) === '/' && req.url.length > 1) {
+        const query = req.url.slice(req.url.length);
+        res.redirect(301, req.url.slice(0, -1) + query);
+    } else {
+        next();
+    }
+});
+
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
