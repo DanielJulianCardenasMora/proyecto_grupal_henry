@@ -1,4 +1,7 @@
-const { getAllUsers, deleteUserDB} = require("../controllers/usersControllers");
+const {
+  getAllUsers,
+  deleteUserDB,
+} = require("../controllers/usersControllers");
 const userValidate = require("../utils/UsersValidation");
 
 const validateFields = (fields) => {
