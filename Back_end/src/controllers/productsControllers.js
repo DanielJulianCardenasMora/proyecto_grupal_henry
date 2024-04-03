@@ -1,15 +1,22 @@
 const { Product, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require('sequelize');
-
+  require('dotenv').config();
+const { URL_PRODUCTS } = process.env;
 const cloudinary = require('../utils/cloudinaryConfig'); // Importa la configuración de Cloudinary
+const { getCategory } = require("./categoryControllers");
+
+
 
 const getProducts = async () => {
   try {
-    const response = await axios.get(
-      "https://wearfashion-947fb-default-rtdb.firebaseio.com/products/products.json"
-    );
+    const response = await axios.get(`${URL_PRODUCTS}`);
+    const categories = await getCategory();
+   
+
     const getInfo = response.data.map((element) => {
+      const category = categories.find(cat => cat.name === element.category);
+
       return {
         name: element.name,
         images: Array.isArray(element.images) ? element.images : [element.images],
@@ -17,7 +24,7 @@ const getProducts = async () => {
         price: element.price,
         stock: element.stock,
         genero: element.genero,
-        category: element.category,
+        category: category ? category.name : null,
         quantity: 1
       };
     });
@@ -32,6 +39,13 @@ const productsDataBase = async () => {
   try {
     const productsApi = await getProducts();
 
+    for (const product of productsApi) {
+      const category = await Category.findOne({ where: { name: product.category } });
+      if (category) {
+        product.category = category.name;
+      }
+    }
+
     const existingProducts = await Product.findAll({
       include: [{
         model: Category,
@@ -42,16 +56,12 @@ const productsDataBase = async () => {
 
     if (!existingProducts.length) {
       const createdProducts = await Product.bulkCreate(productsApi);
-
       return createdProducts;
     } else {
       return existingProducts;
     }
   } catch (error) {
-    console.error(
-      "Error al procesar los productos en la base de datos:",
-      error
-    );
+    console.error("Error al procesar los productos en la base de datos:", error);
     throw error;
   }
 };
