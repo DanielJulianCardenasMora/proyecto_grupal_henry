@@ -84,33 +84,49 @@ const Form = ({ addProduct }) => {
   return (
     <form className={style.background} onSubmit={onSubmit}>
       <div className={style.cont}>
-        <div>
+        <div className={style.formDiv}>
           <label>Name:</label>
-          <input type="text" name="name" value={name} onChange={onChange} />
+  <div className={style.input}>
+  <input className={style.inp} type="text" name="name" value={name} onChange={onChange} />
+  </div>
+ 
         </div>
 
-        <div>
+        <div className={style.formDiv}>
           <label>Description:</label>
+          <div className={style.input}>
           <textarea
+          className={style.desc}
             name="description"
             value={description}
             onChange={onChange}
           />
+
+</div>
+
         </div>
 
-        <div>
+        <div className={style.formDiv}>
           <label>Price:</label>
-          <input type="number" name="price" value={price} onChange={onChange} />
+          <div className={style.input}>
+          <input type="number" className={style.inp} name="price" value={price} onChange={onChange} />
+</div>
+   
         </div>
 
-        <div>
+        <div className={style.formDiv}>
           <label>Stock:</label>
-          <input type="number" name="stock" value={stock} onChange={onChange} />
+          <div className={style.input}>
+
+          <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
+</div>
         </div>
 
-        <div>
+        <div className={style.formDiv}>
           <label className={style.genero} htmlFor="genre">
             Genre:{""}
+          </label>
+          <div className={style.input}>
             <select
               className={style.select}
               name="genero"
@@ -129,13 +145,16 @@ const Form = ({ addProduct }) => {
                   })
                 : null}
             </select>
-          </label>
+</div>
         </div>
 
-        <div>
+        <div className={style.formDiv}>
         <label  className={style.genero} htmlFor="category">
           Category:
-          <select className={style.select} name='category' defaultValue='All' onChange={onChange}>
+
+        </label>
+        <div className={style.input}>
+        <select className={style.select} name='category' defaultValue='All' onChange={onChange}>
             <option name='category' value={category}> Category </option>
               {Category ? Category.map((option, i) => {
                 return (
@@ -144,15 +163,15 @@ const Form = ({ addProduct }) => {
               })
               :null}
           </select>
-        </label>
+</div>
         </div>
 
-        <div>
+        <div className={style.formDiv}>
           <label>Images:</label>
           <input type="file" name="images" onChange={onFileChange} multiple />
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" className={style.buttonForm}>Submit</button>
       </div>
     </form>
   );

@@ -6,13 +6,14 @@ const {
   deleteProductDB,
 } = require("../controllers/productsControllers");
 
-const { filtrarPorNombre, filtrarPorPrecio } = require("../utils/filter");
+const { filtrarPorNombre, filtrarPorPrecio, filtrarPorGenero,
+  filtrarPorCategoria } = require("../utils/filter");
 
 const paginarDatos = require("../utils/pagination");
 const validate = require("../utils/validacion");
 
 const getProducts = async (req, res) => {
-  const { name, page, currentPage, sortBy, sortOrder } = req.query;
+  const { name, page, currentPage, sortBy, sortOrder, gender, category } = req.query;
   try {
     let response;
 
@@ -20,6 +21,10 @@ const getProducts = async (req, res) => {
 
     //obtener los productos paginados
     let filteredProducts = allProducts;
+   
+    filteredProducts = filtrarPorGenero(filteredProducts, gender);
+    filteredProducts = filtrarPorCategoria(filteredProducts, category);
+
     if (name) {
       filteredProducts = getProductsByName(name);
     }
