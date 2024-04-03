@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react'
 import { getProductDetail } from '../../redux/actions/actions'
 import shape from '../../assets/Imagenes/Detail_shape_aplicar.png'
+import ItemCount from '../Cart/ItemCount';
 
 function Detail(props) {
   const dispatch = useDispatch()
@@ -94,8 +95,9 @@ function Detail(props) {
           <h1 className={style.detalle3}>${price}</h1>
         </div>
         
-       
+      
         <div className={style.boton}>
+
         <div className={style.buy}>
           <button
           type="button"
