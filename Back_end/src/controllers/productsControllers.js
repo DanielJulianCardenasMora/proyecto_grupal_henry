@@ -7,11 +7,13 @@ const cloudinary = require('../utils/cloudinaryConfig'); // Importa la configura
 const { getCategory } = require("./categoryControllers");
 
 
+
 const getProducts = async () => {
   try {
     const response = await axios.get(`${URL_PRODUCTS}`);
     const categories = await getCategory();
    
+
     const getInfo = response.data.map((element) => {
       const category = categories.find(cat => cat.name === element.category);
 
