@@ -1,0 +1,142 @@
+.container{
+  line-height: 0;
+}
+.profilePic{
+  height: 35%;
+  width: 14%;
+  background-color: red;
+  position: absolute;
+  top: 12%;
+  left: 9.1%;
+}
+.fondo{
+  height: 150vh;
+  width: 100%;
+}
+.iconos_box{
+  position: absolute;
+  top: 44.4%;
+  right: 33.1%;
+  width: 5%;
+  display: flex;
+  justify-content: flex-end
+}
+.iconos_box2{
+  position: absolute;
+  right: 33.1%;
+  width: 5%;
+  display: flex;
+  justify-content: flex-end;
+  top: 65%;
+}
+.iconos_box3{
+  position: absolute;
+  right: 33.1%;
+  width: 5%;
+  display: flex;
+  justify-content: flex-end;
+  top: 85.5%;
+}
+.iconos_box4{
+  position: absolute;
+  right: 33.1%;
+  width: 5%;
+  display: flex;
+  justify-content: flex-end;
+  top: 106%;
+}
+.iconos_box div,
+.iconos_box2 div,
+.iconos_box3 div,
+.iconos_box4 div{
+  height: 3vh;
+  width: 1.3vw;
+  margin-left: 5%;
+  background-color: red;
+}
+.textos{
+  position: absolute;
+  top: 41.5%;
+  left: 35%;
+  height: 82vh;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around
+}
+.textos div{
+  box-sizing: border-box;
+  padding-top: 5%;
+  text-align: left;
+  height: 10%;
+  width: 100%;
+  background-color: rgb(255, 0, 0);
+}
+.historial{
+  background-color: red;
+  height: 18%;
+  width: 22%;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+.arriba{
+  height: 15%;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  background-color: yellowgreen;
+  justify-content: flex-end
+}
+.abajo{
+  box-sizing: border-box;
+  height: 70%;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.derecha{
+  display: flex;
+  width: 8vw;
+  justify-content: space-evenly
+}
+.derecha div{
+  background-color: blue;
+}
+.izquierda{
+  display: flex;
+  width: 8vw;
+  justify-content: space-evenly
+}
+.izquierda div{
+  background-color: blue;
+}
+.numero{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  font-size: 1vw;
+  text-align: left;
+}
+.letra{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  font-size: 1vw;
+  text-align: left;
+}
+.edit1{
+  z-index: 100;
+  cursor: pointer;
+}
+.save1{
+  z-index: 100;
+  cursor: pointer;
+}

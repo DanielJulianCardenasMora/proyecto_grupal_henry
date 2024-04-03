@@ -1,10 +1,12 @@
 const { Router } = require("express");
-const { getUsers, postUser, deleteUser } = require('../handlers/usersHandlers');
+const { getUsers, deleteUser } = require('../handlers/usersHandlers');
+const { register, login } = require('../controllers/authenticationControllers')
 
 const usersRouter = Router();
 
 usersRouter.get('/', getUsers);
-usersRouter.post('/create', postUser);
+usersRouter.post('/api/register', register);
+usersRouter.post('/api/login', login);
 usersRouter.delete('/:id', deleteUser);
 
 module.exports = usersRouter;
