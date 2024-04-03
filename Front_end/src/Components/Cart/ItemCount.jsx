@@ -1,40 +1,35 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import style from "./ItemCount.module.css";
 
+const ItemCount = ({ stock, initial, item, onQuantityChange }) => {
+  
 
-const Count =({ stock, initial, item })=>{
-const [rate, setRate] = useState(0);  
+  const addItem = () => {
+    if (item.quantity < stock) {
+      item.quantity + 1;
+      onQuantityChange(item.quantity + 1);
+    }
+  };
 
-useEffect(() => {
-  setRate(initial);
-},[]);
+  const deleteItem = () => {
+    if (item.quantity > initial) {
+      item.quantity - 1;
+      onQuantityChange(item.quantity - 1);
+    }
+  };
 
+  return (
+    <div className={style.countContainter}>
+      <div className={style.buttons}>
+        <button onClick={deleteItem}>-</button>
+        <p>{item.quantity}</p>
+        <button onClick={addItem}>+</button>
+      </div>
+      <div className={style.price}>
+        <p>${item.price * item.quantity}</p>
+      </div>
+    </div>
+  );
+};
 
-const addItem = () => {
-rate< stock
-  ?setRate(rate + 1)
-  :setRate(stock)
-}
-
-const deleteItem = () => {
-  rate > initial
-  ?setRate(rate - 1)
-  :setRate(0)
-  }
-
-
-
-return(
-  <div className={style.countContainter}>
-        
-       <div className={style.buttons}>
-       <button onClick={addItem}>+</button><p>{rate}</p><button onClick={deleteItem}>-</button>
-       </div>
-       <div className={style.price}><p>${item.price * rate}</p></div>
-      
-  </div>
-)
-
-}
-
-export default Count;
+export default ItemCount
