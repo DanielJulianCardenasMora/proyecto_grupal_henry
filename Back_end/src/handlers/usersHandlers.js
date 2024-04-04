@@ -42,6 +42,7 @@ const getUsers = async (req, res) => {
   }
 };
 
+
 const getUserInfo = async (req, res) => {
   let { userEmail } = req.params;
   try {

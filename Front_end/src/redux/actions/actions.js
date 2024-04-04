@@ -7,7 +7,10 @@ import {
   SEARCH_BY_NAME,
   CATEGORY_FILTER,
   GENDER_FILTER,
+  NAVEGACION,
+  PRODUCT_ERROR,
   ADD_PRODUCT,
+  ENVIAR_CARRITO_AL_BACKEND
   PRICE_FILTER
 } from "./type";
 
@@ -51,7 +54,7 @@ export const getOrders = () => {
 
   return async function (dispatch) {
     try {
-      const response = await axios.get("");
+      const response = await axios.get("http://localhost:3001/orders");
 
       dispatch({ type: ORDERS, payload: response.data });
     } catch (error) {
@@ -98,13 +101,13 @@ export function searchByName(name) {
   return async function (dispatch) {
     try {
       const response = await axios.get(`http://localhost:3001/products?name=${name}`)
-console.log('byname', response.data.products);
+
       return dispatch({
         type: SEARCH_BY_NAME,
         payload: response.data
       })
     } catch (error) {
-      return error
+       console.log(error)
     }
   }
 }
@@ -124,7 +127,22 @@ export const filterByCategory = (category) => {
     }
   }
 }
+export const enviarCarritoAlBackend = (order) => {
+  
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/orders/create', order);
+      console.log('Orden creada:', response.data);
+      alert('Orden de compra enviada')
 
+      dispatch({type: ENVIAR_CARRITO_AL_BACKEND, payload: response})
+ 
+    } catch (error) {
+  
+
+    }
+  };
+};
 export function postItem(i) {
 
   return async function () {

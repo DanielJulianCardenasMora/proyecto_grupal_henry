@@ -9,6 +9,7 @@ const getAllUsers = async (req, res) => {
     return usersInDB
 }
 
+
 const getUserInfoDB = async (userEmail) => {
     const userInDB = await User.findOne({
         where: {

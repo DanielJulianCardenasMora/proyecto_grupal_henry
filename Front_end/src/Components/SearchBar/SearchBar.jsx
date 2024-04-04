@@ -8,8 +8,10 @@ export default function SearchBar() {
   const [searchString, setSearchString] = useState("");
   const [inputsErrors, setInputsErrors] = useState();
 
-  function validate(searchString) {
-    const errors = {}
+  function validate (searchString) {
+
+    const errors= {}
+
 
     if (!isNaN(searchString.search)) {
       errors.search = 'Formato incorrecto'
