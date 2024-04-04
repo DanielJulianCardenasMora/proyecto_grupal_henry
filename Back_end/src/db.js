@@ -10,10 +10,10 @@ let sequelize =
     ?new Sequelize({
       database: "railway",
       username: "postgres",
-      password: "VOFlpSYCAjwfTonyojPbvzLkfkHYpiWd",
-      host: "viaduct.proxy.rlwy.net",
-      port: 57324,
-      dialect: "postgres",
+      password: "ZwUSNdghvyyXYVdHWAnVsFaYJuSTxtYZ",
+      host: "monorail.proxy.rlwy.net",
+      port: 15551,
+      dialect: "railway",
       dialectOptions: {
         ssl: { require: true, rejectUnauthorized: false }
       },
