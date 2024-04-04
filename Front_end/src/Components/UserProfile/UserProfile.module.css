@@ -1,14 +1,6 @@
 .container{
   line-height: 0;
 }
-.profilePic{
-  height: 35%;
-  width: 14%;
-  background-color: red;
-  position: absolute;
-  top: 12%;
-  left: 9.1%;
-}
 .fondo{
   height: 150vh;
   width: 100%;

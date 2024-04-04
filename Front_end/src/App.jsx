@@ -6,7 +6,7 @@ import './App.css';
 
 import Card from './Components/Card/card';
 import Cart from './Components/Cart/Cart';
-// import { Nav } from './Components';
+import { Nav } from './Components';
 import Footer from './Components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import Login from './pages/Loginpage/Loginpage';
@@ -14,40 +14,45 @@ import Dashboard from './pages/Dashboard/dashboard';
 import Layout from './pages/layout';
 
 function App() {
-  const location = useLocation(); // Obtener la ubicación actual
-
-  // Función para determinar si se debe mostrar la barra de navegación
-  const shouldShowNavbar = () => {
-    return location.pathname !== '/'; // Mostrar la barra de navegación si la ruta no es /login
-  };
-
+  //estas variables van encima del useState
+  const usuarioLogeado = JSON.parse(localStorage.getItem('usuario')) || [];
   const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];
+  //====
+  const [shouldShowNavbar, setShouldShowNavbar] = useState(true); 
   const [carrito, agregarProducto] = useState(carritoGuardado);
+  const [usuario, setUsuario] = useState([usuarioLogeado]);
+  const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
     console.log(carrito);
   }, [carrito]);
 
-  // Renderizar la barra de navegación solo si la ruta no es /login
-  const renderNavbar = shouldShowNavbar() && <Nav />;
+  useEffect(() => {
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+    console.log(usuario);
+  }, [usuario]);
+
+  useEffect(() => {
+    const hiddenPaths = ['/dashboard', '/dashboard/products', '/dashboard/products/follow-up', '/dashboard/products/create'];
+    setShouldShowNavbar(!hiddenPaths.includes(location.pathname));
+  }, [location]);
+
 
   return (
     <>
-    {/* <Nav/> */}
+    {shouldShowNavbar && <Nav />} 
       <Routes>
-
-        <Route path='/' element={<Layout/>}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/landing" element={<LandingPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/detail/:id" element={<DetailPage carrito={carrito} agregarProducto={agregarProducto} />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/create" element={<CreatePage />} />
-          <Route path="/cards" element={<Card />} />
-          <Route path="/myprofile" element={<UserProfilePage />} />
-          <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
-        </Route>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/detail/:id" element={<DetailPage carrito={carrito} agregarProducto={agregarProducto} />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/create" element={<CreatePage />} />
+        <Route path="/cards" element={<Card />} />
+        <Route path="/myprofile" element={<UserProfilePage />} />
+        <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
+    
 
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="" element={<HomeAdmin />}/>  

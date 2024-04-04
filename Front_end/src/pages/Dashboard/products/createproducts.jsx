@@ -1,4 +1,3 @@
-import style from "./formpage.module.css"
 import { useState } from "react";
 
 export default function CreateProducts (){
