@@ -1,8 +1,8 @@
 const PORT = process.env.PORT || 3001
-const DB_USER = process.env.DB_USER || "root"
-const DB_PASSWORD = process.env.DB_PASSWORD || "29demarzo"
-const DB_NAME = process.env.DB_NAME || "wearfashion"
-const DB_PORT = process.env.DB_PORT || 5432
+const DB_USER = process.env.DB_USER || process.env.LOCAL_DB_USER
+const DB_PASSWORD = process.env.DB_PASSWORD || process.env.LOCAL_DB_PASSWORD
+const DB_NAME = process.env.DB_NAME || process.env.LOCAL_DB_NAME
+const DB_PORT = process.env.DB_PORT || process.env.LOCAL_DB_PORT
 
 module.exports = {
     PORT,

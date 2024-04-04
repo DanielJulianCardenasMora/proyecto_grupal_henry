@@ -12,10 +12,10 @@ let sequelize = new Sequelize({
   password: DB_PASSWORD,
   host: DB_HOST,
   port: DB_PORT,
-  dialect: "postgres",
-  dialectOptions: {
-    ssl: false,
-  },
+//   dialect: "postgres",
+//   dialectOptions: {
+//     ssl: false,
+//   },
 });
 
       sequelize.authenticate()
