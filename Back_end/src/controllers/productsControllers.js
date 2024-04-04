@@ -90,9 +90,15 @@ const getProductsByName = async (name) => {
         }
       }
     });
-    return productFiltered;
+    
+    // Verifica si se encontraron productos
+    if (!productFiltered || productFiltered.length === 0) {
+      return []; // Devuelve un array vacío si no se encontraron productos
+    }
+
+    return productFiltered; // Devuelve el array de productos filtrados
   } catch (error) {
-    console.error('Error fetching or processing country data:', error);
+    console.error('Error fetching or processing product data:', error);
     throw error;
   }
 };
