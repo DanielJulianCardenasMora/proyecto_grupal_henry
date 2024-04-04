@@ -6,6 +6,7 @@ const emailer = require("../utils/emailers");
 
 dotenv.config();
 
+
 const register = async (req, res) => {
   const { name, email, password, phone, country, city } = req.body;
 
