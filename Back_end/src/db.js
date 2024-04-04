@@ -5,7 +5,7 @@ const path = require("path");
 const { timeStamp } = require("console");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = require('../config')
 
-
+console.log(DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER)
 let sequelize = new Sequelize({
   database: DB_NAME,
   username: DB_USER,
