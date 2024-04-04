@@ -3,16 +3,29 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { timeStamp } = require("console");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = require('../config')
 
-const sequelize = new Sequelize(
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-    {
-        logging: false, // set to console.log to see the raw SQL queries
-        native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-        force: true
-    }
-);
+console.log(DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER)
+let sequelize = new Sequelize({
+  database: DB_NAME,
+  username: DB_USER,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  port: DB_PORT,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: false,
+  },
+});
+
+      sequelize.authenticate()
+      .then(() => {
+          console.log('Conexion con la base de datos establecida');
+      })
+      .catch(err => {
+          console.error('Error al conectar con la base de datos: ', err);
+      });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

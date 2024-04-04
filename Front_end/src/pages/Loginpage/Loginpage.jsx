@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginPage, { Logo, Password, Footer } from '@react-login-page/page5';
+import LoginPage, { Logo, Password, Footer, Title } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
 import LoginLogo from 'react-login-page/logo-rect';
 import { Input } from '@react-login-page/page5';
@@ -42,6 +42,8 @@ function Login () {
   return (
     <div className={styles.div}>
       <LoginPage style={{ height: 480 }}>
+        <Title>¿Ya tienes cuenta en WearFashion? Inicia sesion</Title>
+
         <Logo>
           <LoginLogo />
         </Logo>
@@ -56,30 +58,32 @@ function Login () {
           name="password"
           onChange={handleChangePassword}
           value={credentials.password}
+          visible={true}
         />
         <Submit onClick={onClick}>Login</Submit>
-
-
-        {isAuthenticated ? 
-        <div>
-          <img src={user.picture} alt={user.name}/>
-        <h2>Nombre: {user.name}</h2>
-        <p>Email: {user.email}</p>
-        </div>
-        :
-        <> <h1>No estas Logeado</h1> </>
-      }
-
-      
+        {isAuthenticated ? (
+          <div>
+            <img src={user.picture} alt={user.name} />
+            <h2>Nombre: {user.name}</h2>
+            <p>Email: {user.email}</p>
+            <button onClick={() => logout({ returnTo: "/landing" })}>
+              Cerrar Sesion
+            </button>
+          </div>
+        ) : (
+          <>
+            <br></br>
+            <button onClick={() => loginWithRedirect()}>
+              Registrarme con Google
+            </button>
+          </>
+        )}
         <Footer>
-          Not a member? <a href="#">Sign up now</a>
+          ¿Quieres registrarte?{" "}
+          <a onClick={() => loginWithRedirect()} href="#">
+            Registrarme
+          </a>
         </Footer>
-        <br></br> <br></br>
-        <button onClick={() => loginWithRedirect()}>Login Google</button>
-        <br></br> <br></br>
-        <button onClick={() => logout({ returnTo: "/landing" })}>
-          Logout
-        </button>
       </LoginPage>
     </div>
   );
