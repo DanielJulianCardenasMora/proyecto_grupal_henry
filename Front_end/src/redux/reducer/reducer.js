@@ -5,6 +5,8 @@ import {
   DETAIL,
   CATEGORY_FILTER,
   ADD_PRODUCT,
+  ENVIAR_CARRITO_AL_BACKEND,
+  ORDERS
   PRICE_FILTER
 } from "../actions/type";
 
@@ -20,18 +22,36 @@ const initialstate = {
   stock: '',
   genero: '',
   category: '',
-  images: [],
+  images: [], 
+  orders:[]
   totalPage: 1
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
     case SEARCH_BY_NAME:
+
       return {
         ...state,
-        Products: [...payload],
-        ProductsScreen: [...payload],
+        Products: [...payload.products],
+        ProductsScreen: [...payload.products],
       };
+
+      case ENVIAR_CARRITO_AL_BACKEND:
+  console.log(payload);
+        return {
+          ...state,
+          orders: [...payload],
+          
+        };
+
+    case ORDERS:
+
+    return{
+      ...state,
+      orders:[...payload]
+    }
+
     case GET_PRODUCTS:
       return {
         ...state,

@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    console.log(carrito);
+    
   }, [carrito]);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/cards" element={<Card />} />
-        <Route path="/myprofile" element={<UserProfilePage />} />
+        <Route path="/myprofile" element={<UserProfilePage  />} />
         <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
     
 
@@ -61,6 +61,7 @@ function App() {
           <Route path="products/create" element={<CreateProducts />}/>  
         </Route>
 
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </>
   );
