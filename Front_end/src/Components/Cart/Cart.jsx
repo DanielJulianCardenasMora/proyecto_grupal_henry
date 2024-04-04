@@ -2,17 +2,46 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import  ItemCount  from './ItemCount';
+import { useDispatch, useSelector } from 'react-redux';
+import { enviarCarritoAlBackend, getOrders } from "../../redux/actions/actions";
 
 
 
 const Cart = ({ carrito, agregarProducto }) => {
+  const ordersDetail= useSelector((state)=>state.orders)
+  console.log(ordersDetail);
+  const userId='9e26e2c9-4c3f-407f-b54a-bec1a57c9a35'
   const totalInicial = carrito.reduce((total, item) => total + item.price * item.quantity, 0);
   const [totalCompra, setTotalCompra] = useState(totalInicial);
+const [order, setOrder]= useState({
+  userId: userId,
+  products: carrito.map(item => ({
+    productId: item.id,
+    quantity: item.quantity
+  })),
+  detalle: "Quiero e ntrear en el detalle del producto"
+})
+
+console.log(order);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+   dispatch(enviarCarritoAlBackend(order));
+
+   setOrder()
+
+    agregarProducto([])
+  };
 
   useEffect(() => {
+dispatch(getOrders())
   setTotalCompra(totalInicial)
   }, [carrito])
   
+
+
 
   const agregarItem = (item) => {
     agregarProducto([...carrito, { ...item, quantity: 1 }]);
@@ -45,11 +74,11 @@ const Cart = ({ carrito, agregarProducto }) => {
 
   };
 
-  
+
 
   return (
     <div className={style.boxCart}>
-      <div className={style.content}>
+      <div className={style.content} >
         {carrito.length ? (
           <h3>Revisa tus compras!</h3>
         ) : (
@@ -81,12 +110,12 @@ const Cart = ({ carrito, agregarProducto }) => {
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
             </div>
-            <div className={style.buttonsDiv}>
-              <button className={style.back}>INICIAR COMPRA</button>
+            <form className={style.buttonsDiv} onSubmit={e=>handleSubmit(e)}  >
+              <button className={style.back} type='submit'>INICIAR COMPRA</button>
               <button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>
                 Vaciar Carrito
               </button>
-            </div>
+            </form>
           </div>
         ) : (
           <button className={style.back}>
