@@ -4,8 +4,7 @@ require('dotenv').config();
 const { productsDataBase } = require('./src/controllers/productsControllers.js');
 const { categoryDataBase } = require("./src/controllers/categoryControllers.js");
 
-require('dotenv').config();
-let PORT = process.env.PORT;
+const {PORT} = require('./config.js')
 
 
 // Syncing all the models at once.
