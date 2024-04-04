@@ -27,10 +27,11 @@ const initialstate = {
 export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
     case SEARCH_BY_NAME:
+      console.log('REDUCER',payload);
       return {
         ...state,
-        Products: [...payload],
-        ProductsScreen: [...payload],
+        Products: [...payload.products],
+        ProductsScreen: [...payload.products],
       };
     case GET_PRODUCTS:
       return {

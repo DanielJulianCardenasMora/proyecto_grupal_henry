@@ -98,7 +98,7 @@ export function searchByName(name) {
   return async function (dispatch) {
     try {
       const response = await axios.get(`http://localhost:3001/products?name=${name}`)
-
+console.log('byname', response.data.products);
       return dispatch({
         type: SEARCH_BY_NAME,
         payload: response.data
