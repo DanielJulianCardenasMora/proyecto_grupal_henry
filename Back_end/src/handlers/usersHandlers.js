@@ -1,5 +1,4 @@
-
-const { getAllUsers, deleteUserDB, updateUserDB} = require("../controllers/usersControllers");
+const { getAllUsers, getUserInfoDB, deleteUserDB, updateUserDB} = require("../controllers/usersControllers");
 const userValidate = require("../utils/UsersValidation");
 
 const validateFields = (fields) => {
@@ -43,6 +42,22 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getUserInfo = async (req, res) => {
+  let { userEmail } = req.params;
+  try {
+    const user = await getUserInfoDB(userEmail);
+
+    if (!user) {
+      res.status(500).json({message: "aun no hay usuarios registrados con ese nombre"});
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    console.log("Error al obtener los usuarios:", error);
+    res.status(500).json({ error: "Error al obtener las usuarios" });
+  }
+};
+
 const editUser = async (req, res) => {
   let { id } = req.params;
   let userData = req.body;
@@ -79,6 +94,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getUsers,
+  getUserInfo,
   editUser,
   deleteUser
 };
