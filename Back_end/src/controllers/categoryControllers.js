@@ -25,9 +25,11 @@ const categoryDataBase = async () => {
         const existingCategory = await Category.findAll({ include: Product });
       
         if (!existingCategory.length) {
+
             const createCategory = await Category.bulkCreate(categoryApi, { include: Product });
           
             return createCategory;
+
         } else {
             return existingCategory;
         }
@@ -37,5 +39,6 @@ const categoryDataBase = async () => {
         throw error;
     }
 };
+
 
 module.exports = { categoryDataBase, getCategory };
