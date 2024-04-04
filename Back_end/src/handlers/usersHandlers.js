@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 const {
   getAllUsers,
   deleteUserDB,
 } = require("../controllers/usersControllers");
+=======
+const { getAllUsers, deleteUserDB, updateUserDB} = require("../controllers/usersControllers");
+>>>>>>> ef78fe76baa28fe2e1354b6ec043dc1245c24ef9
 const userValidate = require("../utils/UsersValidation");
 
 const validateFields = (fields) => {
@@ -45,6 +49,23 @@ const getUsers = async (req, res) => {
   }
 };
 
+const editUser = async (req, res) => {
+  let { id } = req.params;
+  let userData = req.body;
+
+  try {
+      const updatedUser = await updateUserDB(id, userData);
+      if (updatedUser) {
+          res.status(200).json({ mensaje: "Usuario actualizado correctamente", usuario: updatedUser });
+      } else {
+          res.status(404).json("Usuario no encontrado.");
+      }
+  } catch (error) {
+      console.error("Error al editar el usuario:", error);
+      res.status(500).json({ error: "Error interno al editar el usuario" });
+  }
+};
+
 const deleteUser = async (req, res) => {
   let { id } = req.params;
 
@@ -64,5 +85,6 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getUsers,
-  deleteUser,
+  editUser,
+  deleteUser
 };
