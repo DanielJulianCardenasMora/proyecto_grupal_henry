@@ -42,6 +42,7 @@ function Login () {
   return (
     <div className={styles.div}>
       <LoginPage style={{ height: 480 }}>
+        <h2>¿Ya tienes cuenta en WearFashion? Inicia sesion</h2>
         <Logo>
           <LoginLogo />
         </Logo>
@@ -58,28 +59,24 @@ function Login () {
           value={credentials.password}
         />
         <Submit onClick={onClick}>Login</Submit>
-
-
-        {isAuthenticated ? 
-        <div>
-          <img src={user.picture} alt={user.name}/>
-        <h2>Nombre: {user.name}</h2>
-        <p>Email: {user.email}</p>
-        </div>
-        :
-        <> <h1>No estas Logeado</h1> </>
-      }
-
-      
+        {isAuthenticated ? (
+          <div>
+            <img src={user.picture} alt={user.name} />
+            <h2>Nombre: {user.name}</h2>
+            <p>Email: {user.email}</p>
+            <button onClick={() => logout({ returnTo: "/landing" })}>
+              Cerrar Sesion
+            </button>
+          </div>
+        ) : (
+          <>
+            {" "}
+            <button onClick={() => loginWithRedirect()}>Registrarme con Google</button>
+          </>
+        )}
         <Footer>
-          Not a member? <a href="#">Sign up now</a>
+          ¿Quieres registrarte? <a href="#">Registrarme</a>
         </Footer>
-        <br></br> <br></br>
-        <button onClick={() => loginWithRedirect()}>Login Google</button>
-        <br></br> <br></br>
-        <button onClick={() => logout({ returnTo: "/landing" })}>
-          Logout
-        </button>
       </LoginPage>
     </div>
   );

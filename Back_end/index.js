@@ -1,9 +1,9 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
+require('dotenv').config();
 const { productsDataBase } = require('./src/controllers/productsControllers.js');
 const { categoryDataBase } = require("./src/controllers/categoryControllers.js");
 
-require('dotenv').config();
 const { PORT } = process.env;
 
 // Syncing all the models at once.
