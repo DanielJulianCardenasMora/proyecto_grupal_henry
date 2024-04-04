@@ -1,7 +1,7 @@
 const { Product, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require('sequelize');
-  require('dotenv').config();
+require('dotenv').config();
 const { URL_PRODUCTS } = process.env;
 const cloudinary = require('../utils/cloudinaryConfig'); // Importa la configuración de Cloudinary
 const { getCategory } = require("./categoryControllers");
