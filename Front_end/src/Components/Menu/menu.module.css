@@ -1,5 +1,5 @@
 .container{
-  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 1) 100%);  height: 100vh;
+  background: linear-gradient(90deg, rgb(70, 175, 207) 0%, rgb(0, 59, 187) 100%);  height: 100vh;
   width: 25%;
   transition: all 0.3s ease-out; 
   position: absolute;
@@ -7,12 +7,13 @@
 }
 .columna2 button{
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(201, 78, 78, 0);
   text-align: left;
   font-size: 2vw;
   font-weight: 700;
   padding: 5% 0;
   padding-left: 5%;
+  color: black;
 }
 
 .columnas{
@@ -34,8 +35,9 @@
   color: aqua;
 }
 .columna3 h1{
-  color: rgb(165, 40, 232);
+  color: rgb(75, 0, 116);
   cursor: default;
+  color: black;
 }
 .columna3 h1:hover{
   color: rgb(165, 40, 232);
@@ -47,6 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: black;
 }
 .columna2{
   height: 100%;
@@ -66,12 +69,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  color: black;
 }
 .c3h3{
   position: absolute;
   bottom: 0;
-  right: 8%;
-  color: rgb(59, 80, 236);
+  right: 1%;
+  color: rgb(0, 0, 0);
   cursor: pointer;
   font-size: 1.6vw;
 }
@@ -101,6 +105,6 @@
   opacity: 0;
 }
 .optionSelected {
-  color: aqua;
+  color: rgb(13, 156, 44);
 }
 
