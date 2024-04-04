@@ -9,6 +9,18 @@ const getAllUsers = async (req, res) => {
     return usersInDB
 }
 
+const getUserInfoDB = async (userEmail) => {
+    const userInDB = await User.findOne({
+        where: {
+            email: userEmail
+        },
+        include: {
+            model: Order
+        }
+    });
+    return userInDB
+}
+
 const updateUserDB = async (id, userData) => {
     try {
         // Busca el usuario por ID
@@ -43,6 +55,7 @@ const deleteUserDB = async (id) => {
 
 module.exports = {
     getAllUsers,
+    getUserInfoDB,
     updateUserDB,
     deleteUserDB
 }
