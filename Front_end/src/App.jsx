@@ -9,6 +9,7 @@ import Cart from './Components/Cart/Cart';
 import { Nav } from './Components';
 import { useEffect, useState } from 'react';
 import Login from './pages/Loginpage/Loginpage';
+import Orders from './Components/Orders/Orders';
 
 function App() {
   const location = useLocation(); // Obtener la ubicación actual
@@ -42,6 +43,7 @@ function App() {
         <Route path="/cards" element={<Card />} />
         <Route path="/myprofile" element={<UserProfilePage  />} />
         <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </>
   );

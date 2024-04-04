@@ -33,6 +33,7 @@ const initialstate = {
 export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
     case SEARCH_BY_NAME:
+      console.log(payload);
       return {
         ...state,
         Products: [...payload],

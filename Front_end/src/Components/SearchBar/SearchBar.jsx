@@ -9,6 +9,7 @@ export default function SearchBar() {
   const [inputsErrors, setInputsErrors] = useState();
 
   function validate (searchString) {
+
     const errors= {}
 
     if (!isNaN(searchString.search)) {

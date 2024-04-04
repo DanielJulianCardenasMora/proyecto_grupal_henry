@@ -121,13 +121,13 @@ export function searchByName(name) {
   return async function (dispatch) {
     try {
       const response = await axios.get(`http://localhost:3001/products?name=${name}`)
-
+console.log(response);
       return dispatch({
         type: SEARCH_BY_NAME,
         payload: response.data
       })
     } catch (error) {
-      return error
+       console.log(error)
     }
   }
 }
@@ -152,11 +152,12 @@ export const enviarCarritoAlBackend = (order) => {
     try {
       const response = await axios.post('http://localhost:3001/orders/create', order);
       console.log('Orden creada:', response.data);
+      alert('Orden de compra enviada')
 
       dispatch({type: ENVIAR_CARRITO_AL_BACKEND, payload: response})
  
     } catch (error) {
-    console.log(error);
+  
 
     }
   };

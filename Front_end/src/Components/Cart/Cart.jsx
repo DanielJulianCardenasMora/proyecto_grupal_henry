@@ -8,30 +8,28 @@ import { enviarCarritoAlBackend, getOrders } from "../../redux/actions/actions";
 
 
 const Cart = ({ carrito, agregarProducto }) => {
-  const ordersDetail= useSelector((state)=>state.orders)
-  console.log(ordersDetail);
+  const dispatch = useDispatch();
   const userId='9e26e2c9-4c3f-407f-b54a-bec1a57c9a35'
   const totalInicial = carrito.reduce((total, item) => total + item.price * item.quantity, 0);
   const [totalCompra, setTotalCompra] = useState(totalInicial);
+
 const [order, setOrder]= useState({
   userId: userId,
   products: carrito.map(item => ({
     productId: item.id,
     quantity: item.quantity
   })),
-  detalle: "Quiero e ntrear en el detalle del producto"
+  detalle: "Este es un nuevo detalle de compra"
 })
 
-console.log(order);
-  const dispatch = useDispatch();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
    dispatch(enviarCarritoAlBackend(order));
-
-   setOrder()
-
+   setOrder({})
+alert('Orden de compra creada')
     agregarProducto([])
   };
 
