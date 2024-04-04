@@ -45,6 +45,11 @@ const Form = ({ addProduct }) => {
     setFormData({ ...formData, images: imagesArray });
   };
 
+  const handleImage = (evento) => {
+    const image = evento.target.files[0];
+    setProductData({ ...productData, images: [...productData.images, image] });
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault();
 

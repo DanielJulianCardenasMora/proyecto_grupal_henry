@@ -15,17 +15,16 @@ const validate = (type, value) => {
         errors.push("El precio debe ser mayor o igual que cero");
       }
       break;
-    case "images":
-  const allowedExtensions = [".jpg", ".jpeg", ".png"];
-  const isURL = /^https?:\/\//.test(value);
+  //   case "images":
+  // const allowedExtensions = [".jpg", ".jpeg", ".png"];
   
-  if (typeof value === "string" && !isURL && allowedExtensions.some((extension) => value.toLowerCase().endsWith(extension))) {
-    throw new Error("Debe ser una URL o tener una extensión .jpg, .jpeg o .png");
-  }
-      if (typeof value !== "string" || value.trim() === "") {
-        throw new Error("La imagen debe ser una cadena de caracteres");
-      }
-      break;
+  // if (typeof value === "string" && !isURL && allowedExtensions.some((extension) => value.toLowerCase().endsWith(extension))) {
+  //   throw new Error("Debe ser una URL o tener una extensión .jpg, .jpeg o .png");
+  // }
+  //     if (typeof value !== "string" || value.trim() === "") {
+  //       throw new Error("La imagen debe ser una cadena de caracteres");
+  //     }
+  //     break;
 
     case "description":
       if (!value && value && typeof value !== "string") {
