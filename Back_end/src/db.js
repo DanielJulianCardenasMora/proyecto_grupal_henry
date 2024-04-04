@@ -3,16 +3,38 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { timeStamp } = require("console");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = process.env;
 
-const sequelize = new Sequelize(
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/wearfashion`,
-    {
-        logging: false, // set to console.log to see the raw SQL queries
-        native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-        force: true
-    }
-);
+let sequelize =
+  process.env.NODE_ENV === "production"
+    ?new Sequelize({
+      database: "railway",
+      username: "postgres",
+      password: "cvSnhcMGpmRBJUqRxZOoPdfbabgSbnrx",
+      host: "monorail.proxy.rlwy.net",
+      port: 5432,
+      dialect: "postgres",
+      dialectOptions: {
+        ssl: { require: true, rejectUnauthorized: false }
+      },
+    })
+    : new Sequelize(
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+        {
+            logging: false, 
+            native: false, 
+            force: true
+        }
+      );
+
+      sequelize.authenticate()
+      .then(() => {
+          console.log('Connection to the database has been established successfully.');
+      })
+      .catch(err => {
+          console.error('Unable to connect to the database:', err);
+      });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

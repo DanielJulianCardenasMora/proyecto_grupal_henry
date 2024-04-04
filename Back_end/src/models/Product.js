@@ -37,6 +37,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      category: { // Agregar la propiedad 'category'
+        type: DataTypes.STRING, // O el tipo de datos adecuado para el nombre de la categoría
+        allowNull: true,
+      },
     },
     { timestamps: false }
   );

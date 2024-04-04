@@ -1,12 +1,16 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-const { productsDataBase } = require('../Back_end/src/controllers/productsControllers.js');
+require('dotenv').config();
+const { productsDataBase } = require('./src/controllers/productsControllers.js');
 const { categoryDataBase } = require("./src/controllers/categoryControllers.js");
-const PORT = 3001;
+
+require('dotenv').config();
+let PORT = process.env.PORT;
+
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(PORT, async () => {
+  server.listen(PORT || `http://localhost:3001` , async () => {
     console.log(`Server listening on port ${PORT}`);
     await productsDataBase(), await categoryDataBase();
   })

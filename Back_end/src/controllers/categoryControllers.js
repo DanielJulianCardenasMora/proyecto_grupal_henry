@@ -1,11 +1,11 @@
 const { Category, Product } = require("../db");
 const axios = require("axios");
+require('dotenv').config();
+const { URL_CATEGORY } = process.env;
 
 const getCategory = async () => {
     try {
-        const response = await axios.get(
-            "https://wearfashion-947fb-default-rtdb.firebaseio.com/products/category.json"
-        );
+        const response = await axios.get(`${URL_CATEGORY}`);
         const getInfo = response.data.map((element) => {
             return {
                 name: element.name,
@@ -14,7 +14,7 @@ const getCategory = async () => {
         return getInfo;
     } catch (error) {
         console.error("Error al obtener productos:", error);
-        throw error; 
+        throw error;
     }
 };
 
@@ -23,12 +23,13 @@ const categoryDataBase = async () => {
         const categoryApi = await getCategory();
 
         const existingCategory = await Category.findAll({ include: Product });
-        //console.log('Productos existentes en la base de datos:', existingCategory); 
-
+      
         if (!existingCategory.length) {
-            const createCategory = await Category.bulkCreate(categoryApi);
-          //  console.log('Productos creados en la base de datos:', createCategory); 
-          return createCategory;
+
+            const createCategory = await Category.bulkCreate(categoryApi, { include: Product });
+          
+            return createCategory;
+
         } else {
             return existingCategory;
         }
@@ -39,4 +40,5 @@ const categoryDataBase = async () => {
     }
 };
 
-module.exports = { categoryDataBase };
+
+module.exports = { categoryDataBase, getCategory };
