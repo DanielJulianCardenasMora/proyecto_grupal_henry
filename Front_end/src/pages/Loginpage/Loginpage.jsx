@@ -42,7 +42,8 @@ function Login () {
   return (
     <div className={styles.div}>
       <LoginPage style={{ height: 480 }}>
-        <h2>¿Ya tienes cuenta en WearFashion? Inicia sesion</h2>
+        <Title>¿Ya tienes cuenta en WearFashion? Inicia sesion</Title>
+
         <Logo>
           <LoginLogo />
         </Logo>
@@ -57,6 +58,7 @@ function Login () {
           name="password"
           onChange={handleChangePassword}
           value={credentials.password}
+          visible={true}
         />
         <Submit onClick={onClick}>Login</Submit>
         {isAuthenticated ? (
@@ -70,12 +72,17 @@ function Login () {
           </div>
         ) : (
           <>
-            {" "}
-            <button onClick={() => loginWithRedirect()}>Registrarme con Google</button>
+            <br></br>
+            <button onClick={() => loginWithRedirect()}>
+              Registrarme con Google
+            </button>
           </>
         )}
         <Footer>
-          ¿Quieres registrarte? <a href="#">Registrarme</a>
+          ¿Quieres registrarte?{" "}
+          <a onClick={() => loginWithRedirect()} href="#">
+            Registrarme
+          </a>
         </Footer>
       </LoginPage>
     </div>
