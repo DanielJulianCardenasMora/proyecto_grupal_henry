@@ -1,7 +1,7 @@
 import style from './SearchBar.module.css'
 import { useState } from 'react'
-import {useDispatch} from 'react-redux'
-import {  searchByName } from '../../redux/actions/actions'
+import { useDispatch } from 'react-redux'
+import { searchByName } from '../../redux/actions/actions'
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -12,55 +12,59 @@ export default function SearchBar() {
 
     const errors= {}
 
+
     if (!isNaN(searchString.search)) {
       errors.search = 'Formato incorrecto'
     }
     return errors
   }
 
- 
+
 
   function handleSearch(e) {
-    e.preventDefault(); 
-    
-          setInputsErrors(
-            validate({
-            ...searchString,
-              [e.target.name]: e.target.value,
-            })
-          );
-    
-    setSearchString(e.target.value); 
+    e.preventDefault();
+
+    setInputsErrors(
+      validate({
+        ...searchString,
+        [e.target.name]: e.target.value,
+      })
+    );
+
+    setSearchString(e.target.value);
   }
- 
+
 
   function handleSubmit(e) {
     e.preventDefault();
-          let aux = Object.keys(inputsErrors);
-        if (aux.length === 0) {
-    
-            setInputsErrors();
-          } else {
-                      return alert('Check info');
-                    }
+  
+    // Verificar si inputsErrors tiene un valor antes de usar Object.keys
+    if (inputsErrors) {
+      let aux = Object.keys(inputsErrors);
+      if (aux.length === 0) {
+        setInputsErrors();
+      } else {
+        return alert('Check info');
+      }
+    }
+  
     dispatch(searchByName(searchString));
-
+  
     setSearchString({
-      search: '', 
-
-  })
-
+      search: '',
+    });
   }
+  
 
 
-   return (
-      <div className={style.box} >
-                      
-          <input className={style.inputS} name='search' type='search' onChange={(e)=>handleSearch(e)} />
-        <button type='submit' onClick = {(e)=> handleSubmit(e)} >Search</button> 
-          
-         
-      </div>
+  return (
+    <div className={style.box} >
 
-   );
+      <input className={style.inputS} name='search' type='search' onChange={(e) => handleSearch(e)} />
+      <button type='submit' onClick={(e) => handleSubmit(e)} >Search</button>
+
+
+    </div>
+
+  );
 }

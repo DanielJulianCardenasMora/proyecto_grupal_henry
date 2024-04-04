@@ -1,7 +1,7 @@
 const { Product, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require('sequelize');
-  require('dotenv').config();
+require('dotenv').config();
 const { URL_PRODUCTS } = process.env;
 const cloudinary = require('../utils/cloudinaryConfig'); // Importa la configuración de Cloudinary
 const { getCategory } = require("./categoryControllers");
@@ -90,9 +90,15 @@ const getProductsByName = async (name) => {
         }
       }
     });
-    return productFiltered;
+    
+    // Verifica si se encontraron productos
+    if (!productFiltered || productFiltered.length === 0) {
+      return []; // Devuelve un array vacío si no se encontraron productos
+    }
+
+    return productFiltered; // Devuelve el array de productos filtrados
   } catch (error) {
-    console.error('Error fetching or processing country data:', error);
+    console.error('Error fetching or processing product data:', error);
     throw error;
   }
 };
