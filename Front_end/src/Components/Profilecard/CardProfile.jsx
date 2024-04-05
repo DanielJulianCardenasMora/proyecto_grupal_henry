@@ -7,7 +7,7 @@ export const CardProfile = ({nombre, localidad, linkedin, github}) => {
         <div className="card-container">
             <div className="card-header">
                 <h3>{nombre}</h3>
-                <h5>{localidad}</h5>
+                <p>{localidad}</p>
             </div>
             <div className="card-social">
                 <div className="social-icons">

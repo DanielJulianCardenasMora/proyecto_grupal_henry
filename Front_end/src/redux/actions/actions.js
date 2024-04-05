@@ -14,12 +14,12 @@ import {
   PRICE_FILTER
 } from "./type";
 
-const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/products'
+const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
 
 export const getAllProducts = (page) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`https://proyectogrupalhenry-production-e8a4.up.railway.app/products?page=${page}`);
+      const response = await axios.get(`${URL}/products?page=${page}`);
       console.log(response.data)
       console.log(response.data.totalPage)
       dispatch({
@@ -36,7 +36,7 @@ export const priceFilter = (sortOrder, page) => {
   return async function (dispatch) {
     try {
       const sortBy = 'price';
-      const response = await axios.get(`${URL}/products?sortBy=${sortBy}&sortOrder=${sortOrder}`);
+      const response = await axios.get(`${URL}/products?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}`);
       console.log('De actions', response.data.products);
       dispatch({
         type: PRICE_FILTER,
@@ -78,11 +78,11 @@ export const getUsers = () => {
 
 
 export function getProductDetail(id) {
-
+  console.log('id: ' + id)
   return async function (dispatch) {
 
     try {
-      const { data } = await axios.get(`${URL}/${id}`)
+      const { data } = await axios.get(`${URL}/products/${id}`)
 
       return dispatch({
         type: DETAIL,
@@ -100,7 +100,7 @@ export function getProductDetail(id) {
 export function searchByName(name) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${URL}products?name=${name}`)
+      const response = await axios.get(`${URL}/products?name=${name}`)
 
       return dispatch({
         type: SEARCH_BY_NAME,

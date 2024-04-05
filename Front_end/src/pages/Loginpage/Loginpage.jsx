@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginPage, { Logo, Password, Footer, Title } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
@@ -9,10 +9,17 @@ import styles from './loginpage.module.css';
 
 
 
-function Login () {
+function Login ({setUsuario, usuario}) {
   const { loginWithRedirect, logout, isLoading, user, isAuthenticated } =
     useAuth0();
 
+  useEffect(() => {
+    if (user && user.email) {
+      setUsuario(user.email)
+      console.log(usuario)
+    }
+    
+  },[user])
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",

@@ -9,7 +9,7 @@ function Nav() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    const storedEmail = localStorage.getItem('userEmail');
+    const storedEmail = localStorage.getItem('usuario');
     setIsLoggedIn(storedEmail !== null);
   }, []);
 
@@ -45,7 +45,7 @@ function Nav() {
      </ul></div>
 
      <div className={style.logIn}>
-           <button className={style.logInB} >Log In</button>
+     <Link to='/login' ><button className={style.logInB} >Log In</button></Link>
      </div>
      
 
