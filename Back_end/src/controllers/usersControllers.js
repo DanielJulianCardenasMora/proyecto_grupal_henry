@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { User, Order } = require("../db");
 
 const getAllUsers = async (req, res) => {
@@ -22,10 +23,10 @@ const getUserInfoDB = async (userEmail) => {
     return userInDB
 }
 
-const updateUserDB = async (id, userData) => {
+const updateUserDB = async (userEmail, userData) => {
     try {
-        // Busca el usuario por ID
-        let user = await User.findByPk(id);
+        // Busca el usuario por email
+        let user = await User.findOne({where: {email: userEmail}});
 
         if (!user) {
             throw new Error("Usuario no encontrado");
