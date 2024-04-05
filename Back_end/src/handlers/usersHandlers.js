@@ -60,11 +60,11 @@ const getUserInfo = async (req, res) => {
 };
 
 const editUser = async (req, res) => {
-  let { id } = req.params;
+  let { userEmail } = req.params;
   let userData = req.body;
 
   try {
-      const updatedUser = await updateUserDB(id, userData);
+      const updatedUser = await updateUserDB(userEmail, userData);
       if (updatedUser) {
           res.status(200).json({ mensaje: "Usuario actualizado correctamente", usuario: updatedUser });
       } else {
