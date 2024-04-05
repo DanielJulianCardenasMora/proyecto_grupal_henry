@@ -1,10 +1,10 @@
 .background{
   /* position: relative; */
   height: 100vh;
- background-image: url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
- background-position: center;
- background-size: cover;
- width: 100%;
+  background-image: url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
 }
 .formDiv{
   /* background-color: brown; */
@@ -62,7 +62,7 @@
   height: 25px;
   width: 100%;
   background-color: rgb(255, 255, 255, 80%);
-
+  color: black;
   font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -89,11 +89,15 @@ height: 8%;
 }
 
 .font{
-  color: rgba(255, 255, 255, 0.647);
+  color: rgba(0, 0, 0, 0.647);
 }
 
 .input{
   /* background-color: blueviolet; */
   width: 50%;
+  color: black;
+}
+
+.desc{
   color: black;
 }
