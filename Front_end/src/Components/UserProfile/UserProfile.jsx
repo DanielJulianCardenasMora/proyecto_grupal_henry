@@ -8,7 +8,7 @@ const UserProfile = () => {
   const URL_USUARIO_EDIT = 'http://localhost:3001/users/'
   const URL_USUARIO_FIND = 'http://localhost:3001/users/'
   const userLocalStorage = 'mail@mail'
-  const ID_USER = 'c9d5ab10-7182-4d5d-b16e-4a8aebd31df4'
+  const ID_USER = 'd0dd47fa-251c-4e0a-8623-60f5ab4e7b1e'
   const [modoEdicion, setModoEdicion] = useState({ name: false, phone: false, contraseña: false, lugar: false });
   // const [datosUsuario, setDatosUsuario] = useState(null);
   // se usa el estado comentado, este es para iniciar prueba.
