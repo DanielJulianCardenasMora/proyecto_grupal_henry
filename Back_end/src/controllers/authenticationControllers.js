@@ -49,25 +49,26 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const email = req.body.email;
+const email = req.body.email;
   const password = req.body.password;
   console.log(req.body);
 
-  if (!email || !password) {
+
+  try {
+
+    if (!email || !password) {
     return res
       .status(400)
       .send({ status: "Error", message: "Los campos estan incompletos!" });
   }
 
-  // Verificar si el usuario existe
-  const user = await User.findOne({ where: { email: email } });
+const user = await User.findOne({ where: { email: email } });
 
-  if (!user) {
+if (!user) {
     return res
       .status(400)
       .send({ status: "Error", message: "Email no encontrado" });
   }
-
   // Verificar la contraseña
   const isMatch = await bcryptjs.compare(password, user.password);
   if (!isMatch) {
@@ -76,7 +77,7 @@ const login = async (req, res) => {
       .send({ status: "Error", message: "Contraseña incorrecta" });
   }
 
-  // Generar el token JWT
+    // Generar el token JWT
   const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRATION,
   });
@@ -93,6 +94,14 @@ const login = async (req, res) => {
 
   //Enviar respuesta al usuario
   res.send({ status: "ok", message: "usuario loggeado", redirect: "/admin" });
+
+
+  } catch (error) {
+    res.send(error)
+  }
+  
+
+
 };
 
 module.exports = {
