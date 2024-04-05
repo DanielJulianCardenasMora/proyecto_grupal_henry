@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginPage, { Logo, Password, Footer, Title } from '@react-login-page/page5';
+import LoginPage, { Logo, Password, Footer, Title, Button } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
 import LoginLogo from 'react-login-page/logo-rect';
 import { Input } from '@react-login-page/page5';
@@ -9,7 +9,6 @@ import styles from './loginpage.module.css';
 import { useEffect } from 'react';
 import { validateEmail, validatePassword, Register } from './validaciones';
 import { RegisterDialog } from '../../Components';
-
 
 function Login () {
   const { loginWithRedirect, logout, isLoading, user, isAuthenticated } =
@@ -22,6 +21,11 @@ function Login () {
   });
   const navigate = useNavigate();
 
+  const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
+
+  const handleClose = () => {
+    setShowRegisterDialog(false)
+  }
   const onClick = () => {
     // Verificar credenciales aquí
     const email = validateEmail(credentials)
@@ -48,9 +52,10 @@ function Login () {
     setCredentials({ ...credentials, password: valor });
   };
 
-  useEffect(()  => {
-    console.log(user)
-  }, [isAuthenticated])
+  const handleRegisterClick = () => {
+    // Mostrar el diálogo de registro al hacer clic en el enlace
+    setShowRegisterDialog(true);
+  };
 
   return (
     <div className={styles.div}>
@@ -74,15 +79,11 @@ function Login () {
           visible={true}
         />
         <Submit onClick={() => onClick()}>Login</Submit>
+
         {isAuthenticated ? (
-          <div>
-            <img src={user.picture} alt={user.name} />
-            <h2>Nombre: {user.name}</h2>
-            <p>Email: {user.email}</p>
-            <button onClick={() => logout({ returnTo: "/" })}>
-              Cerrar Sesion
-            </button>
-          </div>
+          <>
+            <RegisterDialog />
+          </>
         ) : (
           <>
             <br></br>
@@ -91,12 +92,26 @@ function Login () {
             </button>
           </>
         )}
+
+        {isAuthenticated ? (
+         <Button onClick={() => logout()}>Logout</Button>
+        ) : (
+          <>
+            <br></br>
+            <button onClick={() => loginWithRedirect()}>
+              Registrarme con Google
+            </button>
+          </>
+        )}
+        <Button>Logout</Button>
         <Footer>
           ¿Quieres registrarte?
-          <a onClick={() => <RegisterDialog />} >
-            Registrarme
-          </a>
+          {/* Manejar la visibilidad del diálogo al hacer clic en el enlace */}
+          <a onClick={handleRegisterClick}>Registrarme</a>
         </Footer>
+
+        {/* Mostrar el diálogo cuando showRegisterDialog es true */}
+        {showRegisterDialog && <RegisterDialog isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
       </LoginPage>
     </div>
   );

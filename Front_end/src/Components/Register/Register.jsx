@@ -6,61 +6,113 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios'
 
-export default function RegisterDialog() {
-  const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+export default function RegisterDialog({ isAuthenticated, handleClose }) {
+  const [open, setOpen] = React.useState(isAuthenticated || false); // Establecer el estado inicial basado en isAuthenticated
+
+  React.useEffect(() => {
+    setOpen(isAuthenticated); // Actualizar el estado cuando cambie isAuthenticated
+  }, [isAuthenticated]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    //! Nuevo usuario
+    const newUser = {
+      email: formData.get('email'),
+      name: formData.get('name'),
+      password: formData.get('password'),
+      country: formData.get('location'),
+      phone: formData.get('phone')
+    }
+
+    await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
+    
+    console.log(newUser)
+   
+    handleClose();
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
-    <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: 'form',
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            // const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
-      >
-        <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="name"
-            name="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
-        </DialogActions>
-      </Dialog>
-    </React.Fragment>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      PaperProps={{
+        component: 'form',
+        onSubmit: handleSubmit,
+      }}
+    >
+      <DialogTitle>Porfavor ingresa tus datos</DialogTitle>
+      <DialogContent>
+
+      <TextField
+          autoFocus
+          required
+          margin="dense"
+          id="email"
+          name="email"
+          label="Email"
+          type="email"
+          fullWidth
+          variant="standard"
+        />
+
+<TextField
+          autoFocus
+          required
+          margin="dense"
+          id="name"
+          name="name"
+          label="name"
+          type="name"
+          fullWidth
+          variant="standard"
+        />
+
+        <TextField
+          autoFocus
+          required
+          margin="dense"
+          id="password"
+          name="password"
+          label="password"
+          type="password"
+          fullWidth
+          variant="standard"
+        />
+
+        <TextField
+          autoFocus
+          required
+          margin="dense"
+          id="location"
+          name="location"
+          label="Location"
+          type="location"
+          fullWidth
+          variant="standard"
+        />
+
+        <TextField
+          autoFocus
+          required
+          margin="dense"
+          id="phone"
+          name="phone"
+          label="Phone"
+          type="phone"
+          fullWidth
+          variant="standard"
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button type="submit">Register</Button>
+      </DialogActions>
+    </Dialog>
   );
 }
