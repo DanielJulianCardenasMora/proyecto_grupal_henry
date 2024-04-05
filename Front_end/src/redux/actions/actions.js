@@ -14,12 +14,12 @@ import {
   PRICE_FILTER
 } from "./type";
 
-const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/products'
+const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
 
 export const getAllProducts = (page) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`https://proyectogrupalhenry-production-e8a4.up.railway.app/products?page=${page}`);
+      const response = await axios.get(`${URL}/products?page=${page}`);
       console.log(response.data)
       console.log(response.data.totalPage)
       dispatch({
@@ -100,7 +100,7 @@ export function getProductDetail(id) {
 export function searchByName(name) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${URL}products?name=${name}`)
+      const response = await axios.get(`${URL}/products?name=${name}`)
 
       return dispatch({
         type: SEARCH_BY_NAME,
