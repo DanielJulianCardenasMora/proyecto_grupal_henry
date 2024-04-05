@@ -1,4 +1,6 @@
+const { where } = require('sequelize');
 const { Order, User, OrderDetail, Product } = require('../db')
+const Sequelize = require('sequelize');
 
 const modifictProductStock = async (productId, quantity) => {
     try {
@@ -71,4 +73,21 @@ const deleteOrderDb = async (id) => {
     });
     return deleteOrder;
 }
-module.exports = { createOrder, getAllOrder, deleteOrderDb }
+
+const getOrderDetail = async (req, res) => {
+    try {
+        const orderId = req.params.orderId;
+        console.log('orderId;:', orderId)
+        const orderDetail = await OrderDetail.findAll({
+            where: {
+                OrderId: orderId
+            }
+        })
+        console.log('orderDetail:', orderDetail);
+        res.status(200).send(orderDetail)
+    } catch (error) {
+        console.error('Error al obtener los detalles de la orden:', error);
+        res.status(500).json({ error: 'Ocurrió un error al procesar la solicitud.' });
+    }
+}
+module.exports = { createOrder, getAllOrder, deleteOrderDb, getOrderDetail }
