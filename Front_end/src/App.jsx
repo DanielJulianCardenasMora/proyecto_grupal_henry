@@ -9,6 +9,7 @@ import Cart from './Components/Cart/Cart';
 import { Nav } from './Components';
 import { useEffect, useState } from 'react';
 import Login from './pages/Loginpage/Loginpage';
+import Orders from './Components/Orders/Orders';
 
 function App() {
   const location = useLocation(); // Obtener la ubicación actual
@@ -16,13 +17,15 @@ function App() {
   const shouldShowNavbar = () => {
     return location.pathname !== '/'; // Mostrar la barra de navegación si la ruta no es /login
   };
+
   const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];
   const [carrito, agregarProducto] = useState(carritoGuardado);
 
   useEffect(() => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    console.log(carrito);
+    
   }, [carrito]);
+
 
   // Renderizar la barra de navegación solo si la ruta no es /login
   const renderNavbar = shouldShowNavbar() && <Nav />;
@@ -38,8 +41,9 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/cards" element={<Card />} />
-        <Route path="/myprofile" element={<UserProfilePage />} />
+        <Route path="/myprofile" element={<UserProfilePage  />} />
         <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </>
   );
