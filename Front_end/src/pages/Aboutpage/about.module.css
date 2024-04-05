@@ -2,6 +2,8 @@
     height: 240vh;
     background: black;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
     
 }
 .workteam{
@@ -15,7 +17,6 @@
 }
 .figuras{
     position: relative;
-    
     top: 5%;
     left: 35%;
     width: 20%;
@@ -26,24 +27,30 @@
     flex-wrap: wrap;
     align-items: center;
     overflow: hidden;
+    justify-content: space-evenly;
   width: 90%;
   margin: auto;
+  height: 50%;
+
 }
 .background{
     max-width: 100%;
-    height: 120vh;
-    margin-top: 2%;
+    height: 90vh;
+    
     margin-bottom: 2%;
     background-image: url('../../assets/Imagenes/About_fondoInferior_aplicar.png');
     background-position: bottom;
     display: flex;
     background-repeat: no-repeat;
+    padding-left: 5%;
+    padding-top: 2%;
+    box-sizing: border-box;
     
 }
 
 .desc{
     height:100%;
-    width: 50%;
+    width: 55%;
     
     display: flex;
     flex-direction: column;
@@ -53,13 +60,13 @@
     background-color: rgba(0, 0, 0, 0.212);
 }
 .desc h1{
-    font-size: 70px;
+    font-size: 60px;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
     color: rgba(255, 255, 255, 0);
     line-height: 1.2;
     letter-spacing: 1px;
-    margin-top: 15%;
+    margin-top: 2%;
 }
 .desc button{
   width: 40%;
@@ -78,12 +85,13 @@
   margin-top: 5%;
 }
 .runner{
-    height: 90%;
+    height: 100%;
     /* background-color: bisque; */
-   padding: 5%;
+   
    box-sizing: border-box;
-    width: 50%;
-  margin-top: 5%;
+    width: 45%;
+  margin-top: 3%;
+  padding-left: 5%;
     background-image: url('../../assets/Imagenes/running.png');
 
   background-size:contain;
