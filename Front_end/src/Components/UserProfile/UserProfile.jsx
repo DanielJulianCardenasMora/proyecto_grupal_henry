@@ -5,33 +5,38 @@ import axios from 'axios'
 
 
 const UserProfile = () => {
-  const URL_USUARIO_EDIT = 'http://localhost:3001/users/api/register'
-  const userLocalStorage = 'user'
-  const [modoEdicion, setModoEdicion] = useState({ name: false, email: false, contraseña: false, lugar: false });
+  const URL_USUARIO_EDIT = 'http://localhost:3001/users/'
+  const URL_USUARIO_FIND = 'http://localhost:3001/users/'
+  const userLocalStorage = 'mail@mail'
+  const ID_USER = 'c9d5ab10-7182-4d5d-b16e-4a8aebd31df4'
+  const [modoEdicion, setModoEdicion] = useState({ name: false, phone: false, contraseña: false, lugar: false });
   // const [datosUsuario, setDatosUsuario] = useState(null);
   // se usa el estado comentado, este es para iniciar prueba.
-  const [datosUsuario, setDatosUsuario] = useState({ name: false, email: false, contraseña: false, lugar: false });
+  const [datosUsuario, setDatosUsuario] = useState({ name: false, phone: false, password: false, city: false });
   
 
-    // peticion de findOne
-    const obtenerDatosUsuario = async () => {
-      try {
-        const { data } = await axios.put(`${URL_USUARIO_EDIT}`);
-        setDatosUsuario(data);
-      } catch (error) {
-        alert(error)
-      }
-    }
-  //   obtenerDatosUsuario();
-  const editarUsuario = async () => {
+  const obtenerDatosUsuario = async () => {
     try {
-      const { data } = await axios.put(`${URL_USUARIO_EDIT}/${userLocalStorage}, {...datosUsuario,}`);
+      const { data } = await axios.get(`${URL_USUARIO_FIND}${userLocalStorage}`);
       setDatosUsuario(data);
     } catch (error) {
       alert(error)
     }
   }
-//   obtenerDatosUsuario();
+
+  useEffect(() => {
+    obtenerDatosUsuario();
+  }, [])
+
+  const editarUsuario = async () => {
+    try {
+      const { data } = await axios.put(`${URL_USUARIO_EDIT}${ID_USER}, {...datosUsuario}`);
+      setDatosUsuario(data);
+    } catch (error) {
+      alert(error)
+    }
+  }
+
 
 
   const manejarClicEditar = (campo) => {
@@ -47,7 +52,7 @@ const UserProfile = () => {
       const datosActualizados = { ...datosUsuario };
       delete datosActualizados.modoEdicion; 
 
-      const respuesta = await axios.post('/api/actualizar-usuario', datosActualizados);
+      const respuesta = await axios.put(`${URL_USUARIO_EDIT}${ID_USER}`, datosActualizados);
 
       console.log('Datos del usuario actualizados:', respuesta.data);
       setModoEdicion({ ...modoEdicion, [campo]: false });
@@ -72,8 +77,8 @@ const UserProfile = () => {
           <div className={style.save1} onClick={() => manejarClicGuardar('name')}></div>
         </div>
         <div className={style.iconos_box2}>
-          <div className={style.edit1} onClick={() => manejarClicEditar('email')}></div>
-          <div className={style.save1} onClick={() => manejarClicGuardar('email')}></div>
+          <div className={style.edit1} onClick={() => manejarClicEditar('phone')}></div>
+          <div className={style.save1} onClick={() => manejarClicGuardar('phone')}></div>
         </div>
         <div className={style.iconos_box3}>
           <div className={style.edit1} onClick={() => manejarClicEditar('password')}></div>
@@ -86,7 +91,7 @@ const UserProfile = () => {
       </div>
 
       <div className={style.textos}>
-        <div className={style.name}>Primer nombre primer apellido
+        <div className={style.name}>
         {modoEdicion.name ? (
             <input
               type="text"
@@ -97,18 +102,18 @@ const UserProfile = () => {
               <div>{datosUsuario.name}</div>
           )}
         </div>
-        <div className={style.email}>email
-        {modoEdicion.email ? (
+        <div className={style.phone}>
+        {modoEdicion.phone ? (
             <input
               type="text"
-              value={datosUsuario.email}
-              onChange={(e) => manejarCambioInput(e, 'email')}
+              value={datosUsuario.phone}
+              onChange={(e) => manejarCambioInput(e, 'phone')}
             />
           ) : (
-              <div>{datosUsuario.email}</div>
+              <div>{datosUsuario.id}</div>
           )}
         </div>
-        <div className={style.password}>password
+        <div className={style.password}>
         {modoEdicion.password ? (
             <input
               type="text"
@@ -119,7 +124,7 @@ const UserProfile = () => {
               <div>{datosUsuario.password}</div>
           )}
         </div>
-        <div className={style.place}>place
+        <div className={style.place}>
         {modoEdicion.city ? (
             <input
               type="text"

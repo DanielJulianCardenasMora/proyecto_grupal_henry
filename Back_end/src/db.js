@@ -3,36 +3,26 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { timeStamp } = require("console");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = require('../config')
 
-let sequelize =
-  process.env.NODE_ENV === "production"
-    ?new Sequelize({
-      database: "railway",
-      username: "postgres",
-      password: "cvSnhcMGpmRBJUqRxZOoPdfbabgSbnrx",
-      host: "monorail.proxy.rlwy.net",
-      port: 5432,
-      dialect: "postgres",
-      dialectOptions: {
-        ssl: { require: true, rejectUnauthorized: false }
-      },
-    })
-    : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-        {
-            logging: false, 
-            native: false, 
-            force: true
-        }
-      );
+let sequelize = new Sequelize({
+  database: DB_NAME,
+  username: DB_USER,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  port: DB_PORT,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: false,
+  },
+});
 
       sequelize.authenticate()
       .then(() => {
-          console.log('Connection to the database has been established successfully.');
+          console.log('Conexion con la base de datos establecida');
       })
       .catch(err => {
-          console.error('Unable to connect to the database:', err);
+          console.error('Error al conectar con la base de datos: ', err);
       });
 
 const basename = path.basename(__filename);

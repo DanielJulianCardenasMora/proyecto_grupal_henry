@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginPage, { Logo, Password, Footer } from '@react-login-page/page5';
+import LoginPage, { Logo, Password, Footer, Title } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
 import LoginLogo from 'react-login-page/logo-rect';
 import { Input } from '@react-login-page/page5';
@@ -42,7 +42,8 @@ function Login () {
   return (
     <div className={styles.div}>
       <LoginPage style={{ height: 480 }}>
-        <h2>¿Ya tienes cuenta en WearFashion? Inicia sesion</h2>
+        <Title>¿Ya tienes cuenta en WearFashion? Inicia sesion</Title>
+
         <Logo>
           <LoginLogo />
         </Logo>
@@ -57,6 +58,7 @@ function Login () {
           name="password"
           onChange={handleChangePassword}
           value={credentials.password}
+          visible={true}
         />
         <Submit onClick={onClick}>Login</Submit>
         {isAuthenticated ? (
@@ -70,12 +72,17 @@ function Login () {
           </div>
         ) : (
           <>
-            {" "}
-            <button onClick={() => loginWithRedirect()}>Registrarme con Google</button>
+            <br></br>
+            <button onClick={() => loginWithRedirect()}>
+              Registrarme con Google
+            </button>
           </>
         )}
         <Footer>
-          ¿Quieres registrarte? <a href="#">Registrarme</a>
+          ¿Quieres registrarte?{" "}
+          <a onClick={() => loginWithRedirect()} href="#">
+            Registrarme
+          </a>
         </Footer>
       </LoginPage>
     </div>
