@@ -1,14 +1,14 @@
 .container{
   line-height: 0;
 }
-.profilePic{
+/* .profilePic{
   height: 35%;
   width: 14%;
   background-color: red;
   position: absolute;
   top: 12%;
   left: 9.1%;
-}
+} */
 .fondo{
   height: 150vh;
   width: 100%;
@@ -52,7 +52,7 @@
   height: 3vh;
   width: 1.3vw;
   margin-left: 5%;
-  background-color: red;
+  /* background-color: red; */
 }
 .textos{
   position: absolute;
@@ -70,7 +70,7 @@
   text-align: left;
   height: 10%;
   width: 100%;
-  background-color: rgb(255, 0, 0);
+  /* background-color: rgb(255, 0, 0); */
 }
 .historial{
   background-color: red;
