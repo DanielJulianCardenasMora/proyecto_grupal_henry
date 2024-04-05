@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       quantity: {
         type: DataTypes.INTEGER,
         allowNull: true,
-    },
+      },
       genero: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -41,6 +41,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING, // O el tipo de datos adecuado para el nombre de la categoría
         allowNull: true,
       },
+      active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true // Por defecto, un producto está activo
+      }
     },
     { timestamps: false }
   );

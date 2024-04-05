@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import style from "./menu.module.css";
-import {  useDispatch } from "react-redux";
-import { genderFilter, filterByCategory, priceFilter } from '../../redux/actions/actions';
+import { useDispatch } from "react-redux";
+import { genderFilter, filterByCategory, priceFilter, updateGenderFilter, updateCategoryFilter, updatePriceFilter } from '../../redux/actions/actions';
 
 
 export const Menu = () => {
@@ -13,15 +13,26 @@ export const Menu = () => {
     setIsHidden(!isHidden);
   };
 
+  // const handleGender = (gender) => {
+  //   dispatch(genderFilter(gender))
+  // }
+
+  // const handleCategory = (category) => {
+  //   dispatch(filterByCategory(category))
+  // }
+  // const handlePrice = (sortOrder) => {
+  //   dispatch(priceFilter(sortOrder))
+  // }
   const handleGender = (gender) => {
-    dispatch(genderFilter(gender))
+    dispatch(updateGenderFilter(gender))
   }
 
   const handleCategory = (category) => {
-    dispatch(filterByCategory(category))
+    dispatch(updateCategoryFilter(category))
   }
   const handlePrice = (sortOrder) => {
-    dispatch(priceFilter(sortOrder))
+    console.log('sortOrder menu', sortOrder);
+    dispatch(updatePriceFilter(sortOrder))
   }
 
 
@@ -40,8 +51,8 @@ export const Menu = () => {
             <button onClick={() => handleCategory("Buzos")}>Coats</button>
             <button onClick={() => handleCategory("Pantalones")}>Pants</button>
             <button onClick={() => handleCategory("Faldas")}>Skirts</button>
-            <button onClick={() => handleCategory("Camisas")}>Shirts</button>
             <button onClick={() => handleCategory("Remeras")}>Tshirts</button>
+            <button onClick={() => handleCategory("Camisas")}>Shirts</button>
           </div>
           <div className={style.columna3}>
             <h1>Price order</h1>
