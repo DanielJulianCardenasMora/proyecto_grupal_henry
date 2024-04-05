@@ -170,3 +170,9 @@ background-color: rgba(255, 255, 255, 0.349);;
     font-weight: lighter;
 }
 
+.orders{
+    background-color: rgba(0, 0, 0, 0.307);
+    border-radius: 2em;
+    margin-left: 1%;
+}
+
