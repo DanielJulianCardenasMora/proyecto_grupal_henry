@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './nav.module.css'
 import { Link } from 'react-router-dom'
 
@@ -8,6 +8,15 @@ import { Link } from 'react-router-dom'
 
 function Nav() {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('userEmail');
+    setIsLoggedIn(storedEmail !== null);
+  }, []);
+
+  const handleLogin = () => {
+    alert('Porfavor accede al Log in primero');
+  };
 
 
   return (
@@ -17,6 +26,15 @@ function Nav() {
      <Link to='/products' className={style.link}> <li>Products</li></Link>
      <Link to='/about' className={style.link} > <li>About</li></Link>
      <Link to='/create' className={style.link} ><li>Create</li></Link>
+     {isLoggedIn ? (
+            <Link to='/myprofile' className={style.link}>
+              <li>My Profile</li>
+            </Link>
+          ) : (
+            <li className={style.link} onClick={handleLogin}>
+              My Profile
+            </li>
+          )}
      <Link to='/cart' className={style.link}><li>Cart</li></Link>
       
      </ul></div>
