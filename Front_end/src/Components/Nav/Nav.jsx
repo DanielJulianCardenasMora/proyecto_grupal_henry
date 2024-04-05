@@ -6,11 +6,12 @@ import { Link, useLocation } from 'react-router-dom'
 
 
 
+
 function Nav() {
   const location = useLocation()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    const storedEmail = localStorage.getItem('userEmail');
+    const storedEmail = localStorage.getItem('usuario');
     setIsLoggedIn(storedEmail !== null);
   }, []);
 
