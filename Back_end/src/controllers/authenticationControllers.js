@@ -8,9 +8,11 @@ dotenv.config();
 
 
 const register = async (req, res) => {
-  const { name, email, password, phone, country, city } = req.body;
+  // const { name, email, password, phone, country, city } = req.body;
+  const { email, password, phone, country } = req.body;
 
-  if (!name || !email || !password || !phone || !country || !city) {
+  // if (!name || !email || !password || !phone || !country || !city) {
+  if ( !email || !password || !phone || !country ) {
     return res
       .status(404)
       .send({ status: "Error", message: "Los campos estan incompletos" });
@@ -26,16 +28,16 @@ const register = async (req, res) => {
 
   const salt = await bcryptjs.genSalt(10);
   const hashPassword = await bcryptjs.hash(password, salt);
-  const newUser = { name, email, password: hashPassword, phone, country, city };
+  // const newUser = { name, email, password: hashPassword, phone, country, city };
+  const newUser = { email, password: hashPassword, phone, country };
 
   //agregar usuario a Base de Datos
   try {
     const userCreatedDB = await User.create(newUser);
-    console.log(`usuario: ${userCreatedDB.name} creado! `);
     emailer.sendMail(userCreatedDB);
     return res.status(201).send({
       status: "ok",
-      message: `usuario ${newUser.name} agregado`,
+      message: `El email ${userCreatedDB.email} se ha registrado correctamente! `,
       redirect: "/login",
     });
   } catch (error) {
@@ -47,7 +49,6 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  // console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
   console.log(req.body);
