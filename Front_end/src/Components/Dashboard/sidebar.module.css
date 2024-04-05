@@ -1,0 +1,44 @@
+.container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px; /* Ancho del sidebar */
+    background-color: #7e66eb; /* Color de fondo del sidebar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content {
+    margin-left: 200px; /* Ancho del sidebar */
+}
+  
+.container button {
+    margin-bottom: 5px;
+}  
+
+.navButton {
+    display: block;
+    background-color: rgb(143, 143, 255); /* Color de fondo de los botones */
+    color: black; /* Color del texto de los botones */
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+  
+.navButton:hover {
+    background-color: rgb(203, 177, 252); /* Cambia el color de fondo al pasar el mouse */
+}
+
+.buttonlogout{
+  
+    background-image: url('../../../assets/icons/icons8-usuario-64.png'); /* URL del icono de usuario */
+    background-repeat: no-repeat; /* Evita que se repita el icono */
+    background-position: 10px center; /* Centra el icono verticalmente y alinea a la izquierda del botón */
+    background-size: 20px; /* Tamaño del icono */
+}
+
+
+
