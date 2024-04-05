@@ -29,9 +29,14 @@ export default function RegisterDialog({ isAuthenticated, handleClose }) {
       phone: formData.get('phone')
     }
 
-    await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
-    
-    console.log(newUser)
+    try {
+      await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
+      console.log('Registro exitoso:', newUser);
+      handleClose();
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error);
+      // Aquí puedes mostrar un mensaje de error al usuario si lo deseas
+    }
    
     handleClose();
   };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginPage, { Logo, Password, Footer, Title, Button } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
 import { useEffect } from 'react';
 import { RegisterDialog } from '../../Components';
-
+import axios from "axios"
 
 
 
@@ -38,28 +38,19 @@ function Login ({setUsuario, usuario}) {
       return;
     }
 
+    const login = {
+      email: credentials.email,
+      password: credentials.password
+    }
+
     try {
-      const response = await fetch("https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: credentials.email, 
-          password: credentials.password,
-        }),
-      });
+      const {data} = await axios.post(`https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/login`, login)
+      console.log(data)
+      if (data) {
+          // navigate("/") 
+        }
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Login exitoso:");
-        navigate("/"); // o la ruta que corresponda
-      } else {
-        alert("Error al iniciar sesión: " + data.message);
-      }
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
       alert("Error al conectar con el servicio de autenticación.");
 
     }
