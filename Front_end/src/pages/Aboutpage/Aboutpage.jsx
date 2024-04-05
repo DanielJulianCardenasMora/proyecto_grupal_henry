@@ -19,7 +19,7 @@ export const AboutPage = () => {
    
      <p >La empresa WEARFASHION es una marca que surge al notar la demanda del mercado   por una mayor disponibilidad  de   ropa   urbana   para   jóvenes,   enfocándose principalmente en la combinación de tendencias del diseño actual.</p>
    <p>El objetivo de este proyecto es hacer que nuestros clientes estén satisfechos con nuestro trabajo y que la imagen de nuestra marca inspire confianza, apuntando a desarrollar mejoras y cubrir necesidades que puedan surgir en el camino .</p>
-   <button className={style.learnMore}>Learn more</button>
+
    
           </div>
          </div>
@@ -57,23 +57,12 @@ export const AboutPage = () => {
             github="https://github.com/LucianoGLR"
           />
           <CardProfile
-            nombre="Alejandro Serrano Herrera"
-            localidad="Rosario, Santa Fe, Argentina"
-            linkedin="https://www.linkedin.com/in/serranoh93/"
-            github="https://github.com/SerranoH93"
-          />
-          <CardProfile
             nombre="Kevin Jeremias Barrios"
             localidad="Rosario, Santa Fe, Argentina"
             linkedin=" https://www.linkedin.com/in/kevinjbarrios/"
             github="https://github.com/Jerebrrs"
           />
-          <CardProfile
-            nombre="Shirley Balbuena"
-            localidad="Rosario, Santa Fe, Argentina"
-            linkedin="https://www.linkedin.com/in/shirley-balbuena-0b5bab295/"
-            github=" https://github.com/ShirleyBal"
-          />
+
   </div> 
 
         </div>

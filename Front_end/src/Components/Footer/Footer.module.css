@@ -3,6 +3,7 @@
     padding: 2%;
     display: flex;
 justify-content: space-evenly;
+background-color: gray;
 }
 .footer ul li{
     list-style-type: none;
