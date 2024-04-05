@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginPage, { Logo, Password, Footer, Title, Button } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
@@ -7,37 +7,61 @@ import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
 import { useEffect } from 'react';
-import { validateEmail, validatePassword, Register } from './validaciones';
 import { RegisterDialog } from '../../Components';
 
-function Login () {
+
+
+
+function Login ({setUsuario, usuario}) {
+
   const { loginWithRedirect, logout, isLoading, user, isAuthenticated } =
     useAuth0();
 
-  
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
 
+
   const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
 
   const handleClose = () => {
     setShowRegisterDialog(false)
   }
-  const onClick = () => {
-    // Verificar credenciales aquí
-    const email = validateEmail(credentials)
-    const password = validatePassword(credentials)
 
-    if(!email){
-      alert("El email que ingreso no esta registrado")
-    }else if(!password){
-      alert("Contraseña incorrecta")
-    }else{
-      alert("Login exitoso")
-      navigate("/");
+  const onClick = async () => {
+
+    if (!credentials.email || !credentials.password) {
+      alert("Tienes campos incompletos");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: credentials.email, 
+          password: credentials.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Login exitoso:");
+        navigate("/"); // o la ruta que corresponda
+      } else {
+        alert("Error al iniciar sesión: " + data.message);
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("Error al conectar con el servicio de autenticación.");
+
     }
   }
 

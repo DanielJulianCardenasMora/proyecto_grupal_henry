@@ -12,6 +12,7 @@ import Footer from './Components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import Login from './pages/Loginpage/Loginpage';
 import Dashboard from './pages/Dashboard/dashboard';
+import Orders from './Components/Orders/Orders';
 
 axios.defaults.baseURL='proyectogrupalhenry-production-e8a4.up.railway.app'
 
@@ -23,17 +24,16 @@ function App() {
   //====
   const [shouldShowNavbar, setShouldShowNavbar] = useState(true); 
   const [carrito, agregarProducto] = useState(carritoGuardado);
-  const [usuario, setUsuario] = useState([usuarioLogeado]);
+  const [usuario, setUsuario] = useState(usuarioLogeado);
   const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    
   }, [carrito]);
 
   useEffect(() => {
     localStorage.setItem('usuario', JSON.stringify(usuario));
-    console.log(usuario);
+    
   }, [usuario]);
 
   useEffect(() => {
@@ -62,6 +62,7 @@ function App() {
         <Route path="/cards" element={<Card />} />
         <Route path="/myprofile" element={<UserProfilePage usuario={usuario} setUsuario={setUsuario} />} />
         <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
+        <Route path="/orders" element={<Orders />} />
     
 
         <Route path="/dashboard" element={<Dashboard />}>
@@ -71,7 +72,6 @@ function App() {
           <Route path="products/create" element={<CreateProducts />}/>  
         </Route>
 
-        {/* <Route path="/orders" element={<Orders />} /> */}
       </Routes>
     </>
   );
