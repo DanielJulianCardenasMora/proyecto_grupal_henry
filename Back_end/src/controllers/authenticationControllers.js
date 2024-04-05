@@ -48,23 +48,23 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   // console.log(req.body);
-  const name = req.body.name;
+  const email = req.body.email;
   const password = req.body.password;
   console.log(req.body);
 
-  if (!name || !password) {
+  if (!email || !password) {
     return res
       .status(400)
       .send({ status: "Error", message: "Los campos estan incompletos!" });
   }
 
   // Verificar si el usuario existe
-  const user = await User.findOne({ where: { name: name } });
+  const user = await User.findOne({ where: { email: email } });
 
   if (!user) {
     return res
       .status(400)
-      .send({ status: "Error", message: "Usuario no encontrado" });
+      .send({ status: "Error", message: "Email no encontrado" });
   }
 
   // Verificar la contraseña
