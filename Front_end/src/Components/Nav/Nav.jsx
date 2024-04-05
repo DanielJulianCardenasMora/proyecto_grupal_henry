@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import style from './nav.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 
 
 
 
 function Nav() {
-
+  const location = useLocation()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const storedEmail = localStorage.getItem('userEmail');
@@ -40,7 +40,7 @@ function Nav() {
      </ul></div>
 
      <div className={style.logIn}>
-           <button className={style.logInB} >Log In</button>
+           <Link to='/login' className={style.link}><button className={style.logInB}>Log In</button></Link>
      </div>
      
 

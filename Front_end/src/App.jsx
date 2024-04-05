@@ -41,6 +41,13 @@ function App() {
     setShouldShowNavbar(!hiddenPaths.includes(location.pathname));
   }, [location]);
 
+ useEffect(() => {
+  if(location.pathname !== '/login'){
+    setShouldShowNavbar(true)
+  }else{
+    setShouldShowNavbar(false)
+  }
+ }, [location.pathname])
 
   return (
     <>
