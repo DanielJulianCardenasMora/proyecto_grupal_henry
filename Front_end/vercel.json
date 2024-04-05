@@ -8,7 +8,7 @@
     },
     "install": {
       "ignore-scripts": true,
-      "cmd": "npm install --force"
+      "cmd": "npm install"
     }
   }
   
