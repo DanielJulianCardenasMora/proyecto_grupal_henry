@@ -10,11 +10,11 @@ import {
   NAVEGACION,
   PRODUCT_ERROR,
   ADD_PRODUCT,
-  ENVIAR_CARRITO_AL_BACKEND
+  ENVIAR_CARRITO_AL_BACKEND,
   PRICE_FILTER
 } from "./type";
 
-const URL = 'http://localhost:3001/products'
+const URL = 'proyectogrupalhenry-production-e8a4.up.railway.app/products'
 
 export const getAllProducts = (page) => {
   return async function (dispatch) {
