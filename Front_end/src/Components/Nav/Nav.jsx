@@ -7,18 +7,22 @@ import { Link } from 'react-router-dom'
 
 function Nav() {
 
-  const [usuario, setUsuario] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('userEmail');
+    setIsLoggedIn(storedEmail !== null);
+  }, []);
+
+  const handleLogin = () => {
+    alert('Porfavor accede al Log in primero');
+  };
 
   useEffect(() => {
     const storedUsuario = localStorage.getItem("usuario");
     setUsuario(storedUsuario);
   }, []);
 
-  const handleProfileClick = () => {
-    if (!usuario) {
-      alert("Necesitas logearte primero");
-    }
-  };
+
 
   return (
     <nav className={style.nav}>
@@ -27,15 +31,15 @@ function Nav() {
      <Link to='/products' className={style.link}> <li>Products</li></Link>
      <Link to='/about' className={style.link} > <li>About</li></Link>
      <Link to='/create' className={style.link} ><li>Create</li></Link>
-     {usuario ? (
-        <Link to="/myprofile" className={style.link}>
-          <li>My Profile</li>
-        </Link>
-      ) : (
-        <li onClick={handleProfileClick} className={style.link}>
-          My Profile
-        </li>
-      )}
+     {isLoggedIn ? (
+            <Link to='/myprofile' className={style.link}>
+              <li>My Profile</li>
+            </Link>
+          ) : (
+            <li className={style.link} onClick={handleLogin}>
+              My Profile
+            </li>
+          )}
      <Link to='/cart' className={style.link}><li>Cart</li></Link>
       
      </ul></div>

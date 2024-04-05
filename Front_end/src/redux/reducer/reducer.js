@@ -6,7 +6,7 @@ import {
   CATEGORY_FILTER,
   ADD_PRODUCT,
   ENVIAR_CARRITO_AL_BACKEND,
-  ORDERS
+  ORDERS,
   PRICE_FILTER
 } from "../actions/type";
 
@@ -23,7 +23,7 @@ const initialstate = {
   genero: '',
   category: '',
   images: [], 
-  orders:[]
+  orders:[],
   totalPage: 1
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from  'axios'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage, HomeAdmin ,ProductsAdmin, Follow, CreateProducts, UserProfilePage } from './pages';
 import './App.css';
@@ -11,7 +12,9 @@ import Footer from './Components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import Login from './pages/Loginpage/Loginpage';
 import Dashboard from './pages/Dashboard/dashboard';
-import Layout from './pages/layout';
+
+axios.defaults.baseURL='proyectogrupalhenry-production-e8a4.up.railway.app'
+
 
 function App() {
   //estas variables van encima del useState
@@ -44,13 +47,13 @@ function App() {
     {shouldShowNavbar && <Nav />} 
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login usuario={usuario} setUsuario={setUsuario} />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/detail/:id" element={<DetailPage carrito={carrito} agregarProducto={agregarProducto} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/cards" element={<Card />} />
-        <Route path="/myprofile" element={<UserProfilePage  />} />
+        <Route path="/myprofile" element={<UserProfilePage usuario={usuario} setUsuario={setUsuario} />} />
         <Route path="/cart" element={<Cart carrito={carrito} agregarProducto={agregarProducto} />} />
     
 
@@ -62,6 +65,7 @@ function App() {
         </Route>
 
         <Route path="/orders" element={<Orders />} />
+        {/* <Route path="/orders" element={<Orders />} /> */}
       </Routes>
     </>
   );
