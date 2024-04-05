@@ -26,7 +26,10 @@ const getProducts = async (req, res) => {
     filteredProducts = filtrarPorCategoria(filteredProducts, category);
 
     if (name) {
-      filteredProducts = getProductsByName(name);
+      // Llamar a getProductsByName y verificar el resultado
+      const productsByName = await getProductsByName(name);
+      console.log("Products by name:", productsByName); // Imprime el resultado
+      filteredProducts = productsByName;
     }
 
     filteredProducts = filtrarPorNombre(filteredProducts, sortBy);

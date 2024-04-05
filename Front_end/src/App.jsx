@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from  'axios'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage, UserProfilePage } from './pages';
 import './App.css';
@@ -10,6 +11,9 @@ import { Nav } from './Components';
 import { useEffect, useState } from 'react';
 import Login from './pages/Loginpage/Loginpage';
 import Orders from './Components/Orders/Orders';
+
+axios.defaults.baseURL='proyectogrupalhenry-production-e8a4.up.railway.app'
+
 
 function App() {
   const location = useLocation(); // Obtener la ubicación actual
