@@ -36,7 +36,7 @@ export const priceFilter = (sortOrder, page) => {
   return async function (dispatch) {
     try {
       const sortBy = 'price';
-      const response = await axios.get(`${URL}/products?sortBy=${sortBy}&sortOrder=${sortOrder}`);
+      const response = await axios.get(`${URL}/products?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}`);
       console.log('De actions', response.data.products);
       dispatch({
         type: PRICE_FILTER,
@@ -78,11 +78,11 @@ export const getUsers = () => {
 
 
 export function getProductDetail(id) {
-
+  console.log('id: ' + id)
   return async function (dispatch) {
 
     try {
-      const { data } = await axios.get(`${URL}/${id}`)
+      const { data } = await axios.get(`${URL}/products/${id}`)
 
       return dispatch({
         type: DETAIL,
