@@ -26,13 +26,37 @@ function Login ({setUsuario, usuario}) {
   });
   const navigate = useNavigate();
 
-  const onClick = () => {
+  const onClick = async () => {
     // Verificar credenciales aquí
 
-    if (credentials.email && credentials.password) {
-      navigate("/landing");
-    } else {
-      alert("Debes ingresar un Email y Contraseña Valido");
+    if (!credentials.email || !credentials.password) {
+      alert("Tienes campos incompletos");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3001/users/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: credentials.email, 
+          password: credentials.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Login exitoso:");
+        navigate("/"); // o la ruta que corresponda
+      } else {
+        alert("Error al iniciar sesión: " + data.message);
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("Error al conectar con el servicio de autenticación.");
     }
   };
 
@@ -73,7 +97,7 @@ function Login ({setUsuario, usuario}) {
             <img src={user.picture} alt={user.name} />
             <h2>Nombre: {user.name}</h2>
             <p>Email: {user.email}</p>
-            <button onClick={() => logout({ returnTo: "/landing" })}>
+            <button onClick={() => logout({ returnTo: "/" })}>
               Cerrar Sesion
             </button>
           </div>
