@@ -4,12 +4,15 @@ function filtrarPorNombre(products, sortBy) {
   return products;
 }
 
-function filtrarPorPrecio(products, sortBy, sortOrder) {
-  if (sortBy === "price") {
-    if (sortOrder === "asc") return products.sort((a, b) => a.price - b.price);
-    if (sortOrder === "desc") return products.sort((a, b) => b.price - a.price);
+function filtrarPorPrecio(products, sortOrder) {
+  console.log('sortorder desde dilter', sortOrder);
+  if (sortOrder === "asc") {
+    return products.sort((a, b) => a.price - b.price);
+  } else if (sortOrder === "desc") {
+    return products.sort((a, b) => b.price - a.price);
+  } else {
+    return products; // Devolver los productos sin ordenar si no se especifica sortOrder
   }
-  return products;
 }
 function filtrarPorGenero(products, gender) {
   if (gender) {
