@@ -6,20 +6,16 @@ import LoginLogo from 'react-login-page/logo-rect';
 import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
-
+import { useEffect } from 'react';
+import { validateEmail, validatePassword, Register } from './validaciones';
+import { RegisterDialog } from '../../Components';
 
 
 function Login ({setUsuario, usuario}) {
   const { loginWithRedirect, logout, isLoading, user, isAuthenticated } =
     useAuth0();
 
-  useEffect(() => {
-    if (user && user.email) {
-      setUsuario(user.email)
-      console.log(usuario)
-    }
-    
-  },[user])
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -28,6 +24,9 @@ function Login ({setUsuario, usuario}) {
 
   const onClick = async () => {
     // Verificar credenciales aquí
+    const email = validateEmail(credentials)
+    const password = validatePassword(credentials)
+
 
     if (!credentials.email || !credentials.password) {
       alert("Tienes campos incompletos");
@@ -57,8 +56,10 @@ function Login ({setUsuario, usuario}) {
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       alert("Error al conectar con el servicio de autenticación.");
+
     }
-  };
+  }
+
 
   const handleChangeEmail = (evento) => {
     const valor = evento.target.value;
@@ -69,6 +70,10 @@ function Login ({setUsuario, usuario}) {
     const valor = evento.target.value;
     setCredentials({ ...credentials, password: valor });
   };
+
+  useEffect(()  => {
+    console.log(user)
+  }, [isAuthenticated])
 
   return (
     <div className={styles.div}>
@@ -91,7 +96,7 @@ function Login ({setUsuario, usuario}) {
           value={credentials.password}
           visible={true}
         />
-        <Submit onClick={onClick}>Login</Submit>
+        <Submit onClick={() => onClick()}>Login</Submit>
         {isAuthenticated ? (
           <div>
             <img src={user.picture} alt={user.name} />
@@ -110,14 +115,14 @@ function Login ({setUsuario, usuario}) {
           </>
         )}
         <Footer>
-          ¿Quieres registrarte?{" "}
-          <a onClick={() => loginWithRedirect()} href="#">
+          ¿Quieres registrarte?
+          <a onClick={() => <RegisterDialog />} >
             Registrarme
           </a>
         </Footer>
       </LoginPage>
     </div>
   );
-} 
+}
 
 export default Login;
