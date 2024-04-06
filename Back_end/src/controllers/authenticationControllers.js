@@ -94,7 +94,7 @@ if (!user) {
 
   } catch (error) {
     console.log("Ocurrio un error:", error);
-    return res.status(500).send({status: "error", message: "peor en el login" }, error)
+    return res.status(500).send({status: "error", message: "peor en el login", error: error})
   }
 };
 
