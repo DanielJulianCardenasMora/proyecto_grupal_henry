@@ -10,7 +10,6 @@ dotenv.config();
 const register = async (req, res) => {
   // const { name, email, password, phone, country, city } = req.body;
   const { email, password, phone, country } = req.body;
-  res.send(email, password, phone, country)
   // if (!name || !email || !password || !phone || !country || !city) {
   if ( !email || !password || !phone || !country ) {
     return res
