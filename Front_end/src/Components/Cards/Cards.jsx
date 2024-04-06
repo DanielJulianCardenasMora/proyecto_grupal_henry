@@ -12,7 +12,6 @@ export const Cards = () => {
   const totalPages = useSelector((state) => state.TotalPages);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
-  console.log("proscr", productsScreen);
 
   const filters = useSelector((state) => state.filters);
 

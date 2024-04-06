@@ -12,7 +12,7 @@ const getProducts = async () => {
   try {
     const response = await axios.get(`${URL_PRODUCTS}`);
     const categories = await getCategory();
-   
+
 
     const getInfo = response.data.map((element) => {
       const category = categories.find(cat => cat.name === element.category);
@@ -90,7 +90,7 @@ const getProductsByName = async (name) => {
         }
       }
     });
-    
+
     // Verifica si se encontraron productos
     if (!productFiltered || productFiltered.length === 0) {
       return []; // Devuelve un array vacío si no se encontraron productos
@@ -103,35 +103,61 @@ const getProductsByName = async (name) => {
   }
 };
 
+// const createProductDB = async (name, description, price, images, stock, genero, category) => {
+//   const newProduct = { name, description, price, images, stock, genero, category }
+//   try {
+//     const imageUrls = []; // Creamos un array para almacenar las URLs de las imágenes
+
+
+//     for (const image of images) {
+//       const result = await cloudinary.uploader.upload(image.path);
+//       imageUrls.push(result.secure_url);
+//     }
+//     newProduct.images = imageUrls;
+
+
+//     const productCreatedDB = await Product.create(newProduct);
+
+
+//     const categoryName = await Category.findOne({ where: { name: category } });
+
+//     if (!categoryName) {
+//       console.log("La categoría especificada no existe.");
+//       return null;
+//     }
+//     await productCreatedDB.addCategory(categoryName);
+//     console.log("Nombre de la categoría encontrada:", categoryName.name);
+//     return productCreatedDB
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 const createProductDB = async (name, description, price, images, stock, genero, category) => {
-  const newProduct = { name, description, price, images, stock, genero, category }
+  const newProduct = { name, description, price, stock, genero, category };
   try {
-    const imageUrls = []; // Creamos un array para almacenar las URLs de las imágenes
 
+    console.log('Images desde create', images)
 
-    for (const image of images) {
-      const result = await cloudinary.uploader.upload(image.path);
-      imageUrls.push(result.secure_url);
-    }
-    newProduct.images = imageUrls;
-
+    newProduct.images = [images];
 
     const productCreatedDB = await Product.create(newProduct);
 
-
+    // Añadir la categoría al producto creado
     const categoryName = await Category.findOne({ where: { name: category } });
-
     if (!categoryName) {
       console.log("La categoría especificada no existe.");
       return null;
     }
     await productCreatedDB.addCategory(categoryName);
     console.log("Nombre de la categoría encontrada:", categoryName.name);
-    return productCreatedDB
+
+    return productCreatedDB;
   } catch (error) {
     console.log(error);
+    throw new Error('Error al crear el producto en la base de datos.');
   }
-}
+};
+
 
 const deleteProductDB = async (id) => {
   const productDeleted = Product.destroy({
