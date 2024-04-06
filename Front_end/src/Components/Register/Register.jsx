@@ -17,6 +17,7 @@ export default function RegisterDialog({ handleClose }) {
     setOpen( true ); // Si isAuthenticated es true, abrir el diálogo, de lo contrario, mantenerlo cerrado
   }, []);
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
