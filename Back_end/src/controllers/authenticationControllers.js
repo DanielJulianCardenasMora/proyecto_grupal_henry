@@ -89,8 +89,8 @@ if (!user) {
   // //Enviar la cookie con el token
   // res.cookie("jwt", token, cookieOption);
 
-  // //Enviar respuesta al usuario
-  // res.send({ status: "ok", message: "usuario loggeado", redirect: "/admin" });
+  //Enviar respuesta al usuario
+  res.send({ status: "ok", message: "usuario loggeado" });
 
   } catch (error) {
     console.log("Ocurrio un error:", error);
