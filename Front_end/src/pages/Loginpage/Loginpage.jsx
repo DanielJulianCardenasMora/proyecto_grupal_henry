@@ -46,12 +46,19 @@ function Login ({setUsuario, usuario}) {
 
     try {
       const {data} = await axios.post(`https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/login`, login)
+
       if (data.status == 'ok') {
-          navigate("/") 
+
+        const loginDone = {
+          email: login.email
+        }
+
+        alert("Login exitoso")
+        navigate("/") 
         }
 
     } catch (error) {
-      alert("Error al conectar con el servicio de autenticación." + error);
+      alert("Email o contraseña incorrectos");
     }
   }
 
@@ -68,7 +75,6 @@ function Login ({setUsuario, usuario}) {
 
   const handleRegisterClick = () => {
     // Mostrar el diálogo de registro al hacer clic en el enlace
-    console.log(showRegisterDialog)
     setShowRegisterDialog(true);
   };
 
@@ -95,25 +101,38 @@ function Login ({setUsuario, usuario}) {
         />
         <Submit onClick={() => onClick()}>Login</Submit>
 
-        {user ? (
-          <button onClick={() => logout()}>Logout</button>
+        {isAuthenticated ? (
+          <>
+            <RegisterDialog />
+          </>
         ) : (
-          <button onClick={() => loginWithRedirect()}>
-            Registrarme con Google
-          </button>
+          <>
+            <br></br>
+            <button onClick={() => loginWithRedirect()}>
+              Registrarme con Google
+            </button>
+          </>
         )}
 
+        {isAuthenticated ? (
+         <Button onClick={() => logout()}>Logout</Button>
+        ) : (
+          <>
+            <br></br>
+            <button onClick={() => loginWithRedirect()}>
+              Registrarme con Google
+            </button>
+          </>
+        )}
         <Button>Logout</Button>
         <Footer>
           ¿Quieres registrarte?
-          <button onClick={handleRegisterClick}>Registrarme</button>
+          {/* Manejar la visibilidad del diálogo al hacer clic en el enlace */}
+          <a onClick={handleRegisterClick}>Registrarme</a>
         </Footer>
 
-        {showRegisterDialog && (
-          <RegisterDialog
-            handleClose={handleClose}
-          />
-        )}
+        {/* Mostrar el diálogo cuando showRegisterDialog es true */}
+        {showRegisterDialog && <RegisterDialog isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
       </LoginPage>
     </div>
   );
