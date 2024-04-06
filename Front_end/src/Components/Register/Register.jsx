@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,12 +10,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios'
 
 
-export default function RegisterDialog({ isAuthenticated, handleClose }) {
-  const [open, setOpen] = React.useState(isAuthenticated || false); // Establecer el estado inicial basado en isAuthenticated
+export default function RegisterDialog({ handleClose }) {
+  const [open, setOpen] = useState(false); // Establecer el estado inicial basado en isAuthenticated
 
-  React.useEffect(() => {
-    setOpen(isAuthenticated); // Actualizar el estado cuando cambie isAuthenticated
-  }, [isAuthenticated]);
+  useEffect(() => {
+    setOpen( true ); // Si isAuthenticated es true, abrir el diálogo, de lo contrario, mantenerlo cerrado
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,7 +36,7 @@ export default function RegisterDialog({ isAuthenticated, handleClose }) {
       console.log('Registro exitoso:', newUser);
       handleClose();
     } catch (error) {
-      console.error('Error al registrar el usuario:', error);
+      alert('Error al registrar el usuario', error);
       // Aquí puedes mostrar un mensaje de error al usuario si lo deseas
     }
    
