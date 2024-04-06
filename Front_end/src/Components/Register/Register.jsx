@@ -30,6 +30,7 @@ export default function RegisterDialog({ isAuthenticated, handleClose }) {
     }
 
     try {
+      
       await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
       console.log('Registro exitoso:', newUser);
       handleClose();
@@ -60,7 +61,7 @@ export default function RegisterDialog({ isAuthenticated, handleClose }) {
           margin="dense"
           id="email"
           name="email"
-          label="Email"
+          label="email"
           type="email"
           fullWidth
           variant="standard"
@@ -96,7 +97,7 @@ export default function RegisterDialog({ isAuthenticated, handleClose }) {
           margin="dense"
           id="location"
           name="location"
-          label="Location"
+          label="location"
           type="location"
           fullWidth
           variant="standard"
