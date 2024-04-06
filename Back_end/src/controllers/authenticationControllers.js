@@ -49,10 +49,9 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-const email = req.body.email;
+  const email = req.body.email;
   const password = req.body.password;
   // console.log(req.body);
-
 
   try {
 
@@ -95,13 +94,10 @@ if (!user) {
   //Enviar respuesta al usuario
   res.send({ status: "ok", message: "usuario loggeado", redirect: "/admin" });
 
-
   } catch (error) {
-    res.send(error)
+    console.log("Ocurrio un error:", error);
+    return res.status(500).send({status: "error", message: "peor en el login" })
   }
-  
-
-
 };
 
 module.exports = {
