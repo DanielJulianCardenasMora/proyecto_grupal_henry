@@ -74,27 +74,27 @@ if (!user) {
       .send({ status: "Error", message: "Contraseña incorrecta" });
   }
 
-    // Generar el token JWT
-  const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRATION,
-  });
+  //   // Generar el token JWT
+  // const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
+  //   expiresIn: process.env.JWT_EXPIRATION,
+  // });
 
-  const cookieOption = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-    ),
-    path: "/login",
-  };
+  // const cookieOption = {
+  //   expires: new Date(
+  //     Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+  //   ),
+  //   path: "/login",
+  // };
 
-  //Enviar la cookie con el token
-  res.cookie("jwt", token, cookieOption);
+  // //Enviar la cookie con el token
+  // res.cookie("jwt", token, cookieOption);
 
-  //Enviar respuesta al usuario
-  res.send({ status: "ok", message: "usuario loggeado", redirect: "/admin" });
+  // //Enviar respuesta al usuario
+  // res.send({ status: "ok", message: "usuario loggeado", redirect: "/admin" });
 
   } catch (error) {
     console.log("Ocurrio un error:", error);
-    return res.status(500).send({status: "error", message: "peor en el login", error: error})
+    return res.status(500).send(error)
   }
 };
 
