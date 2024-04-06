@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 import LoginPage, { Logo, Password, Footer, Title, Button } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
 import LoginLogo from 'react-login-page/logo-rect';
 import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
-import { useEffect } from 'react';
 import { RegisterDialog } from '../../Components';
-import axios from "axios"
+
 
 
 
@@ -22,6 +22,7 @@ function Login ({setUsuario, usuario}) {
     email: "",
     password: "",
   });
+
   const navigate = useNavigate();
 
 
@@ -32,7 +33,7 @@ function Login ({setUsuario, usuario}) {
   }
 
   const onClick = async () => {
-
+    console.log(credentials.email, credentials.password)
     if (!credentials.email || !credentials.password) {
       alert("Tienes campos incompletos");
       return;
@@ -45,14 +46,12 @@ function Login ({setUsuario, usuario}) {
 
     try {
       const {data} = await axios.post(`https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/login`, login)
-      console.log(data)
-      if (data) {
-          // navigate("/") 
+      if (data.status == 'ok') {
+          navigate("/") 
         }
 
     } catch (error) {
-      alert("Error al conectar con el servicio de autenticación.");
-
+      alert("Error al conectar con el servicio de autenticación." + error);
     }
   }
 
