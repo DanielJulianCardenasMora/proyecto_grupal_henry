@@ -37,11 +37,12 @@ const Form = ({ addProduct }) => {
 
     const response = await axios.post('https://api.cloudinary.com/v1_1/dzrqdsfio/image/upload', data);
 
-    console.log(response.data.secure_url);
     setUrlImagen(response.data.secure_url);
     setFormData({ ...formData, images: response.data.secure_url });
   }
-
+  const deleteImagen = () => {
+    setUrlImagen("");
+  }
   const { name, description, price, stock, genero, category, images } = formData;
 
   const onChange = (e) => {
@@ -49,28 +50,24 @@ const Form = ({ addProduct }) => {
     console.log('onchange se actualiza', formData);
   };
 
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    // Verificar si UrlImagen está definido
     if (!UrlImagen) {
       console.error('No se ha seleccionado una imagen');
       return;
     }
-r
+
     const data = {
       name,
       description,
-      price: parseInt(price), // Asegurarse de convertir a número si es necesario
-      stock: parseInt(stock), // Asegurarse de convertir a número si es necesario
+      price: parseInt(price),
+      stock: parseInt(stock),
       genero,
       category,
-      images: UrlImagen // Enviamos la URL de la imagen como un array
+      images: UrlImagen
     };
 
-
-    // Call action to add product
     try {
       const response = await addProduct(data);
       console.log('Nuevo producto añadido:', response);
@@ -81,108 +78,108 @@ r
 
 
 
-
-
   return (
-    <form className={style.background} onSubmit={onSubmit}>
-      <div className={style.cont}>
-        <div className={style.formDiv}>
-          <label>Name:</label>
-          <div className={style.input}>
-            <input className={style.inp} type="text" name="name" value={name} onChange={onChange} />
-          </div>
-
-        </div>
-
-        <div className={style.formDiv}>
-          <label>Description:</label>
-          <div className={style.input}>
-            <textarea
-              className={style.desc}
-              name="description"
-              value={description}
-              onChange={onChange}
-            />
-
-          </div>
-
-        </div>
-
-        <div className={style.formDiv}>
-          <label>Price:</label>
-          <div className={style.input}>
-            <input type="number" className={style.inp} name="price" value={price} onChange={onChange} />
-          </div>
-
-        </div>
-
-        <div className={style.formDiv}>
-          <label>Stock:</label>
-          <div className={style.input}>
-
-            <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
-          </div>
-        </div>
-
-        <div className={style.formDiv}>
-          <label className={style.genero} htmlFor="genre">
-            Genre:{""}
-          </label>
-          <div className={style.input}>
-            <select
-              className={style.select}
-              name="genero"
-              value={genero}
-              onChange={onChange}
-            >
-              <option> Gender </option>
-
-              {Genres
-                ? Genres.map((option, i) => {
-                  return (
-                    <option key={i} name={option} value={option}>
-                      {option}
-                    </option>
-                  );
-                })
-                : null}
-            </select>
-          </div>
-        </div>
-
-        <div className={style.formDiv}>
-          <label className={style.genero} htmlFor="category">
-            Category:
-
-          </label>
-          <div className={style.input}>
-            <select className={style.select} name='category' defaultValue='All' onChange={onChange}>
-              <option name='category' value={category}> Category </option>
-              {Category ? Category.map((option, i) => {
-                return (
-                  <option key={i} name={category} value={option}>{option}</option>
-                )
-              })
-                : null}
-            </select>
-          </div>
-        </div>
-
-        <div className={style.formDiv}>
-          <label>Images:</label>
-          <input type="file" name="images" onChange={uploadtImage} multiple />
-          {/* {UrlImagen && (
-            <div>
-              <img src={UrlImagen} />
-              <button>Delete Imagen</button>
+    <div className={style.background} >
+      <form className={style.background} onSubmit={onSubmit}>
+        <div className={style.cont}>
+          <div className={style.formDiv}>
+            <label>Name:</label>
+            <div className={style.input}>
+              <input className={style.inp} type="text" name="name" value={name} onChange={onChange} />
             </div>
-          )} */}
 
+          </div>
+
+          <div className={style.formDiv}>
+            <label>Description:</label>
+            <div className={style.input}>
+              <textarea
+                className={style.desc}
+                name="description"
+                value={description}
+                onChange={onChange}
+              />
+
+            </div>
+
+          </div>
+
+          <div className={style.formDiv}>
+            <label>Price:</label>
+            <div className={style.input}>
+              <input type="number" className={style.inp} name="price" value={price} onChange={onChange} />
+            </div>
+
+          </div>
+
+          <div className={style.formDiv}>
+            <label>Stock:</label>
+            <div className={style.input}>
+
+              <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
+            </div>
+          </div>
+
+          <div className={style.formDiv}>
+            <label className={style.genero} htmlFor="genre">
+              Genre:{""}
+            </label>
+            <div className={style.input}>
+              <select
+                className={style.select}
+                name="genero"
+                value={genero}
+                onChange={onChange}
+              >
+                <option> Gender </option>
+
+                {Genres
+                  ? Genres.map((option, i) => {
+                    return (
+                      <option key={i} name={option} value={option}>
+                        {option}
+                      </option>
+                    );
+                  })
+                  : null}
+              </select>
+            </div>
+          </div>
+
+          <div className={style.formDiv}>
+            <label className={style.genero} htmlFor="category">
+              Category:
+
+            </label>
+            <div className={style.input}>
+              <select className={style.select} name='category' defaultValue='All' onChange={onChange}>
+                <option name='category' value={category}> Category </option>
+                {Category ? Category.map((option, i) => {
+                  return (
+                    <option key={i} name={category} value={option}>{option}</option>
+                  )
+                })
+                  : null}
+              </select>
+            </div>
+          </div>
+
+          <div className={style.formDiv}>
+            <label>Images:</label>
+            <input type="file" name="images" onChange={uploadtImage} multiple />
+          </div>
+
+          <button type="submit" className={style.buttonForm}>Submit</button>
         </div>
+      </form>
+      {UrlImagen && (
+        <div className={style.imageContainer}>
+          <img src={UrlImagen} className={style.imgForm} />
+          <button onClick={() => deleteImagen()}>Delete File</button>
+        </div>
+      )}
 
-        <button type="submit" className={style.buttonForm}>Submit</button>
-      </div>
-    </form>
+    </div>
   );
 };
 
