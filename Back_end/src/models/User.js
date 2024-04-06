@@ -21,15 +21,15 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       country: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       city: {
         type: DataTypes.STRING,

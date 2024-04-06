@@ -5,5 +5,5 @@ import { Products } from './Products/Products'
 import { CardProfile } from "./Profilecard/CardProfile";
 import UserProfile from "./UserProfile/UserProfile";
 import Nav from "./Nav/Nav";
-
-export { Detail, Create_form, Landing, Products, Nav, CardProfile, UserProfile};
+import RegisterDialog from "./Register/Register";
+export { Detail, Create_form, Landing, Products, Nav, CardProfile, UserProfile, RegisterDialog};

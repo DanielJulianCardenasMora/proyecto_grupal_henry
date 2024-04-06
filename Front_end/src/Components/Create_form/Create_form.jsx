@@ -3,17 +3,18 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addProduct } from '../../redux/actions/actions';
+import axios from 'axios'
 
 const Form = ({ addProduct }) => {
-   const Genres = ['Masculino', 'Femenino', 'Unisex']
-   const Category = [
-     "Pantalones",
-     "Remeras",
-     "Chaquetas",
-     "Buzos",
-     "Faldas",
-     "Camisas",
-   ];
+  const Genres = ['Masculino', 'Femenino', 'Unisex']
+  const Category = [
+    "Pantalones",
+    "Remeras",
+    "Chaquetas",
+    "Buzos",
+    "Faldas",
+    "Camisas",
+  ];
 
   const [formData, setFormData] = useState({
     name: '',
@@ -22,62 +23,56 @@ const Form = ({ addProduct }) => {
     stock: '',
     genero: '',
     category: '',
-    images: []
+    images: ""
   });
+  const [UrlImagen, setUrlImagen] = useState("");
 
-  const { name, description, price, stock, genero, category } = formData;
+
+  const uploadtImage = async (event) => {
+    const file = event.target.files[0];
+
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "Presents_react");
+
+    const response = await axios.post('https://api.cloudinary.com/v1_1/dzrqdsfio/image/upload', data);
+
+    console.log(response.data.secure_url);
+    setUrlImagen(response.data.secure_url);
+    setFormData({ ...formData, images: response.data.secure_url });
+  }
+
+  const { name, description, price, stock, genero, category, images } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log('onchange se actualiza', formData);
   };
 
-
-  const onFileChange = (e) => {
-    const imagesArray = [];
-    const formDataObj = new FormData();
-
-    for (let i = 0; i < e.target.files.length; i++) {
-      const file = e.target.files[i];
-      imagesArray.push(file);
-      formDataObj.append(`images[${i}]`, file);
-    }
-
-    setFormData({ ...formData, images: imagesArray });
-  };
-
-  const handleImage = (evento) => {
-    const image = evento.target.files[0];
-    setProductData({ ...productData, images: [...productData.images, image] });
-  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    // Verificar si formData.images está definido
-    if (!formData.images || formData.images.length === 0) {
-      console.error('No se han seleccionado imágenes');
+    // Verificar si UrlImagen está definido
+    if (!UrlImagen) {
+      console.error('No se ha seleccionado una imagen');
       return;
     }
+r
+    const data = {
+      name,
+      description,
+      price: parseInt(price), // Asegurarse de convertir a número si es necesario
+      stock: parseInt(stock), // Asegurarse de convertir a número si es necesario
+      genero,
+      category,
+      images: UrlImagen // Enviamos la URL de la imagen como un array
+    };
 
-    // Create form data object
-    const formDataObj = new FormData();
-    formDataObj.append('name', name);
-    formDataObj.append('description', description);
-    formDataObj.append('price', price);
-    formDataObj.append('stock', stock);
-    formDataObj.append('genero', genero);
-    formDataObj.append('category', category);
-
-    // Iterar sobre las imágenes solo si formData.images está definido y no está vacío
-    formData.images.forEach((image) => {
-      formDataObj.append(`images`, image);
-    });
-
-    console.log('FormData object:', formDataObj);
 
     // Call action to add product
     try {
-      const response = await addProduct(formDataObj);
+      const response = await addProduct(data);
       console.log('Nuevo producto añadido:', response);
     } catch (error) {
       console.error('Error al agregar el producto:', error);
@@ -86,45 +81,47 @@ const Form = ({ addProduct }) => {
 
 
 
+
+
   return (
     <form className={style.background} onSubmit={onSubmit}>
       <div className={style.cont}>
         <div className={style.formDiv}>
           <label>Name:</label>
-  <div className={style.input}>
-  <input className={style.inp} type="text" name="name" value={name} onChange={onChange} />
-  </div>
- 
+          <div className={style.input}>
+            <input className={style.inp} type="text" name="name" value={name} onChange={onChange} />
+          </div>
+
         </div>
 
         <div className={style.formDiv}>
           <label>Description:</label>
           <div className={style.input}>
-          <textarea
-          className={style.desc}
-            name="description"
-            value={description}
-            onChange={onChange}
-          />
+            <textarea
+              className={style.desc}
+              name="description"
+              value={description}
+              onChange={onChange}
+            />
 
-</div>
+          </div>
 
         </div>
 
         <div className={style.formDiv}>
           <label>Price:</label>
           <div className={style.input}>
-          <input type="number" className={style.inp} name="price" value={price} onChange={onChange} />
-</div>
-   
+            <input type="number" className={style.inp} name="price" value={price} onChange={onChange} />
+          </div>
+
         </div>
 
         <div className={style.formDiv}>
           <label>Stock:</label>
           <div className={style.input}>
 
-          <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
-</div>
+            <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
+          </div>
         </div>
 
         <div className={style.formDiv}>
@@ -142,38 +139,45 @@ const Form = ({ addProduct }) => {
 
               {Genres
                 ? Genres.map((option, i) => {
-                    return (
-                      <option key={i} name={option} value={option}>
-                        {option}
-                      </option>
-                    );
-                  })
+                  return (
+                    <option key={i} name={option} value={option}>
+                      {option}
+                    </option>
+                  );
+                })
                 : null}
             </select>
-</div>
+          </div>
         </div>
 
         <div className={style.formDiv}>
-        <label  className={style.genero} htmlFor="category">
-          Category:
+          <label className={style.genero} htmlFor="category">
+            Category:
 
-        </label>
-        <div className={style.input}>
-        <select className={style.select} name='category' defaultValue='All' onChange={onChange}>
-            <option name='category' value={category}> Category </option>
+          </label>
+          <div className={style.input}>
+            <select className={style.select} name='category' defaultValue='All' onChange={onChange}>
+              <option name='category' value={category}> Category </option>
               {Category ? Category.map((option, i) => {
                 return (
                   <option key={i} name={category} value={option}>{option}</option>
                 )
               })
-              :null}
-          </select>
-</div>
+                : null}
+            </select>
+          </div>
         </div>
 
         <div className={style.formDiv}>
           <label>Images:</label>
-          <input type="file" name="images" onChange={onFileChange} multiple />
+          <input type="file" name="images" onChange={uploadtImage} multiple />
+          {/* {UrlImagen && (
+            <div>
+              <img src={UrlImagen} />
+              <button>Delete Imagen</button>
+            </div>
+          )} */}
+
         </div>
 
         <button type="submit" className={style.buttonForm}>Submit</button>

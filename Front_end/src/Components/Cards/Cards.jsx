@@ -11,17 +11,14 @@ export const Cards = () => {
   const productsScreen = useSelector((state) => state.ProductsScreen);
   const totalPages = useSelector((state) => state.TotalPages);
   const [currentPage, setCurrentPage] = useState(1);
-  const dispatch = useDispatch()
-  const urlActual = useSelector((state) => state.UrlActual)
-  
-  
-  console.log(urlActual)
-  console.log(filtroActivo)
+  const dispatch = useDispatch();
 
+  const filters = useSelector((state) => state.filters);
 
   useEffect(() => {
-    dispatch(getAllProducts(currentPage))
-  },[currentPage, dispatch])
+    // Llamar a getAllProducts con la página actual y los filtros del estado de Redux
+    dispatch(getAllProducts(currentPage, filters));
+  }, [currentPage, filters, dispatch]);
 
   const siguientePagina = () => {
     setCurrentPage(currentPage + 1)
