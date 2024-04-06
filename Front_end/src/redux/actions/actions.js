@@ -18,9 +18,9 @@ import {
 } from "./type";
 
 const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
-
+// const URL = 'http://localhost:3001'
 export const getAllProducts = (page, filters) => {
-  console.log('page desde actions', page)
+
   return async function (dispatch) {
     try {
       const response = await axios.get(`${URL}/products?page=${page}`, { params: filters });
@@ -129,6 +129,7 @@ export function postItem(i) {
 
 
 export const addProduct = (formData) => async (dispatch) => {
+  console.log('FormData de actions:', formData);
   try {
     const config = {
       headers: {
@@ -136,6 +137,7 @@ export const addProduct = (formData) => async (dispatch) => {
       }
     };
     const response = await axios.post(`${URL}/products/create`, formData, config);
+    console.log('respuesta de action', response.data);
     dispatch({
       type: ADD_PRODUCT,
       payload: response.data
@@ -203,7 +205,7 @@ export const updateGenderFilter = (gender) => ({
 });
 
 export const updateCategoryFilter = (category) => {
-  console.log("Sorting category:",category);
+  console.log("Sorting category:", category);
   return {
     type: 'UPDATE_CATEGORY_FILTER',
     payload: category,
@@ -212,7 +214,7 @@ export const updateCategoryFilter = (category) => {
 };
 
 export const updatePriceFilter = (sortOrder) => {
-  console.log("Sorting order:",sortOrder);
+  console.log("Sorting order:", sortOrder);
   return {
     type: 'UPDATE_PRICE_FILTER',
     payload: sortOrder,
