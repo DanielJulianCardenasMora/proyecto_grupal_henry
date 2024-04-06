@@ -8,9 +8,8 @@ dotenv.config();
 
 
 const register = async (req, res) => {
-  // const { name, email, password, phone, country, city } = req.body;
   const { email, password, phone, country } = req.body;
-  // if (!name || !email || !password || !phone || !country || !city) {
+
   if ( !email || !password || !phone || !country ) {
     return res
       .status(404)
@@ -27,7 +26,6 @@ const register = async (req, res) => {
 
   const salt = await bcryptjs.genSalt(10);
   const hashPassword = await bcryptjs.hash(password, salt);
-  // const newUser = { name, email, password: hashPassword, phone, country, city };
   const newUser = { email, password: hashPassword, phone, country };
 
   //agregar usuario a Base de Datos
