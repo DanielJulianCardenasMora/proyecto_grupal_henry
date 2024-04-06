@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,10 +11,10 @@ import axios from 'axios'
 
 
 export default function RegisterDialog({ isAuthenticated, handleClose }) {
-  const [open, setOpen] = React.useState(isAuthenticated || false); // Establecer el estado inicial basado en isAuthenticated
+  const [open, setOpen] = useState(false); // Establecer el estado inicial basado en isAuthenticated
 
-  React.useEffect(() => {
-    setOpen(isAuthenticated); // Actualizar el estado cuando cambie isAuthenticated
+  useEffect(() => {
+    setOpen(isAuthenticated === true); // Si isAuthenticated es true, abrir el diálogo, de lo contrario, mantenerlo cerrado
   }, [isAuthenticated]);
 
   const handleSubmit = async (event) => {
