@@ -1,4 +1,4 @@
-.background{
+.background {
   /* position: relative; */
   height: 100vh;
   background-image: url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
@@ -6,7 +6,8 @@
   background-size: cover;
   width: 100%;
 }
-.formDiv{
+
+.formDiv {
   /* background-color: brown; */
   height: 13%;
   width: 80%;
@@ -15,9 +16,10 @@
   justify-content: flex-start;
   margin: auto;
 }
-.cont{
+
+.cont {
   top: 55%;
-  left:50%;
+  left: 50%;
   padding: 2%;
   align-items: center;
   position: absolute;
@@ -28,13 +30,15 @@
   background-color: rgba(255, 255, 255, 0.422);
   border-radius: 10px;
 }
-.cont label{
+
+.cont label {
   font-size: 18px;
   width: 27%;
   margin-right: 2%;
   color: rgb(36, 36, 36);
   text-align: right;
 }
+
 .inp {
   background-color: rgb(255, 255, 255, 80%);
   height: 23px;
@@ -45,17 +49,18 @@
   color: black;
   width: 98%;
 
-}   
-.desc{
- width: 98%;
+}
+
+.desc {
+  width: 98%;
   background-color: rgb(255, 255, 255, 80%);
   border-radius: 6px;
   border: none;
   outline: none;
   font-size: 11px;
-} 
+}
 
-.select{
+.select {
   border: none;
   outline: none;
   border-radius: 5px;
@@ -63,10 +68,10 @@
   width: 100%;
   background-color: rgb(255, 255, 255, 80%);
   color: black;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.seleccionados{
+.seleccionados {
   color: rgb(84, 244, 255);
   line-height: 1;
   margin: 12px auto;
@@ -74,30 +79,31 @@
 }
 
 
-.buttonForm{
+.buttonForm {
   margin-top: 3%;
   width: 20%;
-height: 8%;
- background: rgba(128, 128, 128, 0.511);
- color: white;
- border: 1px solid white;
- border-radius: 1em ;
+  height: 8%;
+  background: rgba(128, 128, 128, 0.511);
+  color: white;
+  border: 1px solid white;
+  border-radius: 1em;
 }
 
-.buttonForm:hover{
+.buttonForm:hover {
   background-color: rgba(255, 255, 255, 0.21);
 }
 
-.font{
+.font {
   color: rgba(0, 0, 0, 0.647);
 }
 
-.input{
+.input {
   /* background-color: blueviolet; */
   width: 50%;
   color: black;
 }
 
-.desc{
+.desc {
   color: black;
 }
+
