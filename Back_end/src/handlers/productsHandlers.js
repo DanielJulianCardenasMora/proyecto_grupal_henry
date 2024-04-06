@@ -6,6 +6,8 @@ const {
   deleteProductDB,
 } = require("../controllers/productsControllers");
 
+const { Product } = require("../db");
+
 const { filtrarPorNombre, filtrarPorPrecio, filtrarPorGenero,
   filtrarPorCategoria } = require("../utils/filter");
 
@@ -20,11 +22,12 @@ const getProducts = async (req, res) => {
     const allProducts = await productsDataBase();
 
     //obtener los productos paginados
-    let filteredProducts = allProducts;
-   
+    let filteredProducts = allProducts.filter(products => products.active === true);
+
     filteredProducts = filtrarPorGenero(filteredProducts, gender);
     filteredProducts = filtrarPorCategoria(filteredProducts, category);
-
+    filteredProducts = filtrarPorPrecio(filteredProducts, sortOrder);
+    console.log('sortorder', sortOrder);
     if (name) {
       // Llamar a getProductsByName y verificar el resultado
       const productsByName = await getProductsByName(name);
@@ -32,9 +35,8 @@ const getProducts = async (req, res) => {
       filteredProducts = productsByName;
     }
 
-    filteredProducts = filtrarPorNombre(filteredProducts, sortBy);
-    filteredProducts = filtrarPorPrecio(filteredProducts, sortBy, sortOrder);
-
+    // filteredProducts = filtrarPorNombre(filteredProducts, sortBy);
+    // filteredProducts = filtrarPorPrecio(filteredProducts, sortOrder);
     const paginatedProducts = paginarDatos(filteredProducts, page, currentPage);
 
     response = {
@@ -64,11 +66,9 @@ const getDetail = async (req, res) => {
 };
 
 const postProduct = async (req, res) => {
-  console.log("Datos del cuerpo de la solicitud:", req.body);
-  console.log("Archivos recibidos:", req.files);
 
 
-  const { name, description, price, stock, genero, category } = req.body;
+  const { name, description, price, stock, genero, category, images } = req.body;
 
   try {
     // Validar los campos del formulario
@@ -77,9 +77,9 @@ const postProduct = async (req, res) => {
     validate("price", price);
 
     // Crear el producto en la base de datos
-    const newProduct = await createProductDB(name, description, price, req.files, stock, genero, category);
+    const newProduct = await createProductDB(name, description, price, images, stock, genero, category);
 
-    console.log(`El producto ${name} fue creado con exito!!`);
+    console.log(`El producto ${name} fue creado con éxito!!`);
     res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
@@ -104,9 +104,28 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const productActivation = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByPk(id);
+    if (!product) {
+      return res.status(404).json({ error: "Producto no encontrado" })
+    }
+
+    if (product.stock <= 0) {
+      product.active = !product.active; // Invierte el estado de activación
+      await product.save();
+    }
+    res.status(200).json({ message: `Producto ${product.name} ${product.active ? 'activado' : 'desactivado'}` })
+  } catch (error) {
+    console.error("Error al activar/desactivar producto", error)
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+}
 module.exports = {
   getProducts,
   getDetail,
   postProduct,
   deleteProduct,
+  productActivation
 };

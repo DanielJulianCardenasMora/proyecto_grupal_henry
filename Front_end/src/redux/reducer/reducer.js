@@ -22,9 +22,15 @@ const initialstate = {
   stock: '',
   genero: '',
   category: '',
-  images: [], 
-  orders:[],
-  totalPage: 1
+  images: "",
+  imageUrl: '',
+  orders: [],
+  totalPage: 1,
+  filters: {
+    gender: '', // Filtro de género
+    category: '', // Filtro de categoría
+    sortOrder: '' // Orden de precio
+  }
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -37,21 +43,19 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ProductsScreen: [...payload.products],
       };
 
-      case ENVIAR_CARRITO_AL_BACKEND:
-  console.log(payload);
-        return {
-          ...state,
-          orders: [...payload],
-          
-        };
+    case ENVIAR_CARRITO_AL_BACKEND:
+      console.log(payload);
+      return {
+        ...state,
+        orders: [...payload],
+
+      };
 
     case ORDERS:
-
-    return{
-      ...state,
-      orders:[...payload]
-    }
-
+      return {
+        ...state,
+        orders: [...payload]
+      }
     case GET_PRODUCTS:
       return {
         ...state,
@@ -59,35 +63,45 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ProductsScreen: [...payload[0]],
         TotalPages: payload[1],
       };
-    case GENDER_FILTER:
-      return {
-        ...state,
-        Products: [...payload],
-        ProductsScreen: [...payload],
-      }
     case DETAIL:
       return {
         ...state,
         Detail: payload,
       };
-    case CATEGORY_FILTER:
-      return {
-        ...state,
-        Products: [...payload],
-        ProductsScreen: [...payload],
-      };
     case ADD_PRODUCT:
+      console.log('Paylod de add reducer', payload);
       return {
         ...state,
-        Products: [payload, ...state.Products], 
+        Products: [payload, ...state.Products],
         loading: false
       };
-    case PRICE_FILTER:
+    case 'UPDATE_GENDER_FILTER':
+      console.log('reducer', payload);
       return {
         ...state,
-        Products: [...payload],
-        ProductsScreen: [...payload],
-      }
+        filters: {
+          ...state.filters,
+          gender: payload,
+        },
+      };
+    case 'UPDATE_CATEGORY_FILTER':
+      console.log('category', state.filters);
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          category: payload,
+        },
+      };
+    case 'UPDATE_PRICE_FILTER':
+      console.log("Sorting order received in reducer:", payload);
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          sortOrder: payload,
+        },
+      };
     default:
       return { ...state };
   }

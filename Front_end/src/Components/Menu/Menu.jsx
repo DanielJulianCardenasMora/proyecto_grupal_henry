@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import style from "./menu.module.css";
-import {  useDispatch } from "react-redux";
-import { genderFilter, filterByCategory, priceFilter } from '../../redux/actions/actions';
+import { useDispatch } from "react-redux";
+import { genderFilter, filterByCategory, priceFilter, updateGenderFilter, updateCategoryFilter, updatePriceFilter } from '../../redux/actions/actions';
 
 
 export const Menu = () => {
@@ -26,19 +26,18 @@ export const Menu = () => {
     setActiveOptions(newActiveOptions);
   };
 
-
-
   const handleGender = (gender) => {
     handleOptionClick(gender)
-    dispatch(genderFilter(gender))
+    dispatch(updateGenderFilter(gender))
   }
   const handleCategory = (category) => {
     handleOptionClick(category)
-    dispatch(filterByCategory(category))
+    dispatch(updateCategoryFilter(category))
   }
   const handlePrice = (sortOrder) => {
+    console.log('sortOrder menu', sortOrder);
     handleOptionClick(sortOrder)
-    dispatch(priceFilter(sortOrder))
+    dispatch(updatePriceFilter(sortOrder))
   }
 
 
