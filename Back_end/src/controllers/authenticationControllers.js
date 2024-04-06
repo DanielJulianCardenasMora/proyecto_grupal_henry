@@ -8,9 +8,9 @@ dotenv.config();
 
 
 const register = async (req, res) => {
-  const { name, email, password, phone, country, city } = req.body;
+  const { email, password, phone, country } = req.body;
 
-  if (!name || !email || !password || !phone || !country || !city) {
+  if ( !email || !password || !phone || !country ) {
     return res
       .status(404)
       .send({ status: "Error", message: "Los campos estan incompletos" });
@@ -26,16 +26,15 @@ const register = async (req, res) => {
 
   const salt = await bcryptjs.genSalt(10);
   const hashPassword = await bcryptjs.hash(password, salt);
-  const newUser = { name, email, password: hashPassword, phone, country, city };
+  const newUser = { email, password: hashPassword, phone, country };
 
   //agregar usuario a Base de Datos
   try {
     const userCreatedDB = await User.create(newUser);
-    console.log(`usuario: ${userCreatedDB.name} creado! `);
     emailer.sendMail(userCreatedDB);
     return res.status(201).send({
       status: "ok",
-      message: `usuario ${newUser.name} agregado`,
+      message: `El email ${userCreatedDB.email} se ha registrado correctamente! `,
       redirect: "/login",
     });
   } catch (error) {
@@ -47,26 +46,24 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  // console.log(req.body);
-  const name = req.body.name;
-  const password = req.body.password;
-  console.log(req.body);
 
-  if (!name || !password) {
+  const { email, password } = req.body;
+
+  try {
+
+    if (!email || !password) {
     return res
       .status(400)
       .send({ status: "Error", message: "Los campos estan incompletos!" });
   }
 
-  // Verificar si el usuario existe
-  const user = await User.findOne({ where: { name: name } });
+const user = await User.findOne({ where: { email: email } });
 
-  if (!user) {
+if (!user) {
     return res
       .status(400)
-      .send({ status: "Error", message: "Usuario no encontrado" });
+      .send({ status: "Error", message: "Email no encontrado" });
   }
-
   // Verificar la contraseña
   const isMatch = await bcryptjs.compare(password, user.password);
   if (!isMatch) {
@@ -75,23 +72,28 @@ const login = async (req, res) => {
       .send({ status: "Error", message: "Contraseña incorrecta" });
   }
 
-  // Generar el token JWT
-  const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRATION,
-  });
+  //   // Generar el token JWT
+  // const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
+  //   expiresIn: process.env.JWT_EXPIRATION,
+  // });
 
-  const cookieOption = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-    ),
-    path: "/login",
-  };
+  // const cookieOption = {
+  //   expires: new Date(
+  //     Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+  //   ),
+  //   path: "/login",
+  // };
 
-  //Enviar la cookie con el token
-  res.cookie("jwt", token, cookieOption);
+  // //Enviar la cookie con el token
+  // res.cookie("jwt", token, cookieOption);
 
   //Enviar respuesta al usuario
-  res.send({ status: "ok", message: "usuario loggeado", redirect: "/admin" });
+  res.send({ status: "ok", message: "usuario loggeado" });
+
+  } catch (error) {
+    console.log("Ocurrio un error:", error);
+    return res.status(500).send(error)
+  }
 };
 
 module.exports = {

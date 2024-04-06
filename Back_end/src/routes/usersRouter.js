@@ -8,7 +8,7 @@ usersRouter.get('/', getUsers);
 usersRouter.get('/:userEmail', getUserInfo);
 usersRouter.post('/api/register', register);
 usersRouter.post('/api/login', login);
-usersRouter.put('/:id', editUser);
+usersRouter.put('/:userEmail', editUser);
 usersRouter.delete('/:id', deleteUser);
 
 module.exports = usersRouter;

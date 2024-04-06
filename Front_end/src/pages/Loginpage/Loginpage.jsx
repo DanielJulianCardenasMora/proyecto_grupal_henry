@@ -1,40 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginPage, { Logo, Password, Footer, Title } from '@react-login-page/page5';
+import axios from "axios";
+import LoginPage, { Logo, Password, Footer, Title, Button } from '@react-login-page/page5';
 import { Submit } from '@react-login-page/page5';
 import LoginLogo from 'react-login-page/logo-rect';
 import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
+import { RegisterDialog } from '../../Components';
+
 
 
 
 function Login ({setUsuario, usuario}) {
+
   const { loginWithRedirect, logout, isLoading, user, isAuthenticated } =
     useAuth0();
 
-  useEffect(() => {
-    if (user && user.email) {
-      setUsuario(user.email)
-      console.log(usuario)
-    }
-    
-  },[user])
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+
   const navigate = useNavigate();
 
-  const onClick = () => {
-    // Verificar credenciales aquí
 
-    if (credentials.email && credentials.password) {
-      navigate("/landing");
-    } else {
-      alert("Debes ingresar un Email y Contraseña Valido");
+  const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
+
+  const handleClose = () => {
+    setShowRegisterDialog(false)
+  }
+
+  const onClick = async () => {
+    console.log(credentials.email, credentials.password)
+    if (!credentials.email || !credentials.password) {
+      alert("Tienes campos incompletos");
+      return;
     }
-  };
+
+    const login = {
+      email: credentials.email,
+      password: credentials.password
+    }
+
+    try {
+      const {data} = await axios.post(`https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/login`, login)
+      if (data.status == 'ok') {
+          navigate("/") 
+        }
+
+    } catch (error) {
+      alert("Error al conectar con el servicio de autenticación." + error);
+    }
+  }
+
 
   const handleChangeEmail = (evento) => {
     const valor = evento.target.value;
@@ -44,6 +64,11 @@ function Login ({setUsuario, usuario}) {
   const handleChangePassword = (evento) => {
     const valor = evento.target.value;
     setCredentials({ ...credentials, password: valor });
+  };
+
+  const handleRegisterClick = () => {
+    // Mostrar el diálogo de registro al hacer clic en el enlace
+    setShowRegisterDialog(true);
   };
 
   return (
@@ -67,16 +92,12 @@ function Login ({setUsuario, usuario}) {
           value={credentials.password}
           visible={true}
         />
-        <Submit onClick={onClick}>Login</Submit>
+        <Submit onClick={() => onClick()}>Login</Submit>
+
         {isAuthenticated ? (
-          <div>
-            <img src={user.picture} alt={user.name} />
-            <h2>Nombre: {user.name}</h2>
-            <p>Email: {user.email}</p>
-            <button onClick={() => logout({ returnTo: "/landing" })}>
-              Cerrar Sesion
-            </button>
-          </div>
+          <>
+            <RegisterDialog />
+          </>
         ) : (
           <>
             <br></br>
@@ -85,15 +106,29 @@ function Login ({setUsuario, usuario}) {
             </button>
           </>
         )}
+
+        {isAuthenticated ? (
+         <Button onClick={() => logout()}>Logout</Button>
+        ) : (
+          <>
+            <br></br>
+            <button onClick={() => loginWithRedirect()}>
+              Registrarme con Google
+            </button>
+          </>
+        )}
+        <Button>Logout</Button>
         <Footer>
-          ¿Quieres registrarte?{" "}
-          <a onClick={() => loginWithRedirect()} href="#">
-            Registrarme
-          </a>
+          ¿Quieres registrarte?
+          {/* Manejar la visibilidad del diálogo al hacer clic en el enlace */}
+          <a onClick={handleRegisterClick}>Registrarme</a>
         </Footer>
+
+        {/* Mostrar el diálogo cuando showRegisterDialog es true */}
+        {showRegisterDialog && <RegisterDialog isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
       </LoginPage>
     </div>
   );
-} 
+}
 
 export default Login;
