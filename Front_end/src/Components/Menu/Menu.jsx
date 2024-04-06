@@ -34,7 +34,7 @@ export const Menu = () => {
   }
   const handleCategory = (category) => {
     handleOptionClick(category)
-    // dispatch(filterByCategory(category))
+    dispatch(filterByCategory(category))
   }
   const handlePrice = (sortOrder) => {
     handleOptionClick(sortOrder)
