@@ -68,6 +68,7 @@ function Login ({setUsuario, usuario}) {
 
   const handleRegisterClick = () => {
     // Mostrar el diálogo de registro al hacer clic en el enlace
+    console.log(showRegisterDialog)
     setShowRegisterDialog(true);
   };
 
@@ -94,38 +95,25 @@ function Login ({setUsuario, usuario}) {
         />
         <Submit onClick={() => onClick()}>Login</Submit>
 
-        {isAuthenticated ? (
-          <>
-            <RegisterDialog />
-          </>
+        {user ? (
+          <button onClick={() => logout()}>Logout</button>
         ) : (
-          <>
-            <br></br>
-            <button onClick={() => loginWithRedirect()}>
-              Registrarme con Google
-            </button>
-          </>
+          <button onClick={() => loginWithRedirect()}>
+            Registrarme con Google
+          </button>
         )}
 
-        {isAuthenticated ? (
-         <Button onClick={() => logout()}>Logout</Button>
-        ) : (
-          <>
-            <br></br>
-            <button onClick={() => loginWithRedirect()}>
-              Registrarme con Google
-            </button>
-          </>
-        )}
         <Button>Logout</Button>
         <Footer>
           ¿Quieres registrarte?
-          {/* Manejar la visibilidad del diálogo al hacer clic en el enlace */}
-          <a onClick={handleRegisterClick}>Registrarme</a>
+          <button onClick={handleRegisterClick}>Registrarme</button>
         </Footer>
 
-        {/* Mostrar el diálogo cuando showRegisterDialog es true */}
-        {showRegisterDialog && <RegisterDialog isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
+        {showRegisterDialog && (
+          <RegisterDialog
+            handleClose={handleClose}
+          />
+        )}
       </LoginPage>
     </div>
   );
