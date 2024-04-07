@@ -62,7 +62,7 @@
 .texto2{
   position: absolute;
   z-index: 100;
-  top: 15%;
+  top: 18%;
   left: 2%;
   font-size: 2vw;
   font-family: f3;
@@ -102,28 +102,28 @@
 }
 .texto5{
   z-index: 100;
-  font-size: 6.5vw;
+  font-size: 6vw;
   font-family: f3;
   line-height: .5;
 }
 .box2{
-  background-color: rgba(39, 29, 222, 0.357);
-  height: 25%;
+  background-color: rgba(39, 29, 222, 0.183);
+  height: 17%;
   width: 25%;
   position: absolute;
   right: 22%;
   top: 33%;
   border-radius: 30px 5px 30px 5px;
   border: 2px solid rgba(0, 0, 0, 0.603);
-  transform: skew(-5deg);
-  line-height: 1.2;
-  font-size: 1.5vw;
+  line-height: 1;
+  font-size: 0.9vw;
   color: rgb(255, 255, 255);
+  text-align: left;
 }
 .difuminado2{
   height: 100%;
-  padding-top: 2%;
-  font-family: f1;
+  padding: 2% 4%;
+  font-family: Inter;
 }
 
 
@@ -141,15 +141,15 @@
 .boxDetalle{
   text-align: right;
   position: absolute;
-  top: 65%;
+  top: 57%;
   right: 4%;
   color: rgb(12, 6, 123);
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-family: f4;
 }
 .detalle3{
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 2.5vw;
+  font-size: 2vw;
 }
 .name{
   position: absolute;
@@ -160,12 +160,13 @@
   font-family: f3;
   text-align: left;
   text-shadow: 2px 2px 0px rgb(99, 167, 255);
+  font-size: 2.5vw;
 }
 .boton{
   position: absolute;
-  bottom: -5%;
+  bottom: 0;
   right: 50%;
-  height: 20%;
+  height: 18%;
   width: 30%;
   transform: translate(50%);
 }
@@ -195,7 +196,21 @@
   border-radius: 5px;
   transform: translate(50%);
 }
-
 .hover{
   background-color: black;
+}
+.buy{
+  position: absolute;
+  left: 10%;
+  bottom: 18%;
+}
+.buy button{
+  height: 5vh;
+  width: 7.5vw;
+  font-size: 1vw;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out; 
+}
+.buy button:hover{
+  box-shadow: 0px 0px 15px 15px rgb(122, 10, 227);
 }
