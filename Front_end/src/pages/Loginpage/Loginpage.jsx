@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import LoginPage, { Logo, Password, Footer, Title, Button } from '@react-login-page/page5';
@@ -8,11 +8,14 @@ import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
 import { RegisterDialog } from '../../Components';
-
+import config from '../../../config';
 
 
 
 function Login ({setUsuario, usuario}) {
+
+  const { deployedBackendURL, localBackendURL } = config;
+  const URL = deployedBackendURL || localBackendURL;
 
   const { loginWithRedirect, logout, isLoading, user, isAuthenticated } =
     useAuth0();
@@ -32,6 +35,11 @@ function Login ({setUsuario, usuario}) {
     setShowRegisterDialog(false)
   }
 
+  const handleOpen = () => {
+    setShowRegisterDialog(true)
+  }
+
+
   const onClick = async () => {
     console.log(credentials.email, credentials.password)
     if (!credentials.email || !credentials.password) {
@@ -45,20 +53,22 @@ function Login ({setUsuario, usuario}) {
     }
 
     try {
-      const {data} = await axios.post(`https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/login`, login)
+      const {data} = await axios.post(`${URL}users/api/login`, login)
 
       if (data.status == 'ok') {
 
-        const loginDone = {
-          email: login.email
-        }
-
-        alert("Login exitoso")
-        navigate("/") 
+        navigate("/"); 
+        setTimeout(() => {
+          alert("Login")
+        }, 1000);
         }
 
     } catch (error) {
       alert("Email o contraseña incorrectos");
+      setCredentials({
+        email: "",
+        password: ""
+      })
     }
   }
 
@@ -74,9 +84,12 @@ function Login ({setUsuario, usuario}) {
   };
 
   const handleRegisterClick = () => {
-    // Mostrar el diálogo de registro al hacer clic en el enlace
     setShowRegisterDialog(true);
   };
+
+  useEffect(() => {
+    console.log(isAuthenticated)
+  }, [isAuthenticated])
 
   return (
     <div className={styles.div}>
@@ -103,36 +116,24 @@ function Login ({setUsuario, usuario}) {
 
         {isAuthenticated ? (
           <>
-            <RegisterDialog />
+          <br></br>
+          <button onClick={() => logout()}>Logout</button>
           </>
         ) : (
           <>
             <br></br>
             <button onClick={() => loginWithRedirect()}>
-              Registrarme con Google
+              Login with Google
             </button>
           </>
         )}
 
-        {isAuthenticated ? (
-         <Button onClick={() => logout()}>Logout</Button>
-        ) : (
-          <>
-            <br></br>
-            <button onClick={() => loginWithRedirect()}>
-              Registrarme con Google
-            </button>
-          </>
-        )}
-        <Button>Logout</Button>
         <Footer>
-          ¿Quieres registrarte?
-          {/* Manejar la visibilidad del diálogo al hacer clic en el enlace */}
-          <a onClick={handleRegisterClick}>Registrarme</a>
+          ¿Do yo want to register?
+          <button onClick={handleRegisterClick}>Register</button>
         </Footer>
 
-        {/* Mostrar el diálogo cuando showRegisterDialog es true */}
-        {showRegisterDialog && <RegisterDialog isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
+        {showRegisterDialog && <RegisterDialog handleOpen={handleOpen} isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
       </LoginPage>
     </div>
   );
