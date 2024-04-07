@@ -7,6 +7,7 @@ import {
   ADD_PRODUCT,
   ENVIAR_CARRITO_AL_BACKEND,
   ORDERS,
+  ORDER_DETAIL,
   PRICE_FILTER
 } from "../actions/type";
 
@@ -24,6 +25,7 @@ const initialstate = {
   category: '',
   images: [],
   orders: [],
+  orderDetail:[],
   totalPage: 1,
   filters: {
     gender: '', // Filtro de género
@@ -55,6 +57,12 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ...state,
         orders: [...payload]
       }
+
+  case ORDER_DETAIL:
+    return {
+      ...state,
+      orderDetail:[...payload]
+    }
     case GET_PRODUCTS:
       return {
         ...state,
