@@ -78,9 +78,9 @@ dispatch(getOrders())
     <div className={style.boxCart}>
       <div className={style.content} >
         {carrito.length ? (
-          <h3>Revisa tus compras!</h3>
+          <h3>Check your shopping</h3>
         ) : (
-          <p>No has seleccionado productos aún</p>
+          <p>You haven't selected any products yet</p>
         )}
         {carrito.map((item, i) => (
           <div className={style.cards} key={i}>
@@ -109,21 +109,21 @@ dispatch(getOrders())
               <span>Total: ${totalCompra}</span>
             </div>
             <form className={style.buttonsDiv} onSubmit={e=>handleSubmit(e)}  >
-              <button className={style.back} type='submit'>INICIAR COMPRA</button>
+              <button className={style.back} type='submit'>START SHOPING</button>
               <button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>
-                Vaciar Carrito
+                Empty cart
               </button>
             </form>
           </div>
         ) : (
     <div>          <button className={style.back}>
     <Link className={style.link} to="/products">
-      Ver productos disponibles
+      Check available products
     </Link>
   </button>
   <button className={style.orders}>
   <Link className={style.link} to="/orders">
-      Ver ordenes de compra
+      Check the bill
     </Link>
   </button></div>
         )}
