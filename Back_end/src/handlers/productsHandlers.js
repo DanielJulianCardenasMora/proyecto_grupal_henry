@@ -27,7 +27,7 @@ const getProducts = async (req, res) => {
     filteredProducts = filtrarPorGenero(filteredProducts, gender);
     filteredProducts = filtrarPorCategoria(filteredProducts, category);
     filteredProducts = filtrarPorPrecio(filteredProducts, sortOrder);
-    console.log('sortorder',sortOrder);
+    console.log('sortorder', sortOrder);
     if (name) {
       // Llamar a getProductsByName y verificar el resultado
       const productsByName = await getProductsByName(name);
@@ -66,11 +66,9 @@ const getDetail = async (req, res) => {
 };
 
 const postProduct = async (req, res) => {
-  console.log("Datos del cuerpo de la solicitud:", req.body);
-  console.log("Archivos recibidos:", req.files);
 
 
-  const { name, description, price, stock, genero, category } = req.body;
+  const { name, description, price, stock, genero, category, images } = req.body;
 
   try {
     // Validar los campos del formulario
@@ -79,9 +77,9 @@ const postProduct = async (req, res) => {
     validate("price", price);
 
     // Crear el producto en la base de datos
-    const newProduct = await createProductDB(name, description, price, req.files, stock, genero, category);
+    const newProduct = await createProductDB(name, description, price, images, stock, genero, category);
 
-    console.log(`El producto ${name} fue creado con exito!!`);
+    console.log(`El producto ${name} fue creado con éxito!!`);
     res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
