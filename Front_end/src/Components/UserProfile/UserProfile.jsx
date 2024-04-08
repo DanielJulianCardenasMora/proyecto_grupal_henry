@@ -7,11 +7,9 @@ import axios from 'axios'
 const UserProfile = () => {
   const URL_USUARIO_FIND = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/'
   const userLocalStorage = JSON.parse(localStorage.getItem('usuario'))  || []
-
   const [modoEdicion, setModoEdicion] = useState({ email: false, phone: false, password: false, country: false });
-  // const [datosUsuario, setDatosUsuario] = useState(null);
-  // se usa el estado comentado, este es para iniciar prueba.
-  const [datosUsuario, setDatosUsuario] = useState({ id: false, email: false, phone: false, password: false, country: false });
+  const [datosUsuario, setDatosUsuario] = useState(null);
+  // const [datosUsuario, setDatosUsuario] = useState({ id: false, email: false, phone: false, password: false, country: false });
   
 
   const obtenerDatosUsuario = async () => {
@@ -39,6 +37,7 @@ const UserProfile = () => {
     try {
       const datosActualizados = { ...datosUsuario };
       delete datosActualizados.modoEdicion; 
+      console.log(datosUsuario)
 
       const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.email}`, datosActualizados);
 

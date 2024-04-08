@@ -66,10 +66,11 @@
 }
 .textos div{
   box-sizing: border-box;
-  padding-top: 5%;
+  padding-top: 3%;
   text-align: left;
   height: 10%;
   width: 100%;
+
   /* background-color: rgb(255, 0, 0); */
 }
 .historial{
