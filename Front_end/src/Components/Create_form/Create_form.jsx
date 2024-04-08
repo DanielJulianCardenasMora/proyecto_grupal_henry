@@ -188,9 +188,11 @@ const Form = ({ addProduct }) => {
         </div>
       </form>
       {UrlImagen && (
+        
         <div className={style.imageContainer}>
+          <h4>Preview</h4>
           <img src={UrlImagen} className={style.imgForm} />
-          <button onClick={() => deleteImagen()}>Delete File</button>
+          <button onClick={() => deleteImagen() } className={style.buttonImage}>X</button>
         </div>
       )}
 
