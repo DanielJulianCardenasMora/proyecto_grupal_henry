@@ -22,15 +22,15 @@ function App() {
   const [usuario, setUsuario] = useState(usuarioLogeado);
   const location = useLocation();
 
+
   useEffect(() => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }, [carrito]);
 
   useEffect(() => {
     localStorage.setItem('usuario', JSON.stringify(usuario));
-    
   }, [usuario]);
-
+    console.log(localStorage.getItem('usuario'))
   useEffect(() => {
     const hiddenPaths = ['/dashboard', '/dashboard/products', '/dashboard/products/follow-up', '/dashboard/products/create'];
     setShouldShowNavbar(!hiddenPaths.includes(location.pathname));
