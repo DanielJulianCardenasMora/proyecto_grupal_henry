@@ -14,7 +14,9 @@ import {
   PRICE_FILTER,
   UPDATE_PRICE_FILTER,
   UPDATE_CATEGORY_FILTER,
-  UPDATE_GENDER_FILTER
+  UPDATE_GENDER_FILTER,
+ORDER_DETAIL
+
 } from "./type";
 
 const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
@@ -47,6 +49,18 @@ export const getOrders = () => {
     }
   }
 }
+
+export const getOrderDetail = (orderId) => {
+
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`${URL}/orders/${orderId}`);
+
+      dispatch({ type: ORDER_DETAIL, payload: response.data });
+    } catch (error) {
+      alert(error.message.response.data);
+    }
+  }}
 
 export const getUsers = () => {
 
@@ -109,7 +123,7 @@ export const enviarCarritoAlBackend = (order) => {
 
     } catch (error) {
 
-
+console.log('este es el error:', error)
     }
   };
 };
