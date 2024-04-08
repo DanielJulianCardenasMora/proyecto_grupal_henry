@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 const UserProfile = () => {
-  const URL_USUARIO_FIND = 'http://proyectogrupalhenry-production-e8a4.up.railway.app/users/'
+  const URL_USUARIO_FIND = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/'
   const userLocalStorage = JSON.parse(localStorage.getItem('usuario'))  || []
 
   const [modoEdicion, setModoEdicion] = useState({ email: false, phone: false, password: false, country: false });
