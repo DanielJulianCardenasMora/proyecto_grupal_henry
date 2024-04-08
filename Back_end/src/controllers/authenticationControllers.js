@@ -2,7 +2,7 @@ const bcryptjs = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const { User, Order } = require("../db");
-const emailer = require("../utils/emailers");
+// const emailer = require("../utils/emailers");
 
 dotenv.config();
 
@@ -31,7 +31,7 @@ const register = async (req, res) => {
   //agregar usuario a Base de Datos
   try {
     const userCreatedDB = await User.create(newUser);
-    emailer.sendMail(userCreatedDB);
+    // emailer.sendMail(userCreatedDB);
     return res.status(201).send({
       status: "ok",
       message: `El email ${userCreatedDB.email} se ha registrado correctamente! `,
@@ -48,7 +48,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
 
   const { email, password } = req.body;
-  
+
   try {
 
     if (!email || !password) {
