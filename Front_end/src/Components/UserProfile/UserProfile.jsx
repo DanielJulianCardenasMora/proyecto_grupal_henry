@@ -20,9 +20,10 @@ const UserProfile = () => {
       alert(error)
     }
   }
-
+  
   useEffect(() => {
     obtenerDatosUsuario();
+    console.log(datosUsuario)
   }, [])
 
   const manejarClicEditar = (campo) => {
@@ -60,8 +61,8 @@ const UserProfile = () => {
       <img className={style.fondo} src={fondo} />
       <div className={style.iconos}>
         <div className={style.iconos_box}>
-          <div className={style.edit1} onClick={() => manejarClicEditar('name')}></div>
-          <div className={style.save1} onClick={() => manejarClicGuardar('name')}></div>
+          <div className={style.edit1} onClick={() => manejarClicEditar('email')}></div>
+          <div className={style.save1} onClick={() => manejarClicGuardar('email')}></div>
         </div>
         <div className={style.iconos_box2}>
           <div className={style.edit1} onClick={() => manejarClicEditar('phone')}></div>
