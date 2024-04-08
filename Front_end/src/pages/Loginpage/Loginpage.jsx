@@ -39,19 +39,21 @@ function Login ({setUsuario, usuario}) {
     setShowRegisterDialog(true)
   }
 
-
+  
   const onClick = async () => {
     console.log(credentials.email, credentials.password)
     if (!credentials.email || !credentials.password) {
-      alert("Tienes campos incompletos");
+      alert("You have uncompleted fields");
       return;
     }
-
+    
     const login = {
       email: credentials.email,
       password: credentials.password
     }
-
+    
+      
+    
     try {
       const {data} = await axios.post(`${URL}users/api/login`, login)
 
