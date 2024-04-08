@@ -6,10 +6,6 @@ const regexDecimal = /^[0-9]+([,][0-9]+)?$/
 // regexDecimal: solo acepta un numero junto con . decimal
 
 
-
-
-
-
 function validation(data) {
     const errors = {}
     if (!regexValue.test(data.name)) errors.name = 'No dejes el campo vacio y no repitas nombres'

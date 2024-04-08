@@ -58,12 +58,8 @@ function Login ({setUsuario, usuario}) {
       const {data} = await axios.post(`${URL}users/api/login`, login)
 
       if (data.status == 'ok') {
-        localStorage.setItem('usuario', JSON.stringify(login.email))
-
-        navigate("/"); 
-        setTimeout(() => {
-          alert("Login")
-        }, 1000);
+        navigate("/");
+        setUsuario(login.email)
         }
 
     } catch (error) {
