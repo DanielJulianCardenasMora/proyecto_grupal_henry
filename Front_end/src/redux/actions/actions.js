@@ -58,7 +58,7 @@ export const getOrderDetail = (orderId) => {
 
       dispatch({ type: ORDER_DETAIL, payload: response.data });
     } catch (error) {
-      alert(error.message);
+      alert(error.message.response.data);
     }
   }}
 

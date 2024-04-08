@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import  ItemCount  from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders, getOrderDetail } from "../../redux/actions/actions";
+import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
 
 
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
-  const userId='da0503b5-0b65-4ba9-ac9e-bef59a30eeff'
+  const userId='acedf387-72ef-43ee-bb9e-a58e44b9752f'
   const totalInicial = carrito.reduce((total, item) => total + item.price * item.quantity, 0);
   const [totalCompra, setTotalCompra] = useState(totalInicial);
 
@@ -69,7 +69,7 @@ const [order, setOrder]= useState({
 
    useEffect(() => {
     dispatch(getOrders())
-    dispatch(getOrderDetail())
+ 
       setTotalCompra(totalInicial)
       setOrder({
         userId: userId,

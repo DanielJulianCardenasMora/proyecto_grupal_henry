@@ -60,6 +60,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       }
 
   case ORDER_DETAIL:
+    console.log(payload);
     return {
       ...state,
       orderDetail:[...payload]

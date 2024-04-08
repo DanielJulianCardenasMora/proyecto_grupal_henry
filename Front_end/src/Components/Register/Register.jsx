@@ -13,9 +13,6 @@ import axios from 'axios'
 export default function RegisterDialog({ handleClose }) {
   const [open, setOpen] = useState(false); // Establecer el estado inicial basado en isAuthenticated
 
-  useEffect(() => {
-    setOpen( true ); // Si isAuthenticated es true, abrir el diálogo, de lo contrario, mantenerlo cerrado
-  }, []);
 
 
   const handleSubmit = async (event) => {
@@ -34,7 +31,7 @@ export default function RegisterDialog({ handleClose }) {
     try {
       
       await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
-      console.log('Registro exitoso:', newUser);
+      alert("User registed")
       handleClose();
     } catch (error) {
       alert('Error al registrar el usuario', error);
@@ -43,6 +40,10 @@ export default function RegisterDialog({ handleClose }) {
    
     handleClose();
   };
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
 
 
   return (
@@ -54,7 +55,7 @@ export default function RegisterDialog({ handleClose }) {
         onSubmit: handleSubmit,
       }}
     >
-      <DialogTitle>Porfavor ingresa tus datos</DialogTitle>
+      <DialogTitle>Complete the form</DialogTitle>
       <DialogContent>
 
       <TextField
@@ -63,7 +64,7 @@ export default function RegisterDialog({ handleClose }) {
           margin="dense"
           id="email"
           name="email"
-          label="email"
+          label="Email"
           type="email"
           fullWidth
           variant="standard"
@@ -75,7 +76,7 @@ export default function RegisterDialog({ handleClose }) {
           margin="dense"
           id="name"
           name="name"
-          label="name"
+          label="Name"
           type="name"
           fullWidth
           variant="standard"
@@ -87,7 +88,7 @@ export default function RegisterDialog({ handleClose }) {
           margin="dense"
           id="password"
           name="password"
-          label="password"
+          label="Password"
           type="password"
           fullWidth
           variant="standard"
@@ -99,7 +100,7 @@ export default function RegisterDialog({ handleClose }) {
           margin="dense"
           id="location"
           name="location"
-          label="location"
+          label="Location"
           type="location"
           fullWidth
           variant="standard"
