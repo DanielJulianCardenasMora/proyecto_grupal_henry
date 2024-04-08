@@ -1,35 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import style from './nav.module.css';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 function Nav({ setUsuario }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const { logout, isAuthenticated, user } = useAuth0(); // Obtener user de useAuth0
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('usuario');
 
-    if(storedEmail !== null){
-      console.log("storedemail es diferente a null")
-      setShowLogout(true)
-      setIsLoggedIn(true)
-    }else{
-      console.log("storedemail es null")
-      setShowLogout(false)
-      setIsLoggedIn(false)
+    if (storedEmail !== null) {
+      setShowLogout(true);
+      setIsLoggedIn(true);
+    } else {
+      setShowLogout(false);
+      setIsLoggedIn(false);
     }
-  }, []); // Asegúrate de que este efecto se ejecute solo una vez al montar el componente
+  }, []);
 
+  // Función para manejar el inicio de sesión
+  const handleLogin = () => {
+    alert('Login required');
+    navigate("/login");
+  };
+
+  // Función para manejar el cierre de sesión
   const handleLogout = () => {
     setUsuario(null);
     setIsLoggedIn(false);
     setShowLogout(false);
-    localStorage.removeItem('usuario'); // Asegúrate de limpiar el usuario del almacenamiento local al cerrar sesión
+    localStorage.removeItem('usuario');
+
+    if (isAuthenticated) {
+      logout();
+      navigate("/");
+    }
   };
 
-  const handleLogin = () => {
-    alert('Por favor accede al Log in primero');
-  };
+  // Manejar el almacenamiento del correo electrónico cuando el usuario esté autenticado
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      localStorage.setItem('usuario', user.email);
+      setShowLogout(true);
+      setIsLoggedIn(true);
+    }
+  }, [isAuthenticated, user]);
 
   return (
     <nav className={style.nav}>
@@ -41,11 +60,9 @@ function Nav({ setUsuario }) {
       <div className={style.boxList}>
         <ul>
           <Link to="/products" className={style.link}>
-            {" "}
             <li>Products</li>
           </Link>
           <Link to="/about" className={style.link}>
-            {" "}
             <li>About</li>
           </Link>
           <Link to="/create" className={style.link}>
@@ -66,7 +83,7 @@ function Nav({ setUsuario }) {
         </ul>
       </div>
 
-      {showLogout ? (
+      {showLogout || isAuthenticated ? (
         <div className={style.logIn}>
           <button className={style.logInB} onClick={handleLogout}>Log out</button>
         </div>
