@@ -21,7 +21,7 @@ const [order, setOrder]= useState({
     productId: item.id,
     quantity: item.quantity
   })),
-  detalle: "Este es un nuevo detalle de compra"
+  detalle: "This a new shopping detail"
 })
 
   console.log(order);

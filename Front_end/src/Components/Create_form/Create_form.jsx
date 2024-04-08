@@ -54,9 +54,10 @@ const Form = ({ addProduct }) => {
     e.preventDefault();
 
     if (!UrlImagen) {
-      console.error('No se ha seleccionado una imagen');
+      alert('No se ha seleccionado una imagen');
       return;
     }
+
 
     const data = {
       name,
@@ -68,9 +69,23 @@ const Form = ({ addProduct }) => {
       images: UrlImagen
     };
 
+    if(data.name == null){
+      
+    }
     try {
       const response = await addProduct(data);
-      console.log('Nuevo producto añadido:', response);
+
+      alert('Nuevo producto añadido');
+      setFormData({
+        name: '',
+        description: '',
+        price: '',
+        stock: '',
+        genero: '',
+        category: '',
+        images: ""
+      })
+     
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
