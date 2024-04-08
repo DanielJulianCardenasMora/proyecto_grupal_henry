@@ -35,7 +35,7 @@ function Login ({setUsuario, usuario}) {
   const onClick = async () => {
     console.log(credentials.email, credentials.password)
     if (!credentials.email || !credentials.password) {
-      alert("Tienes campos incompletos");
+      alert("You have uncompleted fields");
       return;
     }
 
@@ -52,13 +52,13 @@ function Login ({setUsuario, usuario}) {
         const loginDone = {
           email: login.email
         }
-
-        alert("Login exitoso")
+        
+        alert("Login successful")
         navigate("/") 
         }
 
     } catch (error) {
-      alert("Email o contraseña incorrectos");
+      alert("Email or password are invalid");
     }
   }
 
@@ -81,7 +81,7 @@ function Login ({setUsuario, usuario}) {
   return (
     <div className={styles.div}>
       <LoginPage style={{ height: 480 }}>
-        <Title>¿Ya tienes cuenta en WearFashion? Inicia sesion</Title>
+        <Title>Do you have an account at WearFashion already? Log in!</Title>
 
         <Logo>
           <LoginLogo />
@@ -109,7 +109,7 @@ function Login ({setUsuario, usuario}) {
           <>
             <br></br>
             <button onClick={() => loginWithRedirect()}>
-              Registrarme con Google
+              Register with Google
             </button>
           </>
         )}
@@ -120,15 +120,15 @@ function Login ({setUsuario, usuario}) {
           <>
             <br></br>
             <button onClick={() => loginWithRedirect()}>
-              Registrarme con Google
+              Register with Google
             </button>
           </>
         )}
         <Button>Logout</Button>
         <Footer>
-          ¿Quieres registrarte?
+          Do you want to register?
           {/* Manejar la visibilidad del diálogo al hacer clic en el enlace */}
-          <a onClick={handleRegisterClick}>Registrarme</a>
+          <a onClick={handleRegisterClick}>Register</a>
         </Footer>
 
         {/* Mostrar el diálogo cuando showRegisterDialog es true */}

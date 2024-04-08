@@ -19,7 +19,7 @@ const [order, setOrder]= useState({
     productId: item.id,
     quantity: item.quantity
   })),
-  detalle: "Este es un nuevo detalle de compra"
+  detalle: "This a new shopping detail"
 })
 
 
@@ -29,7 +29,7 @@ const [order, setOrder]= useState({
 
    dispatch(enviarCarritoAlBackend(order));
    setOrder({})
-alert('Orden de compra creada')
+alert('Shopping bill created')
     agregarProducto([])
   };
 
