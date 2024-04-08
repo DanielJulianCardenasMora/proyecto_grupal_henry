@@ -2,29 +2,33 @@ import React, { useEffect, useState } from 'react';
 import style from './nav.module.css';
 import { Link, useLocation } from 'react-router-dom';
 
-function Nav() {
-  const location = useLocation();
+function Nav({ setUsuario }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogout, setShowLogout] = useState(false);
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('usuario');
-    if (storedEmail) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-      setShowLogin(true); // Mostrar el botón de login cuando el usuario cierre sesión
-    }
-  }, []);
 
-  const handleLogin = () => {
-    alert('Porfavor accede al Log in primero');
-  };
+    if(storedEmail !== null){
+      console.log("storedemail es diferente a null")
+      setShowLogout(true)
+      setIsLoggedIn(true)
+    }else{
+      console.log("storedemail es null")
+      setShowLogout(false)
+      setIsLoggedIn(false)
+    }
+  }, []); // Asegúrate de que este efecto se ejecute solo una vez al montar el componente
 
   const handleLogout = () => {
-    localStorage.removeItem('usuario');
+    setUsuario(null);
     setIsLoggedIn(false);
-    setShowLogin(false);
+    setShowLogout(false);
+    localStorage.removeItem('usuario'); // Asegúrate de limpiar el usuario del almacenamiento local al cerrar sesión
+  };
+
+  const handleLogin = () => {
+    alert('Por favor accede al Log in primero');
   };
 
   return (
@@ -62,7 +66,7 @@ function Nav() {
         </ul>
       </div>
 
-      {showLogin ? (
+      {showLogout ? (
         <div className={style.logIn}>
           <button className={style.logInB} onClick={handleLogout}>Log out</button>
         </div>

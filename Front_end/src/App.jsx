@@ -14,12 +14,12 @@ axios.defaults.baseURL='proyectogrupalhenry-production-e8a4.up.railway.app'
 
 function App() {
   //estas variables van encima del useState
-  const usuarioLogeado = JSON.parse(localStorage.getItem('usuario')) || [];
+  // const usuarioLogeado = JSON.parse(localStorage.getItem('usuario')) || [];
   const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];
   //====
   const [shouldShowNavbar, setShouldShowNavbar] = useState(true); 
   const [carrito, agregarProducto] = useState(carritoGuardado);
-  const [usuario, setUsuario] = useState(usuarioLogeado);
+  const [usuario, setUsuario] = useState(null);
   const location = useLocation();
 
 
@@ -27,10 +27,6 @@ function App() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }, [carrito]);
 
-  useEffect(() => {
-    localStorage.setItem('usuario', JSON.stringify(usuario));
-  }, [usuario]);
-    console.log(localStorage.getItem('usuario'))
   useEffect(() => {
     const hiddenPaths = ['/dashboard', '/dashboard/products', '/dashboard/products/follow-up', '/dashboard/products/create'];
     setShouldShowNavbar(!hiddenPaths.includes(location.pathname));
@@ -46,7 +42,7 @@ function App() {
 
   return (
     <>
-    {shouldShowNavbar && <Nav />} 
+    {shouldShowNavbar && <Nav setUsuario={setUsuario}/>} 
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login usuario={usuario} setUsuario={setUsuario} />} />

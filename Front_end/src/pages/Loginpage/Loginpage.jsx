@@ -59,7 +59,7 @@ function Login ({setUsuario, usuario}) {
 
       if (data.status == 'ok') {
         navigate("/");
-        setUsuario(login.email)
+        localStorage.setItem("usuario", login.email)
         }
 
     } catch (error) {
