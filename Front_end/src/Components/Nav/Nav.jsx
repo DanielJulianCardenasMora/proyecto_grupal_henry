@@ -2,27 +2,29 @@ import React, { useEffect, useState } from 'react';
 import style from './nav.module.css';
 import { Link, useLocation } from 'react-router-dom';
 
-function Nav() {
+function Nav({setUsuario}) {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
+  const storedEmail = localStorage.getItem('usuario');
+
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem('usuario');
-    if (storedEmail) {
+    if (storedEmail !== null) {
       setIsLoggedIn(true);
+      setShowLogin(true)
     } else {
       setIsLoggedIn(false);
-      setShowLogin(true); // Mostrar el botón de login cuando el usuario cierre sesión
+      setShowLogin(false);
     }
-  }, []);
+  }, [storedEmail]);
 
   const handleLogin = () => {
     alert('Porfavor accede al Log in primero');
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('usuario');
+    setUsuario(null)
     setIsLoggedIn(false);
     setShowLogin(false);
   };
