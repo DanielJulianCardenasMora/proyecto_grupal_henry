@@ -7,11 +7,9 @@ import axios from 'axios'
 const UserProfile = () => {
   const URL_USUARIO_FIND = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/'
   const userLocalStorage = JSON.parse(localStorage.getItem('usuario'))  || []
-
   const [modoEdicion, setModoEdicion] = useState({ email: false, phone: false, password: false, country: false });
-  // const [datosUsuario, setDatosUsuario] = useState(null);
-  // se usa el estado comentado, este es para iniciar prueba.
-  const [datosUsuario, setDatosUsuario] = useState({ id: false, email: false, phone: false, password: false, country: false });
+  const [datosUsuario, setDatosUsuario] = useState(null);
+  // const [datosUsuario, setDatosUsuario] = useState({ id: false, email: false, phone: false, password: false, country: false });
   
 
   const obtenerDatosUsuario = async () => {
@@ -27,15 +25,6 @@ const UserProfile = () => {
     obtenerDatosUsuario();
   }, [])
 
-  const editarUsuario = async () => {
-    try {
-      const { data } = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}, {...datosUsuario}`);
-      setDatosUsuario(data);
-    } catch (error) {
-      alert(error)
-    }
-  }
-
   const manejarClicEditar = (campo) => {
     setModoEdicion({ ...modoEdicion, [campo]: !modoEdicion[campo] });
   };
@@ -48,8 +37,9 @@ const UserProfile = () => {
     try {
       const datosActualizados = { ...datosUsuario };
       delete datosActualizados.modoEdicion; 
+      console.log(datosUsuario)
 
-      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}`, datosActualizados);
+      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.email}`, datosActualizados);
 
       console.log('Datos del usuario actualizados:', respuesta.data);
       setModoEdicion({ ...modoEdicion, [campo]: false });
