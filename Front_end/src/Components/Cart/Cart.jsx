@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import  ItemCount  from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders } from "../../redux/actions/actions";
+import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
 
 
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
-  const userId='9e26e2c9-4c3f-407f-b54a-bec1a57c9a35'
+  const userId='acedf387-72ef-43ee-bb9e-a58e44b9752f'
   const totalInicial = carrito.reduce((total, item) => total + item.price * item.quantity, 0);
   const [totalCompra, setTotalCompra] = useState(totalInicial);
+
+
 
 const [order, setOrder]= useState({
   userId: userId,
@@ -22,23 +24,7 @@ const [order, setOrder]= useState({
   detalle: "This a new shopping detail"
 })
 
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-   dispatch(enviarCarritoAlBackend(order));
-   setOrder({})
-alert('Shopping bill created')
-    agregarProducto([])
-  };
-
-  useEffect(() => {
-dispatch(getOrders())
-  setTotalCompra(totalInicial)
-  }, [carrito])
-  
-
+  console.log(order);
 
 
   const agregarItem = (item) => {
@@ -73,6 +59,27 @@ dispatch(getOrders())
   };
 
 
+  const handleSubmit = (e) => {
+
+    dispatch(enviarCarritoAlBackend(order));
+    setOrder({})
+ alert('Orden de compra creada')
+     agregarProducto([])
+   };
+
+   useEffect(() => {
+    dispatch(getOrders())
+ 
+      setTotalCompra(totalInicial)
+      setOrder({
+        userId: userId,
+        products: carrito.map(item => ({
+          productId: item.id,
+          quantity: item.quantity
+        })),
+        detalle: "Este es un nuevo detalle de compra"
+      })
+      }, [carrito])
 
   return (
     <div className={style.boxCart}>

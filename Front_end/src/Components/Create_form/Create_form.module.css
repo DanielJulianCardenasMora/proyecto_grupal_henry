@@ -19,7 +19,7 @@
 
 .cont {
   top: 55%;
-  left: 50%;
+  left: 35%;
   padding: 2%;
   align-items: center;
   position: absolute;
@@ -105,5 +105,43 @@
 
 .desc {
   color: black;
+}
+.imageContainer{
+  position: absolute;
+  left: 60%;
+  bottom: 20%;
+  /* background-color: brown; */
+  padding: 1%;
+  height: 55vh;
+  width: 20%;
+  box-sizing: border-box;
+  border: 1px solid white;
+ display: flex;
+ flex-direction: column;
+}
+
+.imageContainer h4{
+  height: 10%;
+  /* background-color: brown; */
+  margin: 0;
+
+}
+.imgForm{
+margin: auto;
+  height: 15em;
+
+}
+
+.buttonImage{
+  width: 12%;
+  text-align: center;
+  height: 9%;
+  margin: auto;
+  border-radius: 3em;
+  padding: 1%;
+  border: 1px solid white;
+  background: rgb(107, 1, 1);
+  color: white;
+  
 }
 
