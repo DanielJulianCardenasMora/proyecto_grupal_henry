@@ -97,15 +97,14 @@ function Detail(props) {
         
       
         <div className={style.boton}>
-
+          <div className={buttonClass ? style.boton_img : style.boton_img_hover }></div>
+          <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
+        </div>
         <div className={style.buy}>
           <button
           type="button"
           onClick={() => seleccionarProducto(product)}
-          >COMPRAR</button>
-        </div>
-          <div className={buttonClass ? style.boton_img : style.boton_img_hover }></div>
-          <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
+          >Add to cart</button>
         </div>
       </div>
     </div>

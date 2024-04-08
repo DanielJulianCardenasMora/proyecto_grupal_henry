@@ -7,6 +7,7 @@ import {
   ADD_PRODUCT,
   ENVIAR_CARRITO_AL_BACKEND,
   ORDERS,
+  ORDER_DETAIL,
   PRICE_FILTER
 } from "../actions/type";
 
@@ -22,8 +23,10 @@ const initialstate = {
   stock: '',
   genero: '',
   category: '',
-  images: [],
+  images: "",
+  imageUrl: '',
   orders: [],
+  orderDetail:[],
   totalPage: 1,
   filters: {
     gender: '', // Filtro de género
@@ -55,6 +58,13 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ...state,
         orders: [...payload]
       }
+
+  case ORDER_DETAIL:
+    console.log(payload);
+    return {
+      ...state,
+      orderDetail:[...payload]
+    }
     case GET_PRODUCTS:
       return {
         ...state,
@@ -68,31 +78,14 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         Detail: payload,
       };
     case ADD_PRODUCT:
+      console.log('Paylod de add reducer', payload);
       return {
         ...state,
         Products: [payload, ...state.Products],
         loading: false
       };
-    // case CATEGORY_FILTER:
-    //   return {
-    //     ...state,
-    //     Products: [...payload],
-    //     ProductsScreen: [...payload],
-    //   };
-    // case PRICE_FILTER:
-    //   return {
-    //     ...state,
-    //     Products: [...payload],
-    //     ProductsScreen: [...payload],
-    //   }
-    // case GENDER_FILTER:
-    //   return {
-    //     ...state,
-    //     Products: [...payload],
-    //     ProductsScreen: [...payload],
-    //   }
     case 'UPDATE_GENDER_FILTER':
-      console.log('reducer',payload);
+      console.log('reducer', payload);
       return {
         ...state,
         filters: {
@@ -101,7 +94,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         },
       };
     case 'UPDATE_CATEGORY_FILTER':
-      console.log('category',state.filters);
+      console.log('category', state.filters);
       return {
         ...state,
         filters: {

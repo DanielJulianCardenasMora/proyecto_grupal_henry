@@ -38,6 +38,7 @@
     /* background-color: tomato; */
     height: 100%;
     border-right: 1px solid gray;
+    padding-right: 5%;
 }
 .count{
     display: flex;
@@ -174,5 +175,9 @@ background-color: rgba(255, 255, 255, 0.349);;
     background-color: rgba(0, 0, 0, 0.307);
     border-radius: 2em;
     margin-left: 1%;
+}
+
+.buttons{
+    color: black;
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import style from "./Orders.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrders } from "../../redux/actions/actions";
+import { getOrders, getOrderDetail } from "../../redux/actions/actions";
 
 
 
@@ -13,6 +13,7 @@ const Orders = () => {
 
  useEffect(() => {
   dispatch(getOrders())
+
 }, [])
   
 
