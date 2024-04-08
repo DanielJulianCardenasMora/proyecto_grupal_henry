@@ -27,15 +27,6 @@ const UserProfile = () => {
     obtenerDatosUsuario();
   }, [])
 
-  const editarUsuario = async () => {
-    try {
-      const { data } = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}, {...datosUsuario}`);
-      setDatosUsuario(data);
-    } catch (error) {
-      alert(error)
-    }
-  }
-
   const manejarClicEditar = (campo) => {
     setModoEdicion({ ...modoEdicion, [campo]: !modoEdicion[campo] });
   };
@@ -49,7 +40,7 @@ const UserProfile = () => {
       const datosActualizados = { ...datosUsuario };
       delete datosActualizados.modoEdicion; 
 
-      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}`, datosActualizados);
+      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.email}`, datosActualizados);
 
       console.log('Datos del usuario actualizados:', respuesta.data);
       setModoEdicion({ ...modoEdicion, [campo]: false });
