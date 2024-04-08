@@ -5,14 +5,13 @@ import axios from 'axios'
 
 
 const UserProfile = () => {
-  const URL_USUARIO_EDIT = 'http://localhost:3001/users/'
-  const URL_USUARIO_FIND = 'http://localhost:3001/users/'
-  const userLocalStorage = 'mail@mail'
-  const ID_USER = 'd0dd47fa-251c-4e0a-8623-60f5ab4e7b1e'
-  const [modoEdicion, setModoEdicion] = useState({ name: false, phone: false, contraseña: false, lugar: false });
+  const URL_USUARIO_FIND = 'http://proyectogrupalhenry-production-e8a4.up.railway.app/users/'
+  const userLocalStorage = JSON.parse(localStorage.getItem('usuario'))  || []
+
+  const [modoEdicion, setModoEdicion] = useState({ email: false, phone: false, password: false, country: false });
   // const [datosUsuario, setDatosUsuario] = useState(null);
   // se usa el estado comentado, este es para iniciar prueba.
-  const [datosUsuario, setDatosUsuario] = useState({ name: false, phone: false, password: false, city: false });
+  const [datosUsuario, setDatosUsuario] = useState({ id: false, email: false, phone: false, password: false, country: false });
   
 
   const obtenerDatosUsuario = async () => {
@@ -30,14 +29,12 @@ const UserProfile = () => {
 
   const editarUsuario = async () => {
     try {
-      const { data } = await axios.put(`${URL_USUARIO_EDIT}${ID_USER}, {...datosUsuario}`);
+      const { data } = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}, {...datosUsuario}`);
       setDatosUsuario(data);
     } catch (error) {
       alert(error)
     }
   }
-
-
 
   const manejarClicEditar = (campo) => {
     setModoEdicion({ ...modoEdicion, [campo]: !modoEdicion[campo] });
@@ -52,7 +49,7 @@ const UserProfile = () => {
       const datosActualizados = { ...datosUsuario };
       delete datosActualizados.modoEdicion; 
 
-      const respuesta = await axios.put(`${URL_USUARIO_EDIT}${ID_USER}`, datosActualizados);
+      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}`, datosActualizados);
 
       console.log('Datos del usuario actualizados:', respuesta.data);
       setModoEdicion({ ...modoEdicion, [campo]: false });
@@ -61,9 +58,9 @@ const UserProfile = () => {
     }
   }; 
 
-  // if (!datosUsuario) {
-  //   return <div>Cargando datos del usuario...</div>;
-  // }
+  if (!datosUsuario) {
+    return <div>Cargando datos del usuario...</div>;
+  }
 
 
 
@@ -85,21 +82,21 @@ const UserProfile = () => {
           <div className={style.save1} onClick={() => manejarClicGuardar('password')}></div>
         </div>
         <div className={style.iconos_box4}>
-          <div className={style.edit1} onClick={() => manejarClicEditar('city')}></div>
-          <div className={style.save1} onClick={() => manejarClicGuardar('city')}></div>
+          <div className={style.edit1} onClick={() => manejarClicEditar('country')}></div>
+          <div className={style.save1} onClick={() => manejarClicGuardar('country')}></div>
         </div>
       </div>
 
       <div className={style.textos}>
         <div className={style.name}>
-        {modoEdicion.name ? (
+        {modoEdicion.email ? (
             <input
               type="text"
-              value={datosUsuario.name}
-              onChange={(e) => manejarCambioInput(e, 'name')}
+              value={datosUsuario.email}
+              onChange={(e) => manejarCambioInput(e, 'email')}
             />
           ) : (
-              <div>{datosUsuario.name}</div>
+              <div>{datosUsuario.email}</div>
           )}
         </div>
         <div className={style.phone}>
@@ -125,14 +122,14 @@ const UserProfile = () => {
           )}
         </div>
         <div className={style.place}>
-        {modoEdicion.city ? (
+        {modoEdicion.country ? (
             <input
               type="text"
-              value={datosUsuario.city}
-              onChange={(e) => manejarCambioInput(e, 'city')}
+              value={datosUsuario.country}
+              onChange={(e) => manejarCambioInput(e, 'country')}
             />
           ) : (
-              <div>{datosUsuario.city}</div>
+              <div>{datosUsuario.country}</div>
           )}
         </div>
       </div>

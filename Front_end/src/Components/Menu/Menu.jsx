@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import style from "./menu.module.css";
 import { useDispatch } from "react-redux";
-import { genderFilter, filterByCategory, priceFilter, updateGenderFilter, updateCategoryFilter, updatePriceFilter } from '../../redux/actions/actions';
+import { updateGenderFilter, updateCategoryFilter, updatePriceFilter } from '../../redux/actions/actions';
 
 
 export const Menu = () => {
