@@ -85,7 +85,7 @@ const Form = ({ addProduct }) => {
         category: '',
         images: ""
       })
-     
+    setUrlImagen("");
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
