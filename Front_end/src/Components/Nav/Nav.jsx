@@ -2,31 +2,33 @@ import React, { useEffect, useState } from 'react';
 import style from './nav.module.css';
 import { Link, useLocation } from 'react-router-dom';
 
-function Nav({setUsuario}) {
-  const location = useLocation();
+function Nav({ setUsuario }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showLogin, setShowLogin] = useState(true);
-  const storedEmail = localStorage.getItem('usuario');
-
+  const [showLogout, setShowLogout] = useState(false);
 
   useEffect(() => {
-    if (storedEmail !== null) {
-      setIsLoggedIn(true);
-      setShowLogin(true)
-    } else {
-      setIsLoggedIn(false);
-      setShowLogin(false);
-    }
-  }, [storedEmail]);
+    const storedEmail = localStorage.getItem('usuario');
 
-  const handleLogin = () => {
-    alert('Porfavor accede al Log in primero');
-  };
+    if(storedEmail !== null){
+      console.log("storedemail es diferente a null")
+      setShowLogout(true)
+      setIsLoggedIn(true)
+    }else{
+      console.log("storedemail es null")
+      setShowLogout(false)
+      setIsLoggedIn(false)
+    }
+  }, []); // Asegúrate de que este efecto se ejecute solo una vez al montar el componente
 
   const handleLogout = () => {
-    setUsuario(null)
+    setUsuario(null);
     setIsLoggedIn(false);
-    setShowLogin(false);
+    setShowLogout(false);
+    localStorage.removeItem('usuario'); // Asegúrate de limpiar el usuario del almacenamiento local al cerrar sesión
+  };
+
+  const handleLogin = () => {
+    alert('Por favor accede al Log in primero');
   };
 
   return (
@@ -64,7 +66,7 @@ function Nav({setUsuario}) {
         </ul>
       </div>
 
-      {showLogin ? (
+      {showLogout ? (
         <div className={style.logIn}>
           <button className={style.logInB} onClick={handleLogout}>Log out</button>
         </div>
