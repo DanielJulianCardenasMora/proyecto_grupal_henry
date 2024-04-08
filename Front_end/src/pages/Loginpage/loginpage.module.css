@@ -2,3 +2,17 @@
     width: 100%;
     height: 100vh;
 }
+
+.register{
+    background: none;
+    text-decoration: solid;
+    color: rgb(255, 235, 235);
+    padding: 5px;
+}
+
+.googleLogin{
+    background: none;
+    text-decoration: solid;
+    color: rgb(255, 235, 235);
+    padding: 5px;
+}

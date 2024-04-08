@@ -87,14 +87,11 @@ function Login ({setUsuario, usuario}) {
     setShowRegisterDialog(true);
   };
 
-  useEffect(() => {
-    console.log(isAuthenticated)
-  }, [isAuthenticated])
 
   return (
     <div className={styles.div}>
       <LoginPage style={{ height: 480 }}>
-        <Title>¿Ya tienes cuenta en WearFashion? Inicia sesion</Title>
+        <Title>Do you already have a WearFashion account? Log in</Title>
 
         <Logo>
           <LoginLogo />
@@ -117,20 +114,20 @@ function Login ({setUsuario, usuario}) {
         {isAuthenticated ? (
           <>
           <br></br>
-          <button onClick={() => logout()}>Logout</button>
+          <button className={styles.googleLogin} onClick={() => logout()}>Logout</button>
           </>
         ) : (
           <>
             <br></br>
-            <button onClick={() => loginWithRedirect()}>
-              Login with Google
+            <button className={styles.googleLogin}onClick={() => loginWithRedirect()}>
+              Log in with Google
             </button>
           </>
         )}
 
         <Footer>
           ¿Do yo want to register?
-          <button onClick={handleRegisterClick}>Register</button>
+          <button onClick={handleRegisterClick} className={styles.register}>Register</button>
         </Footer>
 
         {showRegisterDialog && <RegisterDialog handleOpen={handleOpen} isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
