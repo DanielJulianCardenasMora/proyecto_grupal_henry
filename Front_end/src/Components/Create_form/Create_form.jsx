@@ -6,14 +6,14 @@ import { addProduct } from '../../redux/actions/actions';
 import axios from 'axios'
 
 const Form = ({ addProduct }) => {
-  const Genres = ['Masculino', 'Femenino', 'Unisex']
+  const Genres = ['Men', 'Women', 'Unisex']
   const Category = [
-    "Pantalones",
-    "Remeras",
-    "Chaquetas",
-    "Buzos",
-    "Faldas",
-    "Camisas",
+    "Pants",
+    "T-shirts",
+    "Jackets",
+    "Divers",
+    "Skirts",
+    "Shirts",
   ];
 
   const [formData, setFormData] = useState({
