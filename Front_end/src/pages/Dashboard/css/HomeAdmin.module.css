@@ -6,8 +6,6 @@
     box-sizing: border-box;
     margin-top: 16vh;
     display: flex;
-   
-
 }
 
 .dashCont{
@@ -63,3 +61,4 @@ box-sizing: border-box;
     width: 25%;
     border: 1px solid gray;
 }
+

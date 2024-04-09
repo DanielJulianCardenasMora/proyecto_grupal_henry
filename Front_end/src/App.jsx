@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState  } from 'react';
 import axios from  'axios'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage, HomeAdmin ,ProductsAdmin, Follow, CreateProducts, UserProfilePage, CaptureOrder } from './pages';
@@ -9,6 +9,8 @@ import { Nav } from './Components';
 import Login from './pages/Loginpage/Loginpage';
 import Dashboard from './pages/Dashboard/dashboard';
 import Orders from './Components/Orders/Orders';
+import Sidebar from './Components/Dashboard/sidebar';
+
 
 axios.defaults.baseURL='proyectogrupalhenry-production-e8a4.up.railway.app'
 
@@ -31,7 +33,6 @@ function App() {
   //   const hiddenPaths = ['/login', '/dashboard', '/dashboard/products', '/dashboard/products/follow-up', '/dashboard/products/create'];
   //   setShouldShowNavbar(!hiddenPaths.some(ruta => location.pathname.startsWith(ruta)));
   // }, [location]);
-
 
   return (
     <>
