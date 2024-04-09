@@ -33,7 +33,7 @@ export const getAllProducts = (page, filters) => {
         payload: [response.data.products, response.data.totalPage],
       });
     } catch (error) {
-      alert('Error desde Actions getAllProducts', error.message);
+      alert('Error desde Actions getAllProducts', error);
     }
   }
 }
