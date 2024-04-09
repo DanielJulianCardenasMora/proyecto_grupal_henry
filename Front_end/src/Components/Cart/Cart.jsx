@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import  ItemCount  from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
-
+import { enviarCarritoAlBackend, getOrders, payment} from "../../redux/actions/actions";
+import axios from 'axios'
 
 
 const Cart = ({ carrito, agregarProducto }) => {
@@ -24,7 +24,6 @@ const [order, setOrder]= useState({
   detalle: "This a new shopping detail"
 })
 
-  console.log(order);
 
 
   const agregarItem = (item) => {
@@ -59,10 +58,23 @@ const [order, setOrder]= useState({
   };
 
 
-  const handleSubmit = (e) => {
-
-    dispatch(enviarCarritoAlBackend(order));
+  const handleSubmit = async () => {
+    dispatch(payment(totalCompra))
+    // dispatch(enviarCarritoAlBackend(order));
     setOrder({})
+
+    // try {
+    //   console.log("totalcompra: "+ totalCompra);
+    //   const total = {
+    //     totalPrice: totalCompra
+    //   }
+
+    //   const response = await axios.post('http://localhost:3001/create-order', total);
+
+    //   window.location.href = response.links[1].href;
+    // } catch (error) {
+    //   console.log(error)
+    // }
  alert('Orden de compra creada')
      agregarProducto([])
    };
@@ -115,7 +127,7 @@ const [order, setOrder]= useState({
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
             </div>
-            <form className={style.buttonsDiv} onSubmit={e=>handleSubmit(e)}  >
+            <form className={style.buttonsDiv} onSubmit={() => handleSubmit()}  >
               <button className={style.back} type='submit'>START SHOPING</button>
               <button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>
                 Empty cart
