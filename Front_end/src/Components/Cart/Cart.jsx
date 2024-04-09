@@ -3,26 +3,67 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import  ItemCount  from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders, payment} from "../../redux/actions/actions";
-import axios from 'axios'
+import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
+import axios from "axios";
+
 
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
-  const userId='acedf387-72ef-43ee-bb9e-a58e44b9752f'
+
   const totalInicial = carrito.reduce((total, item) => total + item.price * item.quantity, 0);
   const [totalCompra, setTotalCompra] = useState(totalInicial);
+  const [order, setOrder]= useState({
+    userId:'',
+    products: carrito.map(item => ({
+      productId: item.id,
+      quantity: item.quantity
+    })),
+    detalle: "Este es un nuevo detalle de compra"
+  })
 
 
 
-const [order, setOrder]= useState({
-  userId: userId,
-  products: carrito.map(item => ({
-    productId: item.id,
-    quantity: item.quantity
-  })),
-  detalle: "This a new shopping detail"
-})
+
+async function getUserInfo() {
+  try {
+    // URL del endpoint
+    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/lurm98@gmail.com';
+
+    // Realizar la petición GET
+    const response = (await axios.get(url)).data
+
+  return  setOrder({
+      userId:response.id,
+      products: carrito.map(item => ({
+        productId: item.id,
+        quantity: item.quantity
+      })),
+      detalle: "Este es un nuevo detalle de compra"
+    })
+
+
+  } catch (error) {
+    // Manejar errores
+    console.error('Error al realizar la petición:', error);
+  }}
+
+
+
+  useEffect(() => {
+    dispatch(getOrders())
+      getUserInfo()
+      setTotalCompra(totalInicial)
+  setOrder({
+          ...order,
+            products: carrito.map(item => ({
+              productId: item.id,
+              quantity: item.quantity
+            })),
+            detalle: "Este es un nuevo detalle de compra"
+          })
+         
+      }, [carrito])
 
 
 
@@ -58,26 +99,17 @@ const [order, setOrder]= useState({
   };
 
 
-  const handleSubmit = async () => {
-    dispatch(payment(totalCompra))
-    setOrder({})
+  const handleSubmit = (e) => {
+
+    dispatch(enviarCarritoAlBackend(order));
+    
  alert('Orden de compra creada')
      agregarProducto([])
    };
 
-   useEffect(() => {
-    dispatch(getOrders())
- 
-      setTotalCompra(totalInicial)
-      setOrder({
-        userId: userId,
-        products: carrito.map(item => ({
-          productId: item.id,
-          quantity: item.quantity
-        })),
-        detalle: "Este es un nuevo detalle de compra"
-      })
-      }, [carrito])
+
+
+      console.log(order);
 
   return (
     <div className={style.boxCart}>
@@ -113,7 +145,7 @@ const [order, setOrder]= useState({
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
             </div>
-            <form className={style.buttonsDiv} onSubmit={() => handleSubmit()}  >
+            <form className={style.buttonsDiv} onSubmit={e=>handleSubmit(e)}  >
               <button className={style.back} type='submit'>START SHOPING</button>
               <button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>
                 Empty cart
