@@ -15,7 +15,8 @@ import {
   UPDATE_PRICE_FILTER,
   UPDATE_CATEGORY_FILTER,
   UPDATE_GENDER_FILTER,
-ORDER_DETAIL
+ORDER_DETAIL,
+PAYMENT
 
 } from "./type";
 
@@ -127,6 +128,20 @@ console.log('este es el error:', error)
     }
   };
 };
+
+export const payment = (price) => {
+
+  return async (dispatch) => {
+    try {
+      console.log(price)
+      const response = await axios.post('http://localhost:3001/create-order', {totalPrice: price})
+      console.log(response.data.links[1].href)
+      dispatch({type: PAYMENT, payload: response.data.links[1].href})
+    } catch (error) {
+      console.log("error payment: " + error)
+    }
+  }
+}
 export function postItem(i) {
 
   return async function () {

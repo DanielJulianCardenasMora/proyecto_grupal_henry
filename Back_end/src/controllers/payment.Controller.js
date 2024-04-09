@@ -4,13 +4,14 @@ const axios = require("axios");
 const { PAYPAL_API_SECRET, PAYPAL_API, PAYPAL_API_CLIENT, HOST } = process.env;
 
 const createOrder = async (req, res) => {
+  const price = req.body.totalPrice
   const order = {
     intent: "CAPTURE",
     purchase_units: [
       {
         amount: {
           currency_code: "USD",
-          value: "100.00",
+          value: price,
         },
       },
     ],
@@ -18,7 +19,7 @@ const createOrder = async (req, res) => {
       brand_name: "Wearfashion",
       landing_page: "NO_PREFERENCE", // Cambiado a un valor válido
       user_action: "PAY_NOW",
-      return_url: `${HOST}/capture-order`,
+      return_url: `${HOST}/capture_order`,
       cancel_url: `${HOST}/cancel_order`,
     },
   };
@@ -51,7 +52,7 @@ const createOrder = async (req, res) => {
     return res.json(response.data);
   } catch (error) {
     console.error("Error al crear el pedido:", error.response.data);
-    return res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).json({ error: error});
   }
 };
 
@@ -71,7 +72,7 @@ const captureOrder = async (req, res) => {
 
   console.log(response.data);
 
-  return res.send("Payed");
+  return res.send("Pagado");
 };
 
 const cancelOrder = async (req, res) => {
