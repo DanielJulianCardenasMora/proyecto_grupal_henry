@@ -22,13 +22,14 @@ const Cart = ({ carrito, agregarProducto }) => {
     detalle: "Este es un nuevo detalle de compra"
   })
 
+const userInfo= localStorage.getItem('usuario')
 
 
 
 async function getUserInfo() {
   try {
     // URL del endpoint
-    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/lurm98@gmail.com';
+    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
 
     // Realizar la petición GET
     const response = (await axios.get(url)).data
@@ -109,7 +110,7 @@ async function getUserInfo() {
 
 
 
-      console.log(order);
+
 
   return (
     <div className={style.boxCart}>
