@@ -7,7 +7,8 @@ import {
   ORDERS,
   ORDER_DETAIL,
   PRICE_FILTER,
-  PAYMENT
+  PAYMENT,
+  GET_USERS
 } from "../actions/type";
 
 const initialstate = {
@@ -26,6 +27,7 @@ const initialstate = {
   imageUrl: '',
   orders: [],
   orderDetail:[],
+  users:[],
   totalPage: 1,
   filters: {
     gender: '', // Filtro de género
@@ -36,6 +38,9 @@ const initialstate = {
 
 export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
+
+  
+
     case SEARCH_BY_NAME:
 
       return {
