@@ -30,8 +30,11 @@ export default function RegisterDialog({ handleClose }) {
 
     try {
       
-      await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
-      alert("User registed")
+      const response = await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
+      console.log(response)
+      if(response){
+        alert("User registed")
+      }
       handleClose();
     } catch (error) {
       alert('Error al registrar el usuario', error);
