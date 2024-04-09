@@ -32,7 +32,7 @@ export const getAllProducts = (page, filters) => {
         payload: [response.data.products, response.data.totalPage],
       });
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   }
 }
