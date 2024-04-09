@@ -107,9 +107,12 @@
 
 .vaciar{
    color: rgb(99, 0, 0);
+   padding: 1%;
+   box-sizing: border-box;
    background: none;
    cursor: pointer;
    border: 1px solid black;
+   height: 45%;
 
 }
 
@@ -120,19 +123,23 @@
 }
 
 .back{
+    height: 47%;
+    padding: 1%;
+    box-sizing: border-box;
     background-color: blueviolet;
     color: white;
     margin-bottom: 1%;
     border-radius: 2em;
-    font-weight: bold
+    font-weight: bold,
+  
 }
 .content p{
 color: rgb(56, 56, 56);
 }
 
 .buy{
- 
-    height: 25%;
+  padding-top: 1%;
+    height: 35%;
     /* background-color: brown; */
     display: flex;
     flex-direction: column;
@@ -150,8 +157,8 @@ background-color: rgba(255, 255, 255, 0.349);;
 .total{
     margin-bottom: 2%;
     
-    height: 25%;
-    font-size: 25px;
+    height: 20%;
+    font-size: 20px;
     width: 50%;
     /* background-color: blueviolet; */
    display: flex;
@@ -164,7 +171,9 @@ background-color: rgba(255, 255, 255, 0.349);;
     width: 50%;
     display: flex;
     flex-direction: column;
-    height: 45%;
+    height: 30%;
+    /* background-color: brown; */
+    box-sizing: border-box;
 }
 
 .totalPrice{
@@ -179,5 +188,9 @@ background-color: rgba(255, 255, 255, 0.349);;
 
 .buttons{
     color: black;
+
 }
 
+.comments{
+    display: flex;
+}

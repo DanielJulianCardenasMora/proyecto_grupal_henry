@@ -8,15 +8,21 @@ import { getAllProducts } from '../../redux/actions/actions';
 
 
 export const Cards = () => {
-  const productsScreen = useSelector((state) => state.ProductsScreen);
+  const productsScreen = useSelector((state) => state.Products);
   const totalPages = useSelector((state) => state.TotalPages);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
-
+  const [currentFilters, setCurrentFilters] = useState({});
   const filters = useSelector((state) => state.filters);
-
   useEffect(() => {
-    // Llamar a getAllProducts con la página actual y los filtros del estado de Redux
+    // Si los filtros han cambiado, reiniciar la página a 1
+    if (JSON.stringify(filters) !== JSON.stringify(currentFilters)) {
+      setCurrentPage(1);
+      setCurrentFilters(filters);
+    }
+  }, [filters, currentFilters]);
+  useEffect(() => {
+    console.log(currentPage)
     dispatch(getAllProducts(currentPage, filters));
   }, [currentPage, filters, dispatch]);
 

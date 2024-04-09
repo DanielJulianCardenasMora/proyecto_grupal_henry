@@ -69,6 +69,14 @@
   cursor: pointer;
   font-size: 2vw;
 }
+.reset{
+  position: absolute;
+  bottom: 2%;
+  right: 5.5%;
+  color: rgb(7, 4, 4);
+  cursor: pointer;
+  font-size: 2vw;
+}
 .hidden{
   background-color: black;
   height: 100vh;

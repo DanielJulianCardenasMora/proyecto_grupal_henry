@@ -3,41 +3,66 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import  ItemCount  from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders } from "../../redux/actions/actions";
+import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
+import axios from "axios";
 
 
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
-  const userId='9e26e2c9-4c3f-407f-b54a-bec1a57c9a35'
+
   const totalInicial = carrito.reduce((total, item) => total + item.price * item.quantity, 0);
   const [totalCompra, setTotalCompra] = useState(totalInicial);
-
-const [order, setOrder]= useState({
-  userId: userId,
-  products: carrito.map(item => ({
-    productId: item.id,
-    quantity: item.quantity
-  })),
-  detalle: "Este es un nuevo detalle de compra"
-})
-
+  const [order, setOrder]= useState({
+    userId:'',
+    products: carrito.map(item => ({
+      productId: item.id,
+      quantity: item.quantity
+    })),
+    detalle: ''
+  })
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-   dispatch(enviarCarritoAlBackend(order));
-   setOrder({})
-alert('Orden de compra creada')
-    agregarProducto([])
-  };
+
+
+
+const onChange = (e) => {
+  setOrder({ ...order, detalle: e.target.value });
+};
+
+async function getUserInfo() {
+  try {
+
+    const userInfo= localStorage.getItem('usuario')
+    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
+    const response = (await axios.get(url)).data
+
+
+  return  setOrder({
+    ...order,
+      userId:response.id,
+      products: carrito.map(item => ({
+        productId: item.id,
+        quantity: item.quantity
+      })),
+
+    })
+
+
+  } catch (error) {
+    // Manejar errores
+    console.error('Error al realizar la petición:', error);
+  }}
+
+
+ 
 
   useEffect(() => {
-dispatch(getOrders())
-  setTotalCompra(totalInicial)
-  }, [carrito])
-  
+    dispatch(getOrders())
+      getUserInfo()
+      setTotalCompra(totalInicial)         
+      }, [carrito])
 
 
 
@@ -73,6 +98,21 @@ dispatch(getOrders())
   };
 
 
+  const handleSubmit = (e) => {
+
+    setOrder({
+      ...order,
+        detalle: order.comments
+      })
+    dispatch(enviarCarritoAlBackend(order));
+  
+ alert('Orden de compra creada')
+     agregarProducto([])
+   };
+
+console.log(order);
+
+
 
   return (
     <div className={style.boxCart}>
@@ -103,8 +143,14 @@ dispatch(getOrders())
             </div>
           </div>
         ))}
+
+    
         {carrito.length ? (
           <div className={style.buy}>
+            <div className={style.comments}>
+              <label >Comments:</label>
+              <textarea type="text" value={order.comments} onChange={onChange} />
+            </div>
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
             </div>

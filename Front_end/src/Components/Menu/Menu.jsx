@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import style from "./menu.module.css";
 import { useDispatch } from "react-redux";
-import { genderFilter, filterByCategory, priceFilter, updateGenderFilter, updateCategoryFilter, updatePriceFilter } from '../../redux/actions/actions';
+import { updateGenderFilter, updateCategoryFilter, updatePriceFilter } from '../../redux/actions/actions';
 
 
 export const Menu = () => {
@@ -10,12 +10,13 @@ export const Menu = () => {
   const [activeOptions, setActiveOptions] = useState([]);
   const dispatch = useDispatch()
 
-  
+
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
 
   const handleOptionClick = (optionValue) => {
+    console.log('option handle', optionValue)
     const newActiveOptions = [...activeOptions];
     const index = newActiveOptions.indexOf(optionValue);
     if (index !== -1) {
@@ -40,6 +41,13 @@ export const Menu = () => {
     dispatch(updatePriceFilter(sortOrder))
   }
 
+  const resetFilters = () => {
+    setActiveOptions([]); // Resetear los filtros activos
+    dispatch(updateGenderFilter('')); // Resetear filtro de género
+    dispatch(updateCategoryFilter('')); // Resetear filtro de categoría
+    dispatch(updatePriceFilter('')); // Resetear filtro de precio
+  };
+
 
   return (
     <div className={style.box}>
@@ -47,22 +55,23 @@ export const Menu = () => {
       <div className={isHidden ? style.container : style.hidden}>
         <div className={style.columnas}>
           <div className={style.columna1}>
-            <h1 className={activeOptions.includes('Masculino') ? style.activeItem : ''} key='Masculino' onClick={() => handleGender("Masculino")}>Man</h1>
-            <h1 className={activeOptions.includes('Femenino') ? style.activeItem : ''} key='Femenino' onClick={() => handleGender("Femenino")}>Women</h1>
+            <h1 className={activeOptions.includes('Men') ? style.activeItem : ''} key='Men' onClick={() => handleGender("Men")}>Man</h1>
+            <h1 className={activeOptions.includes('Women') ? style.activeItem : ''} key='Women' onClick={() => handleGender("Women")}>Women</h1>
             <h1 className={activeOptions.includes('Unisex') ? style.activeItem : ''} key='Unisex' onClick={() => handleGender("Unisex")} >Unisex</h1>
           </div>
           <div className={style.columna2}>
-            <h1 className={activeOptions.includes('Chaquetas') ? style.activeItem : ''} key='Chaquetas' onClick={() => handleCategory("Chaquetas")}>Jackets</h1>
-            <h1 className={activeOptions.includes('Buzos') ? style.activeItem : ''} key='Buzos' onClick={() => handleCategory("Buzos")}>Coats</h1>
-            <h1 className={activeOptions.includes('Pantalones') ? style.activeItem : ''} key='Pantalones' onClick={() => handleCategory("Pantalones")}>Pants</h1>
-            <h1 className={activeOptions.includes('Faldas') ? style.activeItem : ''} key='Faldas' onClick={() => handleCategory("Faldas")}>Skirts</h1>
-            <h1 className={activeOptions.includes('Camisas') ? style.activeItem : ''} key='Camisas' onClick={() => handleCategory("Camisas")}>Shirts</h1>
-            <h1 className={activeOptions.includes('Remeras') ? style.activeItem : ''} key='Remeras' onClick={() => handleCategory("Remeras")}>Tshirts</h1>
+            <h1 className={activeOptions.includes('Jackets') ? style.activeItem : ''} key='Jackets' onClick={() => handleCategory("Jackets")}>Jackets</h1>
+            <h1 className={activeOptions.includes('Divers') ? style.activeItem : ''} key='Divers' onClick={() => handleCategory("Divers")}>Coats</h1>
+            <h1 className={activeOptions.includes('Pants') ? style.activeItem : ''} key='Pants' onClick={() => handleCategory("Pants")}>Pants</h1>
+            <h1 className={activeOptions.includes('Skirts') ? style.activeItem : ''} key='Skirts' onClick={() => handleCategory("Skirts")}>Skirts</h1>
+            <h1 className={activeOptions.includes('Shirts') ? style.activeItem : ''} key='Shirts' onClick={() => handleCategory("Shirts")}>Shirts</h1>
+            <h1 className={activeOptions.includes('Tshirts') ? style.activeItem : ''} key='Tshirts' onClick={() => handleCategory("Tshirts")}>Tshirts</h1>
           </div>
           <div className={style.columna3}>
             <h2>Price order</h2>
             <h3 className={activeOptions.includes('asc') ? style.activeItem : ''} key='asc' onClick={() => handlePrice("asc")}>Lower to higher</h3>
             <h3 className={activeOptions.includes('desc') ? style.activeItem : ''} key='desc' onClick={() => handlePrice("desc")}>Higher to lower</h3>
+            <h3 className={style.reset}  onClick={resetFilters}>Reset</h3> {/* Botón de reset */}
             <h3 className={style.c3h3} onClick={toggleMenu}>BACK</h3>
           </div>
         </div>

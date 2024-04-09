@@ -1,13 +1,14 @@
 import {
   GET_PRODUCTS,
   SEARCH_BY_NAME,
-  GENDER_FILTER,
   DETAIL,
-  CATEGORY_FILTER,
   ADD_PRODUCT,
   ENVIAR_CARRITO_AL_BACKEND,
   ORDERS,
-  PRICE_FILTER
+  ORDER_DETAIL,
+  PRICE_FILTER,
+  PAYMENT,
+  GET_USERS
 } from "../actions/type";
 
 const initialstate = {
@@ -25,6 +26,8 @@ const initialstate = {
   images: "",
   imageUrl: '',
   orders: [],
+  orderDetail:[],
+  users:[],
   totalPage: 1,
   filters: {
     gender: '', // Filtro de género
@@ -35,6 +38,9 @@ const initialstate = {
 
 export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
+
+  
+
     case SEARCH_BY_NAME:
 
       return {
@@ -56,6 +62,13 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ...state,
         orders: [...payload]
       }
+
+  case ORDER_DETAIL:
+    console.log(payload);
+    return {
+      ...state,
+      orderDetail:[...payload]
+    }
     case GET_PRODUCTS:
       return {
         ...state,
@@ -105,14 +118,15 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         Detail: payload,
       };
     case ADD_PRODUCT:
-      console.log('Paylod de add reducer', payload);
+      console.log('Payload de add reducer', payload);
       return {
         ...state,
-        Products: [payload, ...state.Products],
+        Products: [payload, ...state.Products], // Agrega el nuevo producto al principio del array
+        ProductsScreen: [payload, ...state.ProductsScreen], // También actualiza la pantalla de productos si es necesario
         loading: false
       };
     case 'UPDATE_GENDER_FILTER':
-      console.log('reducer', payload);
+      console.log('gender reduce:', payload);
       return {
         ...state,
         filters: {
@@ -138,6 +152,10 @@ export default function rootReducer(state = initialstate, { type, payload }) {
           sortOrder: payload,
         },
       };
+
+      case 'PAYMENT':
+        window.location.href = payload
+        
     default:
       return { ...state };
   }
