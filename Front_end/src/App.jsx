@@ -13,10 +13,7 @@ import Orders from './Components/Orders/Orders';
 axios.defaults.baseURL='proyectogrupalhenry-production-e8a4.up.railway.app'
 
 function App() {
-  //estas variables van encima del useState
-  // const usuarioLogeado = JSON.parse(localStorage.getItem('usuario')) || [];
   const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];
-  //====
   const [shouldShowNavbar, setShouldShowNavbar] = useState(true); 
   const [carrito, agregarProducto] = useState(carritoGuardado);
   const [usuario, setUsuario] = useState(null);
