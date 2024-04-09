@@ -50,6 +50,8 @@ export const getOrders = () => {
   }
 }
 
+
+
 export const getOrderDetail = (orderId) => {
 
   return async function (dispatch) {
@@ -62,18 +64,18 @@ export const getOrderDetail = (orderId) => {
     }
   }}
 
-export const getUsers = () => {
+// export const getUsers = () => {
 
-  return async function (dispatch) {
-    try {
-      const response = await axios.get("");
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.get("https://proyectogrupalhenry-production-e8a4.up.railway.app/users/lurm98@gmail.com");
 
-      dispatch({ type: GET_USERS, payload: response.data });
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-}
+//       dispatch({ type: GET_USERS, payload: response.data });
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   }
+// }
 
 
 export function getProductDetail(id) {
@@ -112,7 +114,7 @@ export function searchByName(name) {
 }
 
 export const enviarCarritoAlBackend = (order) => {
-
+console.log(order);
   return async (dispatch) => {
     try {
       const response = await axios.post(`${URL}/orders/create`, order);
