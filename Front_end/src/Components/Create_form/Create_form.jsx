@@ -9,7 +9,7 @@ const Form = ({ addProduct }) => {
   const Genres = ['Men', 'Women', 'Unisex']
   const Category = [
     "Pants",
-    "T-shirts",
+    "Tshirts",
     "Jackets",
     "Divers",
     "Skirts",

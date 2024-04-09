@@ -15,18 +15,18 @@ import {
   UPDATE_PRICE_FILTER,
   UPDATE_CATEGORY_FILTER,
   UPDATE_GENDER_FILTER,
-ORDER_DETAIL,
-PAYMENT
+  ORDER_DETAIL,
+  PAYMENT
 
 } from "./type";
 
-// const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
-const URL = 'http://localhost:3001';
+const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
+// const URL = 'http://localhost:3001';
 export const getAllProducts = (page, filters) => {
-
+  const pageNumbers = page || 1;
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${URL}/products?page=${page}`, { params: filters });
+      const response = await axios.get(`${URL}/products?page=${pageNumbers}`, { params: filters });
 
       dispatch({
         type: GET_PRODUCTS,
@@ -61,7 +61,8 @@ export const getOrderDetail = (orderId) => {
     } catch (error) {
       alert(error.message.response.data);
     }
-  }}
+  }
+}
 
 export const getUsers = () => {
 
@@ -124,7 +125,7 @@ export const enviarCarritoAlBackend = (order) => {
 
     } catch (error) {
 
-console.log('este es el error:', error)
+      console.log('este es el error:', error)
     }
   };
 };
@@ -134,9 +135,9 @@ export const payment = (price) => {
   return async (dispatch) => {
     try {
       console.log(price)
-      const response = await axios.post(`${URL}/create-order`, {totalPrice: price})
+      const response = await axios.post(`${URL}/create-order`, { totalPrice: price })
       console.log(response.data.links[1].href)
-      dispatch({type: PAYMENT, payload: response.data.links[1].href})
+      dispatch({ type: PAYMENT, payload: response.data.links[1].href })
     } catch (error) {
       console.log("error payment: " + error)
     }
