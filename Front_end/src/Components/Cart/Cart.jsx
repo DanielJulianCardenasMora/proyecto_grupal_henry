@@ -60,21 +60,7 @@ const [order, setOrder]= useState({
 
   const handleSubmit = async () => {
     dispatch(payment(totalCompra))
-    // dispatch(enviarCarritoAlBackend(order));
     setOrder({})
-
-    // try {
-    //   console.log("totalcompra: "+ totalCompra);
-    //   const total = {
-    //     totalPrice: totalCompra
-    //   }
-
-    //   const response = await axios.post('http://localhost:3001/create-order', total);
-
-    //   window.location.href = response.links[1].href;
-    // } catch (error) {
-    //   console.log(error)
-    // }
  alert('Orden de compra creada')
      agregarProducto([])
    };
