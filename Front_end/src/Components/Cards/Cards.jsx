@@ -22,6 +22,7 @@ export const Cards = () => {
     }
   }, [filters, currentFilters]);
   useEffect(() => {
+    console.log(currentPage)
     dispatch(getAllProducts(currentPage, filters));
   }, [currentPage, filters, dispatch]);
 
