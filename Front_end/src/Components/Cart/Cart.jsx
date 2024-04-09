@@ -105,7 +105,7 @@ async function getUserInfo() {
         detalle: order.comments
       })
     dispatch(enviarCarritoAlBackend(order));
-    
+  
  alert('Orden de compra creada')
      agregarProducto([])
    };
