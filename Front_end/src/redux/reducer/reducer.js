@@ -6,7 +6,8 @@ import {
   ENVIAR_CARRITO_AL_BACKEND,
   ORDERS,
   ORDER_DETAIL,
-  PRICE_FILTER
+  PRICE_FILTER,
+  PAYMENT
 } from "../actions/type";
 
 const initialstate = {
@@ -110,6 +111,10 @@ export default function rootReducer(state = initialstate, { type, payload }) {
           sortOrder: payload,
         },
       };
+
+      case 'PAYMENT':
+        window.location.href = payload
+        
     default:
       return { ...state };
   }

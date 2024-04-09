@@ -47,14 +47,13 @@ const Form = ({ addProduct }) => {
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log('onchange se actualiza', formData);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     if (!UrlImagen) {
-      alert('No se ha seleccionado una imagen');
+      alert('Please, choose an image');
       return;
     }
 
@@ -75,7 +74,7 @@ const Form = ({ addProduct }) => {
     try {
       const response = await addProduct(data);
 
-      alert('Nuevo producto añadido');
+      alert('Product added');
       setFormData({
         name: '',
         description: '',
@@ -85,7 +84,7 @@ const Form = ({ addProduct }) => {
         category: '',
         images: ""
       })
-     
+    setUrlImagen("");
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
