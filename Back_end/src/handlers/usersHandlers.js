@@ -1,4 +1,4 @@
-const { getAllUsers, getUserInfoDB, deleteUserDB, updateUserDB} = require("../controllers/usersControllers");
+const { getAllUsers, getUserInfoDB, deleteUserDB, updateUserDB } = require("../controllers/usersControllers");
 const userValidate = require("../utils/UsersValidation");
 
 const validateFields = (fields) => {
@@ -49,7 +49,7 @@ const getUserInfo = async (req, res) => {
     const user = await getUserInfoDB(userEmail);
 
     if (!user) {
-      res.status(500).json({message: "aun no hay usuarios registrados con ese nombre"});
+      res.status(500).json({ message: "aun no hay usuarios registrados con ese nombre" });
     } else {
       res.status(200).json(user);
     }
@@ -64,26 +64,26 @@ const editUser = async (req, res) => {
   let userData = req.body;
 
   try {
-      const updatedUser = await updateUserDB(userEmail, userData);
-      if (updatedUser) {
-          res.status(200).json({ mensaje: "Usuario actualizado correctamente", usuario: updatedUser });
-      } else {
-          res.status(404).json("Usuario no encontrado.");
-      }
+    const updatedUser = await updateUserDB(userEmail, userData);
+    if (updatedUser) {
+      res.status(200).json({ mensaje: "Usuario actualizado correctamente", usuario: updatedUser });
+    } else {
+      res.status(404).json("Usuario no encontrado.");
+    }
   } catch (error) {
-      console.error("Error al editar el usuario:", error);
-      res.status(500).json({ error: "Error interno al editar el usuario" });
+    console.error("Error al editar el usuario:", error);
+    res.status(500).json({ error: "Error interno al editar el usuario" });
   }
 };
 
 const deleteUser = async (req, res) => {
-  let { id } = req.params;
+  let { userEmail } = req.params;
 
   try {
-    const deletedUserCount = await deleteUserDB(id);
+    const deletedUserCount = await deleteUserDB(userEmail);
 
     if (deletedUserCount > 0) {
-      res.status(200).json(`User con ID ${id} eliminado correctamente.`);
+      res.status(200).json(`User con email ${userEmail} eliminado correctamente.`);
     } else {
       res.status(404).json("User not found.");
     }

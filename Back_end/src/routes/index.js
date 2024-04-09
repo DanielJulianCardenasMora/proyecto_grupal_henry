@@ -3,13 +3,17 @@ const productsRouter = require('./productsRouter');
 const usersRouter = require('./usersRouter');
 const categoryRouter = require('./categoryRuter');
 const orderRouter = require('../routes/orderRoute');
-//hola
+const adminRouter = require('../routes/adminRouter')
 const router = Router();
 
+// Rutas para usuarios
 router.use('/products', productsRouter)
 router.use('/users', usersRouter)
 router.use('/category', categoryRouter)
 router.use('/orders', orderRouter)
+
+// Rutas para administrador
+router.use('/admin', adminRouter)
 
 router.post('/carrito/comprar', async (req, res) => {
     console.log(req.body);
