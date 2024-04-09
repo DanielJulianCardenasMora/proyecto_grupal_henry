@@ -19,28 +19,34 @@ const Cart = ({ carrito, agregarProducto }) => {
       productId: item.id,
       quantity: item.quantity
     })),
-    detalle: "Este es un nuevo detalle de compra"
+    detalle: ''
   })
 
-const userInfo= localStorage.getItem('usuario')
 
 
+
+
+
+const onChange = (e) => {
+  setOrder({ ...order, detalle: e.target.value });
+};
 
 async function getUserInfo() {
   try {
-    // URL del endpoint
-    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
 
-    // Realizar la petición GET
+    const userInfo= localStorage.getItem('usuario')
+    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
     const response = (await axios.get(url)).data
 
+
   return  setOrder({
+    ...order,
       userId:response.id,
       products: carrito.map(item => ({
         productId: item.id,
         quantity: item.quantity
       })),
-      detalle: "Este es un nuevo detalle de compra"
+
     })
 
 
@@ -50,20 +56,12 @@ async function getUserInfo() {
   }}
 
 
+ 
 
   useEffect(() => {
     dispatch(getOrders())
       getUserInfo()
-      setTotalCompra(totalInicial)
-  setOrder({
-          ...order,
-            products: carrito.map(item => ({
-              productId: item.id,
-              quantity: item.quantity
-            })),
-            detalle: "Este es un nuevo detalle de compra"
-          })
-         
+      setTotalCompra(totalInicial)         
       }, [carrito])
 
 
@@ -102,13 +100,17 @@ async function getUserInfo() {
 
   const handleSubmit = (e) => {
 
+    setOrder({
+      ...order,
+        detalle: order.comments
+      })
     dispatch(enviarCarritoAlBackend(order));
     
  alert('Orden de compra creada')
      agregarProducto([])
    };
 
-
+console.log(order);
 
 
 
@@ -141,8 +143,14 @@ async function getUserInfo() {
             </div>
           </div>
         ))}
+
+    
         {carrito.length ? (
           <div className={style.buy}>
+            <div className={style.comments}>
+              <label >Comments:</label>
+              <textarea type="text" value={order.comments} onChange={onChange} />
+            </div>
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
             </div>
