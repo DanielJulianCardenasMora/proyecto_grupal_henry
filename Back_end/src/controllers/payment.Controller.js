@@ -1,7 +1,8 @@
 const { application } = require("express");
 require("dotenv").config();
 const axios = require("axios");
-const { PAYPAL_API_SECRET, PAYPAL_API, PAYPAL_API_CLIENT, HOST } = process.env;
+const { PAYPAL_API_SECRET, PAYPAL_API, PAYPAL_API_CLIENT } = process.env;
+const {HOST} = require("../../config")
 
 const createOrder = async (req, res) => {
   const price = req.body.totalPrice
