@@ -22,8 +22,9 @@ function filtrarPorGenero(products, gender) {
 }
 
 function filtrarPorCategoria(products, category) {
+  console.log('category desde filter',category)
   if (category) {
-    return products.filter(product => product.category.toLowerCase() === category.toLowerCase() || product.Categories.map(cat => cat.toLowerCase()).includes(category.toLowerCase()));
+    return products.filter(product => product.category.toLowerCase() === category.toLowerCase() ||  product.Categories.some(cat => cat.name.toLowerCase() === category.toLowerCase()));
   }
   return products;
 }
