@@ -4,6 +4,11 @@ const usersRouter = require('./usersRouter');
 const categoryRouter = require('./categoryRuter');
 const orderRouter = require('../routes/orderRoute');
 const adminRouter = require('../routes/adminRouter')
+const {
+  createOrder,
+  captureOrder,
+  cancelOrder,
+} = require("../controllers/payment.Controller");
 const router = Router();
 
 // Rutas para usuarios
@@ -11,6 +16,9 @@ router.use('/products', productsRouter)
 router.use('/users', usersRouter)
 router.use('/category', categoryRouter)
 router.use('/orders', orderRouter)
+router.post("/create-order", createOrder);
+router.get("/capture-order", captureOrder);
+router.get("/cancel-order", cancelOrder);
 
 // Rutas para administrador
 router.use('/admin', adminRouter)

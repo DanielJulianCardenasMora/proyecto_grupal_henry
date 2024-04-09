@@ -10,12 +10,13 @@ export const Menu = () => {
   const [activeOptions, setActiveOptions] = useState([]);
   const dispatch = useDispatch()
 
-  
+
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
 
   const handleOptionClick = (optionValue) => {
+    console.log('option handle', optionValue)
     const newActiveOptions = [...activeOptions];
     const index = newActiveOptions.indexOf(optionValue);
     if (index !== -1) {
@@ -40,6 +41,13 @@ export const Menu = () => {
     dispatch(updatePriceFilter(sortOrder))
   }
 
+  const resetFilters = () => {
+    setActiveOptions([]); // Resetear los filtros activos
+    dispatch(updateGenderFilter('')); // Resetear filtro de género
+    dispatch(updateCategoryFilter('')); // Resetear filtro de categoría
+    dispatch(updatePriceFilter('')); // Resetear filtro de precio
+  };
+
 
   return (
     <div className={style.box}>
@@ -63,6 +71,7 @@ export const Menu = () => {
             <h2>Price order</h2>
             <h3 className={activeOptions.includes('asc') ? style.activeItem : ''} key='asc' onClick={() => handlePrice("asc")}>Lower to higher</h3>
             <h3 className={activeOptions.includes('desc') ? style.activeItem : ''} key='desc' onClick={() => handlePrice("desc")}>Higher to lower</h3>
+            <h3 className={style.reset}  onClick={resetFilters}>Reset</h3> {/* Botón de reset */}
             <h3 className={style.c3h3} onClick={toggleMenu}>BACK</h3>
           </div>
         </div>

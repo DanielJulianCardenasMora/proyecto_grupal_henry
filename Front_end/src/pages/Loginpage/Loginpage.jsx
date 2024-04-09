@@ -17,7 +17,7 @@ function Login ({setUsuario, usuario}) {
   const { deployedBackendURL, localBackendURL } = config;
   const URL = deployedBackendURL || localBackendURL;
 
-  const { loginWithRedirect, logout, isLoading, user, isAuthenticated } =
+  const { loginWithRedirect, logout, isLoading, isAuthenticated, user } =
     useAuth0();
 
 
@@ -58,16 +58,12 @@ function Login ({setUsuario, usuario}) {
       const {data} = await axios.post(`${URL}users/api/login`, login)
 
       if (data.status == 'ok') {
-        localStorage.setItem('usuario', JSON.stringify(login.email))
-
-        navigate("/"); 
-        setTimeout(() => {
-          alert("Login")
-        }, 1000);
+        navigate("/");
+        localStorage.setItem("usuario", login.email)
         }
 
     } catch (error) {
-      alert("Email o contraseña incorrectos");
+      alert("Email or password incorrect");
       setCredentials({
         email: "",
         password: ""
@@ -90,6 +86,15 @@ function Login ({setUsuario, usuario}) {
     setShowRegisterDialog(true);
   };
 
+  const handleGoogle = () => {
+      console.log("entre al handle")
+      console.log(user)
+      console.log(isAuthenticated)
+  }
+
+  useEffect(()=> {
+    handleGoogle()
+  }, [isAuthenticated])
 
   return (
     <div className={styles.div}>
@@ -113,20 +118,13 @@ function Login ({setUsuario, usuario}) {
           visible={true}
         />
         <Submit onClick={() => onClick()}>Login</Submit>
-
-        {isAuthenticated ? (
-          <>
-          <br></br>
-          <button className={styles.googleLogin} onClick={() => logout()}>Logout</button>
-          </>
-        ) : (
+  
           <>
             <br></br>
             <button className={styles.googleLogin}onClick={() => loginWithRedirect()}>
               Log in with Google
             </button>
           </>
-        )}
 
         <Footer>
           ¿Do yo want to register?

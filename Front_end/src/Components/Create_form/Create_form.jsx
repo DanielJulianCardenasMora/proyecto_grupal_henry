@@ -6,14 +6,14 @@ import { addProduct } from '../../redux/actions/actions';
 import axios from 'axios'
 
 const Form = ({ addProduct }) => {
-  const Genres = ['Masculino', 'Femenino', 'Unisex']
+  const Genres = ['Men', 'Women', 'Unisex']
   const Category = [
-    "Pantalones",
-    "Remeras",
-    "Chaquetas",
-    "Buzos",
-    "Faldas",
-    "Camisas",
+    "Pants",
+    "T-shirts",
+    "Jackets",
+    "Divers",
+    "Skirts",
+    "Shirts",
   ];
 
   const [formData, setFormData] = useState({
@@ -47,16 +47,16 @@ const Form = ({ addProduct }) => {
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log('onchange se actualiza', formData);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     if (!UrlImagen) {
-      console.error('No se ha seleccionado una imagen');
+      alert('Please, choose an image');
       return;
     }
+
 
     const data = {
       name,
@@ -68,9 +68,23 @@ const Form = ({ addProduct }) => {
       images: UrlImagen
     };
 
+    if(data.name == null){
+      
+    }
     try {
       const response = await addProduct(data);
-      console.log('Nuevo producto añadido:', response);
+
+      alert('Product added');
+      setFormData({
+        name: '',
+        description: '',
+        price: '',
+        stock: '',
+        genero: '',
+        category: '',
+        images: ""
+      })
+    setUrlImagen("");
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
@@ -173,9 +187,11 @@ const Form = ({ addProduct }) => {
         </div>
       </form>
       {UrlImagen && (
+        
         <div className={style.imageContainer}>
+          <h4>Preview</h4>
           <img src={UrlImagen} className={style.imgForm} />
-          <button onClick={() => deleteImagen()}>Delete File</button>
+          <button onClick={() => deleteImagen() } className={style.buttonImage}>X</button>
         </div>
       )}
 

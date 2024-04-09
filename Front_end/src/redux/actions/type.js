@@ -2,6 +2,7 @@ export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_USERS = "GET_USERS";
 export const CATEGORY = "CATEGORY";
 export const ORDERS = "ORDERS";
+export const ORDER_DETAIL = "ORDER_DETAIL";
 export const DETAIL = "DETAIL";
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
 export const CATEGORY_FILTER = "CATEGORY_FILTER";
@@ -23,3 +24,5 @@ export const PRICE_FILTER = "PRICE_FILTER"
 export const UPDATE_GENDER_FILTER = 'UPDATE_GENDER_FILTER';
 export const UPDATE_CATEGORY_FILTER = "UPDATE_CATEGORY_FILTER"
 export const UPDATE_PRICE_FILTER = "UPDATE_PRICE_FILTER"
+
+export const PAYMENT = "PAYMENT"

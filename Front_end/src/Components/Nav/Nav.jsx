@@ -1,34 +1,75 @@
-import React, { useEffect, useState } from 'react'
-import style from './nav.module.css'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import style from './nav.module.css';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
-
-
-
-
-
-function Nav() {
-  const location = useLocation()
+function Nav({ setUsuario }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
+  const { logout, isAuthenticated, user } = useAuth0(); // Obtener user de useAuth0
+  const navigate = useNavigate();
+
   useEffect(() => {
     const storedEmail = localStorage.getItem('usuario');
-    setIsLoggedIn(storedEmail !== null);
+
+    if (storedEmail !== null) {
+      setShowLogout(true);
+      setIsLoggedIn(true);
+    } else {
+      setShowLogout(false);
+      setIsLoggedIn(false);
+    }
   }, []);
 
+  // Función para manejar el inicio de sesión
   const handleLogin = () => {
-    alert('Porfavor accede al Log in primero');
+    alert('Login required');
+    navigate("/login");
   };
 
+  // Función para manejar el cierre de sesión
+  const handleLogout = () => {
+    setUsuario(null);
+    setIsLoggedIn(false);
+    setShowLogout(false);
+    localStorage.removeItem('usuario');
+
+    if (isAuthenticated) {
+      logout();
+      navigate("/");
+    }
+  };
+
+  // Manejar el almacenamiento del correo electrónico cuando el usuario esté autenticado
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      localStorage.setItem('usuario', user.email);
+      setShowLogout(true);
+      setIsLoggedIn(true);
+    }
+  }, [isAuthenticated, user]);
 
   return (
     <nav className={style.nav}>
-    <div className={style.boxLogo}><Link to='/' className={style.link} >WF</Link></div>
-     <div  className={style.boxList}><ul>
-     <Link to='/products' className={style.link}> <li>Products</li></Link>
-     <Link to='/about' className={style.link} > <li>About</li></Link>
-     <Link to='/create' className={style.link} ><li>Create</li></Link>
-     {isLoggedIn ? (
-            <Link to='/myprofile' className={style.link}>
+      <div className={style.boxLogo}>
+        <Link to="/" className={style.link}>
+          WF
+        </Link>
+      </div>
+      <div className={style.boxList}>
+        <ul>
+          <Link to="/products" className={style.link}>
+            <li>Products</li>
+          </Link>
+          <Link to="/about" className={style.link}>
+            <li>About</li>
+          </Link>
+          <Link to="/create" className={style.link}>
+            <li>Create</li>
+          </Link>
+          {isLoggedIn ? (
+            <Link to="/myprofile" className={style.link}>
               <li>My Profile</li>
             </Link>
           ) : (
@@ -36,19 +77,25 @@ function Nav() {
               My Profile
             </li>
           )}
-     <Link to='/cart' className={style.link}><li>Cart</li></Link>
-      
-     </ul></div>
+          <Link to="/cart" className={style.link}>
+            <li>Cart</li>
+          </Link>
+        </ul>
+      </div>
 
-     <div className={style.logIn}>
-           <Link to='/login' className={style.link}><button className={style.logInB}>Log In</button></Link>
-     </div>
-     
-
+      {showLogout || isAuthenticated ? (
+        <div className={style.logIn}>
+          <button className={style.logInB} onClick={handleLogout}>Log out</button>
+        </div>
+      ) : (
+        <div className={style.logIn}>
+          <Link to="/login" className={style.link}>
+            <button className={style.logInB}>Log In</button>
+          </Link>
+        </div>
+      )}
     </nav>
-
-
-  )
+  );
 }
 
-export default Nav
+export default Nav;
