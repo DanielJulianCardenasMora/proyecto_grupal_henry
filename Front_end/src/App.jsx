@@ -27,10 +27,10 @@ function App() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }, [carrito]);
 
-  useEffect(() => {
-    const hiddenPaths = ['/login', '/dashboard', '/dashboard/products', '/dashboard/products/follow-up', '/dashboard/products/create'];
-    setShouldShowNavbar(!hiddenPaths.some(ruta => location.pathname.startsWith(ruta)));
-  }, [location]);
+  // useEffect(() => {
+  //   const hiddenPaths = ['/login', '/dashboard', '/dashboard/products', '/dashboard/products/follow-up', '/dashboard/products/create'];
+  //   setShouldShowNavbar(!hiddenPaths.some(ruta => location.pathname.startsWith(ruta)));
+  // }, [location]);
 
 
   return (
