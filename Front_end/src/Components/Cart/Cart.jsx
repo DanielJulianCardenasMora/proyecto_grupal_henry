@@ -59,9 +59,10 @@ const [order, setOrder]= useState({
 
 
   const handleSubmit = async () => {
+    console.log("handlesubmit")
     dispatch(payment(totalCompra))
     setOrder({})
- alert('Orden de compra creada')
+    alert('Orden de compra creada')
      agregarProducto([])
    };
 
