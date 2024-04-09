@@ -134,7 +134,7 @@ export const payment = (price) => {
   return async (dispatch) => {
     try {
       console.log(price)
-      const response = await axios.post('http://localhost:3001/create-order', {totalPrice: price})
+      const response = await axios.post(`${URL}/create-order`, {totalPrice: price})
       console.log(response.data.links[1].href)
       dispatch({type: PAYMENT, payload: response.data.links[1].href})
     } catch (error) {
