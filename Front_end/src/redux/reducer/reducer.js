@@ -76,42 +76,6 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         ProductsScreen: [...payload[0]],
         TotalPages: payload[1],
       };
-<<<<<<< HEAD
-
-    case PRICE_FILTER_ASC:
-      const priceAsc = ['priceAsc'];
-      const urlAsc = state.UrlActual + "?sortBy=price&sortOrder=asc";
-      
-      return {
-        ...state,
-        FiltroActivo: priceAsc,
-        UrlActual: urlAsc,
-        Products: [...payload[0]],
-        ProductsScreen: [...payload[0]],
-        TotalPages: payload[1],
-      };
-
-    case PRICE_FILTER_DES:
-      const priceDes = ['priceDes'];
-      const urlDes = state.UrlActual + "?sortBy=price&sortOrder=desc"
-
-      return {
-        ...state,
-        FiltroActivo: priceDes,
-        UrlActual: urlDes,
-        Products: [...payload[0]],
-        ProductsScreen: [...payload[0]],
-        TotalPages: payload[1],
-      };
-
-    case GENDER_FILTER:
-      return {
-        ...state,
-        Products: [...payload],
-        ProductsScreen: [...payload],
-      }
-=======
->>>>>>> c6cbaac00876d9cb9ba59c5c8a9a6ccdad40f3a0
     case DETAIL:
       return {
         ...state,
