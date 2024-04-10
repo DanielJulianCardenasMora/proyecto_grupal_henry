@@ -65,9 +65,6 @@ function Nav({ setUsuario }) {
           <Link to="/about" className={style.link}>
             <li>About</li>
           </Link>
-          <Link to="/create" className={style.link}>
-            <li>Create</li>
-          </Link>
           {isLoggedIn ? (
             <Link to="/myprofile" className={style.link}>
               <li>My Profile</li>
