@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import ItemCount from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
-import axios from "axios";
-
+import { enviarCarritoAlBackend, getOrders, payment} from "../../redux/actions/actions";
 
 
 const Cart = ({ carrito, agregarProducto }) => {
@@ -76,7 +74,6 @@ async function getUserInfo() {
     const filtrados = carrito.filter((p) => p.id !== item.id);
     console.log(filtrados);
     agregarProducto(filtrados);
-
   };
 
   const handleQuantityChange = (newQuantity, item) => {
