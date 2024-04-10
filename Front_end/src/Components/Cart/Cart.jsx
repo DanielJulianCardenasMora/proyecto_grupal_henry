@@ -4,7 +4,6 @@ import style from "./Cart.module.css";
 import  ItemCount  from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
 import { enviarCarritoAlBackend, getOrders, payment} from "../../redux/actions/actions";
-import axios from 'axios'
 
 
 const Cart = ({ carrito, agregarProducto }) => {
@@ -35,7 +34,6 @@ const [order, setOrder]= useState({
     const filtrados = carrito.filter((p) => p.id !== item.id);
     console.log(filtrados);
     agregarProducto(filtrados);
-
   };
 
   const handleQuantityChange = (newQuantity, item) => {

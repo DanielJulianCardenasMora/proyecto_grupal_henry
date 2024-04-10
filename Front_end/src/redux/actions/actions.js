@@ -42,7 +42,7 @@ export const getOrders = () => {
 
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${URL}/orders`);
+      const response = await axios.get(`${URL}/admin/orders`);
 
       dispatch({ type: ORDERS, payload: response.data });
     } catch (error) {
@@ -67,7 +67,7 @@ export const getUsers = () => {
 
   return async function (dispatch) {
     try {
-      const response = await axios.get("");
+      const response = await axios.get(`${URL}/admin/users-list`);
 
       dispatch({ type: GET_USERS, payload: response.data });
     } catch (error) {
@@ -78,7 +78,6 @@ export const getUsers = () => {
 
 
 export function getProductDetail(id) {
-  console.log('id: ' + id)
   return async function (dispatch) {
 
     try {
@@ -142,20 +141,6 @@ export const payment = (price) => {
     }
   }
 }
-export function postItem(i) {
-
-  return async function () {
-
-    const response = await axios.post('', i)
-
-    alert("Item created")
-
-
-    return response
-  }
-
-}
-
 
 export const addProduct = (formData) => async (dispatch) => {
   console.log('FormData de actions:', formData);
@@ -165,7 +150,7 @@ export const addProduct = (formData) => async (dispatch) => {
         'Content-Type': 'multipart/form-data'
       }
     };
-    const response = await axios.post(`${URL}/products/create`, formData, config);
+    const response = await axios.post(`${URL}/admin/create`, formData, config);
     console.log('respuesta de action', response.data);
     dispatch({
       type: ADD_PRODUCT,
