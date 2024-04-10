@@ -8,7 +8,7 @@ export default function CreateProducts() {
 
   return (
     <div>
-      <Sidebar />
+    
       <Create_form />
     </div>
     
