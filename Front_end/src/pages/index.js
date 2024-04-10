@@ -9,9 +9,9 @@ import ProductsAdmin from "./Dashboard/products/products";
 import CreateProducts from "./Dashboard/products/createproducts";
 import Follow from "./Dashboard/products/follow";
 import { UserProfilePage } from "./UserProfilePage/UserProfilePage";
-
+import {CaptureOrder} from "./Capturepage/CaptureOrder";
 
 
 export {AboutPage, LandingPage, HomePage, DetailPage, CreatePage, 
-        ProductsPage, HomeAdmin,ProductsAdmin ,CreateProducts ,Follow, UserProfilePage} 
+        ProductsPage, HomeAdmin,ProductsAdmin ,CreateProducts ,Follow, UserProfilePage, CaptureOrder} 
 

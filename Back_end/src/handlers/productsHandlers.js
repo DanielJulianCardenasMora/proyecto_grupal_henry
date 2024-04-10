@@ -36,9 +36,8 @@ const getProducts = async (req, res) => {
       filteredProducts = productsByName;
     }
 
-    // filteredProducts = filtrarPorNombre(filteredProducts, sortBy);
-    // filteredProducts = filtrarPorPrecio(filteredProducts, sortOrder);
-    const paginatedProducts = paginarDatos(filteredProducts, page, currentPage);
+   
+    const paginatedProducts = paginarDatos(filteredProducts, page);
 
     response = {
       products: paginatedProducts.data,

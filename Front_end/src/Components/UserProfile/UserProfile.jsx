@@ -6,12 +6,10 @@ import axios from 'axios'
 
 const UserProfile = () => {
   const URL_USUARIO_FIND = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/'
-  const userLocalStorage = JSON.parse(localStorage.getItem('usuario'))  || []
-
+  const userLocalStorage = localStorage.getItem('usuario')  || null
   const [modoEdicion, setModoEdicion] = useState({ email: false, phone: false, password: false, country: false });
-  // const [datosUsuario, setDatosUsuario] = useState(null);
-  // se usa el estado comentado, este es para iniciar prueba.
-  const [datosUsuario, setDatosUsuario] = useState({ id: false, email: false, phone: false, password: false, country: false });
+  const [datosUsuario, setDatosUsuario] = useState(null);
+  // const [datosUsuario, setDatosUsuario] = useState({ id: false, email: false, phone: false, password: false, country: false });
   
 
   const obtenerDatosUsuario = async () => {
@@ -22,19 +20,11 @@ const UserProfile = () => {
       alert(error)
     }
   }
-
+  
   useEffect(() => {
     obtenerDatosUsuario();
+    console.log(datosUsuario)
   }, [])
-
-  const editarUsuario = async () => {
-    try {
-      const { data } = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}, {...datosUsuario}`);
-      setDatosUsuario(data);
-    } catch (error) {
-      alert(error)
-    }
-  }
 
   const manejarClicEditar = (campo) => {
     setModoEdicion({ ...modoEdicion, [campo]: !modoEdicion[campo] });
@@ -48,8 +38,9 @@ const UserProfile = () => {
     try {
       const datosActualizados = { ...datosUsuario };
       delete datosActualizados.modoEdicion; 
+      console.log(datosUsuario)
 
-      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.id}`, datosActualizados);
+      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.email}`, datosActualizados);
 
       console.log('Datos del usuario actualizados:', respuesta.data);
       setModoEdicion({ ...modoEdicion, [campo]: false });
@@ -70,8 +61,8 @@ const UserProfile = () => {
       <img className={style.fondo} src={fondo} />
       <div className={style.iconos}>
         <div className={style.iconos_box}>
-          <div className={style.edit1} onClick={() => manejarClicEditar('name')}></div>
-          <div className={style.save1} onClick={() => manejarClicGuardar('name')}></div>
+          <div className={style.edit1} onClick={() => manejarClicEditar('email')}></div>
+          <div className={style.save1} onClick={() => manejarClicGuardar('email')}></div>
         </div>
         <div className={style.iconos_box2}>
           <div className={style.edit1} onClick={() => manejarClicEditar('phone')}></div>
