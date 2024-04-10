@@ -98,7 +98,7 @@ const UserProfile = () => {
               onChange={(e) => manejarCambioInput(e, 'phone')}
             />
           ) : (
-              <div>{datosUsuario.id}</div>
+              <div>{datosUsuario.phone}</div>
           )}
         </div>
         <div className={style.password}>
@@ -109,7 +109,7 @@ const UserProfile = () => {
               onChange={(e) => manejarCambioInput(e, 'password')}
             />
           ) : (
-              <div>{datosUsuario.password}</div>
+              <div>{'********'}</div>
           )}
         </div>
         <div className={style.place}>
