@@ -32,7 +32,7 @@ export default function Sidebar() {
                 {mostrarSecciones.has("clients") && (
                     <div className={styles.subMenu}>
                         <ButtonLink linkTo={"/dashboard/clients"} text={"All clients"} />
-                        <ButtonLink linkTo={"/dashboard/clients/Special-management"} text={"Special Management"} />
+                        {/* <ButtonLink linkTo={"/dashboard/clients/Special-management"} text={"Special Management"} /> */}
                         {/* <ButtonLink linkTo={"clients/Returns-refunds"} text={"Returns and Refunds"} /> */}
                     </div>
                 )}
@@ -40,7 +40,7 @@ export default function Sidebar() {
                 <button className={styles.navButton} onClick={() => toggleMostrarSeccion("Orders")}>Orders</button>
                 {mostrarSecciones.has("Orders") && (
                     <div className={styles.subMenu}>
-                        <ButtonLink linkTo={"/dashboard/Orders"} text={"All orders"} />
+                        <ButtonLink linkTo={"/dashboard/ordersdash"} text={"All orders"} />
                         {/* <ButtonLink linkTo={"/dashboard/Orders/products-ranking"} text={"Ranking Products"} />
                         <ButtonLink linkTo={"/dashboard/Orders/clients-ranking"} text={"Ranking Clients"} /> */}
                     </div>
@@ -49,9 +49,9 @@ export default function Sidebar() {
                 <button className={styles.navButton} onClick={() => toggleMostrarSeccion("statistics")}>Statistics</button>
                 {mostrarSecciones.has("statistics") && (
                     <div className={styles.subMenu}>
-                        <ButtonLink linkTo={"/dashboard/statistics/sales"} text={"Sales"} />
-                        <ButtonLink linkTo={"/dashboard/statistics/products-ranking"} text={"Ranking Products"} />
-                        <ButtonLink linkTo={"/dashboard/statistics/clients-ranking"} text={"Ranking Clients"} />
+                        <ButtonLink linkTo={"/dashboard/statistics"} text={"Sales"} />
+                        {/* <ButtonLink linkTo={"/dashboard/statistics/products-ranking"} text={"Ranking Products"} />
+                        <ButtonLink linkTo={"/dashboard/statistics/clients-ranking"} text={"Ranking Clients"} /> */}
                     </div>
                 )}
         

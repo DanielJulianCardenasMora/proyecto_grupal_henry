@@ -1,4 +1,3 @@
-import React from 'react'
 import style from '../css/Clients.module.css'
 import Sidebar from "../../../Components/Dashboard/sidebar";
 

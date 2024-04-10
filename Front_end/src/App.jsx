@@ -2,6 +2,7 @@ import React, { useEffect, useState  } from 'react';
 import axios from  'axios'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { LandingPage, AboutPage, DetailPage, CreatePage, ProductsPage, HomeAdmin ,ProductsAdmin, Follow, CreateProducts, UserProfilePage, CaptureOrder } from './pages';
+import {Clients, Orderdash, Statistics} from './pages/Dashboard'
 import './App.css';
 import Card from './Components/Card/card';
 import Cart from './Components/Cart/Cart';
@@ -9,7 +10,6 @@ import { Nav } from './Components';
 import Login from './pages/Loginpage/Loginpage';
 import Dashboard from './pages/Dashboard/dashboard';
 import Orders from './Components/Orders/Orders';
-import Sidebar from './Components/Dashboard/sidebar';
 
 
 axios.defaults.baseURL='proyectogrupalhenry-production-e8a4.up.railway.app'
@@ -71,6 +71,9 @@ function App() {
           <Route path="products" element={<ProductsAdmin />} />
           <Route path="products/follow-up" element={<Follow />} />
           <Route path="products/create" element={<CreateProducts />} />
+          <Route path="clients" element={<Clients />} />
+          <Route path="statistics" element={<Statistics />} />
+          <Route path="ordersdash" element={<Orderdash />} />
         </Route>
       </Routes>
     </>
