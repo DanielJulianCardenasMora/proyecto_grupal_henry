@@ -103,35 +103,6 @@ const getProductsByName = async (name) => {
   }
 };
 
-// const createProductDB = async (name, description, price, images, stock, genero, category) => {
-//   const newProduct = { name, description, price, images, stock, genero, category }
-//   try {
-//     const imageUrls = []; // Creamos un array para almacenar las URLs de las imágenes
-
-
-//     for (const image of images) {
-//       const result = await cloudinary.uploader.upload(image.path);
-//       imageUrls.push(result.secure_url);
-//     }
-//     newProduct.images = imageUrls;
-
-
-//     const productCreatedDB = await Product.create(newProduct);
-
-
-//     const categoryName = await Category.findOne({ where: { name: category } });
-
-//     if (!categoryName) {
-//       console.log("La categoría especificada no existe.");
-//       return null;
-//     }
-//     await productCreatedDB.addCategory(categoryName);
-//     console.log("Nombre de la categoría encontrada:", categoryName.name);
-//     return productCreatedDB
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 const createProductDB = async (name, description, price, images, stock, genero, category) => {
   const newProduct = { name, description, price, stock, genero, category };
   try {
@@ -158,6 +129,28 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   }
 };
 
+const updateProductDB = async(id, productData) => {
+  try {
+    // Busca el producto por id
+    let product = await Product.findOne({ where: { id: id } });
+
+    if (!product) {
+        throw new Error("Producto no encontrado");
+    }
+
+    // Actualiza los campos del producto con los nuevos datos
+    Object.keys(productData).forEach((key) => {
+        product[key] = productData[key];
+    });
+
+    // Guarda los cambios en la base de datos
+    await product.save();
+
+    return product; // Devuelve el producto actualizado
+} catch (error) {
+    throw error;
+}
+}
 
 const deleteProductDB = async (id) => {
   const productDeleted = Product.destroy({
@@ -173,5 +166,6 @@ module.exports = {
   getProductDetail,
   getProductsByName,
   createProductDB,
-  deleteProductDB
+  deleteProductDB,
+  updateProductDB
 };
