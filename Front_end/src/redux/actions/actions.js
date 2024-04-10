@@ -42,7 +42,7 @@ export const getOrders = () => {
 
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${URL}/orders`);
+      const response = await axios.get(`${URL}/admin/orders`);
 
       dispatch({ type: ORDERS, payload: response.data });
     } catch (error) {
@@ -66,22 +66,21 @@ export const getOrderDetail = (orderId) => {
   }
 }
 
-// export const getUsers = () => {
+export const getUsers = () => {
 
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get("https://proyectogrupalhenry-production-e8a4.up.railway.app/users/lurm98@gmail.com");
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`${URL}/admin/users-list`);
 
-//       dispatch({ type: GET_USERS, payload: response.data });
-//     } catch (error) {
-//       alert(error.message);
-//     }
-//   }
-// }
+      dispatch({ type: GET_USERS, payload: response.data });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+}
 
 
 export function getProductDetail(id) {
-  console.log('id: ' + id)
   return async function (dispatch) {
 
     try {
@@ -145,20 +144,6 @@ export const payment = (price) => {
     }
   }
 }
-export function postItem(i) {
-
-  return async function () {
-
-    const response = await axios.post('', i)
-
-    alert("Item created")
-
-
-    return response
-  }
-
-}
-
 
 export const addProduct = (formData) => async (dispatch) => {
   console.log('FormData de actions:', formData);

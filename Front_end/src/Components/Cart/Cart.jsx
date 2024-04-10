@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import ItemCount from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
-import axios from "axios";
-
-
+import { enviarCarritoAlBackend, getOrders, payment} from "../../redux/actions/actions";
+import axios from "axios"
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
@@ -34,7 +32,7 @@ async function getUserInfo() {
   try {
 
     const userInfo= localStorage.getItem('usuario')
-    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
+    const url = `https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-info/${userInfo}`;
     const response = (await axios.get(url)).data
 
 
@@ -60,7 +58,7 @@ async function getUserInfo() {
  
 
   useEffect(() => {
-    dispatch(getOrders())
+    // dispatch(getOrders())
       getUserInfo()
       setTotalCompra(totalInicial)         
       }, [carrito])
@@ -76,7 +74,6 @@ async function getUserInfo() {
     const filtrados = carrito.filter((p) => p.id !== item.id);
     console.log(filtrados);
     agregarProducto(filtrados);
-
   };
 
   const handleQuantityChange = (newQuantity, item) => {
