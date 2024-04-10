@@ -26,7 +26,7 @@ const getUserInfoDB = async (userEmail) => {
 const updateUserDB = async (userEmail, userData) => {
     try {
         // Busca el usuario por email
-        let user = await User.findOne({where: {email: userEmail}});
+        let user = await User.findOne({ where: { email: userEmail } });
 
         if (!user) {
             throw new Error("Usuario no encontrado");
@@ -46,10 +46,10 @@ const updateUserDB = async (userEmail, userData) => {
     }
 };
 
-const deleteUserDB = async (id) => {
+const deleteUserDB = async (userEmail) => {
     const deleted = User.destroy({
         where: {
-            id: id
+            email: userEmail
         }
     });
     return deleted
