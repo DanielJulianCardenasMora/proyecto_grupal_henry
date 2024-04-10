@@ -4,7 +4,7 @@ import style from "./Cart.module.css";
 import ItemCount from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
 import { enviarCarritoAlBackend, getOrders, payment} from "../../redux/actions/actions";
-
+import axios from "axios"
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ async function getUserInfo() {
   try {
 
     const userInfo= localStorage.getItem('usuario')
-    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
+    const url = `https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-info/${userInfo}`;
     const response = (await axios.get(url)).data
 
 
