@@ -7,12 +7,11 @@ import axios from 'axios';
 
 
 export default function ProductsAdmin() {
-  const dispatch = useDispatch();
   const [editproduct, setEditproduct] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/products'; 
 
-  useEffect(() => {
-      dispatch(getAllProducts()); 
-  }, [dispatch]);
   const handleEdit = (productID) => {
       const productForEdit = products.find(product => product.id === productID)
       setEditproduct(productForEdit);
@@ -33,10 +32,6 @@ export default function ProductsAdmin() {
           [name]: value
       }));
   }
-
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/products'; 
 
   async function getProducts() {
     setIsLoading(true);
@@ -63,7 +58,7 @@ export default function ProductsAdmin() {
       <div className={styles.mainContent}>
       <h1>All the products</h1>
       {isLoading ? (
-      <p>Cargando productos...</p>
+      <p>Loading products...</p>
       ) : (
       products.length > 0 && ( 
         <table className={styles.table}>
