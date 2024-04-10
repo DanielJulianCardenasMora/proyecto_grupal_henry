@@ -20,7 +20,9 @@ import {
 } from "./type";
 
 const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
+
 // const URL = 'http://localhost:3001'
+
 export const getAllProducts = (page, filters) => {
 
   return async function (dispatch) {
@@ -136,7 +138,7 @@ export const payment = (price) => {
     try {
       console.log(price)
       const response = await axios.post(`${URL}/create-order`, {totalPrice: price})
-      console.log(response.data.links[1].href)
+      console.log(response.data)
       dispatch({type: PAYMENT, payload: response.data.links[1].href})
     } catch (error) {
       console.log("error payment: " + error)

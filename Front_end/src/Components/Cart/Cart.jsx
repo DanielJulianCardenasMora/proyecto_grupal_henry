@@ -98,15 +98,16 @@ async function getUserInfo() {
   };
 
 
-  const handleSubmit = (e) => {
 
+  const handleSubmit = async (e) => {
+    console.log("handlesubmit")
+    dispatch(payment(totalCompra))
     setOrder({
-      ...order,
+    ...order,
         detalle: order.comments
-      })
+    })
     dispatch(enviarCarritoAlBackend(order));
-  
- alert('Orden de compra creada')
+    alert('Orden de compra creada')
      agregarProducto([])
    };
 
