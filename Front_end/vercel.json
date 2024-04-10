@@ -1,4 +1,14 @@
 {
+    "installCommand": "npm install",
+    "redirects": [
+        {
+          "source": "/blog/:path*",
+          "destination": "/news/:path*"
+        }
+      ],
+    "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
     "headers": [
       {
         "source": "/service-worker.js",
