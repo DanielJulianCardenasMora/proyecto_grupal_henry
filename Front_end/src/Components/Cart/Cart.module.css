@@ -138,26 +138,30 @@ color: rgb(56, 56, 56);
 }
 
 .buy{
+
   padding-top: 1%;
     height: 35%;
+
     /* background-color: brown; */
     display: flex;
     flex-direction: column;
 align-items: center;
 justify-content: center;
 width: 100%;
-padding-left: 3%;
 box-sizing: border-box;
 margin: auto;
 margin-top: 3%;
 border-top: 1px solid rgb(0, 0, 0);
 background-color: rgba(255, 255, 255, 0.349);;
+padding-bottom: 1%;
 }
 
 .total{
     margin-bottom: 2%;
     
-    height: 20%;
+
+    height: 10%;
+
     font-size: 20px;
     width: 50%;
     /* background-color: blueviolet; */
@@ -171,8 +175,10 @@ background-color: rgba(255, 255, 255, 0.349);;
     width: 50%;
     display: flex;
     flex-direction: column;
-    height: 30%;
-    /* background-color: brown; */
+
+    height: 32%;
+
+
     box-sizing: border-box;
 }
 
@@ -193,4 +199,22 @@ background-color: rgba(255, 255, 255, 0.349);;
 
 .comments{
     display: flex;
+    width: 50%;
+    margin: auto;
+ border-bottom: 1px solid black;
+ padding-bottom: 1%;
+ height: 25%;
+;
 }
+.comments label{
+    margin-right: 1em;
+    color: rgb(29, 29, 29);
+}
+ 
+.comments textarea{
+    width: 60%;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.703);
+
+}
+

@@ -1,13 +1,7 @@
 {
     "installCommand": "npm install",
-    "redirects": [
-        {
-          "source": "/blog/:path*",
-          "destination": "/news/:path*"
-        }
-      ],
     "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/" }
   ],
     "headers": [
       {

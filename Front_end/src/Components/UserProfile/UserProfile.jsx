@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 const UserProfile = () => {
-  const URL_USUARIO_FIND = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/'
+  const URL_USUARIO_FIND = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
   const userLocalStorage = localStorage.getItem('usuario')  || null
   const [modoEdicion, setModoEdicion] = useState({ email: false, phone: false, password: false, country: false });
   const [datosUsuario, setDatosUsuario] = useState(null);
@@ -14,7 +14,7 @@ const UserProfile = () => {
 
   const obtenerDatosUsuario = async () => {
     try {
-      const { data } = await axios.get(`${URL_USUARIO_FIND}${userLocalStorage}`);
+      const { data } = await axios.get(`${URL_USUARIO_FIND}/admin/users-info/${userLocalStorage}`);
       setDatosUsuario(data);
     } catch (error) {
       alert(error)
@@ -40,7 +40,7 @@ const UserProfile = () => {
       delete datosActualizados.modoEdicion; 
       console.log(datosUsuario)
 
-      const respuesta = await axios.put(`${URL_USUARIO_FIND}${datosUsuario.email}`, datosActualizados);
+      const respuesta = await axios.put(`${URL_USUARIO_FIND}/users/${datosUsuario.email}`, datosActualizados);
 
       console.log('Datos del usuario actualizados:', respuesta.data);
       setModoEdicion({ ...modoEdicion, [campo]: false });
