@@ -58,7 +58,7 @@ async function getUserInfo() {
  
 
   useEffect(() => {
-    dispatch(getOrders())
+    // dispatch(getOrders())
       getUserInfo()
       setTotalCompra(totalInicial)         
       }, [carrito])
