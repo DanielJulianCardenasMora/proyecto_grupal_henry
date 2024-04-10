@@ -24,7 +24,7 @@ const modifictProductStock = async (productId, quantity) => {
 const createOrder = async (req, res) => {
     try {
         const { userId, products, detalle } = req.body;
-        console.log('User id:', userId);
+    
         console.log('products', products);
         const newOrder = await Order.create({
             detalle: detalle,
@@ -34,8 +34,9 @@ const createOrder = async (req, res) => {
 
         //itera sobre el product y agrega al carrito
         for (const product of products) {
-            const { productId, quantity } = product;
-            console.log("Agregando producto a la orden:", productId, quantity);
+            const { productId, quantity, name, price } = product;
+
+            console.log("Agregando producto a la orden:", productId, quantity, name, price);
 
             await modifictProductStock(productId, quantity);
 
@@ -43,7 +44,9 @@ const createOrder = async (req, res) => {
             await OrderDetail.create({
                 OrderId: newOrder.id,
                 ProductId: productId,
-                quantity: quantity     //size: size en el caso que le agregemos talles
+                quantity: quantity,
+                name: name,
+                price: price    //size: size en el caso que le agregemos talles
             })
             console.log("Producto agregado a la orden:", productId, quantity);
 
@@ -77,7 +80,7 @@ const deleteOrderDb = async (id) => {
 const getOrderDetail = async (req, res) => {
     try {
         const orderId = req.params.orderId;
-        console.log('orderId;:', orderId)
+       
         const orderDetail = await OrderDetail.findAll({
             where: {
                 OrderId: orderId
