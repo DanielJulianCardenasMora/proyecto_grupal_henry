@@ -17,13 +17,10 @@ import {
   UPDATE_GENDER_FILTER,
   ORDER_DETAIL,
   PAYMENT
-
-
 } from "./type";
 
  const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
  //const URL = 'http://localhost:3001';
-
 
 export const getAllProducts = (page, filters) => {
   const pageNumbers = page || 1;

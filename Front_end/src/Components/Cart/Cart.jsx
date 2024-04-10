@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import ItemCount from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders } from "../../redux/actions/actions";
+import { enviarCarritoAlBackend, getOrders} from "../../redux/actions/actions";
 import axios from "axios";
 
 
@@ -26,22 +26,19 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
 
+const onChange = (e) => {
+  setOrder({ ...order, detalle: e.target.value });
+};
+
+async function getUserInfo() {
+  try {
+
+    const userInfo= localStorage.getItem('usuario')
+    const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
+    const response = (await axios.get(url)).data
 
 
-
-  const onChange = (e) => {
-    setOrder({ ...order, detalle: e.target.value });
-  };
-
-  async function getUserInfo() {
-    try {
-
-      const userInfo = localStorage.getItem('usuario')
-      const url = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users/' + userInfo;
-      const response = (await axios.get(url)).data
-
-
-      return setOrder({
+   return setOrder({
         ...order,
         userId: response.id,
         products: carrito.map(item => ({
@@ -54,20 +51,19 @@ const Cart = ({ carrito, agregarProducto }) => {
       })
 
 
-    } catch (error) {
-      // Manejar errores
-      console.error('Error al realizar la petición:', error);
-    }
-  }
+  } catch (error) {
+    // Manejar errores
+    console.error('Error al realizar la petición:', error);
+  }}
 
 
-
+ 
 
   useEffect(() => {
     dispatch(getOrders())
-    getUserInfo()
-    setTotalCompra(totalInicial)
-  }, [carrito])
+      getUserInfo()
+      setTotalCompra(totalInicial)         
+      }, [carrito])
 
 
 
@@ -104,12 +100,14 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
 
-  const handleSubmit = (e) => {
-  console.log("handlesubmit")
+
+  const handleSubmit = async (e) => {
+    console.log("handlesubmit")
     dispatch(payment(totalCompra))
     setOrder({
-      ...order,
-      detalle: order.comments
+    ...order,
+        detalle: order.comments
+
     })
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
@@ -150,7 +148,6 @@ const Cart = ({ carrito, agregarProducto }) => {
           </div>
         ))}
 
-
         {carrito.length ? (
           <div className={style.buy}>
             <div className={style.comments}>
@@ -160,7 +157,9 @@ const Cart = ({ carrito, agregarProducto }) => {
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
             </div>
+
             <form className={style.buttonsDiv} onSubmit={e => handleSubmit(e)}  >
+
               <button className={style.back} type='submit'>START SHOPING</button>
               <button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>
                 Empty cart
