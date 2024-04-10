@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import style from './nav.module.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 
