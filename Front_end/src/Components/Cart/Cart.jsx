@@ -103,14 +103,15 @@ const Cart = ({ carrito, agregarProducto }) => {
   };
 
 
-  const handleSubmit = (e) => {
 
+  const handleSubmit = (e) => {
+  console.log("handlesubmit")
+    dispatch(payment(totalCompra))
     setOrder({
       ...order,
       detalle: order.comments
     })
     dispatch(enviarCarritoAlBackend(order));
-
     alert('Orden de compra creada')
     agregarProducto([])
   };

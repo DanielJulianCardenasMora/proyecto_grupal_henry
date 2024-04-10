@@ -1,12 +1,8 @@
 const { Router } = require("express");
-const { getProducts, getDetail, deleteProduct, postProduct, productActivation } = require('../handlers/productsHandlers');
-const upload = require('../utils/multerConfig')
+const { getProducts, getDetail } = require('../handlers/productsHandlers');
 const productsRouter = Router();
 
 productsRouter.get('/', getProducts);
 productsRouter.get('/:id', getDetail);
-productsRouter.post('/create', upload, postProduct);
-productsRouter.delete('/:id', deleteProduct);
-productsRouter.put('/:id/activate', productActivation);
 
 module.exports = productsRouter;
