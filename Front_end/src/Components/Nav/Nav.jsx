@@ -34,7 +34,7 @@ function Nav({ setUsuario }) {
     setIsLoggedIn(false);
     setShowLogout(false);
     localStorage.removeItem('usuario');
-
+    localStorage.removeItem('carrito')
     if (isAuthenticated) {
       logout();
       navigate("/");
@@ -64,9 +64,6 @@ function Nav({ setUsuario }) {
           </Link>
           <Link to="/about" className={style.link}>
             <li>About</li>
-          </Link>
-          <Link to="/create" className={style.link}>
-            <li>Create</li>
           </Link>
           {isLoggedIn ? (
             <Link to="/myprofile" className={style.link}>
