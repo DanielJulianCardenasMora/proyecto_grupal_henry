@@ -34,7 +34,7 @@ function Nav({ setUsuario }) {
     setIsLoggedIn(false);
     setShowLogout(false);
     localStorage.removeItem('usuario');
-
+    localStorage.removeItem('carrito')
     if (isAuthenticated) {
       logout();
       navigate("/");
