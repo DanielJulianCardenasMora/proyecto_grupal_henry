@@ -4,6 +4,7 @@ const {
   createProductDB,
   productsDataBase,
   deleteProductDB,
+  updateProductDB
 } = require("../controllers/productsControllers");
 
 const { Product } = require("../db");
@@ -103,6 +104,23 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const editProduct = async (req, res) => {
+  let { id } = req.params;
+  let productData = req.body;
+
+  try {
+    const updatedProduct = await updateProductDB(id, productData);
+    if (updatedProduct) {
+      res.status(200).json({ mensaje: "Producto actualizado correctamente", product: updatedProduct });
+    } else {
+      res.status(404).json("Producto no encontrado.");
+    }
+  } catch (error) {
+    console.error("Error al editar el producto:", error);
+    res.status(500).json({ error: "Error interno al editar el producto" });
+  }
+}
+
 const productActivation = async (req, res) => {
   try {
     const { id } = req.params;
@@ -120,11 +138,13 @@ const productActivation = async (req, res) => {
     console.error("Error al activar/desactivar producto", error)
     res.status(500).json({ error: "Error interno del servidor" });
   }
+
 }
 module.exports = {
   getProducts,
   getDetail,
   postProduct,
   deleteProduct,
-  productActivation
+  productActivation,
+  editProduct,
 };

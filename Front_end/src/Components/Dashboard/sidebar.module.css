@@ -1,44 +1,63 @@
 .container {
-    position: fixed;
+    position: relative;
     left: 0;
     top: 0;
     bottom: 0;
     width: 200px; /* Ancho del sidebar */
     background-color: #7e66eb; /* Color de fondo del sidebar */
-    padding: 20px;
+padding: 1%;
+box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    height: 100vh;
+    width: 18%;
+}
+.navButton{
+ 
+    color: white;
+    background-color:  #7e66eb;
+ 
+    margin-top: 3em;
+   padding: 1%;
+   box-sizing: border-box;
+    height: 25px;
+    width: 70%;
+   font-size: 20px;
+    text-align: left;
 }
 
-.main-content {
-    margin-left: 200px; /* Ancho del sidebar */
+.subMenu{
+    position: absolute;
+    left: 10%;
+    background-color: rgb(255, 255, 255) ;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 70%;
+    height: 25%;
+    border-radius: 5px;
 }
-  
-.container button {
-    margin-bottom: 5px;
-}  
 
-.navButton {
-    display: block;
-    background-color: rgb(143, 143, 255); /* Color de fondo de los botones */
-    color: black; /* Color del texto de los botones */
-    text-decoration: none;
-    padding: 10px;
-    margin-bottom: 5px;
-}
-  
-.navButton:hover {
-    background-color: rgb(203, 177, 252); /* Cambia el color de fondo al pasar el mouse */
+.links{
+    text-align: left;
+    width: 20vh;
+    
+  border-bottom: 1px solid rgb(207, 207, 207);
+  border-radius: 0;
+    color: rgb(50, 0, 96);
+    font-size: 15px;
+   background: none;
 }
 
 .buttonlogout{
-  
-    background-image: url('../../../assets/icons/icons8-usuario-64.png'); /* URL del icono de usuario */
-    background-repeat: no-repeat; /* Evita que se repita el icono */
-    background-position: 10px center; /* Centra el icono verticalmente y alinea a la izquierda del botón */
-    background-size: 20px; /* Tamaño del icono */
+    position: relative;
+    top: 60%;
+    background:none;
+    border: 1px solid white;
+    height: 30px;
+    padding: 1%;
+    box-sizing: border-box;
+    width: 100px;
+    font-size: 15px;
 }
-
-
-

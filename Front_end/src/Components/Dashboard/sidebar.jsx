@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styles from "./sidebar.module.css";
-import ButtonLink from "./buttonLink";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ButtonLink from './buttonLink';
+import styles from './sidebar.module.css';
 
 export default function Sidebar() {
     const [mostrarSecciones, setMostrarSecciones] = useState(new Set());
@@ -18,48 +18,56 @@ export default function Sidebar() {
 
     return (
         <div className={styles.container}>
-            <nav>
-                <button onClick={() => toggleMostrarSeccion("products")}>Products</button>
+            <nav className={styles.sideBar}>
+                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("products")}>Products</button>
                 {mostrarSecciones.has("products") && (
-                    <div>
-                        <ButtonLink linkTo={"products"} text={"Products"} />
-                        <ButtonLink linkTo={"products/create"} text={"Create"} />
-                        <ButtonLink linkTo={"products/follow-up"} text={"shipping management and tracking"} />
+                    <div className={styles.subMenu}>
+
+                        <ButtonLink className={styles.links} linkTo={"products"} text={"All products"} />
+                        <ButtonLink className={styles.links} linkTo={"products/create"} text={"Create"} />
+                        <ButtonLink className={styles.links} linkTo={"products/follow-up"} text={"Shipping Management and Tracking"} />
                     </div>
                 )}
 
-                <button onClick={() => toggleMostrarSeccion("clients")}>Clientss</button>
+                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("clients")}>Clients</button>
                 {mostrarSecciones.has("clients") && (
-                    <div>
-                        <ButtonLink linkTo={"clients"} text={"Clients"} />
-                        <ButtonLink linkTo={"clients/Special-management"} text={"Special management"} />
-                        <ButtonLink linkTo={"clients/Returns-refunds"} text={"Returns and refunds"} />
+                    <div className={styles.subMenu}>
+
+                        <ButtonLink linkTo={"clients"} text={"All clients"} />
+                        <ButtonLink linkTo={"clients/Special-management"} text={"Special Management"} />
+                        <ButtonLink linkTo={"clients/Returns-refunds"} text={"Returns and Refunds"} />
                     </div>
                 )}
 
-                <button onClick={() => toggleMostrarSeccion("promotions")}>Promotions</button>
+                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("promotions")}>Promotions</button>
                 {mostrarSecciones.has("promotions") && (
-                    <div>
-                        <ButtonLink linkTo={"promotions/discounts"} text={"discounts"} />
-                        <ButtonLink linkTo={"promotions/products-ranking"} text={"Ranking product"} />
-                        <ButtonLink linkTo={"promotions/clients-ranking"} text={"Ranking clientes"} />
+                    <div className={styles.subMenu}>
+                        <ButtonLink linkTo={"promotions/discounts"} text={"Discounts"} />
+                        <ButtonLink linkTo={"promotions/products-ranking"} text={"Ranking Products"} />
+                        <ButtonLink linkTo={"promotions/clients-ranking"} text={"Ranking Clients"} />
                     </div>
                 )}
 
-                <button onClick={() => toggleMostrarSeccion("statistics")}>Estadisticas</button>
+                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("statistics")}>Statistics</button>
                 {mostrarSecciones.has("statistics") && (
-                    <div>
-                        <ButtonLink linkTo={"statistics/sales"} text={"Ventas"} />
-                        <ButtonLink linkTo={"statistics/products-ranking"} text={"Ranking product"} />
-                        <ButtonLink linkTo={"statistics/clients-ranking"} text={"Ranking clientes"} />
+                    <div className={styles.subMenu}>
+
+                        <ButtonLink linkTo={"/dashboard/statistics"} text={"Sales"} />
+                        {/* <ButtonLink linkTo={"/dashboard/statistics/products-ranking"} text={"Ranking Products"} />
+                        <ButtonLink linkTo={"/dashboard/statistics/clients-ranking"} text={"Ranking Clients"} /> */}
                     </div>
                 )}
-                <Link to="/">
-                <button className={styles.buttonlogout}>Log out</button>
-                {/* El logout no muestra el icono  */}
-                </Link>
+        
+
+                <ButtonLink className={styles.navButtonHome} linkTo={"/dashboard"} text={"home-test"} />
+                
+
+                {/* <Link to="/">
+                    <button className={styles.buttonlogout}>Log out</button>
+                </Link> */}
             </nav>
         </div>
     );
 }
+
 

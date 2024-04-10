@@ -107,9 +107,12 @@
 
 .vaciar{
    color: rgb(99, 0, 0);
+   padding: 1%;
+   box-sizing: border-box;
    background: none;
    cursor: pointer;
    border: 1px solid black;
+   height: 45%;
 
 }
 
@@ -120,38 +123,46 @@
 }
 
 .back{
+    height: 47%;
+    padding: 1%;
+    box-sizing: border-box;
     background-color: blueviolet;
     color: white;
     margin-bottom: 1%;
     border-radius: 2em;
-    font-weight: bold
+    font-weight: bold,
+  
 }
 .content p{
 color: rgb(56, 56, 56);
 }
 
 .buy{
- 
-    height: 25%;
+
+  padding-top: 1%;
+    height: 35%;
+
     /* background-color: brown; */
     display: flex;
     flex-direction: column;
 align-items: center;
 justify-content: center;
 width: 100%;
-padding-left: 3%;
 box-sizing: border-box;
 margin: auto;
 margin-top: 3%;
 border-top: 1px solid rgb(0, 0, 0);
 background-color: rgba(255, 255, 255, 0.349);;
+padding-bottom: 1%;
 }
 
 .total{
     margin-bottom: 2%;
     
-    height: 25%;
-    font-size: 25px;
+
+    height: 10%;
+
+    font-size: 20px;
     width: 50%;
     /* background-color: blueviolet; */
    display: flex;
@@ -164,7 +175,11 @@ background-color: rgba(255, 255, 255, 0.349);;
     width: 50%;
     display: flex;
     flex-direction: column;
-    height: 45%;
+
+    height: 32%;
+
+
+    box-sizing: border-box;
 }
 
 .totalPrice{
@@ -179,5 +194,27 @@ background-color: rgba(255, 255, 255, 0.349);;
 
 .buttons{
     color: black;
+
+}
+
+.comments{
+    display: flex;
+    width: 50%;
+    margin: auto;
+ border-bottom: 1px solid black;
+ padding-bottom: 1%;
+ height: 25%;
+;
+}
+.comments label{
+    margin-right: 1em;
+    color: rgb(29, 29, 29);
+}
+ 
+.comments textarea{
+    width: 60%;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.703);
+
 }
 
