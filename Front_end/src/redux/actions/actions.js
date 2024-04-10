@@ -21,8 +21,8 @@ import {
 
 } from "./type";
 
-const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
-// const URL = 'http://localhost:3001';
+ const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
+ //const URL = 'http://localhost:3001';
 
 export const getAllProducts = (page, filters) => {
   const pageNumbers = page || 1;
@@ -170,7 +170,7 @@ export const addProduct = (formData) => async (dispatch) => {
         'Content-Type': 'multipart/form-data'
       }
     };
-    const response = await axios.post(`${URL}/products/create`, formData, config);
+    const response = await axios.post(`${URL}/admin/create`, formData, config);
     console.log('respuesta de action', response.data);
     dispatch({
       type: ADD_PRODUCT,
