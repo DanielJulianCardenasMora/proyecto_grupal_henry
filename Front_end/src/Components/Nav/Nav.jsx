@@ -77,6 +77,9 @@ function Nav({ setUsuario }) {
           <Link to="/cart" className={style.link}>
             <li>Cart</li>
           </Link>
+          <Link to="/dashboard" className={style.link}>
+            <li>Dashboard</li>
+          </Link>
         </ul>
       </div>
 
