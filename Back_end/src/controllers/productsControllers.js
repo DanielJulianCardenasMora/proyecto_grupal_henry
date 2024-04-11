@@ -104,13 +104,21 @@ const getProductsByName = async (name) => {
 };
 
 const createProductDB = async (name, description, price, images, stock, genero, category, size) => {
-  const newProduct = { name, description, price, stock, genero, category, size: size || {} };
+  if (!size || Object.keys(size).length === 0) {
+    size = {};
+  }
+  const newProduct = { name, description, price, stock, genero, category, size };
   try {
     newProduct.images = [images];
 
-    const productCreatedDB = await Product.create(newProduct);
+    const totalStock = Object.values(size).reduce((acc, curr) => acc + curr, 0);
+    if (totalStock !== stock){
+      console.log('El stock total de los tamanos no coincide al stock global.');
+      stock= totalStock;
+    }
+      const productCreatedDB = await Product.create(newProduct);
 
-    // Añadir la categoría al producto creado
+
     const categoryName = await Category.findOne({ where: { name: category } });
     if (!categoryName) {
       console.log("La categoría especificada no existe.");

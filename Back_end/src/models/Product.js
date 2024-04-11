@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
         defaultValue: true // Por defecto, un producto está activo
       },
       size: {
-        type: DataTypes.JSONB,
+        type: DataTypes.JSON,
         allowNull: true,
         defaultValue: {} // Valor por defecto, un objeto vacío
       },
