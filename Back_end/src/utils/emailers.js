@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const getEmailTemplate = require("../template/getEmailTemplate");
 require("dotenv").config();
-const { EMAILER_HOST, EMAILER_PORT, EMAILER_PASSWORD } = require("../config");
+const { EMAILER_HOST, EMAILER_PORT, EMAILER_PASSWORD, EMAILER_USER } = require("../../config");
 
 const transporter = nodemailer.createTransport({
   host: EMAILER_HOST,
