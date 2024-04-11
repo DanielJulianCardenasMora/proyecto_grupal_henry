@@ -47,7 +47,7 @@ export const AboutPage = () => {
           <CardProfile
             nombre="Ludmila Rosa Miranda "
             localidad="Rosario, Santa Fe, Argentina"
-            linkedin="https://www.linkedin.com/ludmila-rosa-miranda"
+            linkedin="https://www.linkedin.com/in/ludmila-rosa-miranda/"
             github="https://github.com/Foggynoti0n"
           />
           <CardProfile

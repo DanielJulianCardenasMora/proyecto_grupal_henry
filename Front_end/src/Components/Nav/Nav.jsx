@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import style from './nav.module.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ function Nav({ setUsuario }) {
     setIsLoggedIn(false);
     setShowLogout(false);
     localStorage.removeItem('usuario');
-    localStorage.removeItem('carrito')
+    localStorage.removeItem('carrito');
     if (isAuthenticated) {
       logout();
       navigate("/");
@@ -76,6 +76,9 @@ function Nav({ setUsuario }) {
           )}
           <Link to="/cart" className={style.link}>
             <li>Cart</li>
+          </Link>
+          <Link to="/dashboard" className={style.link}>
+            <li>Dashboard</li>
           </Link>
         </ul>
       </div>

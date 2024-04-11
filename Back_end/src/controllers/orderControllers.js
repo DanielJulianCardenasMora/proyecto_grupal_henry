@@ -41,22 +41,25 @@ const createOrder = async (req, res) => {
         //itera sobre el product y agrega al carrito
         await Promise.all(products.map(async (product) => {
             const { productId, quantity, name, price, size } = product;
+            for (const product of products) {
+                const { productId, quantity, name, price, size } = product;
 
-            console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
+                console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
 
-            await modifictProductStock(productId, quantity, size);
+                await modifictProductStock(productId, quantity, size);
 
-            //detalle de la orden
-            await OrderDetail.create({
-                OrderId: newOrder.id,
-                ProductId: productId,
-                quantity: quantity,
-                name: name,
-                price: price,
-                size: size
-            })
-            console.log("Producto agregado a la orden:", name, quantity, size);
-        }));
+                //detalle de la orden
+                await OrderDetail.create({
+                    OrderId: newOrder.id,
+                    ProductId: productId,
+                    quantity: quantity,
+                    name: name,
+                    price: price,
+                    size: size
+                })
+                console.log("Producto agregado a la orden:", name, quantity, size);
+
+            }}));
         await newOrder.setUser(userId);
         console.log("Orden asociada al usuario:", userId);
         res.status(200).send(newOrder);
@@ -75,11 +78,12 @@ const getAllOrder = async (req, res) => {
     }
 };
 const deleteOrderDb = async (id) => {
-    await Order.destroy({
+    const deleteOrder = Order.destroy({
         where: {
             id: id
         }
     });
+    return deleteOrder;
 }
 
 const getOrderDetail = async (req, res) => {
@@ -91,12 +95,6 @@ const getOrderDetail = async (req, res) => {
                 OrderId: orderId
             }
         })
-
-        let total = 0;
-        orderDetail.forEach(prodc => {
-            total += prodc.price * prodc.quantity;
-        });
-
         console.log('orderDetail:', orderDetail);
         res.status(200).send(orderDetail)
     } catch (error) {

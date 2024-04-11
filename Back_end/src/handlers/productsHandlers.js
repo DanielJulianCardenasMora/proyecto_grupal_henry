@@ -29,7 +29,6 @@ const getProducts = async (req, res) => {
       filteredProducts = productsByName;
     }
 
-
     const paginatedProducts = paginarDatos(filteredProducts, page);
 
     response = {
@@ -63,6 +62,7 @@ const postProduct = async (req, res) => {
   const { name, description, price, stock, genero, category, images, size } = req.body;
 
   try {
+
     validate("name", name);
     validate("description", description);
     validate("price", price);
@@ -130,4 +130,5 @@ const productActivation = async (req, res) => {
   }
 
 }
+
 module.exports = { getProducts, getDetail, postProduct, deleteProduct, productActivation, editProduct };

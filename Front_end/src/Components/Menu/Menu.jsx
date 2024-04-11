@@ -11,6 +11,8 @@ export const Menu = () => {
   const dispatch = useDispatch()
 
 
+
+
   const toggleMenu = () => {
     setIsHidden(!isHidden);
   };
@@ -51,7 +53,7 @@ export const Menu = () => {
 
   return (
     <div className={style.box}>
-      <div className={!isHidden ? style.boton : style.botton_hidden} onClick={toggleMenu}></div>
+      <div className={!isHidden ? style.boton : style.botton_hidden} onClick={toggleMenu}>MENU</div>
       <div className={isHidden ? style.container : style.hidden}>
         <div className={style.columnas}>
           <div className={style.columna1}>
