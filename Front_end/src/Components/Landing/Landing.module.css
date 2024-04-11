@@ -224,6 +224,11 @@
    
       
     }
+.card1{
+    width: 55%;
+    left: 35%;
+}
+
 }
 
 
@@ -244,7 +249,8 @@
     }
     
     .logo h1{
-        font-size: 37px;
+        font-size: 5vw;
+        letter-spacing: -5px;
     }
     
     
@@ -372,7 +378,6 @@
        display: none;
      
     }
- 
 
     .image{
         height: 78%;
