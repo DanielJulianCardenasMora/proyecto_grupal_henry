@@ -34,8 +34,9 @@ const clients = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(API_URL);
-      const users = response.data;
+      const users = response.data
       setUsers(users);
+      console.log(users)
     } catch (error) {
       console.error(error);
     } finally {
@@ -61,7 +62,7 @@ const clients = () => {
         <table className={styles.table}>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>#</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
@@ -73,15 +74,16 @@ const clients = () => {
         </thead>
                     
         <tbody>
-        {users.map(user => (
+          
+        {users.map((user, index) => (
         <tr key={user.id}>
-          <td>{user.id}</td>
+          <td>{index}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="name" value={edituser.name} onChange={handleInputChange} /> : user.name}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="email" value={edituser.email} onChange={handleInputChange} /> : user.email}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="number" name="password" value={edituser.password} onChange={handleInputChange} /> : user.password}</td>
+          <td>{edituser && edituser.id === user.id ? <input type="number" name="password" value={edituser.password} onChange={handleInputChange} /> : '********'}</td>
           <td>{edituser && edituser.id === user.id ? <input type="number" name="phone" value={edituser.phone} onChange={handleInputChange} /> : user.phone}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="country" value={edituser.country} onChange={handleInputChange} /> : user.country}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.orders} onChange={handleInputChange} /> : user.Orders}</td>
+          <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.Orders.length} onChange={handleInputChange} /> : user.Orders.length}</td>
           <td>
             {edituser && edituser.id === user.id ?
               <>
@@ -100,7 +102,7 @@ const clients = () => {
       ))}
       </div>
       </div>
-      <Sidebar />
+  
     </div>
   );
 }

@@ -29,11 +29,11 @@ export default function Sidebar() {
                     </div>
                 )}
 
-                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("clients")}>Clients</button>
+                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("clients")}>Customers</button>
                 {mostrarSecciones.has("clients") && (
                     <div className={styles.subMenu}>
 
-                        <ButtonLink linkTo={"/dashboard/clients"} text={"All clients"} />
+                        <ButtonLink linkTo={"/dashboard/clients"} text={"All customers"} />
                         {/* <ButtonLink linkTo={"clients/Special-management"} text={"Special Management"} />
                         <ButtonLink linkTo={"clients/Returns-refunds"} text={"Returns and Refunds"} /> */}
                     </div>

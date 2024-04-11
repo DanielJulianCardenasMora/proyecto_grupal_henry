@@ -87,20 +87,25 @@
 .boton{
   position: absolute;
   top: 20%;
-  left: 7.5%;
+  left: 3.7%;
   height: 4%;
   width: 4%;
-  background-image: url("../../assets/Imagenes/Products_burger_aplicar.png");
+  /* background-image: url("../../assets/Imagenes/Products_burger_aplicar.png"); */
   background-repeat: no-repeat;
   background-size: contain;
   z-index: 100;
+  font-family: f5;
+  font-size: 2vw;
+  color: rgb(21, 6, 188);
 }
 .boton:hover,
 .botton_hidden:hover{
   cursor: pointer;
+  color: rgb(90, 10, 166);
 }
 .botton_hidden{
   opacity: 0;
+  position: absolute;
 }
 .activeItem {
   color: rgb(128, 14, 198);

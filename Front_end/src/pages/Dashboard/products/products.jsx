@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './products.module.css';
+import styles from '../css/products.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../../redux/actions/actions';
 import Sidebar from '../../../Components/Dashboard/sidebar';
@@ -84,9 +84,9 @@ export default function ProductsAdmin() {
 
 
     return (
-    <div>
+    <div className={styles.main}>
       <div className={styles.container}>
-      <div className={styles.mainContent}>
+  
       <h1>All the products</h1>
       {isLoading ? (
       <p>Loading products...</p>
@@ -95,7 +95,7 @@ export default function ProductsAdmin() {
         <table className={styles.table}>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>#</th>
             <th>Name</th>
             <th>Image</th>
             <th>Stock</th>
@@ -107,9 +107,9 @@ export default function ProductsAdmin() {
         </thead>
                     
         <tbody>
-        {products.map(product => (
+        {products.map((product, index) => (
         <tr key={product.id}>
-          <td>{product.id}</td>
+          <td>{index}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="name" value={editproduct.name} onChange={handleInputChange} /> : product.name}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="image" value={editproduct.image} onChange={handleInputChange} /> : <img src={product.image} alt={product.name} />}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="number" name="stock" value={editproduct.stock} onChange={handleInputChange} /> : product.stock}</td>
@@ -132,9 +132,9 @@ export default function ProductsAdmin() {
         </tbody>
         </table>
       ))}
+      
       </div>
-      </div>
-      <Sidebar />
+  
     </div>
   );
 }

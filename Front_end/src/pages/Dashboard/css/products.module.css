@@ -1,13 +1,24 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.main{
+    background-color: rgba(255, 255, 255, 0.886);
+    height:100vh;
+    width: 85%;
+    box-sizing: border-box;
+   padding: 2%;
+
 }
 
-.tableContainer {
-    width: 80%; /* Ancho de la tabla */
-    margin-top: 20px; /* Espacio superior */
+.container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: black;
+  margin: auto;
+  height: auto;
+    
 }
+
+
 
 .table {
     width: 100%;
@@ -31,6 +42,7 @@
 
 .iconoeliminar {
     background-image: url('../../../assets/icons/icons8-basura-64.png');
+    
 }
 
 .iconoeditar,

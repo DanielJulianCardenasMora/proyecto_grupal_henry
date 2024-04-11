@@ -1,13 +1,14 @@
 import styles from '../css/Orders.module.css'
 import Sidebar from "../../../Components/Dashboard/sidebar";
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const clients = () => {
+const Orders = () => {
   const [editorder, setEditorder] = useState(null);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/'; 
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/orders'; 
 
   const handleEdit = (orderID) => {
       const orderForEdit = orders.find(order => order.id === orderID)
@@ -127,10 +128,10 @@ const clients = () => {
       ))}
       </div>
       </div>
-      <Sidebar />
+   
     </div>
   );
 }
 
 
-export default clients
+export default Orders
