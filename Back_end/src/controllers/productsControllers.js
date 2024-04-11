@@ -103,9 +103,12 @@ const getProductsByName = async (name) => {
   }
 };
 
-const createProductDB = async (name, description, price, images, stock, genero, category, size) => {
-  const newProduct = { name, description, price, stock, genero, category, size: size || {} };
+const createProductDB = async (name, description, price, images, stock, genero, category) => {
+  const newProduct = { name, description, price, stock, genero, category };
   try {
+
+    console.log('Images desde create', images)
+
     newProduct.images = [images];
 
     const productCreatedDB = await Product.create(newProduct);
@@ -126,27 +129,27 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   }
 };
 
-const updateProductDB = async (id, productData) => {
+const updateProductDB = async(id, productData) => {
   try {
     // Busca el producto por id
     let product = await Product.findOne({ where: { id: id } });
 
     if (!product) {
-      throw new Error("Producto no encontrado");
+        throw new Error("Producto no encontrado");
     }
 
     // Actualiza los campos del producto con los nuevos datos
     Object.keys(productData).forEach((key) => {
-      product[key] = productData[key];
+        product[key] = productData[key];
     });
 
     // Guarda los cambios en la base de datos
     await product.save();
 
     return product; // Devuelve el producto actualizado
-  } catch (error) {
+} catch (error) {
     throw error;
-  }
+}
 }
 
 const deleteProductDB = async (id) => {

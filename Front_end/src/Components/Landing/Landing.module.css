@@ -15,14 +15,16 @@
     text-orientation: upright;
     width: 20%;
     height: 92vh;
-   position: relative;
-   top: 2%;
-   font-family: f1;
+    position: relative;
+    top: 2%;
+    font-family: f5;
 }
 
 .logo h1{
-    font-size: 70px;
+    font-size: 5vw;
+    letter-spacing: -10px;
     color: #8f96d6d7;
+    /* color: rgb(40, 5, 213); */
 }
 
 
@@ -61,6 +63,7 @@
 
 .description h1{
     font-size: 50px;
+    color: rgb(0, 0, 220);
 }
 
 .learnMore{
@@ -85,6 +88,7 @@
    margin-bottom: 2%;
    padding: 2%;
    display: flex;
+   border-radius: 20px;
  
  border: 1px solid rgba(255, 255, 255, 0.388);
 }
@@ -99,6 +103,8 @@
    border: 1px solid rgba(255, 255, 255, 0.388);
    position: relative;
    left: 5%;
+   border-radius: 20px;
+
 }
 
 .imageCard, .descriptionCard{
@@ -164,7 +170,8 @@
     }
     
     .logo h1{
-        font-size: 42px;
+        font-size: 5vw;
+        letter-spacing: -10px;
     }
     
     
@@ -217,6 +224,11 @@
    
       
     }
+.card1{
+    width: 55%;
+    left: 35%;
+}
+
 }
 
 
@@ -237,7 +249,8 @@
     }
     
     .logo h1{
-        font-size: 37px;
+        font-size: 5vw;
+        letter-spacing: -5px;
     }
     
     
@@ -365,7 +378,6 @@
        display: none;
      
     }
- 
 
     .image{
         height: 78%;
