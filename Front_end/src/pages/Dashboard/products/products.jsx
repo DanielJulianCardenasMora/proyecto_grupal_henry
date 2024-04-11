@@ -64,29 +64,29 @@ export default function ProductsAdmin() {
       }));
   }
 
-  // async function getProducts() {
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await axios.get(`${API_URL}/products`);
-  //     const products = response.data.products;
-  //     setProducts(products);
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
+  async function getProducts() {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${API_URL}/products`);
+      const products = response.data.products;
+      setProducts(products);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   
   useEffect(() => {
-    // getProducts();
-    setProducts([{
-      name:'algo',
-      stock:3,
-      category:' hola',
-      image:'imagen',
-      price:5,
-      genero: 'algo'
-    }])
+    getProducts();
+    // setProducts([{
+    //   name:'algo',
+    //   stock:3,
+    //   category:' hola',
+    //   image:'imagen',
+    //   price:5,
+    //   genero: 'algo'
+    // }])
   }, []);
 
 
