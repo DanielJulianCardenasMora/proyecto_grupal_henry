@@ -8,7 +8,7 @@ const Orders = () => {
   const [editorder, setEditorder] = useState(null);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/'; 
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/orders'; 
 
   const handleEdit = (orderID) => {
       const orderForEdit = orders.find(order => order.id === orderID)
@@ -128,7 +128,7 @@ const Orders = () => {
       ))}
       </div>
       </div>
-      <Sidebar />
+   
     </div>
   );
 }
