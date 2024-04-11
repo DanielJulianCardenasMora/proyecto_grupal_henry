@@ -1,9 +1,10 @@
 import styles from '../css/Orders.module.css'
 import Sidebar from "../../../Components/Dashboard/sidebar";
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const clients = () => {
+const Orders = () => {
   const [editorder, setEditorder] = useState(null);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -133,4 +134,4 @@ const clients = () => {
 }
 
 
-export default clients
+export default Orders

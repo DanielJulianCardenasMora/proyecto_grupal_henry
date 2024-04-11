@@ -100,7 +100,7 @@ const clients = () => {
       ))}
       </div>
       </div>
-      <Sidebar />
+  
     </div>
   );
 }
