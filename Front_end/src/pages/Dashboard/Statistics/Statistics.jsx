@@ -1,4 +1,6 @@
 import style from '../css/Statistics.module.css'
+import Chart from './Chart1'
+import Chart2 from './Chart2'
 
 const Statistics = () => {
   return (
@@ -19,8 +21,12 @@ const Statistics = () => {
    
 
         <div className={style.seccion2}>
-          <div>Sales per month</div>
-          <div>Numer of sales per month</div>
+          <div className={style.area}>Sales per month
+            <Chart />
+          </div>
+          <div className={style.area}>Orders per month
+            <Chart2 />
+          </div>
         </div>
         <div className={style.seccion3}>
           <div>product ranking - top 5 most saled</div>

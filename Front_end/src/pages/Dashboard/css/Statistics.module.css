@@ -58,7 +58,7 @@
   display: flex;
   justify-content: space-between
 }
-.seccion2 div{
+.seccion2 .area{
   background-color: blueviolet;
   width: 49%;
   height: 100%;
