@@ -13,8 +13,8 @@ const Form = ({ addProduct }) => {
     "Jackets",
     "Divers",
     "Skirts",
-    "Shirts",
-  ];
+    "Shirts"];
+  const Sizes = ['S', 'M', 'L', 'Xl', 'XXL'];
 
   const [formData, setFormData] = useState({
     name: '',
@@ -23,7 +23,9 @@ const Form = ({ addProduct }) => {
     stock: '',
     genero: '',
     category: '',
-    images: ""
+    images: "",
+    // sizes: { size: '', stock: '' }
+    size: []
   });
   const [UrlImagen, setUrlImagen] = useState("");
 
@@ -43,7 +45,7 @@ const Form = ({ addProduct }) => {
   const deleteImagen = () => {
     setUrlImagen("");
   }
-  const { name, description, price, stock, genero, category, images } = formData;
+  const { name, description, price, stock, genero, category, images, size } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -56,6 +58,7 @@ const Form = ({ addProduct }) => {
       alert('Please, choose an image');
       return;
     }
+    const totalStock = formData.size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
 
 
     const data = {
@@ -65,11 +68,18 @@ const Form = ({ addProduct }) => {
       stock: parseInt(stock),
       genero,
       category,
-      images: UrlImagen
+      images: UrlImagen,
+      size: {
+        total: parseInt(totalStock),
+        ...formData.size.reduce((acc, curr) => {
+          acc[curr.size] = parseInt(curr.stock);
+          return acc;
+        }, {})
+      }
     };
 
-    if(data.name == null){
-      
+    if (data.name == null) {
+
     }
     try {
       const response = await addProduct(data);
@@ -82,16 +92,29 @@ const Form = ({ addProduct }) => {
         stock: '',
         genero: '',
         category: '',
-        images: ""
+        images: "",
+        size: [] // Envía el array de tamaños y su stock al backend
       })
-    setUrlImagen("");
+      setUrlImagen("");
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
   };
 
+  const sizeChange = (event, index) => {
+    const newSizes = [...size];
+    newSizes[index] = { ...newSizes[index], [event.target.name]: event.target.value };
+    setFormData({ ...formData, size: newSizes }); // Cambio aquí
+  };
+  const addSize = () => {
+    setFormData({ ...formData, size: [...formData.size, { size: '', stock: '' }] });
+  }
 
-
+  const removeSize = (index) => {
+    const newSizes = [...size];
+    newSizes.splice(index, 1);
+    setFormData({ ...formData, size: newSizes }); // Cambio aquí
+  };
   return (
     <div className={style.background} >
       <form className={style.background} onSubmit={onSubmit}>
@@ -127,12 +150,47 @@ const Form = ({ addProduct }) => {
           </div>
 
           <div className={style.formDiv}>
-            <label>Stock:</label>
-            <div className={style.input}>
+            <label>Images:</label>
+            <input type="file" name="images" onChange={uploadtImage} multiple />
+          </div>
 
+          <div className={style.formDiv}>
+            <label>Stock Global:</label>
+            <div className={style.input}>
               <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
             </div>
           </div>
+
+          <div className={style.formDiv}>
+            <label>Size and Stock</label>
+<div className={style.stock}>         
+   {size.map((item, index) => (
+              <div key={index} className={style.input}>
+                <select
+                  name="size"
+                  value={item.size}
+                  onChange={(event) => sizeChange(event, index)}
+                >
+                  <option value=''>SIZE</option>
+                  {Sizes.map((size, idx) => (
+                    <option key={idx} value={size}>{size}</option>
+                  ))}
+                </select>
+                <input
+                className={style.sizeInput}
+                  type="number"
+                  name="stock"
+                  value={item.stock}
+                  onChange={(event) => sizeChange(event, index)}
+                />
+                <button  className={style.sizeButton} type="button" onClick={() => removeSize(index)}>X</button>
+              </div>
+            ))}
+            
+            </div>
+            <button className={style.addSize} type="button" onClick={addSize}>Add</button>
+          </div>
+
 
           <div className={style.formDiv}>
             <label className={style.genero} htmlFor="genre">
@@ -178,20 +236,15 @@ const Form = ({ addProduct }) => {
             </div>
           </div>
 
-          <div className={style.formDiv}>
-            <label>Images:</label>
-            <input type="file" name="images" onChange={uploadtImage} multiple />
-          </div>
-
           <button type="submit" className={style.buttonForm}>Submit</button>
         </div>
       </form>
       {UrlImagen && (
-        
+
         <div className={style.imageContainer}>
           <h4>Preview</h4>
           <img src={UrlImagen} className={style.imgForm} />
-          <button onClick={() => deleteImagen() } className={style.buttonImage}>X</button>
+          <button onClick={() => deleteImagen()} className={style.buttonImage}>X</button>
         </div>
       )}
 

@@ -64,21 +64,29 @@ export default function ProductsAdmin() {
       }));
   }
 
-  async function getProducts() {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(`${API_URL}/products`);
-      const products = response.data.products;
-      setProducts(products);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  // async function getProducts() {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await axios.get(`${API_URL}/products`);
+  //     const products = response.data.products;
+  //     setProducts(products);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }
   
   useEffect(() => {
-    getProducts();
+    // getProducts();
+    setProducts([{
+      name:'algo',
+      stock:3,
+      category:' hola',
+      image:'imagen',
+      price:5,
+      genero: 'algo'
+    }])
   }, []);
 
 
@@ -119,8 +127,8 @@ export default function ProductsAdmin() {
           <td>
             {editproduct && editproduct.id === product.id ?
               <>
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancelEdit}>Cancel</button>
+                <button className={styles.editbuttons} onClick={handleSave}>Save</button>
+                <button className={styles.editbuttons} onClick={handleCancelEdit}>Cancel</button>
               </>
               :
               <button onClick={() => handleEdit(product.id)} className={styles.iconoeditar}>Edit</button>
