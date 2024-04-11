@@ -59,8 +59,7 @@ const getDetail = async (req, res) => {
 
 const postProduct = async (req, res) => {
 
-
-  const { name, description, price, stock, genero, category, images } = req.body;
+  const { name, description, price, stock, genero, category, images, size } = req.body;
 
   try {
 
@@ -68,8 +67,7 @@ const postProduct = async (req, res) => {
     validate("description", description);
     validate("price", price);
 
-    // Crear el producto en la base de datos
-    const newProduct = await createProductDB(name, description, price, images, stock, genero, category);
+    const newProduct = await createProductDB(name, description, price, images, stock, genero, category, size);
 
     console.log(`El producto ${name} fue creado con éxito!!`);
     res.status(201).json(newProduct);

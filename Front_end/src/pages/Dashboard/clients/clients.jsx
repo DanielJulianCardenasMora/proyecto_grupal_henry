@@ -30,29 +30,40 @@ const clients = () => {
       }));
   }
 
-  async function getUsers() {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(API_URL);
-      const users = response.data
-      setUsers(users);
-      console.log(users)
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  // async function getUsers() {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await axios.get(API_URL);
+  //     const users = response.data
+  //     setUsers(users);
+  //     console.log(users)
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }
   
   useEffect(() => {
-    getUsers();
+    // getUsers();
+
+    setUsers([{
+      name: 'Ludmila',
+      email:'lurm@algo',
+      password: 123456,
+      phone:222222,
+      country:'Arg',
+      Orders: []
+    }])
   }, []);
+
+  console.log(users);
 
 
 
     return (
-    <div>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      
       <div className={styles.mainContent}>
       <h1>Our customers</h1>
       {isLoading ? (
@@ -86,10 +97,10 @@ const clients = () => {
           <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.Orders.length} onChange={handleInputChange} /> : user.Orders.length}</td>
           <td>
             {edituser && edituser.id === user.id ?
-              <>
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancelEdit}>Cancel</button>
-              </>
+              <div >
+                <button className={styles.editbuttons} onClick={handleSave}>Save</button>
+                <button  className={styles.editbuttons} onClick={handleCancelEdit}>Cancel</button>
+              </div>
               :
               <button onClick={() => handleEdit(user.id)} className={styles.iconoeditar}>Edit</button>
             }
@@ -100,7 +111,7 @@ const clients = () => {
         </tbody>
         </table>
       ))}
-      </div>
+  
       </div>
   
     </div>
