@@ -1,27 +1,40 @@
-// const nodemailer = require("nodemailer");
-// const { User, Order } = require("../db");
-// const getEmailTemplate = require("../template/getEmailTemplate");
-// const createTrans = () => {
-//   const transport = nodemailer.createTransport({
-//     host: "sandbox.smtp.mailtrap.io",
-//     port: 2525,
-//     auth: {
-//       user: "f6a91bab298409",
-//       pass: "5a55c3a8b0c443",
-//     },
-//   });
-//   return transport;
-// };
-// const sendMail = async (userCreatedDB) => {
-//   const transporter = createTrans();
-//   const htmltemplate = getEmailTemplate(userCreatedDB.name);
-//   const info = await transporter.sendMail({
-//     from: '"Wearfashion" <wemolde@gmail.com>',
-//     to: `${userCreatedDB.email}`,
-//     subject: `Hola ${userCreatedDB.name} Welcome to Wearfashion`,
-//     html: htmltemplate,
-//   });
-//   console.log("Message sent:%s", info.messageId);
-// };
+const nodemailer = require("nodemailer");
+const getEmailTemplate = require("../template/getEmailTemplate");
+require("dotenv").config();
+const { EMAILER_HOST, EMAILER_PORT, EMAILER_PASSWORD, EMAILER_USER } = require("../../config");
 
-// exports.sendMail = (userCreatedDB) => sendMail(userCreatedDB);
+const transporter = nodemailer.createTransport({
+  host: EMAILER_HOST,
+  port: EMAILER_PORT,
+  tls: { rejectUnauthorized: false },
+  auth: {
+    user: EMAILER_USER,
+    pass: EMAILER_PASSWORD,
+  },
+});
+
+const sendMail = async (userCreatedDB) => {
+  // Verifica que el objeto userCreatedDB contenga la propiedad 'name'
+  if (!userCreatedDB || !userCreatedDB.name) {
+    throw new Error(
+      "The userCreatedDB object does not have the 'name' property"
+    );
+  }
+
+  const htmlTemplate = getEmailTemplate(userCreatedDB.name);
+
+  try {
+    // Send email
+    const info = await transporter.sendMail({
+      from: '"Wearfashion" <wemolde@gmail.com>',
+      to: userCreatedDB.email,
+      subject: `Welcome ${userCreatedDB.name} to Wearfashion`,
+      html: htmlTemplate,
+    });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw error;
+  }
+};
+
+exports.sendMail = (userCreatedDB) => sendMail(userCreatedDB);

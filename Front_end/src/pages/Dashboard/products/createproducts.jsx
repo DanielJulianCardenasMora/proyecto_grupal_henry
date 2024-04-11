@@ -7,7 +7,7 @@ import {Create_form} from '../../../Components'
 export default function CreateProducts() {
 
   return (
-    <div>
+    <div className={style.main} >
     
       <Create_form />
     </div>

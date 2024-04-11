@@ -5,13 +5,9 @@ import {
   ORDERS,
   DETAIL,
   SEARCH_BY_NAME,
-  CATEGORY_FILTER,
-  GENDER_FILTER,
-  NAVEGACION,
   PRODUCT_ERROR,
   ADD_PRODUCT,
   ENVIAR_CARRITO_AL_BACKEND,
-  PRICE_FILTER,
   UPDATE_PRICE_FILTER,
   UPDATE_CATEGORY_FILTER,
   UPDATE_GENDER_FILTER,
@@ -20,7 +16,7 @@ import {
 } from "./type";
 
  const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
- //const URL = 'http://localhost:3001';
+//  const URL = 'http://localhost:3001';
 
 export const getAllProducts = (page, filters) => {
   const pageNumbers = page || 1;
@@ -135,7 +131,6 @@ export const payment = (price) => {
 
   return async (dispatch) => {
     try {
-      console.log(price)
       const response = await axios.post(`${URL}/create-order`, {totalPrice: price})
       console.log(response.data)
       dispatch({type: PAYMENT, payload: response.data.links[1].href})
@@ -168,63 +163,17 @@ export const addProduct = (formData) => async (dispatch) => {
   }
 };
 
-export const genderFilter = (gender) => {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(`${URL}/products?gender=${gender}`);
-      console.log('actions', response.data.products);
-      dispatch({
-        type: GENDER_FILTER,
-        payload: response.data.products,
-      });
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-}
 
-export const priceFilter = (sortOrder, page) => {
-  return async function (dispatch) {
-    try {
-      const sortBy = 'price';
-      const response = await axios.get(`${URL}/products?sortBy=${sortBy}&sortOrder=${sortOrder}&page=${page}`);
-      console.log('De actions', response.data.products);
-      dispatch({
-        type: PRICE_FILTER,
-        payload:
-          response.data.products,
-
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-}
-export const filterByCategory = (category) => {
-
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(`${URL}/products?category=${category}`);
-      console.log('actions', response.data.products);
-      dispatch({
-        type: CATEGORY_FILTER,
-        payload: response.data.products,
-      });
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-}
 
 export const updateGenderFilter = (gender) => ({
-  type: 'UPDATE_GENDER_FILTER',
+  type: UPDATE_GENDER_FILTER,
   payload: gender,
 });
 
 export const updateCategoryFilter = (category) => {
   console.log("Sorting category:", category);
   return {
-    type: 'UPDATE_CATEGORY_FILTER',
+    type: UPDATE_CATEGORY_FILTER,
     payload: category,
   }
 
@@ -233,7 +182,7 @@ export const updateCategoryFilter = (category) => {
 export const updatePriceFilter = (sortOrder) => {
   console.log("Sorting order:", sortOrder);
   return {
-    type: 'UPDATE_PRICE_FILTER',
+    type: UPDATE_PRICE_FILTER,
     payload: sortOrder,
   };
 };

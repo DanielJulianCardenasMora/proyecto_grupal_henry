@@ -2,19 +2,25 @@ const { where } = require('sequelize');
 const { Order, User, OrderDetail, Product } = require('../db')
 const Sequelize = require('sequelize');
 
-const modifictProductStock = async (productId, quantity) => {
+const modifictProductStock = async (productId, quantity, size) => {
     try {
         const existingProduct = await Product.findByPk(productId);
         if (!existingProduct) {
             throw new Error({ error: `El producto con ID ${productId} no existe` })
         }
 
-        //verifico si hay stock del producto
-        if (existingProduct.stock < quantity) {
+        const totalStockSize = Object.values(size).reduce((acc, curr) => acc + parseInt(curr), 0)
+        if (existingProduct.stock < quantity || existingProduct.stock < totalStockSize) {
             throw new Error({ error: `No hay suficiente stock disponible para el producto ${existingProduct.name} .` })
         }
 
         existingProduct.stock -= quantity;
+        for (const [sizeKey, sizeStock] of Object.entries(size)) {
+            if (existingProduct.size[sizeKey] < sizeStock) {
+                throw new Error({ error: `No hay suficiente stock disponible para la talla ${sizeKey} del producto ${existingProduct.name}` })
+            }
+            existingProduct.size[sizeKey] -= sizeStock;
+        }
         await existingProduct.save();    //save se usa para actualizar el stock en la bd. 
     } catch (error) {
         console.error('No se pudo actualizar el stock en la Base de Datos:', error);
@@ -24,7 +30,7 @@ const modifictProductStock = async (productId, quantity) => {
 const createOrder = async (req, res) => {
     try {
         const { userId, products, detalle } = req.body;
-    
+
         console.log('products', products);
         const newOrder = await Order.create({
             detalle: detalle,
@@ -33,24 +39,27 @@ const createOrder = async (req, res) => {
         console.log("Nueva orden creada:", newOrder);
 
         //itera sobre el product y agrega al carrito
-        for (const product of products) {
-            const { productId, quantity, name, price } = product;
+        await Promise.all(products.map(async (product) => {
+            const { productId, quantity, name, price, size } = product;
+            for (const product of products) {
+                const { productId, quantity, name, price, size } = product;
 
-            console.log("Agregando producto a la orden:", productId, quantity, name, price);
+                console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
 
-            await modifictProductStock(productId, quantity);
+                await modifictProductStock(productId, quantity, size);
 
-            //detalle de la orden
-            await OrderDetail.create({
-                OrderId: newOrder.id,
-                ProductId: productId,
-                quantity: quantity,
-                name: name,
-                price: price    //size: size en el caso que le agregemos talles
-            })
-            console.log("Producto agregado a la orden:", productId, quantity);
+                //detalle de la orden
+                await OrderDetail.create({
+                    OrderId: newOrder.id,
+                    ProductId: productId,
+                    quantity: quantity,
+                    name: name,
+                    price: price,
+                    size: size
+                })
+                console.log("Producto agregado a la orden:", name, quantity, size);
 
-        }
+            }}));
         await newOrder.setUser(userId);
         console.log("Orden asociada al usuario:", userId);
         res.status(200).send(newOrder);
@@ -80,7 +89,7 @@ const deleteOrderDb = async (id) => {
 const getOrderDetail = async (req, res) => {
     try {
         const orderId = req.params.orderId;
-       
+
         const orderDetail = await OrderDetail.findAll({
             where: {
                 OrderId: orderId

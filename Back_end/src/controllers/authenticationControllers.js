@@ -6,93 +6,74 @@ const { User, Order } = require("../db");
 
 dotenv.config();
 
-
 const register = async (req, res) => {
   const { email, password, phone, country } = req.body;
 
-  if ( !email || !password || !phone || !country ) {
+  if ( !email || !password || !phone || !country) {
     return res
       .status(404)
-      .send({ status: "Error", message: "Los campos estan incompletos" });
+      .send({ status: "Error", message: "Fields are incomplete" });
   }
 
-  // Funcion que revisa si el name ingresado ya existe en la base de datos:
+  // Check if the entered email already exists in the database:
   const existingUser = await User.findOne({ where: { email: email } });
   if (existingUser) {
-    return res
-      .status(400)
-      .send({ status: "Error", message: `El email ${email} ya está en uso` });
+    return res.status(400).send({
+      status: "Error",
+      message: `The email ${email} is already in use`,
+    });
   }
 
   const salt = await bcryptjs.genSalt(10);
   const hashPassword = await bcryptjs.hash(password, salt);
   const newUser = { email, password: hashPassword, phone, country };
 
-  //agregar usuario a Base de Datos
+  // Add user to the Database
   try {
     const userCreatedDB = await User.create(newUser);
-    // emailer.sendMail(userCreatedDB);
     return res.status(201).send({
       status: "ok",
-      message: `El email ${userCreatedDB.email} se ha registrado correctamente! `,
+      message: `The email ${userCreatedDB.email} has been registered successfully! `,
       redirect: "/login",
     });
   } catch (error) {
     console.log(error);
     return res
       .status(500)
-      .send({ status: "Error", message: "Error al crear el usuario" });
+      .send({ status: "Error", message: "Error creating the user" });
   }
 };
 
 const login = async (req, res) => {
-
   const { email, password } = req.body;
 
   try {
-
     if (!email || !password) {
-    return res
-      .status(400)
-      .send({ status: "Error", message: "Los campos estan incompletos!" });
-  }
+      return res
+        .status(400)
+        .send({ status: "Error", message: "Fields are incomplete!" });
+    }
 
-const user = await User.findOne({ where: { email: email } });
+    const user = await User.findOne({ where: { email: email } });
 
-if (!user) {
-    return res
-      .status(400)
-      .send({ status: "Error", message: "Email no encontrado" });
-  }
-  // Verificar la contraseña
-  const isMatch = await bcryptjs.compare(password, user.password);
-  if (!isMatch) {
-    return res
-      .status(400)
-      .send({ status: "Error", message: "Contraseña incorrecta" });
-  }
+    if (!user) {
+      return res
+        .status(400)
+        .send({ status: "Error", message: "Email not found" });
+    }
 
-  //   // Generar el token JWT
-  // const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
-  //   expiresIn: process.env.JWT_EXPIRATION,
-  // });
+    // Verify the password
+    const isMatch = await bcryptjs.compare(password, user.password);
+    if (!isMatch) {
+      return res
+        .status(400)
+        .send({ status: "Error", message: "Incorrect password" });
+    }
 
-  // const cookieOption = {
-  //   expires: new Date(
-  //     Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-  //   ),
-  //   path: "/login",
-  // };
-
-  // //Enviar la cookie con el token
-  // res.cookie("jwt", token, cookieOption);
-
-  //Enviar respuesta al usuario
-  res.send({ status: "ok", message: "usuario loggeado" });
-
+    res.send({ status: "ok", message: "User logged in" });
   } catch (error) {
-    console.log("Ocurrio un error:", error);
-    return res.status(500).send(error)
+    console.log("An error occurred:", error);
+    return res.status(500).send(error);
   }
 };
 

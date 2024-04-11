@@ -1,11 +1,4 @@
-const {
-  getProductsByName,
-  getProductDetail,
-  createProductDB,
-  productsDataBase,
-  deleteProductDB,
-  updateProductDB
-} = require("../controllers/productsControllers");
+const { getProductsByName, getProductDetail, createProductDB, productsDataBase, deleteProductDB, updateProductDB } = require("../controllers/productsControllers");
 
 const { Product } = require("../db");
 
@@ -36,7 +29,6 @@ const getProducts = async (req, res) => {
       filteredProducts = productsByName;
     }
 
-   
     const paginatedProducts = paginarDatos(filteredProducts, page);
 
     response = {
@@ -67,17 +59,15 @@ const getDetail = async (req, res) => {
 
 const postProduct = async (req, res) => {
 
-
-  const { name, description, price, stock, genero, category, images } = req.body;
+  const { name, description, price, stock, genero, category, images, size } = req.body;
 
   try {
-    // Validar los campos del formulario
+
     validate("name", name);
     validate("description", description);
     validate("price", price);
 
-    // Crear el producto en la base de datos
-    const newProduct = await createProductDB(name, description, price, images, stock, genero, category);
+    const newProduct = await createProductDB(name, description, price, images, stock, genero, category, size);
 
     console.log(`El producto ${name} fue creado con éxito!!`);
     res.status(201).json(newProduct);
@@ -140,11 +130,5 @@ const productActivation = async (req, res) => {
   }
 
 }
-module.exports = {
-  getProducts,
-  getDetail,
-  postProduct,
-  deleteProduct,
-  productActivation,
-  editProduct,
-};
+
+module.exports = { getProducts, getDetail, postProduct, deleteProduct, productActivation, editProduct };
