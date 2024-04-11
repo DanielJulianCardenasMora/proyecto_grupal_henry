@@ -31,21 +31,25 @@ const Orders = () => {
       }));
   }
 
-  async function getOrders() {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(API_URL);
-      const orders = response.data;
-      setOrders(orders);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  // async function getOrders() {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await axios.get(API_URL);
+  //     const orders = response.data;
+  //     setOrders(orders);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }
   
   useEffect(() => {
-    getOrders();
+    // getOrders();
+    setOrders([{
+      id:'algo',
+      detalle:'algo'
+    }])
   }, []);
 
 
@@ -88,7 +92,7 @@ const Orders = () => {
 
 
     return (
-    <div>
+   
       <div className={styles.container}>
       <div className={styles.mainContent}>
       <h1>Our orders</h1>
@@ -101,6 +105,8 @@ const Orders = () => {
           <tr>
             <th>Id</th>
             <th>Detalle</th>
+            <th></th>
+            <th>Edit</th>
           </tr>
         </thead>
                     
@@ -129,7 +135,7 @@ const Orders = () => {
       </div>
       </div>
    
-    </div>
+
   );
 }
 

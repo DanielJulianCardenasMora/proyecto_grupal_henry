@@ -1,13 +1,19 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-top: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.886);
+  height:100vh;
+  width: 100%;
+  box-sizing: border-box;
+ 
 }
 
-.tableContainer {
-  width: 80%; /* Ancho de la tabla */
-  margin-top: 20px; /* Espacio superior */
+.mainContent{
+  color: black;
+  width: 80%;
+  margin: auto;
+  padding-top: 2%;
 }
+
 
 .table {
   width: 100%;
@@ -35,9 +41,32 @@
 
 .iconoeditar,
 .iconoeliminar {
-  width: 50px; /* Ancho */
-  height: 50px; /* Alto */
+  width: 30px; /* Ancho */
+  height: 30px; /* Alto */
   background-repeat: no-repeat; /* Evita que se repita el fondo */
   background-position: center; /* Centra el icono dentro del botón */
   text-indent: -9999px; /* Que no sobreescriba */
+  background-size: contain;
+}
+
+td input{
+  width: 100%;
+  height: 2em;
+  border-radius: 5px;
+}
+
+td button{
+  background: none;
+
+}
+
+td .editbuttons{
+  background-color: rgba(128, 128, 128, 0.399);
+  height: 2em;
+  font-size: 15px;
+  padding: 1px;
+  box-sizing: border-box;
+  color: black;
+  margin-bottom: 5%;
+  width: 100%;
 }
