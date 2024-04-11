@@ -1,98 +1,150 @@
-const { Order, User, OrderDetail, Product } = require('../db')
+const {
+  getProductsByName,
+  getProductDetail,
+  createProductDB,
+  productsDataBase,
+  deleteProductDB,
+  updateProductDB
+} = require("../controllers/productsControllers");
 
-const modifictProductStock = async (productId, quantity) => {
+const { Product } = require("../db");
+
+const { filtrarPorNombre, filtrarPorPrecio, filtrarPorGenero,
+  filtrarPorCategoria } = require("../utils/filter");
+
+const paginarDatos = require("../utils/pagination");
+const validate = require("../utils/validacion");
+
+const getProducts = async (req, res) => {
+  const { name, page, currentPage, sortBy, sortOrder, gender, category } = req.query;
   try {
-    const existingProduct = await Product.findByPk(productId);
-    if (!existingProduct) {
-      throw new Error({ error: `El producto con ID ${productId} no existe` })
+    let response;
+
+    const allProducts = await productsDataBase();
+
+    //obtener los productos paginados
+    let filteredProducts = allProducts.filter(products => products.active === true);
+
+    filteredProducts = filtrarPorGenero(filteredProducts, gender);
+    filteredProducts = filtrarPorCategoria(filteredProducts, category);
+    filteredProducts = filtrarPorPrecio(filteredProducts, sortOrder);
+    console.log('sortorder', sortOrder);
+    if (name) {
+      // Llamar a getProductsByName y verificar el resultado
+      const productsByName = await getProductsByName(name);
+      console.log("Products by name:", productsByName); // Imprime el resultado
+      filteredProducts = productsByName;
     }
 
-    //verifico si hay stock del producto
-    if (existingProduct.stock < quantity) {
-      throw new Error({ error: `No hay suficiente stock disponible para el producto ${existingProduct.name} .` })
-    }
+   
+    const paginatedProducts = paginarDatos(filteredProducts, page);
 
-    existingProduct.stock -= quantity;
-    await existingProduct.save();    //save se usa para actualizar el stock en la bd. 
+    response = {
+      products: paginatedProducts.data,
+      currentPage: paginatedProducts.currentPage,
+      totalPage: paginatedProducts.totalPages,
+    };
+    res.status(200).json(response);
   } catch (error) {
-    console.error('No se pudo actualizar el stock en la Base de Datos:', error);
-    throw error;
-  }
-}
-const createOrder = async (req, res) => {
-  try {
-    const { userId, products, detalle, } = req.body;
-
-    console.log('products', products);
-    const newOrder = await Order.create({
-      detalle: detalle,
-      UserID: userId
-    });
-    console.log("Nueva orden creada:", newOrder);
-
-    //itera sobre el product y agrega al carrito
-    await Promise.all(products.map(async (product) => {
-      const { productId, quantity, name, price, size } = product;
-
-      console.log("Agregando producto a la orden:", productId, quantity, name, price);
-
-      await modifictProductStock(productId, quantity);
-
-      //detalle de la orden
-      await OrderDetail.create({
-        OrderId: newOrder.id,
-        ProductId: productId,
-        quantity: quantity,
-        name: name,
-        price: price,
-        size: size
-      })
-      console.log("Producto agregado a la orden:", productId, quantity);
-    }));
-    await newOrder.setUser(userId);
-    res.status(200).send(newOrder);
-  } catch (error) {
-    console.error('Error al crear la orden:', error);
-    res.status(400).json({ error: error.message });
-  }
-}
-const getAllOrder = async (req, res) => {
-  try {
-    const orders = await Order.findAll();
-    res.status(200).send(orders);
-  } catch (error) {
-    console.error('Error al obtener las órdenes:', error);
-    res.status(500).json({ error: 'Ocurrió un error al procesar la solicitud.' });
+    console.error("Error al obtener datos:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 };
-const deleteOrderDb = async (id) => {
-  await Order.destroy({
-    where: {
-      id: id
-    }
-  });
-}
+const getDetail = async (req, res) => {
+  let { id } = req.params;
 
-const getOrderDetail = async (req, res) => {
   try {
-    const orderId = req.params.orderId;
-
-    const orderDetail = await OrderDetail.findAll({
-      where: {
-        OrderId: orderId
-      }
-    })
-
-    let total = 0;
-    orderDetail.forEach(prodc => {
-      total += prodc.price * prodc.quantity;
-    });
-
-    console.log('orderDetail:', orderDetail);
-    res.status(200).send(orderDetail)
+    const productDetail = await getProductDetail(id);
+    if (productDetail) {
+      res.status(200).json(productDetail);
+    } else {
+      res.status(404).json(`No se encontraron productos con el id: ${id}`);
+    }
   } catch (error) {
-    console.error('Error al obtener los detalles de la orden:', error);
-    res.status(500).json({ error: 'Ocurrió un error al procesar la solicitud.' });
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+};
+
+const postProduct = async (req, res) => {
+
+
+  const { name, description, price, stock, genero, category, images } = req.body;
+
+  try {
+    // Validar los campos del formulario
+    validate("name", name);
+    validate("description", description);
+    validate("price", price);
+
+    // Crear el producto en la base de datos
+    const newProduct = await createProductDB(name, description, price, images, stock, genero, category);
+
+    console.log(`El producto ${name} fue creado con éxito!!`);
+    res.status(201).json(newProduct);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error al crear tu nuevo producto" });
+  }
+};
+
+
+const deleteProduct = async (req, res) => {
+  let { id } = req.params;
+
+  try {
+    const deletedProductCount = await deleteProductDB(id);
+    if (deletedProductCount > 0) {
+      res.status(200).json(`Producto con ID ${id} eliminado correctamente.`);
+    } else {
+      res.status(404).json("Producto no encontrado."); // Si no se encontró el producto o no se pudo eliminar
+    }
+  } catch (error) {
+    console.error("Error al eliminar el producto:", error);
+    res.status(500).json({ error: "Error interno al eliminar el producto" });
+  }
+};
+
+const editProduct = async (req, res) => {
+  let { id } = req.params;
+  let productData = req.body;
+
+  try {
+    const updatedProduct = await updateProductDB(id, productData);
+    if (updatedProduct) {
+      res.status(200).json({ mensaje: "Producto actualizado correctamente", product: updatedProduct });
+    } else {
+      res.status(404).json("Producto no encontrado.");
+    }
+  } catch (error) {
+    console.error("Error al editar el producto:", error);
+    res.status(500).json({ error: "Error interno al editar el producto" });
   }
 }
-module.exports = { createOrder, getAllOrder, deleteOrderDb, getOrderDetail }
+
+const productActivation = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByPk(id);
+    if (!product) {
+      return res.status(404).json({ error: "Producto no encontrado" })
+    }
+
+    if (product.stock <= 0) {
+      product.active = !product.active; // Invierte el estado de activación
+      await product.save();
+    }
+    res.status(200).json({ message: `Producto ${product.name} ${product.active ? 'activado' : 'desactivado'}` })
+  } catch (error) {
+    console.error("Error al activar/desactivar producto", error)
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+
+}
+module.exports = {
+  getProducts,
+  getDetail,
+  postProduct,
+  deleteProduct,
+  productActivation,
+  editProduct,
+};

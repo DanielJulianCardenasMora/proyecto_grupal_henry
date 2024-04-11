@@ -40,7 +40,6 @@ export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
 
   case GET_USERS:
-console.log(payload);
   return{
     ...state,
     users:[...payload]
