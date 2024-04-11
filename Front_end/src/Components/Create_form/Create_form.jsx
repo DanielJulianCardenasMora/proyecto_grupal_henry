@@ -150,6 +150,11 @@ const Form = ({ addProduct }) => {
           </div>
 
           <div className={style.formDiv}>
+            <label>Images:</label>
+            <input type="file" name="images" onChange={uploadtImage} multiple />
+          </div>
+
+          <div className={style.formDiv}>
             <label>Stock Global:</label>
             <div className={style.input}>
               <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
@@ -158,40 +163,33 @@ const Form = ({ addProduct }) => {
 
           <div className={style.formDiv}>
             <label>Size and Stock</label>
-            {size.map((item, index) => (
+<div className={style.stock}>         
+   {size.map((item, index) => (
               <div key={index} className={style.input}>
                 <select
                   name="size"
                   value={item.size}
                   onChange={(event) => sizeChange(event, index)}
                 >
-                  <option value=''>Choose a size</option>
+                  <option value=''>SIZE</option>
                   {Sizes.map((size, idx) => (
                     <option key={idx} value={size}>{size}</option>
                   ))}
                 </select>
                 <input
+                className={style.sizeInput}
                   type="number"
                   name="stock"
                   value={item.stock}
                   onChange={(event) => sizeChange(event, index)}
                 />
-                <button type="button" onClick={() => removeSize(index)}>Remove</button>
+                <button  className={style.sizeButton} type="button" onClick={() => removeSize(index)}>X</button>
               </div>
             ))}
-            <button type="button" onClick={addSize}>Add Size</button>
+            
+            </div>
+            <button className={style.addSize} type="button" onClick={addSize}>Add</button>
           </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
           <div className={style.formDiv}>
@@ -236,11 +234,6 @@ const Form = ({ addProduct }) => {
                   : null}
               </select>
             </div>
-          </div>
-
-          <div className={style.formDiv}>
-            <label>Images:</label>
-            <input type="file" name="images" onChange={uploadtImage} multiple />
           </div>
 
           <button type="submit" className={style.buttonForm}>Submit</button>
