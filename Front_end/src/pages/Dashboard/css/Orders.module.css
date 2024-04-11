@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableContainer {
+  width: 80%; /* Ancho de la tabla */
+  margin-top: 20px; /* Espacio superior */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #000000;
+}
+
+.table th {
+  background-color: #68a1ea;
+}
+
+.iconoeditar {
+  background-image: url('../../../assets/icons/icons8-editar-64.png');
+}
+
+.iconoeliminar {
+  background-image: url('../../../assets/icons/icons8-basura-64.png');
+}
+
+.iconoeditar,
+.iconoeliminar {
+  width: 50px; /* Ancho */
+  height: 50px; /* Alto */
+  background-repeat: no-repeat; /* Evita que se repita el fondo */
+  background-position: center; /* Centra el icono dentro del botón */
+  text-indent: -9999px; /* Que no sobreescriba */
+}
