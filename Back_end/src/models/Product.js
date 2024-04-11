@@ -44,12 +44,7 @@ module.exports = (sequelize) => {
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true // Por defecto, un producto está activo
-      },
-      size: {
-        type: DataTypes.JSONB,
-        allowNull: true,
-        defaultValue: {} // Valor por defecto, un objeto vacío
-      },
+      }
     },
     { timestamps: false }
   );
