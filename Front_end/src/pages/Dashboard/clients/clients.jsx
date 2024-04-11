@@ -7,7 +7,7 @@ const clients = () => {
   const [edituser, setEdituser] = useState(null);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users'; 
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-list'; 
 
   const handleEdit = (userID) => {
       const userForEdit = users.find(user => user.id === userID)
@@ -100,7 +100,7 @@ const clients = () => {
       ))}
       </div>
       </div>
-      <Sidebar />
+  
     </div>
   );
 }
