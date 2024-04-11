@@ -4,7 +4,7 @@ import Sidebar from "../../../Components/Dashboard/sidebar";
 const Statistics = () => {
   return (
     <div>Statistics
-      <Sidebar />
+    
     </div>
   )
 }

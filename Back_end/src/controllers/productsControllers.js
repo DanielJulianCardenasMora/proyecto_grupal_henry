@@ -5,6 +5,7 @@ const {
   productsDataBase,
   deleteProductDB,
   updateProductDB
+<<<<<<< HEAD
 } = require("../controllers/productsControllers");
 
 const { Product } = require("../db");
@@ -148,3 +149,6 @@ module.exports = {
   productActivation,
   editProduct,
 };
+=======
+};
+>>>>>>> 874bdfc4d533be45e3d30283517c43f38eb748a7
