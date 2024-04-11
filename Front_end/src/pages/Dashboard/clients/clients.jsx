@@ -34,8 +34,9 @@ const clients = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(API_URL);
-      const users = response.data;
+      const users = response.data
       setUsers(users);
+      console.log(users)
     } catch (error) {
       console.error(error);
     } finally {
@@ -73,6 +74,7 @@ const clients = () => {
         </thead>
                     
         <tbody>
+          
         {users.map(user => (
         <tr key={user.id}>
           <td>{user.id}</td>
@@ -81,7 +83,7 @@ const clients = () => {
           <td>{edituser && edituser.id === user.id ? <input type="number" name="password" value={edituser.password} onChange={handleInputChange} /> : user.password}</td>
           <td>{edituser && edituser.id === user.id ? <input type="number" name="phone" value={edituser.phone} onChange={handleInputChange} /> : user.phone}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="country" value={edituser.country} onChange={handleInputChange} /> : user.country}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.orders} onChange={handleInputChange} /> : user.Orders}</td>
+          <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.Orders.length} onChange={handleInputChange} /> : user.Orders.length}</td>
           <td>
             {edituser && edituser.id === user.id ?
               <>
