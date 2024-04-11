@@ -1,9 +1,10 @@
 .footer{
     height: 50vh;
-    padding: 2%;
+    padding: 2% ;
     display: flex;
 justify-content: space-evenly;
-background-color: gray;
+background-color: rgb(58, 127, 192);
+margin-top: 10%;
 }
 .footer ul li{
     list-style-type: none;
@@ -11,7 +12,7 @@ background-color: gray;
 
 }
 .footer ul li a{
-    color: white;
+    color: rgb(103, 3, 185);
 }
 
 .ubi, .list{
@@ -19,4 +20,9 @@ background-color: gray;
     text-align: left;
     border-left: 1px solid rgba(245, 222, 179, 0.444);
     padding: 1%;
+    color: rgb(103, 3, 185);
+}
+
+.footer h3{
+    color: rgb(15, 0, 231);
 }

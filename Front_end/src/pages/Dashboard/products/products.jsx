@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './products.module.css';
+import styles from '../css/products.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../../redux/actions/actions';
 import Sidebar from '../../../Components/Dashboard/sidebar';
@@ -10,18 +10,49 @@ export default function ProductsAdmin() {
   const [editproduct, setEditproduct] = useState(null);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/products'; 
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'; 
 
   const handleEdit = (productID) => {
-      const productForEdit = products.find(product => product.id === productID)
-      setEditproduct(productForEdit);
+    const productForEdit = products.find(product => product.id === productID)
+    setEditproduct(productForEdit);
+    console.log(productForEdit)
   }
   const handleDelete = (productID) => {
       //Ver despúes
   }
-  const handleSave = () => {
-      setEditproduct(null);
-  }
+  const handleSave = async () => {
+
+    // ========= no borrar, esperando la ruta put ==========
+
+    if (!editproduct) return;
+    setIsLoading(true);
+    try {
+      const updatedProduct = {
+        ...editproduct,
+      };
+      console.log(editproduct)
+      const response = await axios.put(`${API_URL}/admin/edit-product/${editproduct.id}`, updatedProduct);
+
+      if (response.status === 200) {
+        const updatedProducts = products.map(product =>
+          product.id === editproduct.id ? response.data : product // Replace edited product
+        );
+        setProducts(updatedProducts);
+        setEditproduct(null);
+        getProducts();
+      } else {
+        console.error('Error updating product:', response.data);
+      }
+    } catch (error) {
+      console.error('Error saving product:', error);
+    } finally {
+      setIsLoading(false);
+    }
+
+    // setEditproduct(null); 
+  };
+
+
   const handleCancelEdit = () => {
       setEditproduct(null);
   }
@@ -36,7 +67,7 @@ export default function ProductsAdmin() {
   async function getProducts() {
     setIsLoading(true);
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${API_URL}/products`);
       const products = response.data.products;
       setProducts(products);
     } catch (error) {
@@ -53,9 +84,9 @@ export default function ProductsAdmin() {
 
 
     return (
-    <div>
+    <div className={styles.main}>
       <div className={styles.container}>
-      <div className={styles.mainContent}>
+  
       <h1>All the products</h1>
       {isLoading ? (
       <p>Loading products...</p>
@@ -64,7 +95,7 @@ export default function ProductsAdmin() {
         <table className={styles.table}>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>#</th>
             <th>Name</th>
             <th>Image</th>
             <th>Stock</th>
@@ -76,9 +107,9 @@ export default function ProductsAdmin() {
         </thead>
                     
         <tbody>
-        {products.map(product => (
+        {products.map((product, index) => (
         <tr key={product.id}>
-          <td>{product.id}</td>
+          <td>{index}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="name" value={editproduct.name} onChange={handleInputChange} /> : product.name}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="image" value={editproduct.image} onChange={handleInputChange} /> : <img src={product.image} alt={product.name} />}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="number" name="stock" value={editproduct.stock} onChange={handleInputChange} /> : product.stock}</td>
@@ -101,9 +132,9 @@ export default function ProductsAdmin() {
         </tbody>
         </table>
       ))}
+      
       </div>
-      </div>
-      <Sidebar />
+  
     </div>
   );
 }

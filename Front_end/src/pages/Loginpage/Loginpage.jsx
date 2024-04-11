@@ -41,7 +41,6 @@ function Login ({setUsuario, usuario}) {
 
   
   const onClick = async () => {
-    console.log(credentials.email, credentials.password)
     if (!credentials.email || !credentials.password) {
       alert("You have uncompleted fields");
       return;

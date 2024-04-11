@@ -39,7 +39,12 @@ const initialstate = {
 export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
 
-  
+  case GET_USERS:
+  return{
+    ...state,
+    users:[...payload]
+
+  }
 
     case SEARCH_BY_NAME:
 

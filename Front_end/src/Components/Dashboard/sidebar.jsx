@@ -23,28 +23,28 @@ export default function Sidebar() {
                 {mostrarSecciones.has("products") && (
                     <div className={styles.subMenu}>
 
-                        <ButtonLink className={styles.links} linkTo={"products"} text={"All products"} />
-                        <ButtonLink className={styles.links} linkTo={"products/create"} text={"Create"} />
-                        <ButtonLink className={styles.links} linkTo={"products/follow-up"} text={"Shipping Management and Tracking"} />
+                        <ButtonLink className={styles.links} linkTo={"/dashboard/products"} text={"All products"} />
+                        <ButtonLink className={styles.links} linkTo={"/dashboard/products/create"} text={"Create"} />
+                        {/* <ButtonLink className={styles.links} linkTo={"products/follow-up"} text={"Shipping Management and Tracking"} /> */}
                     </div>
                 )}
 
-                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("clients")}>Clients</button>
+                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("clients")}>Customers</button>
                 {mostrarSecciones.has("clients") && (
                     <div className={styles.subMenu}>
 
-                        <ButtonLink linkTo={"clients"} text={"All clients"} />
-                        <ButtonLink linkTo={"clients/Special-management"} text={"Special Management"} />
-                        <ButtonLink linkTo={"clients/Returns-refunds"} text={"Returns and Refunds"} />
+                        <ButtonLink linkTo={"/dashboard/clients"} text={"All customers"} />
+                        {/* <ButtonLink linkTo={"clients/Special-management"} text={"Special Management"} />
+                        <ButtonLink linkTo={"clients/Returns-refunds"} text={"Returns and Refunds"} /> */}
                     </div>
                 )}
 
-                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("promotions")}>Promotions</button>
-                {mostrarSecciones.has("promotions") && (
+                <button className={styles.navButton} onClick={() => toggleMostrarSeccion("orders")}>Orders</button>
+                {mostrarSecciones.has("orders") && (
                     <div className={styles.subMenu}>
-                        <ButtonLink linkTo={"promotions/discounts"} text={"Discounts"} />
-                        <ButtonLink linkTo={"promotions/products-ranking"} text={"Ranking Products"} />
-                        <ButtonLink linkTo={"promotions/clients-ranking"} text={"Ranking Clients"} />
+                        <ButtonLink linkTo={"/dashboard/ordersdash"} text={"All orders"} />
+                        {/* <ButtonLink linkTo={"promotions/products-ranking"} text={"Ranking Products"} />
+                        <ButtonLink linkTo={"promotions/clients-ranking"} text={"Ranking Clients"} /> */}
                     </div>
                 )}
 
