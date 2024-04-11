@@ -10,7 +10,7 @@ box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 100vh;
+    height: 100%;
     width: 18%;
 }
 .navButton{
