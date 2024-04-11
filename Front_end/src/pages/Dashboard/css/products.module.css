@@ -1,13 +1,24 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.main{
+    background-color: rgba(255, 255, 255, 0.886);
+    height:100vh;
+    width: 85%;
+    box-sizing: border-box;
+    padding: 2%;
+
 }
 
-.tableContainer {
-    width: 80%; /* Ancho de la tabla */
-    margin-top: 20px; /* Espacio superior */
+.container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: black;
+  margin: auto;
+  height: auto;
+    
 }
+
+
 
 .table {
     width: 100%;
@@ -31,13 +42,37 @@
 
 .iconoeliminar {
     background-image: url('../../../assets/icons/icons8-basura-64.png');
+    
 }
 
 .iconoeditar,
 .iconoeliminar {
-    width: 50px; /* Ancho */
-    height: 50px; /* Alto */
+    width: 30px; /* Ancho */
+    height: 30px; /* Alto */
     background-repeat: no-repeat; /* Evita que se repita el fondo */
     background-position: center; /* Centra el icono dentro del botón */
     text-indent: -9999px; /* Que no sobreescriba */
+    background-size: contain;
 }
+
+td input{
+    width: 100%;
+    height: 2em;
+    border-radius: 5px;
+  }
+  
+  td button{
+    background: none;
+  
+  }
+  
+  td .editbuttons{
+    background-color: rgba(128, 128, 128, 0.399);
+    height: 2em;
+    font-size: 15px;
+    padding: 1px;
+    box-sizing: border-box;
+    color: black;
+    margin-bottom: 5%;
+    width: 100%;
+  }

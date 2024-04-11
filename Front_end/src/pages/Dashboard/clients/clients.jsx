@@ -7,7 +7,7 @@ const clients = () => {
   const [edituser, setEdituser] = useState(null);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/users'; 
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-list'; 
 
   const handleEdit = (userID) => {
       const userForEdit = users.find(user => user.id === userID)
@@ -34,8 +34,9 @@ const clients = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(API_URL);
-      const users = response.data;
+      const users = response.data
       setUsers(users);
+      console.log(users)
     } catch (error) {
       console.error(error);
     } finally {
@@ -45,13 +46,24 @@ const clients = () => {
   
   useEffect(() => {
     getUsers();
+
+    // setUsers([{
+    //   name: 'Ludmila',
+    //   email:'lurm@algo',
+    //   password: 123456,
+    //   phone:222222,
+    //   country:'Arg',
+    //   Orders: []
+    // }])
   }, []);
+
+  console.log(users);
 
 
 
     return (
-    <div>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      
       <div className={styles.mainContent}>
       <h1>Our customers</h1>
       {isLoading ? (
@@ -61,7 +73,7 @@ const clients = () => {
         <table className={styles.table}>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>#</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
@@ -73,21 +85,22 @@ const clients = () => {
         </thead>
                     
         <tbody>
-        {users.map(user => (
+          
+        {users.map((user, index) => (
         <tr key={user.id}>
-          <td>{user.id}</td>
+          <td>{index}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="name" value={edituser.name} onChange={handleInputChange} /> : user.name}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="email" value={edituser.email} onChange={handleInputChange} /> : user.email}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="number" name="password" value={edituser.password} onChange={handleInputChange} /> : user.password}</td>
+          <td>{edituser && edituser.id === user.id ? <input type="number" name="password" value={edituser.password} onChange={handleInputChange} /> : '********'}</td>
           <td>{edituser && edituser.id === user.id ? <input type="number" name="phone" value={edituser.phone} onChange={handleInputChange} /> : user.phone}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="country" value={edituser.country} onChange={handleInputChange} /> : user.country}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.orders} onChange={handleInputChange} /> : user.Orders}</td>
+          <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.Orders.length} onChange={handleInputChange} /> : user.Orders.length}</td>
           <td>
             {edituser && edituser.id === user.id ?
-              <>
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancelEdit}>Cancel</button>
-              </>
+              <div >
+                <button className={styles.editbuttons} onClick={handleSave}>Save</button>
+                <button  className={styles.editbuttons} onClick={handleCancelEdit}>Cancel</button>
+              </div>
               :
               <button onClick={() => handleEdit(user.id)} className={styles.iconoeditar}>Edit</button>
             }
@@ -98,9 +111,9 @@ const clients = () => {
         </tbody>
         </table>
       ))}
+  
       </div>
-      </div>
-      <Sidebar />
+  
     </div>
   );
 }
