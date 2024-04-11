@@ -24,7 +24,7 @@ const modifictProductStock = async (productId, quantity) => {
 const createOrder = async (req, res) => {
     try {
         const { userId, products, detalle } = req.body;
-    
+
         console.log('products', products);
         const newOrder = await Order.create({
             detalle: detalle,
@@ -33,7 +33,7 @@ const createOrder = async (req, res) => {
         console.log("Nueva orden creada:", newOrder);
 
         //itera sobre el product y agrega al carrito
-        for (const product of products) {
+        await Promise.all(products.map(async (product) => {
             const { productId, quantity, name, price } = product;
 
             console.log("Agregando producto a la orden:", productId, quantity, name, price);
@@ -49,8 +49,7 @@ const createOrder = async (req, res) => {
                 price: price    //size: size en el caso que le agregemos talles
             })
             console.log("Producto agregado a la orden:", productId, quantity);
-
-        }
+        }));
         await newOrder.setUser(userId);
         console.log("Orden asociada al usuario:", userId);
         res.status(200).send(newOrder);
@@ -69,23 +68,28 @@ const getAllOrder = async (req, res) => {
     }
 };
 const deleteOrderDb = async (id) => {
-    const deleteOrder = Order.destroy({
+    await Order.destroy({
         where: {
             id: id
         }
     });
-    return deleteOrder;
 }
 
 const getOrderDetail = async (req, res) => {
     try {
         const orderId = req.params.orderId;
-       
+
         const orderDetail = await OrderDetail.findAll({
             where: {
                 OrderId: orderId
             }
         })
+
+        let total = 0;
+        orderDetail.forEach(prodc => {
+            total += prodc.price * prodc.quantity;
+        });
+
         console.log('orderDetail:', orderDetail);
         res.status(200).send(orderDetail)
     } catch (error) {
