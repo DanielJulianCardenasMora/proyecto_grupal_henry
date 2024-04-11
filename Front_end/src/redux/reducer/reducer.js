@@ -25,9 +25,10 @@ const initialstate = {
   category: '',
   images: "",
   imageUrl: '',
+  size: [],
   orders: [],
-  orderDetail:[],
-  users:[],
+  orderDetail: [],
+  users: [],
   totalPage: 1,
   filters: {
     gender: '', // Filtro de género
@@ -40,7 +41,6 @@ export default function rootReducer(state = initialstate, { type, payload }) {
   switch (type) {
 
   case GET_USERS:
-console.log(payload);
   return{
     ...state,
     users:[...payload]
@@ -69,12 +69,12 @@ console.log(payload);
         orders: [...payload]
       }
 
-  case ORDER_DETAIL:
-    console.log(payload);
-    return {
-      ...state,
-      orderDetail:[...payload]
-    }
+    case ORDER_DETAIL:
+      console.log(payload);
+      return {
+        ...state,
+        orderDetail: [...payload]
+      }
     case GET_PRODUCTS:
       return {
         ...state,
@@ -123,9 +123,9 @@ console.log(payload);
         },
       };
 
-      case 'PAYMENT':
-        window.location.href = payload
-        
+    case 'PAYMENT':
+      window.location.href = payload
+
     default:
       return { ...state };
   }
