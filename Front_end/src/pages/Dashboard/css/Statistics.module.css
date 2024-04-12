@@ -74,14 +74,43 @@
   width: 40%;
   height: 100%;
   border-radius: 15px;
+  margin: 0;
+  overflow: hidden;
 }
 .seccion4{
   display: flex;
   justify-content: space-evenly
 }
-.seccion4 div{
+.chart5{
   background-color: blueviolet;
   width: 40%;
   height: 100%;
   border-radius: 15px;
+  padding: 0 3%;
+  box-sizing: border-box;
+  
+}
+.chart5_box{
+  background-color: blueviolet;
+  width: 100%;
+  height: 80%;
+  border-radius: 15px;
+  overflow-y: auto;
+}
+.chart5_2{
+  font-size: 1.5vw;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.chart6{
+  background-color: blueviolet;
+  width: 40%;
+  height: 100%;
+  border-radius: 15px;
+  padding: 0 3%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center
 }

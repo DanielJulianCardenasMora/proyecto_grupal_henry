@@ -1,6 +1,10 @@
 import style from '../css/Statistics.module.css'
 import Chart from './Chart1'
 import Chart2 from './Chart2'
+import Chart3 from './Chart3'
+import Chart4 from './Chart4'
+import Chart5 from './Chart5'
+import Chart6 from './Chart6'
 
 const Statistics = () => {
   return (
@@ -29,12 +33,26 @@ const Statistics = () => {
           </div>
         </div>
         <div className={style.seccion3}>
-          <div>product ranking - top 5 most saled</div>
-          <div>product ranking - total orders per product</div>
+          <div>product ranking - top 5 most sold
+            <Chart3 />
+          </div>
+          <div>product ranking - total orders per product
+            <Chart4 />
+          </div>
         </div>
         <div className={style.seccion4}>
-          <div>Location sales</div>
-          <div>Top 5 customers</div>
+          <div className={style.chart5}>Location sales
+            <div className={style.chart5_box}>
+              <div className={style.chart5_2}>
+                <Chart5 />
+              </div>
+            </div>
+          </div>
+          <div className={style.chart6}>Top 5 customers
+
+              <Chart6 />
+    
+          </div>
         </div>
       </div>
     
