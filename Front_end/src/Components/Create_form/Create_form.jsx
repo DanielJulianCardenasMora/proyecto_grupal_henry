@@ -163,6 +163,7 @@ const Form = ({ addProduct }) => {
 
           <div className={style.formDiv}>
             <label>Size and Stock</label>
+            <button className={style.addSize} type="button" onClick={addSize}>Add</button>
 <div className={style.stock}>         
    {size.map((item, index) => (
               <div key={index} className={style.input}>
@@ -188,7 +189,7 @@ const Form = ({ addProduct }) => {
             ))}
             
             </div>
-            <button className={style.addSize} type="button" onClick={addSize}>Add</button>
+            
           </div>
 
 
@@ -239,14 +240,20 @@ const Form = ({ addProduct }) => {
           <button type="submit" className={style.buttonForm}>Submit</button>
         </div>
       </form>
-      {UrlImagen && (
+      {UrlImagen? 
 
         <div className={style.imageContainer}>
           <h4>Preview</h4>
           <img src={UrlImagen} className={style.imgForm} />
           <button onClick={() => deleteImagen()} className={style.buttonImage}>X</button>
         </div>
-      )}
+
+        :  <div className={style.imageContainer}>
+        <h4>Preview</h4>
+        <p>select an image</p>
+    
+      </div>
+      }
 
     </div>
   );

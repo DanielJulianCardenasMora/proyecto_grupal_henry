@@ -1,5 +1,5 @@
 .main{
-  background-color: rgba(255, 255, 255, 0.886);
+  background-color: rgba(13, 2, 54, 0.745);
   height:89vh;
   width: 85%;
   box-sizing: border-box;
@@ -53,6 +53,7 @@
   height: 100%;
   box-shadow: 3px 3px 10px 1px rgb(13, 61, 113);
   border-radius: 15px;
+  color: black;
 }
 .seccion2{
   display: flex;
