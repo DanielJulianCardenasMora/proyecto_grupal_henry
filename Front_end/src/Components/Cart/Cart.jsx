@@ -103,9 +103,9 @@ async function getUserInfo() {
     dispatch(payment(totalCompra))
     setOrder({
     ...order,
-        detalle: order.comments
-
+        detalle: order.comments,
     })
+    console.log(order)
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
     agregarProducto([])
