@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, resolvePath } from "react-router-dom";
 import style from "./Cart.module.css";
 import ItemCount from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders, payment} from "../../redux/actions/actions";
+import { enviarCarritoAlBackend, getOrders, payment } from "../../redux/actions/actions";
 import axios from "axios"
 
 const Cart = ({ carrito, agregarProducto }) => {
@@ -17,53 +17,56 @@ const Cart = ({ carrito, agregarProducto }) => {
       productId: item.id,
       quantity: item.quantity,
       name: item.name,
-      price: item.price
+      price: item.price,
+      size: item.size
     })),
     detalle: ''
   })
 
 
 
-const onChange = (e) => {
-  setOrder({ ...order, detalle: e.target.value });
-};
+  const onChange = (e) => {
+    setOrder({ ...order, detalle: e.target.value });
+  };
 
-async function getUserInfo() {
-  try {
+  async function getUserInfo() {
+    try {
 
-    const userInfo= localStorage.getItem('usuario')
-    const url = `https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-info/${userInfo}`;
-    const response = (await axios.get(url)).data
+      const userInfo = localStorage.getItem('usuario')
+      const url = `https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-info/${userInfo}`;
+      const response = (await axios.get(url)).data
+      console.log('Response desde carrito', response);
 
-
-   return setOrder({
-        ...order,
+      setOrder(prevOrder => ({
+        ...prevOrder,
         userId: response.id,
         products: carrito.map(item => ({
           productId: item.id,
           quantity: item.quantity,
           name: item.name,
-          price: item.price
+          price: item.price,
+          size: item.size
         })),
         
         
 
-      })
+      }))
 
 
-  } catch (error) {
-    // Manejar errores
-    console.error('Error al realizar la petición:', error);
-  }}
+    } catch (error) {
+      // Manejar errores
+      console.error('Error al realizar la petición:', error);
+    }
+  }
 
 
- 
+
 
   useEffect(() => {
     // dispatch(getOrders())
-      getUserInfo()
-      setTotalCompra(totalInicial)         
-      }, [carrito])
+    getUserInfo()
+    setTotalCompra(totalInicial)
+  }, [carrito])
 
 
 
@@ -104,8 +107,9 @@ async function getUserInfo() {
     console.log("handlesubmit")
     // dispatch(payment(totalCompra))
     setOrder({
-    ...order,
+        ...order,
         detalle: order.detalle
+
 
     })
     dispatch(enviarCarritoAlBackend(order));
@@ -113,7 +117,7 @@ async function getUserInfo() {
     agregarProducto([])
   };
 
-  console.log(order);
+  console.log('esta es la order', order);
 
 
 
