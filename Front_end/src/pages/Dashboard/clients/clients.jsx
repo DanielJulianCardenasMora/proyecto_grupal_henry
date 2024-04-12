@@ -30,31 +30,31 @@ const clients = () => {
       }));
   }
 
-  // async function getUsers() {
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await axios.get(API_URL);
-  //     const users = response.data
-  //     setUsers(users);
-  //     console.log(users)
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
+  async function getUsers() {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(API_URL);
+      const users = response.data
+      setUsers(users);
+      console.log(users)
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   
   useEffect(() => {
-    // getUsers();
+    getUsers();
 
-    setUsers([{
-      name: 'Ludmila',
-      email:'lurm@algo',
-      password: 123456,
-      phone:222222,
-      country:'Arg',
-      Orders: []
-    }])
+    // setUsers([{
+    //   name: 'Ludmila',
+    //   email:'lurm@algo',
+    //   password: 123456,
+    //   phone:222222,
+    //   country:'Arg',
+    //   Orders: []
+    // }])
   }, []);
 
   console.log(users);

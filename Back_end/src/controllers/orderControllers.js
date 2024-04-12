@@ -27,39 +27,81 @@ const modifictProductStock = async (productId, quantity, size) => {
         throw error;
     }
 }
+// const createOrder = async (req, res) => {
+//     try {
+//         const { userId, products, detalle } = req.body;
+//         console.log('req.............', req.body)
+//         console.log('User id:', userId);
+
+//         if (!userId) {
+//             throw new Error('El identificador de usuario no se proporcionó en el cuerpo de la solicitud.');
+//         }
+
+//         const newOrder = await Order.create({
+//             detalle: detalle,
+//             Id: userId
+//         });
+//         console.log("Nueva orden creada:", newOrder);
+
+//         for (const product of products) {
+//             const { productId, quantity, name, price, size } = product;
+
+//             // console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
+
+//             await modifictProductStock(productId, quantity, size);
+
+//             //detalle de la orden
+//             await OrderDetail.create({
+//                 OrderId: newOrder.id,
+//                 ProductId: productId,
+//                 quantity: quantity,
+//                 name: name,
+//                 price: price,
+//                 size: size
+//             })
+//             console.log("Producto agregado a la orden:", name, quantity, size);
+//         }
+//         await newOrder.setUser(userId);
+//         console.log("Orden asociada al usuario:", userId);
+//         res.status(200).send(newOrder);
+//     } catch (error) {
+//         console.error('Error al crear la orden:', error);
+//         res.status(400).json({ error: error.message });
+//     }
+// }
 const createOrder = async (req, res) => {
     try {
         const { userId, products, detalle } = req.body;
+        console.log('req.............', req.body)
+        console.log('User id:', userId);
 
-        console.log('products', products);
+        if (!userId) {
+            throw new Error('El identificador de usuario no se proporcionó en el cuerpo de la solicitud.');
+        }
+
         const newOrder = await Order.create({
             detalle: detalle,
-            UserID: userId
+            UserId: userId
         });
         console.log("Nueva orden creada:", newOrder);
 
-        //itera sobre el product y agrega al carrito
-        await Promise.all(products.map(async (product) => {
-            const { productId, quantity, name, price, size } = product;
-            for (const product of products) {
-                const { productId, quantity, name, price, size } = product;
+        for (const product of products) {
+            const { productId, quantity, name, price } = product;
 
-                console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
+            // console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
 
-                await modifictProductStock(productId, quantity, size);
+            // await modifictProductStock(productId, quantity, size);
 
-                //detalle de la orden
-                await OrderDetail.create({
-                    OrderId: newOrder.id,
-                    ProductId: productId,
-                    quantity: quantity,
-                    name: name,
-                    price: price,
-                    size: size
-                })
-                console.log("Producto agregado a la orden:", name, quantity, size);
-
-            }}));
+            //detalle de la orden
+            await OrderDetail.create({
+                OrderId: newOrder.id,
+                ProductId: productId,
+                quantity: quantity,
+                name: name,
+                price: price
+            })
+            console.log("Producto agregado a la orden:", name, quantity);
+        }
         await newOrder.setUser(userId);
         console.log("Orden asociada al usuario:", userId);
         res.status(200).send(newOrder);
