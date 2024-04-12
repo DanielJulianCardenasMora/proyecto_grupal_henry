@@ -13,7 +13,6 @@ export const OrderDetail = (id) => {
         }
     }
 
-
     useEffect(() => {
         Detail()
     }, [id])
@@ -21,9 +20,16 @@ export const OrderDetail = (id) => {
 
     return (
         <div>
+            <br></br>
             <h1>Order Detail</h1>
 
-
+            <p>Order ID: </p>
+            <p>Quantity: </p>
+            <p>Size: </p>
+            <p>Name: </p>
+            <p>Price: </p>
+            <p>Product ID: </p>
+            <p>Order ID: </p>
 
         </div>
     )
