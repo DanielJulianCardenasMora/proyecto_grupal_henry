@@ -68,13 +68,7 @@ const data = [
 
 const Chart = () => {
   return (
-    // <ResponsiveContainer width='100%' height='100%'>
-    // <AreaChart width={500} height={400} data={sales}>
-    //   <Area dataKey={sales.orderDetails}/>
-    // </AreaChart>
-    // </ResponsiveContainer >
-
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="90%">
     <LineChart
       width={500}
       height={300}
@@ -90,7 +84,7 @@ const Chart = () => {
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Legend />
+      {/* <Legend /> */}
       <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
     </LineChart>
   </ResponsiveContainer>
