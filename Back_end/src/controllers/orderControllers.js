@@ -113,6 +113,7 @@ const createOrder = async (req, res) => {
 const getAllOrder = async (req, res) => {
     try {
         const orders = await Order.findAll();
+        return orders;
         res.status(200).send(orders);
     } catch (error) {
         console.error('Error al obtener las órdenes:', error);
