@@ -69,13 +69,10 @@ const Form = ({ addProduct }) => {
       genero,
       category,
       images: UrlImagen,
-      size: {
-        total: parseInt(totalStock),
-        ...formData.size.reduce((acc, curr) => {
-          acc[curr.size] = parseInt(curr.stock);
-          return acc;
-        }, {})
-      }
+      size: formData.size.reduce((acc, curr) => {
+        acc[curr.size] = parseInt(curr.stock);
+        return acc;
+      }, {})
     };
 
     if (data.name == null) {
@@ -164,32 +161,32 @@ const Form = ({ addProduct }) => {
           <div className={style.formDiv}>
             <label>Size and Stock</label>
             <button className={style.addSize} type="button" onClick={addSize}>Add</button>
-<div className={style.stock}>         
-   {size.map((item, index) => (
-              <div key={index} className={style.input}>
-                <select
-                  name="size"
-                  value={item.size}
-                  onChange={(event) => sizeChange(event, index)}
-                >
-                  <option value=''>SIZE</option>
-                  {Sizes.map((size, idx) => (
-                    <option key={idx} value={size}>{size}</option>
-                  ))}
-                </select>
-                <input
-                className={style.sizeInput}
-                  type="number"
-                  name="stock"
-                  value={item.stock}
-                  onChange={(event) => sizeChange(event, index)}
-                />
-                <button  className={style.sizeButton} type="button" onClick={() => removeSize(index)}>X</button>
-              </div>
-            ))}
-            
+            <div className={style.stock}>
+              {size.map((item, index) => (
+                <div key={index} className={style.input}>
+                  <select
+                    name="size"
+                    value={item.size}
+                    onChange={(event) => sizeChange(event, index)}
+                  >
+                    <option value=''>SIZE</option>
+                    {Sizes.map((size, idx) => (
+                      <option key={idx} value={size}>{size}</option>
+                    ))}
+                  </select>
+                  <input
+                    className={style.sizeInput}
+                    type="number"
+                    name="stock"
+                    value={item.stock}
+                    onChange={(event) => sizeChange(event, index)}
+                  />
+                  <button className={style.sizeButton} type="button" onClick={() => removeSize(index)}>X</button>
+                </div>
+              ))}
+
             </div>
-            
+
           </div>
 
 
@@ -240,7 +237,7 @@ const Form = ({ addProduct }) => {
           <button type="submit" className={style.buttonForm}>Submit</button>
         </div>
       </form>
-      {UrlImagen? 
+      {UrlImagen ?
 
         <div className={style.imageContainer}>
           <h4>Preview</h4>
@@ -248,11 +245,11 @@ const Form = ({ addProduct }) => {
           <button onClick={() => deleteImagen()} className={style.buttonImage}>X</button>
         </div>
 
-        :  <div className={style.imageContainer}>
-        <h4>Preview</h4>
-        <p>select an image</p>
-    
-      </div>
+        : <div className={style.imageContainer}>
+          <h4>Preview</h4>
+          <p>select an image</p>
+
+        </div>
       }
 
     </div>
