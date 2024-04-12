@@ -16,24 +16,26 @@ function Detail(props) {
   const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
   const product = useSelector((state)=>state.Detail)
   const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  let sizeWithoutTotal
 
 
-
-
-let sizeWithoutTotal
 
 
 if (product.size) {
    sizeWithoutTotal = Object.entries(product.size)
   .filter(([key]) => key !== 'total')
- 
   };
+
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
   };
 
-  
+
+  const handleQuantityChange = (event) => {
+    setSelectedQuantity(parseInt(event.target.value));
+  };
 
 
   const seleccionarProducto = (product) => {
@@ -46,12 +48,15 @@ if (product.size) {
     
     if (!productoEnCarrito) {
       const stockSeleccionado = sizeWithoutTotal.find(([size]) => size === selectedSize)[1];
-      // El producto no está en el carrito, así que lo agregamos
-      agregarProducto([...carrito, {...product, size: selectedSize, quantity: 1, stock: stockSeleccionado}]);
+
+      agregarProducto([...carrito, {...product, size: selectedSize, quantity: selectedQuantity, stock: stockSeleccionado}]);
+
       alert('Producto agregado')
     } else {
       // El producto ya está en el carrito
-      agregarProducto([...carrito])
+         agregarProducto(carrito.map(item =>
+        item.id === product.id ? { ...item, quantity: item.quantity + selectedQuantity } : item
+      ));
       alert("El producto ya está en el carrito");
     }
   }
@@ -123,6 +128,13 @@ console.log(carrito);
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>
         <div className={style.buy}>
+          
+      <select value={selectedQuantity} onChange={handleQuantityChange}>
+        {[...Array(product.stock).keys()].map(index => (
+          <option key={index + 1} value={index + 1}>{index + 1}</option>
+        ))}
+      </select>
+
         <select onChange={handleSizeChange} value={selectedSize}>
           <option value="all">SIZE</option>
         {sizeWithoutTotal?.map(([size]) => (
