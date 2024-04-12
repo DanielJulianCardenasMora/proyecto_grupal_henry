@@ -45,6 +45,8 @@ async function getUserInfo() {
           name: item.name,
           price: item.price
         })),
+        
+        
 
       })
 
@@ -100,10 +102,10 @@ async function getUserInfo() {
 
   const handleSubmit = async (e) => {
     console.log("handlesubmit")
-    dispatch(payment(totalCompra))
+    // dispatch(payment(totalCompra))
     setOrder({
     ...order,
-        detalle: order.comments
+        detalle: order.detalle
 
     })
     dispatch(enviarCarritoAlBackend(order));
@@ -149,7 +151,7 @@ async function getUserInfo() {
           <div className={style.buy}>
             <div className={style.comments}>
               <label >Comments:</label>
-              <textarea type="text" value={order.comments} onChange={onChange} />
+              <textarea type="text" value={order.detalle} onChange={onChange} />
             </div>
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>

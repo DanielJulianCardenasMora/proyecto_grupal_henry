@@ -15,7 +15,20 @@ function Detail(props) {
   const [buttonClass, setButtonClass] = useState(true);
   const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
   const product = useSelector((state)=>state.Detail)
+let sizeWithoutTotal
+if (product.size) {
+   sizeWithoutTotal = Object.entries(product.size)
+  .filter(([key]) => key !== 'total')
+  .reduce((acc, [key, value]) => {
+    acc[key] = value;
+    return acc;
+  }, {});
 
+
+
+}
+  
+console.log(sizeWithoutTotal);
 
   const seleccionarProducto = (product) => {
    
@@ -25,7 +38,7 @@ function Detail(props) {
     
     if (!productoEnCarrito) {
       // El producto no está en el carrito, así que lo agregamos
-      agregarProducto([...carrito, product]);
+      agregarProducto([...carrito, {...product, quantity:1}]);
       alert('Producto agregado')
     } else {
       // El producto ya está en el carrito
