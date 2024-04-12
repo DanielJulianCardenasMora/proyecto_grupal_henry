@@ -58,7 +58,7 @@ left: 50%;
   height: 50px;
   width: 300px;
   margin-left: 10px;
-  background-color: brown;
+
 }
 
 .addSize{
@@ -130,8 +130,8 @@ justify-content: center;
 }
 .imageContainer{
   position: absolute;
-  left: 60%;
-  bottom: 20%;
+  left: 70%;
+  bottom: 30%;
   /* background-color: brown; */
   padding: 1%;
   height: 55vh;
