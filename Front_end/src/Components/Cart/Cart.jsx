@@ -63,7 +63,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   useEffect(() => {
-    // dispatch(getOrders())
+    dispatch(getOrders())
     getUserInfo()
     setTotalCompra(totalInicial)
   }, [carrito])

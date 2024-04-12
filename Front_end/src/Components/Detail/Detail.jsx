@@ -15,30 +15,39 @@ function Detail(props) {
   const [buttonClass, setButtonClass] = useState(true);
   const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
   const product = useSelector((state)=>state.Detail)
+  const [selectedSize, setSelectedSize] = useState(null);
+
+
+
+
 let sizeWithoutTotal
+
+
 if (product.size) {
    sizeWithoutTotal = Object.entries(product.size)
   .filter(([key]) => key !== 'total')
-  .reduce((acc, [key, value]) => {
-    acc[key] = value;
-    return acc;
-  }, {});
+ 
+  };
 
+  const handleSizeChange = (event) => {
+    setSelectedSize(event.target.value);
+  };
 
-
-}
   
-console.log(sizeWithoutTotal);
+
 
   const seleccionarProducto = (product) => {
-   
+    if (!selectedSize) {
+      alert("Por favor, selecciona un tamaño");
+      return;
+    }
     
     const productoEnCarrito = carrito.find(producto => producto.id === product.id);
-    console.log(productoEnCarrito);
     
     if (!productoEnCarrito) {
+      const stockSeleccionado = sizeWithoutTotal.find(([size]) => size === selectedSize)[1];
       // El producto no está en el carrito, así que lo agregamos
-      agregarProducto([...carrito, {...product, quantity:1}]);
+      agregarProducto([...carrito, {...product, size: selectedSize, quantity: 1, stock: stockSeleccionado}]);
       alert('Producto agregado')
     } else {
       // El producto ya está en el carrito
@@ -47,7 +56,7 @@ console.log(sizeWithoutTotal);
     }
   }
   
-
+console.log(carrito);
 
   useEffect(() => {
 
@@ -114,6 +123,12 @@ console.log(sizeWithoutTotal);
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>
         <div className={style.buy}>
+        <select onChange={handleSizeChange} value={selectedSize}>
+          <option value="all">SIZE</option>
+        {sizeWithoutTotal?.map(([size]) => (
+          <option key={size} value={size}>{size}</option>
+        ))}
+      </select>
           <button
           type="button"
           onClick={() => seleccionarProducto(product)}
