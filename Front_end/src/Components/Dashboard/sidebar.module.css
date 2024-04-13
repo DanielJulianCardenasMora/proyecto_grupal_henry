@@ -37,6 +37,7 @@ box-sizing: border-box;
     width: 100%;
     height: auto;
     border-radius: 5px;
+    
 }
 
 .links{
@@ -45,7 +46,7 @@ box-sizing: border-box;
     
   border-bottom: 1px solid rgb(207, 207, 207);
   border-radius: 0;
-    color: rgb(50, 0, 96);
+    color: rgb(23, 0, 43);
     font-size: 15px;
    background: none;
 }

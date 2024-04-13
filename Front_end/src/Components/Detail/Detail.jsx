@@ -49,7 +49,7 @@ if (product.size) {
     if (!productoEnCarrito) {
       const stockSeleccionado = sizeWithoutTotal.find(([size]) => size === selectedSize)[1];
 
-      agregarProducto([...carrito, {...product, size: selectedSize, quantity: selectedQuantity, stock: stockSeleccionado}]);
+      agregarProducto([...carrito, {...product, size: {selectedSize}, quantity: selectedQuantity, stock: stockSeleccionado}]);
 
       alert('Producto agregado')
     } else {
