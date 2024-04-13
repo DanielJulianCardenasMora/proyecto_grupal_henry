@@ -47,6 +47,8 @@ const Cart = ({ carrito, agregarProducto }) => {
           price: item.price,
           size: item.size
         })),
+        
+        
 
       }))
 
@@ -61,7 +63,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   useEffect(() => {
-    // dispatch(getOrders())
+    dispatch(getOrders())
     getUserInfo()
     setTotalCompra(totalInicial)
   }, [carrito])
@@ -74,7 +76,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   const eliminarProducto = (item) => {
-    const filtrados = carrito.filter((p) => p.id !== item.id);
+    const filtrados = carrito.filter((p) => p.id !== item.id );
     console.log(filtrados);
     agregarProducto(filtrados);
   };
@@ -103,12 +105,14 @@ const Cart = ({ carrito, agregarProducto }) => {
 
   const handleSubmit = async (e) => {
     console.log("handlesubmit")
-    dispatch(payment(totalCompra))
+    // dispatch(payment(totalCompra))
     setOrder({
-      ...order,
-      detalle: order.comments
+        ...order,
+        detalle: order.detalle
+
 
     })
+    console.log(order)
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
     agregarProducto([])
@@ -152,7 +156,7 @@ const Cart = ({ carrito, agregarProducto }) => {
           <div className={style.buy}>
             <div className={style.comments}>
               <label >Comments:</label>
-              <textarea type="text" value={order.comments} onChange={onChange} />
+              <textarea type="text" value={order.detalle} onChange={onChange} />
             </div>
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
