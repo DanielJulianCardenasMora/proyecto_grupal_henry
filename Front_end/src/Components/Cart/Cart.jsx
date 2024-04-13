@@ -109,6 +109,7 @@ const Cart = ({ carrito, agregarProducto }) => {
       detalle: order.comments
 
     })
+    console.log(order)
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
     agregarProducto([])
