@@ -57,7 +57,6 @@ if (product.size) {
          agregarProducto(carrito.map(item =>
         item.id === product.id ? { ...item, quantity: item.quantity + selectedQuantity, size:[ item.size, selectedSize] } : item
       ));
-      alert("El producto ya está en el carrito");
     }
   }
   
