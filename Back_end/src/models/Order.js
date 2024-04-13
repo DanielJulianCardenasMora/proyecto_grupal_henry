@@ -13,6 +13,11 @@ module.exports = (sequelize) => {
         detalle: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        fecha: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
         }
     },
         { timestamps: false }
