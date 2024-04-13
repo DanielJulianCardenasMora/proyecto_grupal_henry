@@ -2,14 +2,14 @@ const bcryptjs = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const { User, Order } = require("../db");
-// const emailer = require("../utils/emailers");
+const emailer = require("../utils/emailers");
 
 dotenv.config();
 
 const register = async (req, res) => {
-  const { email, password, phone, country } = req.body;
+  const { name, email, password, phone, country } = req.body;
 
-  if ( !email || !password || !phone || !country) {
+  if (!name || !email || !password || !phone || !country) {
     return res
       .status(404)
       .send({ status: "Error", message: "Fields are incomplete" });
@@ -26,18 +26,19 @@ const register = async (req, res) => {
 
   const salt = await bcryptjs.genSalt(10);
   const hashPassword = await bcryptjs.hash(password, salt);
-  const newUser = { email, password: hashPassword, phone, country };
+  const newUser = { name, email, password: hashPassword, phone, country };
 
   // Add user to the Database
   try {
     const userCreatedDB = await User.create(newUser);
-    return res.status(201).send({
-      status: "ok",
-      message: `The email ${userCreatedDB.email} has been registered successfully! `,
-      redirect: "/login",
-    });
+      emailer.sendMail(userCreatedDB);
+            return res.status(201).send({
+        status: "ok",
+        message: `The email ${userCreatedDB.email} has been registered successfully! `,
+        redirect: "/login",
+      });
   } catch (error) {
-    console.log(error);
+        console.log(error);
     return res
       .status(500)
       .send({ status: "Error", message: "Error creating the user" });
