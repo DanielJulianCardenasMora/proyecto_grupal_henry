@@ -76,7 +76,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   const eliminarProducto = (item) => {
-    const filtrados = carrito.filter((p) => p.id !== item.id);
+    const filtrados = carrito.filter((p) => p.id !== item.id );
     console.log(filtrados);
     agregarProducto(filtrados);
   };

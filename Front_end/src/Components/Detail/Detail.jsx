@@ -44,29 +44,44 @@ if (product.size) {
       return;
     }
     
-    const productoEnCarrito = carrito.find(producto => producto.id === product.id);
+    const productoEnCarrito = carrito.find(producto => producto.id === product.id );
     
     if (!productoEnCarrito) {
       const stockSeleccionado = sizeWithoutTotal.find(([size]) => size === selectedSize)[1];
 
-      agregarProducto([...carrito, {...product, size: {selectedSize}, quantity: selectedQuantity, stock: stockSeleccionado}]);
+      agregarProducto([...carrito, {...product, size: selectedSize, quantity: selectedQuantity, stock: stockSeleccionado}]);
 
       alert('Producto agregado')
     } else {
       // El producto ya está en el carrito
          agregarProducto(carrito.map(item =>
-        item.id === product.id ? { ...item, quantity: item.quantity + selectedQuantity } : item
+        item.id === product.id ? { ...item, quantity: item.quantity + selectedQuantity, size:[ item.size, selectedSize] } : item
       ));
       alert("El producto ya está en el carrito");
     }
   }
   
-console.log(carrito);
+console.log(product);
 
   useEffect(() => {
 
     dispatch(getProductDetail(id))
   }, [id, carrito])
+
+  const [availableStock, setAvailableStock] = useState(0);
+const [quantityOptions, setQuantityOptions] = useState([]);
+
+// Actualiza el stock disponible y las opciones de cantidad cuando cambia el tamaño seleccionado
+useEffect(() => {
+  if (selectedSize && product.size[selectedSize]) {
+    const stockSeleccionado = parseInt(product.size[selectedSize]);
+    setAvailableStock(stockSeleccionado);
+    const newQuantityOptions = [...Array(stockSeleccionado).keys()].map(index => index + 1);
+    setQuantityOptions(newQuantityOptions);
+    // Restablecer la cantidad seleccionada si excede el nuevo stock disponible
+    setSelectedQuantity(Math.min(selectedQuantity, stockSeleccionado));
+  }
+}, [selectedSize]);
 
   const handleMouseEnter = () => {
     setButtonClass(!buttonClass);
@@ -128,12 +143,11 @@ console.log(carrito);
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>
         <div className={style.buy}>
-          
-      <select value={selectedQuantity} onChange={handleQuantityChange}>
-        {[...Array(product.stock).keys()].map(index => (
-          <option key={index + 1} value={index + 1}>{index + 1}</option>
-        ))}
-      </select>
+        <select value={selectedQuantity} onChange={handleQuantityChange}>
+  {quantityOptions.map(option => (
+    <option key={option} value={option}>{option}</option>
+  ))}
+</select>
 
         <select onChange={handleSizeChange} value={selectedSize}>
           <option value="all">SIZE</option>
