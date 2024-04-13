@@ -6,15 +6,13 @@ import Nav from '../../Components/Nav/Nav'
 export default function  Dashboard() {
 
     return (
-      <>
-      <Nav/>
-             <div className={style.admin}>
 
-<Sidebar />
-  <Outlet/>
-</div>
-      </>
-
-
+      <div className={style.container}>
+        <Nav/>
+        <div className={style.admin}>
+          <Sidebar />
+          <Outlet/>
+        </div>
+      </div>
     )
 }
