@@ -1,6 +1,6 @@
 .background {
   /* position: relative; */
-  height: 100vh;
+  height: 77.5vh;
   /* background-image: url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png'); */
   background-position: center;
   background-size: cover;
@@ -14,13 +14,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
-  margin-top: 2em;
+  margin-top: 2%;
 }
 
 .cont {
-  top: 50%;
-left: 50%;
+  top: 55%;
+  left: 50%;
   padding: 1%;
   align-items: center;
   position: relative;
@@ -28,7 +27,7 @@ left: 50%;
   font-family: Arial, Helvetica, sans-serif;
   width: 90%;
   height: auto;
-  background-color: rgba(69, 69, 69, 0.422);
+  background-color: rgba(127, 54, 236, 0.422);
   border-radius: 10px;
   box-sizing: border-box;
 }
@@ -131,7 +130,7 @@ justify-content: center;
 .imageContainer{
   position: absolute;
   left: 70%;
-  bottom: 30%;
+  bottom: 20%;
   /* background-color: brown; */
   padding: 1%;
   height: 55vh;
@@ -140,6 +139,8 @@ justify-content: center;
   border: 1px solid white;
  display: flex;
  flex-direction: column;
+ border-radius: 10px;
+
 }
 
 .imageContainer h4{
@@ -164,7 +165,6 @@ margin: auto;
   border: 1px solid white;
   background: rgb(107, 1, 1);
   color: white;
-  
 }
 
 .sizeInput{

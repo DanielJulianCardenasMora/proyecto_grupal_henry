@@ -7,8 +7,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 3%;
-    padding-right:3% ;
+    padding-left: 2%;
+    padding-right:2% ;
     box-sizing: border-box;
     z-index: 1000;
 
@@ -52,7 +52,7 @@
 }
 
 .logIn{
-    width: 7%;
+    width: 10%;
     /* background-color: chocolate; */
 }
 
@@ -61,6 +61,8 @@
     color: white;
     border: 1px solid white;
     border-radius: 1em;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .logInB:hover{
@@ -79,7 +81,7 @@
     }
 
     .logIn{
-        width: 15%;
+        width: 10%;
         /* background-color: chocolate; */
     }
 
@@ -145,7 +147,7 @@
 }
 
 .logIn{
-    width: 15%;
+    width: 7%;
     /* background-color: chocolate; */
 }
 
