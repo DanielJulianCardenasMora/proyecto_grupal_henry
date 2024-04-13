@@ -7,9 +7,9 @@ const emailer = require("../utils/emailers");
 dotenv.config();
 
 const register = async (req, res) => {
-  const { email, password, phone, country, role } = req.body;
+  const { name, email, password, phone, country, role } = req.body;
 
-  if (!email || !password || !phone || !country) {
+  if (!name || !email || !password || !phone || !country) {
     return res
       .status(404)
       .send({ status: "Error", message: "Fields are incomplete" });
@@ -26,25 +26,28 @@ const register = async (req, res) => {
 
   const salt = await bcryptjs.genSalt(10);
   const hashPassword = await bcryptjs.hash(password, salt);
-  const newUser = { email, password: hashPassword, phone, country, role };
+  const newUser = { name, email, password: hashPassword, phone, country, role };
 
   try {
     // Create the user in the database
     const userCreatedDB = await User.create(newUser);
 
     // Generate token for the new user
-    const dataUser = { user: { id: userCreatedDB.id } }
-    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, { expiresIn: 3600 })
+    const dataUser = { user: { id: userCreatedDB.id } };
+    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, {
+      expiresIn: 3600,
+    });
 
     // Update the user with the generated token
     await User.update({ token: token }, { where: { id: userCreatedDB.id } });
 
+    emailer.sendMail(userCreatedDB.email);
     return res.status(201).send({
       status: "ok",
-      message: `The email ${userCreatedDB.email} has been registered successfully! `
+      message: `The email ${userCreatedDB.email} has been registered successfully! `,
     });
   } catch (error) {
-        console.log(error);
+    console.log(error);
     return res
       .status(500)
       .send({ status: "Error", message: "Error creating the user" });
@@ -83,14 +86,16 @@ const login = async (req, res) => {
     }
 
     // If password is correct, we generate the token
-    const dataUser = { user: { id: user.id } }
-    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, { expiresIn: 3600 })
-    
+    const dataUser = { user: { id: user.id } };
+    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, {
+      expiresIn: 3600,
+    });
+
     const cookieOption = {
       expires: new Date(
         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-      )
-    }
+      ),
+    };
 
     // We configure the new cookie wtih the JWT token
     res.cookie("jwt", token, cookieOption);
