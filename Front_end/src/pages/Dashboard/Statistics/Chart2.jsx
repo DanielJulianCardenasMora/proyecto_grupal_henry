@@ -59,8 +59,7 @@ const renderCustomizedLabel = (props) => {
 
 const Chart2 = () => {
   return (
-
- <ResponsiveContainer width="100%" height="100%">
+ <ResponsiveContainer width="100%" height="90%">
         <BarChart
           width={500}
           height={300}
@@ -76,7 +75,7 @@ const Chart2 = () => {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Legend />
+          {/* <Legend /> */}
           <Bar dataKey="pv" fill="#8884d8" minPointSize={5}>
             <LabelList dataKey="name" content={renderCustomizedLabel} />
           </Bar>
