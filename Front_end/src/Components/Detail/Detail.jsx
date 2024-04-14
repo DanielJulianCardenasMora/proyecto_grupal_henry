@@ -43,23 +43,29 @@ if (product.size) {
       alert("Por favor, selecciona un tamaño");
       return;
     }
-  
+    const stockSeleccionado = product.size[selectedSize]; 
     const productoEnCarrito = carrito.find(producto => producto.id === product.id && producto.size === selectedSize);
   
     if (!productoEnCarrito) {
-      agregarProducto([...carrito, { ...product, size: selectedSize, quantity: selectedQuantity }]);
+      agregarProducto([...carrito, { ...product, size: selectedSize, quantity: selectedQuantity, stock:stockSeleccionado }]);
       alert('Producto agregado');
     } else {
-      // El producto ya está en el carrito, aumenta la cantidad
+    
+      const totalQuantity = productoEnCarrito.quantity + selectedQuantity;
+      if (totalQuantity > stockSeleccionado) {
+        alert(`No hay suficiente stock disponible. Stock actual: ${stockSeleccionado}`);
+        return;
+      }
+  
+    
       agregarProducto(
         carrito.map(item =>
           item.id === product.id && item.size === selectedSize
-            ? { ...item, quantity: item.quantity + selectedQuantity }
+            ? { ...item, quantity: totalQuantity }
             : item
         )
       );
-
-      alert('Carrito actualizado')
+      alert('Carrito actualizado');
     }
   };
   
