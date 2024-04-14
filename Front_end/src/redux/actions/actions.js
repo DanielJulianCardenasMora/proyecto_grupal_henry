@@ -15,9 +15,14 @@ import {
   PAYMENT
 } from "./type";
 
- const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
-//  const URL = 'http://localhost:3001';
+  //! URL -------------------
 
+  // const URL = "http://localhost:3001"
+  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+
+  //! ------------------------
+
+  
 export const getAllProducts = (page, filters) => {
   const pageNumbers = page || 1;
   return async function (dispatch) {

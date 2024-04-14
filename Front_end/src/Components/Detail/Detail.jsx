@@ -38,27 +38,37 @@ if (product.size) {
   };
 
 
-  const seleccionarProducto = (product) => {
+  const seleccionarProducto = () => {
     if (!selectedSize) {
       alert("Por favor, selecciona un tamaño");
       return;
     }
-    
-    const productoEnCarrito = carrito.find(producto => producto.id === product.id );
-    
+    const stockSeleccionado = product.size[selectedSize]; 
+    const productoEnCarrito = carrito.find(producto => producto.id === product.id && producto.size === selectedSize);
+  
     if (!productoEnCarrito) {
-      const stockSeleccionado = sizeWithoutTotal.find(([size]) => size === selectedSize)[1];
-
-      agregarProducto([...carrito, {...product, size: selectedSize, quantity: selectedQuantity, stock: stockSeleccionado}]);
-
-      alert('Producto agregado')
+      agregarProducto([...carrito, { ...product, size: selectedSize, quantity: selectedQuantity, stock:stockSeleccionado }]);
+      alert('Producto agregado');
     } else {
-      // El producto ya está en el carrito
-         agregarProducto(carrito.map(item =>
-        item.id === product.id ? { ...item, quantity: item.quantity + selectedQuantity, size:[ item.size, selectedSize] } : item
-      ));
+    
+      const totalQuantity = productoEnCarrito.quantity + selectedQuantity;
+      if (totalQuantity > stockSeleccionado) {
+        alert(`No hay suficiente stock disponible. Stock actual: ${stockSeleccionado}`);
+        return;
+      }
+  
+    
+      agregarProducto(
+        carrito.map(item =>
+          item.id === product.id && item.size === selectedSize
+            ? { ...item, quantity: totalQuantity }
+            : item
+        )
+      );
+      alert('Carrito actualizado');
     }
-  }
+  };
+  
   
 console.log(product);
 
@@ -165,3 +175,5 @@ useEffect(() => {
 }
 
 export default Detail
+
+
