@@ -117,7 +117,7 @@ export default function ProductsAdmin() {
         <tbody>
         {products.map((product, index) => (
         <tr key={product.id}>
-          <td>{index}</td>
+          <td>{product.id}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="name" value={editproduct.name} onChange={handleInputChange} /> : product.name}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="image" value={editproduct.image} onChange={handleInputChange} /> : <img src={product.image} alt={product.name} />}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="number" name="stock" value={editproduct.stock} onChange={handleInputChange} /> : product.stock}</td>
