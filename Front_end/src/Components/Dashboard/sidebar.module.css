@@ -3,61 +3,128 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 200px; /* Ancho del sidebar */
-    background-color: #7e66eb; /* Color de fondo del sidebar */
-padding: 1%;
-box-sizing: border-box;
+    width: 200px;
+    background-color: #7e66eb;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 100%;
-    width: 18%;
+    height: 87.5vh;
+    width: 16%;
+    border-radius: 10px;
+    margin: 0 1%;
+    box-shadow: 0px -23px 25px 0px rgba(0,0,0,0.17) inset,
+    0px -36px 30px 0px rgba(0,0,0,0.15) inset,
+    0px -79px 40px 0px rgba(0,0,0,0.1) inset,
+    0px 2px 1px 0px rgba(0,0,0,0.06),
+    0px 4px 2px 0px rgba(0,0,0,0.09),
+    0px 8px 4px 0px rgba(0,0,0,0.09),
+    0px 16px 8px 0px rgba(0,0,0,0.09);
+    padding: 1%;
 }
-.navButton{
- 
+.sideBar{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.navButton1{
     color: white;
     background-color:  #7e66eb;
- 
-    margin-top: 3em;
-   padding: 1%;
+   padding: 0 1%;
    box-sizing: border-box;
-   
     width: 70%;
-   font-size: 20px;
+   font-size: 1.7vw;
     text-align: left;
+    position: relative;
+}
+.navButton2{
+    color: white;
+    background-color:  #7e66eb;
+   padding: 0 1%;
+   box-sizing: border-box;
+    width: 70%;
+    font-size: 1.7vw;
+    text-align: left;
+    position: relative;
+    top: 10%;
+}
+.navButton3{
+    color: white;
+    background-color:  #7e66eb;
+   padding: 0 1%;
+   box-sizing: border-box;
+    width: 70%;
+    font-size: 1.7vw;
+    text-align: left;
+    position: relative;
+    top: 21%;
+}
+.navButton4{
+    color: white;
+    background-color:  #7e66eb;
+   padding: 0 1%;
+   box-sizing: border-box;
+    width: 70%;
+    font-size: 1.7vw;
+    text-align: left;
+    position: relative;
+    top: 32%;
 }
 
-.subMenu{
+.subMenu1{
     position: relative;
+    top: 0;
     left: 10%;
-    background: none ;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+}
+.subMenu2{
+    position: relative;
+    top: 10%;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.subMenu3{
+    position: relative;
+    top: 20%;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.subMenu4{
+    position: relative;
+    top: 30%;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .links{
     text-align: left;
-    width: 20vh;
-    
+    width: 9vw;
   border-bottom: 1px solid rgb(207, 207, 207);
   border-radius: 0;
     color: rgb(50, 0, 96);
-    font-size: 15px;
+    font-size: 1.1vw;
    background: none;
+   line-height: 1;
+   margin-left: 9%;
+   padding-left: 5%;
 }
-
-.buttonlogout{
-    position: relative;
-    top: 60%;
-    background:none;
-    border: 1px solid white;
-    height: 30px;
-    padding: 1%;
-    box-sizing: border-box;
-    width: 100px;
-    font-size: 15px;
+.navButtonHome{
+    color: white;
+   padding: 1%;
+   box-sizing: border-box;
+   font-size: 1.7vw;
+    text-align: left;
+    height: 5%;
+    position: absolute;
+    top: 90%;
+    left: 15%;
+   background-color: rgba(0, 0, 0, 0);
 }
