@@ -88,7 +88,7 @@ const clients = () => {
           
         {users.map((user, index) => (
         <tr key={user.id}>
-          <td>{index}</td>
+          <td>{user.id}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="name" value={edituser.name} onChange={handleInputChange} /> : user.name}</td>
           <td>{edituser && edituser.id === user.id ? <input type="text" name="email" value={edituser.email} onChange={handleInputChange} /> : user.email}</td>
           <td>{edituser && edituser.id === user.id ? <input type="number" name="password" value={edituser.password} onChange={handleInputChange} /> : '********'}</td>
