@@ -8,15 +8,18 @@ import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
 import { RegisterDialog } from '../../Components';
-import config from '../../../config';
 
 
 
 function Login ({setUsuario, usuario}) {
 
-  const { deployedBackendURL, localBackendURL } = config;
-  const URL = deployedBackendURL || localBackendURL;
+ //! URL -------------------
 
+  // const URL = "http://localhost:3001"
+  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+
+  //! ------------------------
+  
   const { loginWithRedirect, logout, isLoading, isAuthenticated, user } =
     useAuth0();
 
