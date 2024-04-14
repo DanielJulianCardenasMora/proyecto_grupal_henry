@@ -19,7 +19,6 @@
 }
 .container::-webkit-scrollbar {
     width: 12px; 
-    height: 80px; 
     background-color: #9c95af;
     border-radius: 10px; 
     padding: 0 2px;
