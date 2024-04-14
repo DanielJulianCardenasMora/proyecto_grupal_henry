@@ -14,12 +14,19 @@ export default function RegisterDialog({ handleClose }) {
   const [open, setOpen] = useState(false); // Establecer el estado inicial basado en isAuthenticated
 
 
+  //! URL -------------------
+
+  // const URL = "http://localhost:3001"
+  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+
+  //! ------------------------
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    //! Nuevo usuario
     const newUser = {
       email: formData.get('email'),
       name: formData.get('name'),
@@ -29,9 +36,7 @@ export default function RegisterDialog({ handleClose }) {
     }
 
     try {
-      
-      const response = await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/users/api/register', newUser)
-      console.log(response)
+      const response = await axios.post(`${URL}/users/api/register`, newUser)
       if(response){
         alert("User registed")
       }

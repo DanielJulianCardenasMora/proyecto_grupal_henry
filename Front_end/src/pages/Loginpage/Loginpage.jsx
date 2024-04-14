@@ -8,15 +8,19 @@ import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
 import { RegisterDialog } from '../../Components';
-import config from '../../../config';
 
 
 
 function Login ({setUsuario, usuario}) {
 
-  const { deployedBackendURL, localBackendURL } = config;
-  const URL = deployedBackendURL || localBackendURL;
+  //! URL -------------------
 
+  // const URL = "http://localhost:3001"
+  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+
+  //! ------------------------
+
+  const navigate = useNavigate();
   const { loginWithRedirect, logout, isLoading, isAuthenticated, user } =
     useAuth0();
 
@@ -26,7 +30,7 @@ function Login ({setUsuario, usuario}) {
     password: "",
   });
 
-  const navigate = useNavigate();
+ 
 
 
   const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
@@ -54,15 +58,14 @@ function Login ({setUsuario, usuario}) {
       
     
     try {
-      const {data} = await axios.post(`${URL}users/api/login`, login)
-
+      const {data} = await axios.post(`${URL}/users/api/login`, login)
       if (data.status == 'ok') {
-        navigate("/");
         localStorage.setItem("usuario", login.email)
+        navigate("/");
         }
 
     } catch (error) {
-      alert("Email or password incorrect");
+      alert("Email or password incorrect" + error);
       setCredentials({
         email: "",
         password: ""
