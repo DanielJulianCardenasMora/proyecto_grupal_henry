@@ -1,5 +1,12 @@
+.container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: linear-gradient(90deg, rgba(27, 75, 172, 1) 0%, rgba(116, 159, 246, 1) 10%, rgba(140, 182, 255, 1) 19%, rgba(170, 212, 255, 1) 50%, rgba(140, 182, 255, 1) 80%, rgba(116, 159, 246, 1) 89%, rgba(27, 75, 172, 1) 100%);
+}
 .admin{
-    display: flex;
-    height: 89vh;
-    padding-top: 11vh;
+  display: flex;
+  height: 50vh;
+  padding-top: 11.5vh;
 }

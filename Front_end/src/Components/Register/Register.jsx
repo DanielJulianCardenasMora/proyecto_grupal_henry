@@ -13,7 +13,8 @@ import axios from 'axios'
 export default function RegisterDialog({ handleClose }) {
   const [open, setOpen] = useState(false); // Establecer el estado inicial basado en isAuthenticated
 
- //! URL -------------------
+
+  //! URL -------------------
 
   // const URL = "http://localhost:3001"
   const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
@@ -24,7 +25,6 @@ export default function RegisterDialog({ handleClose }) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    //! Nuevo usuario
     const newUser = {
       email: formData.get('email'),
       name: formData.get('name'),
@@ -34,9 +34,7 @@ export default function RegisterDialog({ handleClose }) {
     }
 
     try {
-      
       const response = await axios.post(`${URL}/users/api/register`, newUser)
-      console.log(response)
       if(response){
         alert("User registed")
       }

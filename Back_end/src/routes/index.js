@@ -9,6 +9,7 @@ const {
   captureOrder,
   cancelOrder,
 } = require("../controllers/payment.Controller");
+// const { soloAdmin, soloPublico } = require('../middlewares/authorization');
 const router = Router();
 
 // Rutas para usuarios
