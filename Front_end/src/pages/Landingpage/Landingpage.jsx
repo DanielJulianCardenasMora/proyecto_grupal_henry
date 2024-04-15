@@ -12,7 +12,7 @@ export const LandingPage = () => {
     const userName = localStorage.getItem("usuario")
 
     useEffect(() => {
-        setSnackbarMessage('Loged user ')
+        setSnackbarMessage('Logged ')
         setSnackbarSeverity('success')
         setSnackbarOpen(true)
     }, [alerts])
@@ -34,7 +34,7 @@ export const LandingPage = () => {
         >
           {snackbarMessage + 
             '   '
-             + userName}
+             + userName + '  ✅'}
         </MuiAlert>
       </Snackbar>
         </div>
