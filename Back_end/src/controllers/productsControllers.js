@@ -89,8 +89,9 @@ const getProductsByName = async (name) => {
 };
 
 const createProductDB = async (name, description, price, images, stock, genero, category, size) => {
-  if (!size || Object.keys(size).length === 0) {
-    size = {};
+  if (!size || Object.keys(size).length === 0 || !Object.values(size).some(stock => stock > 0)) {
+    console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
+    return null;
   }
   if (!name || !description || !price || !stock || !genero || !category) {
     console.log('Faltan propiedades requeridas para crear el producto.');
@@ -98,7 +99,8 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   }
   const totalStock = Object.values(size).reduce((acc, curr) => acc + curr, 0);
 
-  const newProduct = { name, description, price, stock: totalStock, genero, category, size };
+  const newProduct = { name, description, price, images, stock, genero, category, size };
+  
   try {
     newProduct.images = [images];
 
