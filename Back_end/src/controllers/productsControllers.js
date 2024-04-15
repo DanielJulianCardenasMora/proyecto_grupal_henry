@@ -6,35 +6,6 @@ const { URL_PRODUCTS } = process.env;
 const cloudinary = require('../utils/cloudinaryConfig'); // Importa la configuración de Cloudinary
 const { getCategory } = require("./categoryControllers");
 
-
-
-// const getProducts = async () => {
-//   try {
-//     const response = await axios.get(`${URL_PRODUCTS}`);
-//     const categories = await getCategory();
-
-
-//     const getInfo = response.data.map((element) => {
-//       const category = categories.find(cat => cat.name === element.category);
-
-//       return {
-//         name: element.name,
-//         images: Array.isArray(element.images) ? element.images : [element.images],
-//         description: element.description,
-//         price: element.price,
-//         stock: element.stock,
-//         genero: element.genero,
-//         category: category ? category.name : null,
-//         quantity: 1
-//       };
-//     });
-//     return getInfo;
-//   } catch (error) {
-//     console.error("Error al obtener productos:", error);
-//     throw error;
-//   }
-// };
-
 const productsDataBase = async () => {
   try {
     const existingProducts = await Product.findAll({
@@ -105,22 +76,17 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     newProduct.images = [images];
 
     if (totalStock !== stock) {
-      console.log('El stock total de los tamanos no coincide al stock global.');
-      console.log('El stock total calculado:', totalStock);
-      console.log('El stock global proporcionado:', stock);
       stock = totalStock;
     }
-
     const productCreatedDB = await Product.create(newProduct);
 
     const categoryName = await Category.findOne({ where: { name: category } });
+    
     if (!categoryName) {
       console.log("La categoría especificada no existe.");
       return null;
     }
     await productCreatedDB.addCategory(categoryName);
-    console.log("Nombre de la categoría encontrada:", categoryName.name);
-
     return productCreatedDB;
   } catch (error) {
     console.log(error);
