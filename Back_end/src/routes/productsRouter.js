@@ -5,4 +5,4 @@ const productsRouter = Router();
 productsRouter.get('/', getProducts);
 productsRouter.get('/:id', getDetail);
 
-module.exports = productsRouter;
+module.exports = productsRouter; 

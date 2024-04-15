@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BarChart,
   Bar,
@@ -14,33 +14,55 @@ import {
 
 const data = [
   {
-    name: 'Jan J',
-    pv: 2400,
+    name: 'Jan',
+    pv: 2200,
   },
   {
-    name: 'Page B',
-    pv: 1398,
+    name: 'Feb',
+    pv: 400,
   },
   {
-    name: 'Page C',
-    pv: 8,
+    name: 'Mar',
+    pv: 400,
   },
   {
-    name: 'Page D',
-    pv: 3908,
+    name: 'Apr',
+    pv: 400,
   },
   {
-    name: 'Page E',
-    pv: 4800,
+    name: 'May',
+    pv: 400,
   },
   {
-    name: 'Page F',
-    pv: 3800,
+    name: 'Jun',
+    pv: 400,
   },
   {
-    name: 'Page G',
-    pv: 4300,
+    name: 'Jul',
+    pv: 400,
   },
+  {
+    name: 'Aug',
+    pv: 400,
+  },
+  {
+    name: 'Sep',
+    pv: 400,
+  },
+  {
+    name: 'Oct',
+    pv: 400,
+  },
+  {
+    name: 'Nov',
+    pv: 400,
+  },
+  {
+    name: 'Dec',
+    pv: 400,
+  },
+
+
 ];
 
 const renderCustomizedLabel = (props) => {
@@ -51,14 +73,53 @@ const renderCustomizedLabel = (props) => {
     <g>
       <circle cx={x + width / 2} cy={y - radius} r={radius} fill="#8884d8" />
       <text x={x + width / 2} y={y - radius} fill="#fff" textAnchor="middle" dominantBaseline="middle">
-        {value.split(' ')[1]}
+        {value[0]}
       </text>
     </g>
   );
 };
 
-const Chart2 = () => {
+
+
+const Chart2 = ({ eachOrder }) => {
+
+  const [newMonthData, setNewMonthData] = useState([]);
+  const [orders, setOrders] = useState([]);
+
+
+  // const createData = () => {
+  //   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  //   const newData = orders.map((order, index) => {
+  //     const monthIndex = index % months.length; // Handle cases with more orders than months
+  //   const monthName = months[monthIndex];
+  //     return {
+  //       name: monthName,
+  //       price: order.total,
+  //     };
+  //   });
+  //   setNewMonthData(newData)
+  //   console.log(newMonthData);
+  // };
+
+  useEffect(() => {
+    setOrders(eachOrder)
+    console.log(orders)
+    // createData()
+  }, [eachOrder, orders])
+
+
+
+
+
+
+
   return (
+    <div style={{
+      color: 'black',
+      width: '100%',
+      height: '100%',
+      fontSize: '1vw',
+    }}>
  <ResponsiveContainer width="100%" height="90%">
         <BarChart
           width={500}
@@ -66,23 +127,22 @@ const Chart2 = () => {
           data={data}
           margin={{
             top: 5,
-            right: 30,
-            left: 20,
+            right: 5,
+            left: -8,
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <CartesianGrid strokeDasharray="2 3" stroke="#7ccfff" />
+          <XAxis dataKey="name" stroke="#ffffff" />
+          <YAxis stroke="#ffffff" />
           <Tooltip />
           {/* <Legend /> */}
-          <Bar dataKey="pv" fill="#8884d8" minPointSize={5}>
+          <Bar dataKey="pv" fill="#7cffb3" minPointSize={5}>
             <LabelList dataKey="name" content={renderCustomizedLabel} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-
-
+      </div>
   )
 }
 

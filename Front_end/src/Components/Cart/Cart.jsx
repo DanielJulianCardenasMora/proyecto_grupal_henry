@@ -13,6 +13,8 @@ const Cart = ({ carrito, agregarProducto }) => {
   const [totalCompra, setTotalCompra] = useState(totalInicial);
   const [order, setOrder] = useState({
     userId: '',
+    email: '',
+    nameUser: '',
     products: carrito.map(item => ({
       productId: item.id,
       quantity: item.quantity,
@@ -40,6 +42,8 @@ const Cart = ({ carrito, agregarProducto }) => {
       setOrder(prevOrder => ({
         ...prevOrder,
         userId: response.id,
+        email: response.email,
+        nameUser: response.name,
         products: carrito.map(item => ({
           productId: item.id,
           quantity: item.quantity,
@@ -77,7 +81,7 @@ const Cart = ({ carrito, agregarProducto }) => {
     const filtrados = carrito.filter((p) => !(p.id === item.id && p.size === item.size));
     agregarProducto(filtrados);
   };
-  
+
 
   const handleQuantityChange = (newQuantity, item) => {
     const updatedItems = carrito.map((cartItem) => {
@@ -109,7 +113,7 @@ const Cart = ({ carrito, agregarProducto }) => {
       detalle: order.comments
 
     })
-    console.log(order)
+    console.log('Esta es la order que va al back', order)
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
     agregarProducto([])

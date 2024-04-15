@@ -7,9 +7,9 @@ const { User, Order } = require("../db");
 dotenv.config();
 
 const register = async (req, res) => {
-  const { email, password, phone, country, role } = req.body;
+  const { name, email, password, phone, country, role } = req.body;
 
-  if (!email || !password || !phone || !country) {
+  if (!name || !email || !password || !phone || !country) {
     return res
       .status(404)
       .send({ status: "Error", message: "Fields are incomplete" });
@@ -26,7 +26,7 @@ const register = async (req, res) => {
 
   const salt = await bcryptjs.genSalt(10);
   const hashPassword = await bcryptjs.hash(password, salt);
-  const newUser = { email, password: hashPassword, phone, country, role };
+  const newUser = { name, email, password: hashPassword, phone, country, role };
 
   try {
     // Create the user in the database

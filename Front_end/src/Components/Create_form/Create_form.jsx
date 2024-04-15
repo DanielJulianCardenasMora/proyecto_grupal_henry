@@ -151,12 +151,12 @@ const Form = ({ addProduct }) => {
             <input type="file" name="images" onChange={uploadtImage} multiple />
           </div>
 
-          <div className={style.formDiv}>
+          {/* <div className={style.formDiv}>
             <label>Stock Global:</label>
             <div className={style.input}>
               <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
             </div>
-          </div>
+          </div> */}
 
           <div className={style.formDiv}>
             <label>Size and Stock</label>

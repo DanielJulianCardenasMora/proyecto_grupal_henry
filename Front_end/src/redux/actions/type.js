@@ -13,8 +13,8 @@ export const POST_ITEM = "POST_ITEM" ;
 export const NAVEGACION = "NAVEGACION" ; 
 export const ENVIAR_CARRITO_AL_BACKEND= 'ENVIAR_CARRITO_AL_BACKEND' 
 export const PRODUCT_ERROR= 'PRODUCT_ERROR'
-
-
+export const ALERTS_ACTIVE = 'ALERTS_ACTIVE'
+export const REGISTER = 'REGISTER'
 
 
 export const ADD_PRODUCT = 'ADD_PRODUCT';

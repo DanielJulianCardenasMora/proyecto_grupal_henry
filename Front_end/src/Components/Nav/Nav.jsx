@@ -3,15 +3,26 @@ import style from './nav.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+import { alertsActive, register } from '../../redux/actions/actions';
+import { useDispatch } from 'react-redux';
 
 function Nav({ setUsuario }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false)
   const { logout, isAuthenticated, user } = useAuth0(); // Obtener user de useAuth0
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('usuario');
+    const role = localStorage.getItem("role")
+
+
+    if(role == 'admin' || role == 'superadmin'){
+      setIsAdmin(true)
+    }
+
 
     if (storedEmail !== null) {
       setShowLogout(true);
@@ -21,6 +32,8 @@ function Nav({ setUsuario }) {
       setIsLoggedIn(false);
     }
   }, []);
+
+
 
   // Función para manejar el inicio de sesión
   const handleLogin = () => {
@@ -33,8 +46,10 @@ function Nav({ setUsuario }) {
     setUsuario(null);
     setIsLoggedIn(false);
     setShowLogout(false);
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('carrito');
+    dispatch(alertsActive(false))
+    dispatch(register(false))
+    setIsAdmin(false)
+    localStorage.clear()
     if (isAuthenticated) {
       logout();
       navigate("/");
@@ -77,15 +92,22 @@ function Nav({ setUsuario }) {
           <Link to="/cart" className={style.link}>
             <li>Cart</li>
           </Link>
-          <Link to="/dashboard" className={style.link}>
-            <li>Dashboard</li>
-          </Link>
+          
+          {isAdmin ? (
+            <Link to="/dashboard" className={style.link}>
+              <li>Dashboard</li>
+            </Link>
+          ) : (
+            <li></li>
+          )}
         </ul>
       </div>
 
       {showLogout || isAuthenticated ? (
         <div className={style.logIn}>
-          <button className={style.logInB} onClick={handleLogout}>Log out</button>
+          <button className={style.logInB} onClick={handleLogout}>
+            Log out
+          </button>
         </div>
       ) : (
         <div className={style.logIn}>

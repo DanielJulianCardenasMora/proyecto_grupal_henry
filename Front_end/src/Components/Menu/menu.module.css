@@ -71,11 +71,11 @@
 }
 .reset{
   position: absolute;
-  bottom: 2%;
+  bottom: 2.2%;
   right: 5.5%;
-  color: rgb(7, 4, 4);
+  color: rgb(27, 3, 101);
   cursor: pointer;
-  font-size: 2vw;
+  font-size: 1.8vw;
 }
 .hidden{
   background-color: black;

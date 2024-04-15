@@ -1,3 +1,4 @@
+import { FaPause } from "react-icons/fa";
 import {
   GET_PRODUCTS,
   SEARCH_BY_NAME,
@@ -8,7 +9,9 @@ import {
   ORDER_DETAIL,
   PRICE_FILTER,
   PAYMENT,
-  GET_USERS
+  GET_USERS,
+  ALERTS_ACTIVE,
+  REGISTER
 } from "../actions/type";
 
 const initialstate = {
@@ -34,7 +37,9 @@ const initialstate = {
     gender: '', // Filtro de género
     category: '', // Filtro de categoría
     sortOrder: '' // Orden de precio
-  }
+  },
+  alerts: false,
+  register: false
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -126,6 +131,20 @@ export default function rootReducer(state = initialstate, { type, payload }) {
     case 'PAYMENT':
       window.location.href = payload
 
+
+    case "ALERTS_ACTIVE": 
+    
+    return {
+      ...state,
+      alerts: payload
+    }
+
+    case "REGISTER":
+
+    return {
+      ...state,
+      register: payload
+    }
     default:
       return { ...state };
   }
