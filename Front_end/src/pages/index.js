@@ -1,5 +1,4 @@
 import { AboutPage } from "./Aboutpage/Aboutpage";
-import { HomePage } from "./Homepage/Homepage";
 import { LandingPage } from "./Landingpage/Landingpage";
 import { DetailPage } from "./Detailpage/Detailpage";
 import { CreatePage } from "./Createpage/Createpage";
@@ -12,6 +11,6 @@ import { UserProfilePage } from "./UserProfilePage/UserProfilePage";
 import {CaptureOrder} from "./Capturepage/CaptureOrder";
 
 
-export {AboutPage, LandingPage, HomePage, DetailPage, CreatePage, 
+export {AboutPage, LandingPage, DetailPage, CreatePage, 
         ProductsPage, HomeAdmin,ProductsAdmin ,CreateProducts ,Follow, UserProfilePage, CaptureOrder} 
 

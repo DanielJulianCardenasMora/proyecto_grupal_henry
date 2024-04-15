@@ -3,7 +3,7 @@ import style from './nav.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import { alertsActive } from '../../redux/actions/actions';
+import { alertsActive, register } from '../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 
 function Nav({ setUsuario }) {
@@ -19,7 +19,7 @@ function Nav({ setUsuario }) {
     const role = localStorage.getItem("role")
 
 
-    if(role == 'admin'){
+    if(role == 'admin' || role == 'superadmin'){
       setIsAdmin(true)
     }
 
@@ -47,8 +47,9 @@ function Nav({ setUsuario }) {
     setIsLoggedIn(false);
     setShowLogout(false);
     dispatch(alertsActive(false))
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('carrito');
+    dispatch(register(false))
+    setIsAdmin(false)
+    localStorage.clear()
     if (isAuthenticated) {
       logout();
       navigate("/");
