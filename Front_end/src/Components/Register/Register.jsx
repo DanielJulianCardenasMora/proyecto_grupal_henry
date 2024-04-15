@@ -113,7 +113,7 @@ export default function RegisterDialog({ handleClose }) {
             id="email"
             name="email"
             label="Email"
-            type="email"
+            type="text"
             fullWidth
             variant="standard"
             value={formData.email}
