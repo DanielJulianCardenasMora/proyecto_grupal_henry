@@ -75,7 +75,7 @@ export const getUsers = () => {
 
       dispatch({ type: GET_USERS, payload: response.data });
     } catch (error) {
-      alert(error.message);
+      console.error(error.message);
     }
   }
 }
