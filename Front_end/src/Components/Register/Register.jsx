@@ -93,6 +93,7 @@ export default function RegisterDialog({ handleClose }) {
     return phoneRegex.test(phone);
   };
 
+  
   return (
     <>
       <Dialog

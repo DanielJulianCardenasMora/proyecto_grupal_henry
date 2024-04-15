@@ -3,6 +3,8 @@ import style from './nav.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+import { alertsActive } from '../../redux/actions/actions';
+import { useDispatch } from 'react-redux';
 
 function Nav({ setUsuario }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,6 +12,7 @@ function Nav({ setUsuario }) {
   const [isAdmin, setIsAdmin] = useState(false)
   const { logout, isAuthenticated, user } = useAuth0(); // Obtener user de useAuth0
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('usuario');
@@ -43,6 +46,7 @@ function Nav({ setUsuario }) {
     setUsuario(null);
     setIsLoggedIn(false);
     setShowLogout(false);
+    dispatch(alertsActive(false))
     localStorage.removeItem('usuario');
     localStorage.removeItem('carrito');
     if (isAuthenticated) {
