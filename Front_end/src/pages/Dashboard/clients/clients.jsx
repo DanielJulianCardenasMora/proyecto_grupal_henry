@@ -66,9 +66,8 @@ const clients = () => {
       const response = await axios.get(`${API_URL}/admin/users-list`);
       const users = response.data
       setUsers(users);
-      console.log(users)
     } catch (error) {
-      console.error(error);
+      console.log(error)
     } finally {
       setIsLoading(false);
     }
@@ -190,16 +189,6 @@ const clients = () => {
                             >
                               Cancel
                             </button>
-                            {superAdmin ? (
-                              <button
-                                className={styles.editbuttons}
-                                onClick={handleCancelEdit}
-                              >
-                                Admin
-                              </button>
-                            ) : (
-                              <></>
-                            )}
                           </div>
                         ) : (
                           <button
@@ -215,6 +204,16 @@ const clients = () => {
                         >
                           Delete
                         </button>
+                        {superAdmin ? (
+                              <button
+                                className={styles.iconoAdmin}
+                                onClick={handleCancelEdit}
+                              >
+                               👨‍💻
+                              </button>
+                            ) : (
+                              <></>
+                            )}
                       </td>
                     </tr>
                   ))}
