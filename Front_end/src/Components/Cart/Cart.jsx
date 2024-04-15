@@ -77,7 +77,7 @@ const Cart = ({ carrito, agregarProducto }) => {
     const filtrados = carrito.filter((p) => !(p.id === item.id && p.size === item.size));
     agregarProducto(filtrados);
   };
-  
+
 
   const handleQuantityChange = (newQuantity, item) => {
     const updatedItems = carrito.map((cartItem) => {
@@ -109,7 +109,7 @@ const Cart = ({ carrito, agregarProducto }) => {
       detalle: order.comments
 
     })
-    console.log(order)
+    console.log('Esta es la order que va al back', order)
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
     agregarProducto([])
