@@ -30,7 +30,7 @@ const modifictProductStock = async (productId, quantity, size) => {
 
 const createOrder = async (req, res) => {
     try {
-        const { userId, products, detalle } = req.body;
+        const { userId, email, nameUser, products, detalle } = req.body;
 
         if (!userId || !products) {
             throw new Error('El UserID o los Productos no son enviados en el cuerpo de la solicitud.');
@@ -38,16 +38,18 @@ const createOrder = async (req, res) => {
 
         const newOrder = await Order.create({
             detalle: detalle,
-            UserId: userId
+            UserId: userId,
+            email, email,
+            nameUser: nameUser
         });
 
         for (const product of products) {
             const { productId, quantity, name, price, size } = product;
 
             const formattedSize = Object.keys(size)
-            .sort()
-            .map(key => `${size[key]}:${key}`)
-            .join(',');        
+                .sort()
+                .map(key => `${size[key]}:${key}`)
+                .join(',');
 
             let existeProduct = await OrderDetail.findOne({
                 where: {

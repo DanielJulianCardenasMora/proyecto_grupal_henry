@@ -1,10 +1,14 @@
+.box{
+  background-color: #6603a8;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
 .abBg{
-    height: 240vh;
-    background: black;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    
+    height: 80vh;
+    background: linear-gradient(180deg, rgba(102, 3, 168, 1) 20%, rgba(0, 0, 0, 1) 90%);    background-size: cover;
+    padding-top: 5%;
 }
 .workteam{
     
@@ -12,7 +16,7 @@
     margin-bottom: 1%;
     width: 20%;
     font-size: 2vw;
-    transform: translate(+200%);
+    transform: translate(+75%);
     top: 13%;
 }
 .figuras{
@@ -28,24 +32,27 @@
     align-items: center;
     overflow: hidden;
     justify-content: space-evenly;
-  width: 90%;
-  margin: auto;
-  height: 50%;
-
+  width: 40%;
+  height: 80%;
+  background-color: rgb(42, 39, 223);
+  box-shadow: 5px 6px 5px 0px rgba(255, 255, 255, 0.761);
+  border-radius: 20px;
+  margin-left: 5%;
+  position: relative;
 }
 .background{
-    max-width: 100%;
-    height: 90vh;
-    
-    margin-bottom: 2%;
+  width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 72vh;
     background-image: url('../../assets/Imagenes/About_fondoInferior_aplicar.png');
     background-position: bottom;
     display: flex;
     background-repeat: no-repeat;
+    background-size: contain;
     padding-left: 5%;
     padding-top: 2%;
     box-sizing: border-box;
-    
 }
 
 .desc{
@@ -56,8 +63,6 @@
     flex-direction: column;
     padding: 5%;
     box-sizing: border-box;
-
-    background-color: rgba(0, 0, 0, 0.212);
 }
 .desc h1{
     font-size: 60px;
@@ -84,14 +89,41 @@
 .desc p{
   margin-top: 5%;
 }
+.tecnologias{
+  height: 50%;
+  width: 30%;
+  background-color: rgb(151, 72, 255);
+  position: absolute;
+  top: 25%;
+  right: 10%;
+  border-radius: 20px;
+  padding-top: 1%;
+  box-sizing: border-box;
+  box-shadow: 5px 6px 5px 0px rgba(255, 255, 255, 0.761);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tecnologias h1{
+  margin-bottom: 1%;
+  border: 1px solid black;
+  width: 70%;
+  border-radius: 10px;
+}
+.techtext{
+  position: absolute;
+  top: 7%;
+  font-size: 2vw;
+  left: 68%;
+
+}
 .runner{
-    height: 100%;
+    height: 90%;
     /* background-color: bisque; */
    
    box-sizing: border-box;
     width: 45%;
-  margin-top: 3%;
-  padding-left: 5%;
+  margin-top: 8%;
     background-image: url('../../assets/Imagenes/running.png');
 
   background-size:contain;

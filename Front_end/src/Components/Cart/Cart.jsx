@@ -13,6 +13,8 @@ const Cart = ({ carrito, agregarProducto }) => {
   const [totalCompra, setTotalCompra] = useState(totalInicial);
   const [order, setOrder] = useState({
     userId: '',
+    email: '',
+    nameUser: '',
     products: carrito.map(item => ({
       productId: item.id,
       quantity: item.quantity,
@@ -40,6 +42,8 @@ const Cart = ({ carrito, agregarProducto }) => {
       setOrder(prevOrder => ({
         ...prevOrder,
         userId: response.id,
+        email: response.email,
+        nameUser: response.name,
         products: carrito.map(item => ({
           productId: item.id,
           quantity: item.quantity,
