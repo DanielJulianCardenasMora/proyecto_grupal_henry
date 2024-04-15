@@ -1,6 +1,6 @@
 .box{
   background-color: #6603a8;
-  height: 230.5vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between
