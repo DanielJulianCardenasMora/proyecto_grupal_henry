@@ -93,17 +93,16 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
     return null;
   }
-  if (!name || !description || !price || !stock || !genero || !category) {
+  if (!name || !description || !price || !genero || !category) {
     console.log('Faltan propiedades requeridas para crear el producto.');
     return null;
   }
   const totalStock = Object.values(size).reduce((acc, curr) => acc + curr, 0);
 
-  const newProduct = { name, description, price, images, stock, genero, category, size };
-  
+  const newProduct = { name, description, price, images, stock: totalStock, genero, category, size };
+
   try {
     newProduct.images = [images];
-
 
     if (totalStock !== stock) {
       console.log('El stock total de los tamanos no coincide al stock global.');
