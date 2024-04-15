@@ -15,7 +15,7 @@ const Statistics = () => {
   const URL_EACH_ORDER = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/orders'
   const [allOrders, setAllOrders] = useState([]);
   const [eachOrder, setEachOrder] = useState([]);
-  const [pricerOrder, setPriceOrder] = useState([]);
+  const [priceOrder, setPriceOrder] = useState([]);
   const [totalSum, setTotalSum] = useState([]);
   
 
@@ -32,7 +32,7 @@ const Statistics = () => {
       console.error(error);
     }
   };
-  console.log(allOrders)
+
 
 
   const individualOrder = async () => {
@@ -40,19 +40,32 @@ const Statistics = () => {
     for (const obj of allOrders) {
       const orderId = obj[`orderid_${Object.keys(obj)[0].slice(-1)}`];
       const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
-      individualOrders.push(data);
+      if (data) {
+        individualOrders.push(data);
+      }
     }
     setEachOrder(individualOrders);
   }
   
   const sumPrice = () => {
     const results = eachOrder.map((order, index) => {
-      const orderTotal = eachOrder[index].reduce((sum, obj) => sum + obj.price, 0);
+      if (order.length === 0) {
+        return  // Skip this iteration and return null
+      }
+      const orderId = order[0].OrderId
+      let totalPrice = 0;
+      order.forEach(item => {
+        if (item.price !== undefined) {
+          totalPrice += item.price;
+        }
+      });
       return {
-        id: Object.keys(order)[0].slice(-1),
-        total: orderTotal,
+        id: orderId,
+        total: totalPrice,
       };
+
     });
+
     setPriceOrder(results)
     let totalSum = 0;
     for (const obj of results) {
@@ -87,20 +100,17 @@ const Statistics = () => {
     getQuantity()
   }, [eachOrder])
 
-  // Solo para comprobar
+  // // Solo para comprobar
   useEffect(() => {
-    console.log(pricerOrder)
-    console.log(totalSum)
+    console.log(allOrders)
     console.log(eachOrder)
-  }, [pricerOrder])
+    console.log(priceOrder)
+    console.log(totalSum)
+  }, [allOrders])
 
   
-  
-
-
-
   return (
-    <div className={style.main}>
+    <div className={style.main} >
       <div className={style.titlebox}>
         <h1 className={style.title}>Statistics</h1>
         <h1 className={style.title}>Performance</h1>
@@ -110,25 +120,31 @@ const Statistics = () => {
 
       <div className={style.scrollseccion}>
         <div className={style.seccion1}>
-          <div>Total sales income</div>
-          <div>Earnings 40% basis</div>
-          <div>Total orders</div>
+          <div>Total sales income
+            <h1>{`$${totalSum}`}</h1>
+          </div>
+          <div>Earnings 40% basis
+            <h1>{`$${Math.floor(0.4 * totalSum)}`}</h1>
+          </div>
+          <div>Total orders
+            <h1>{allOrders.length}</h1>
+          </div>
         </div>
    
 
         <div className={style.seccion2}>
           <div className={style.area}>Sales per month
-            <Chart />
+            <Chart priceOrder={priceOrder} />
           </div>
           <div className={style.area}>Orders per month
-            <Chart2 />
+            <Chart2 priceOrder={priceOrder}/>
           </div>
         </div>
         <div className={style.seccion3}>
-          <div>product ranking - top 5 most sold
+          <div className={style.product}>Product ranking --- Top 5 most sold
             <Chart3 />
           </div>
-          <div>product ranking - total orders per product
+          <div className={style.product}>Product ranking --- Total orders per product
             <Chart4 />
           </div>
         </div>

@@ -9,9 +9,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import axios from 'axios';
+import { register } from '../../redux/actions/actions';
+import { useDispatch } from 'react-redux';
 
 export default function RegisterDialog({ handleClose }) {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -45,25 +48,32 @@ export default function RegisterDialog({ handleClose }) {
       setSnackbarOpen(true);
       return;
     }
+    if (!validatePassword(formData.password)) {
+      setSnackbarSeverity("error");
+      setSnackbarMessage(
+        "La contraseña debe tener minimo 6 caracteres, 1 letra mayuscula y 2 numeros"
+      );
+      setSnackbarOpen(true);
+      return;
+    }
     if (!validateName(formData.name)) {
       setSnackbarSeverity('error');
-      setSnackbarMessage('El nombre solo puede contener letras.');
+      setSnackbarMessage('El nombre debe contener solo letras.');
       setSnackbarOpen(true);
       return;
     }
     if (!validatePhone(formData.phone)) {
       setSnackbarSeverity('error');
-      setSnackbarMessage('El número de teléfono solo puede contener números.');
+      setSnackbarMessage('Introduzca un numero de telefono válido.');
       setSnackbarOpen(true);
       return;
     }
 
+
     try {
       const response = await axios.post(`${URL}/users/api/register`, formData);
       if (response) {
-        setSnackbarSeverity('success');
-        setSnackbarMessage('User registered successfully!');
-        setSnackbarOpen(true);
+        dispatch(register(true))
       }
       handleClose();
     } catch (error) {
@@ -76,22 +86,26 @@ export default function RegisterDialog({ handleClose }) {
   };
 
   const validateEmail = (email) => {
-    // Expresión regular para validar el formato de correo electrónico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const validateName = (name) => {
-    // Expresión regular para validar solo letras
-    const nameRegex = /^[a-zA-Z\s]+$/;
-    return nameRegex.test(name);
-  };
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d.*\d)[A-Za-z\d]{6,}$/
+    return passwordRegex.test(password)
+  }
+
+const validateName = (name) => {
+  const nameRegex = /^[a-zA-Z\s]+$/;
+  return nameRegex.test(name);
+};
+
 
   const validatePhone = (phone) => {
-    // Expresión regular para validar solo números
-    const phoneRegex = /^[0-9]+$/;
+    const phoneRegex = /^[0-9]{8,}$/;
     return phoneRegex.test(phone);
   };
+
 
   return (
     <>

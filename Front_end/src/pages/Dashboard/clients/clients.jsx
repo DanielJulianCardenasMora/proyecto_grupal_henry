@@ -7,17 +7,47 @@ const clients = () => {
   const [edituser, setEdituser] = useState(null);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-list'; 
-
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'; 
+  const [superAdmin, setSuperAdmin] = useState(false)
   const handleEdit = (userID) => {
-      const userForEdit = users.find(user => user.id === userID)
+      const userForEdit = users.find(user => user.email === userID)
       setEdituser(userForEdit);
   }
-  const handleDelete = (userID) => {
-      //Ver despúes
+
+
+  const handleDelete = async (userEmail) => {
+    try {
+      const response = await axios.delete(`${API_URL}/admin/delete-users/${userEmail}`);
+      getUsers()
+    } catch (error) {
+      console.error(error);
+    }
   }
-  const handleSave = () => {
-      setEdituser(null);
+  const handleSave = async() => {
+    if (!edituser) return;
+    setIsLoading(true);
+    try {
+      const updatedProduct = {
+        ...edituser,
+      };
+      console.log(edituser)
+      const response = await axios.put(`${API_URL}/users/${edituser.email}`, updatedProduct);
+
+      if (response.status === 200) {
+        const updatedProducts = users.map(product =>
+          product.id === edituser.id ? response.data : product // Replace edited product
+        );
+        setUsers(updatedProducts);
+        setEdituser(null);
+        getUsers();
+      } else {
+        console.error('Error updating product:', response.data);
+      }
+    } catch (error) {
+      console.error('Error saving product:', error);
+    } finally {
+      setIsLoading(false);
+    }
   }
   const handleCancelEdit = () => {
       setEdituser(null);
@@ -33,7 +63,7 @@ const clients = () => {
   async function getUsers() {
     setIsLoading(true);
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${API_URL}/admin/users-list`);
       const users = response.data
       setUsers(users);
       console.log(users)
@@ -46,15 +76,12 @@ const clients = () => {
   
   useEffect(() => {
     getUsers();
+    const rol = localStorage.getItem("role")
 
-    // setUsers([{
-    //   name: 'Ludmila',
-    //   email:'lurm@algo',
-    //   password: 123456,
-    //   phone:222222,
-    //   country:'Arg',
-    //   Orders: []
-    // }])
+    if(rol == 'superadmin'){
+      setSuperAdmin(true)
+    }
+
   }, []);
 
   console.log(users);
@@ -62,60 +89,142 @@ const clients = () => {
 
 
     return (
-    <div className={styles.container}>
-      
-      <div className={styles.mainContent}>
-      <h1>Our customers</h1>
-      {isLoading ? (
-      <p>Loading users...</p>
-      ) : (
-      users.length > 0 && ( 
-        <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Phone</th>
-            <th>Country</th>
-            <th>Orders</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-                    
-        <tbody>
-          
-        {users.map((user, index) => (
-        <tr key={user.id}>
-          <td>{user.id}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="text" name="name" value={edituser.name} onChange={handleInputChange} /> : user.name}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="text" name="email" value={edituser.email} onChange={handleInputChange} /> : user.email}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="number" name="password" value={edituser.password} onChange={handleInputChange} /> : '********'}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="number" name="phone" value={edituser.phone} onChange={handleInputChange} /> : user.phone}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="text" name="country" value={edituser.country} onChange={handleInputChange} /> : user.country}</td>
-          <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.Orders.length} onChange={handleInputChange} /> : user.Orders.length}</td>
-          <td>
-            {edituser && edituser.id === user.id ?
-              <div >
-                <button className={styles.editbuttons} onClick={handleSave}>Save</button>
-                <button  className={styles.editbuttons} onClick={handleCancelEdit}>Cancel</button>
-              </div>
-              :
-              <button onClick={() => handleEdit(user.id)} className={styles.iconoeditar}>Edit</button>
-            }
-            <button onClick={() => handleDelete(user.id)} className={styles.iconoeliminar}>Delete</button>
-          </td>
-        </tr>
-        ))}
-        </tbody>
-        </table>
-      ))}
-  
+      <div className={styles.container}>
+        <div className={styles.mainContent}>
+          <h1>Our customers</h1>
+          {isLoading ? (
+            <p>Loading users...</p>
+          ) : (
+            users.length > 0 && (
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                    {/* <th>Orders</th> */}
+                    <th>Edit</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {users.map((user, index) => (
+                    <tr key={user.id}>
+                      <td>{index}</td>
+                      <td>
+                        {edituser && edituser.id === user.id ? (
+                          <input
+                            type="text"
+                            name="name"
+                            value={edituser.name}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          user.name
+                        )}
+                      </td>
+                      <td>
+                        {edituser && edituser.id === user.id ? (
+                          <input
+                            type="text"
+                            name="email"
+                            value={edituser.email}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          user.email
+                        )}
+                      </td>
+                      <td>
+                        {edituser && edituser.id === user.id ? (
+                          <input
+                            type="number"
+                            name="password"
+                            value={edituser.password}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          "********"
+                        )}
+                      </td>
+                      <td>
+                        {edituser && edituser.id === user.id ? (
+                          <input
+                            type="number"
+                            name="phone"
+                            value={edituser.phone}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          user.phone
+                        )}
+                      </td>
+                      <td>
+                        {edituser && edituser.id === user.id ? (
+                          <input
+                            type="text"
+                            name="country"
+                            value={edituser.country}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          user.country
+                        )}
+                      </td>
+                      {/* <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.Orders.length} onChange={handleInputChange} /> : user.Orders.length}</td> */}
+                      <td>
+                        {edituser && edituser.id === user.id ? (
+                          <div>
+                            <button
+                              className={styles.editbuttons}
+                              onClick={handleSave}
+                            >
+                              Save
+                            </button>
+                            <button
+                              className={styles.editbuttons}
+                              onClick={handleCancelEdit}
+                            >
+                              Cancel
+                            </button>
+                            {superAdmin ? (
+                              <button
+                                className={styles.editbuttons}
+                                onClick={handleCancelEdit}
+                              >
+                                Admin
+                              </button>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => handleEdit(user.email)}
+                            className={styles.iconoeditar}
+                          >
+                            Edit
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleDelete(user.email)}
+                          className={styles.iconoeliminar}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )
+          )}
+        </div>
       </div>
-  
-    </div>
-  );
+    );
 }
 
 
