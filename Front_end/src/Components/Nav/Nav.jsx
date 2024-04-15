@@ -3,7 +3,7 @@ import style from './nav.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import { alertsActive } from '../../redux/actions/actions';
+import { alertsActive, register } from '../../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 
 function Nav({ setUsuario }) {
@@ -47,6 +47,7 @@ function Nav({ setUsuario }) {
     setIsLoggedIn(false);
     setShowLogout(false);
     dispatch(alertsActive(false))
+    dispatch(register(false))
     localStorage.clear()
     if (isAuthenticated) {
       logout();
