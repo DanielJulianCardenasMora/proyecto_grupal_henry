@@ -48,6 +48,7 @@ function Nav({ setUsuario }) {
     setShowLogout(false);
     dispatch(alertsActive(false))
     dispatch(register(false))
+    setIsAdmin(false)
     localStorage.clear()
     if (isAuthenticated) {
       logout();
