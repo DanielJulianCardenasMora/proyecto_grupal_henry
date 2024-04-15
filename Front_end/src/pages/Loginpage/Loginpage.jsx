@@ -28,7 +28,7 @@ function Login ({setUsuario, usuario}) {
   //! ------------------------
 
   const navigate = useNavigate();
-  const { loginWithRedirect, logout, isLoading, isAuthenticated, user } =
+  const { loginWithRedirect, isAuthenticated, user } =
     useAuth0();
 
   const [credentials, setCredentials] = useState({
@@ -37,7 +37,6 @@ function Login ({setUsuario, usuario}) {
   });
 
   const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false); // Estado para controlar la visibilidad de la alerta de éxito
 
   const handleClose = () => {
     setShowRegisterDialog(false);
@@ -78,14 +77,6 @@ function Login ({setUsuario, usuario}) {
       })
     }
   }
-  useEffect(() => {
-    console.log("showSuccessAlert:", showSuccessAlert);
-  }, [showSuccessAlert]);
-
-  // Función para cerrar la alerta de éxito
-  const handleSuccessAlertClose = () => {
-    setShowSuccessAlert(false);
-  };
 
   const handleChangeEmail = (evento) => {
     const valor = evento.target.value;
@@ -145,13 +136,6 @@ function Login ({setUsuario, usuario}) {
           ¿Do yo want to register?
           <button onClick={handleRegisterClick} className={styles.register}>Register</button>
         </Footer>
-
-        {/* Alerta de éxito */}
-        {showSuccessAlert && (
-          <Alert severity="success">
-            Logged in successfully!
-          </Alert>
-        )}
 
         {showRegisterDialog && <RegisterDialog handleOpen={handleOpen} isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
 

@@ -12,7 +12,8 @@ import {
   UPDATE_CATEGORY_FILTER,
   UPDATE_GENDER_FILTER,
   ORDER_DETAIL,
-  PAYMENT
+  PAYMENT,
+  ALERTS_ACTIVE
 } from "./type";
 
   //! URL -------------------
@@ -191,3 +192,11 @@ export const updatePriceFilter = (sortOrder) => {
     payload: sortOrder,
   };
 };
+
+
+export const alertsActive = () => {
+
+  return {
+    type: ALERTS_ACTIVE,
+  }
+}
