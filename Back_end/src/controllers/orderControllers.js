@@ -97,7 +97,7 @@ const createOrder = async (req, res) => {
             if (existeProduct) {
                 existeProduct.quantity += quantity;
                 if (!existeProduct.size.includes(size)) {
-                    existeProduct.size.push(size);
+                    existingProduct.size += `,${size}`;
                 }
                 await existeProduct.save();
             } else {
@@ -108,7 +108,7 @@ const createOrder = async (req, res) => {
                     quantity: quantity,
                     name: name,
                     price: price,
-                    size: [size]
+                    size: size
                 })
             }
             // await modifictProductStock(productId, quantity, size);
