@@ -66,6 +66,7 @@ function Login ({setUsuario, usuario}) {
       const { data } = await axios.post(`${URL}/users/api/login`, login);
       if (data.status === 'ok') {
         localStorage.setItem("usuario", login.email);
+        localStorage.setItem("role", data.role)
         dispatch(alertsActive(true))
         navigate("/");
         
