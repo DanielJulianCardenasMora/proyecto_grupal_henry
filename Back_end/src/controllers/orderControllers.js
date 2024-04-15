@@ -87,16 +87,40 @@ const createOrder = async (req, res) => {
             const { productId, quantity, name, price, size } = product;
 
 
+            let existeProduct = await OrderDetail.findOne({
+                where: {
+                    OrderId: newOrder.id,
+                    ProductId: productId,
+                    name: name
+                }
+            });
+            if (existeProduct) {
+                existeProduct.quantity += quantity;
+                if (!existeProduct.size.includes(size)) {
+                    existeProduct.size.push(size);
+                }
+                await existeProduct.save();
+            } else {
+
+                await OrderDetail.create({
+                    OrderId: newOrder.id,
+                    ProductId: productId,
+                    quantity: quantity,
+                    name: name,
+                    price: price,
+                    size: [size]
+                })
+            }
             // await modifictProductStock(productId, quantity, size);
 
-            await OrderDetail.create({
-                OrderId: newOrder.id,
-                ProductId: productId,
-                quantity: quantity,
-                name: name,
-                price: price,
-                size: size
-            })
+            // await OrderDetail.create({
+            //     OrderId: newOrder.id,
+            //     ProductId: productId,
+            //     quantity: quantity,
+            //     name: name,
+            //     price: price,
+            //     size: [size]
+            // })
             console.log("Producto agregado a la orden:", name, quantity, size);
         }
         await newOrder.setUser(userId);
@@ -123,10 +147,10 @@ const deleteOrderDb = async (id) => {
                 id: id
             }
         });
-        return deletedOrderCount; 
+        return deletedOrderCount;
     } catch (error) {
         console.error('Error al eliminar la orden de la base de datos:', error);
-        throw error; 
+        throw error;
     }
 }
 
