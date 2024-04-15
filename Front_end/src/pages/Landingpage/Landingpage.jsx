@@ -15,33 +15,32 @@ export const LandingPage = () => {
 
 
     useEffect(() => {
+        if(alerts === true){
         setSnackbarMessage('Logged ')
         setSnackbarSeverity('success')
         setSnackbarOpen(true)
-        dispatch(alertsActive(!alerts))
-    }, [alerts])
+        }
+    }, [])
 
 
     return (
-        <div>
-            <Landing/>
-            <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={() => setSnackbarOpen(false)}
-      >
-        <MuiAlert
-          elevation={6}
-          variant="filled"
+      <div>
+        <Landing />
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
           onClose={() => setSnackbarOpen(false)}
-          severity={snackbarSeverity}
-        > {alerts ? 
-          snackbarMessage + 
-            '   '
-             + userName + '  ✅': 
-             <></>}
-        </MuiAlert>
-      </Snackbar>
-        </div>
-    )
+        >
+          <MuiAlert
+            elevation={6}
+            variant="filled"
+            onClose={() => setSnackbarOpen(false)}
+            severity={snackbarSeverity}
+          >
+            {" "}
+            {alerts ? snackbarMessage + "   " + userName + "  ✅" : <></>}
+          </MuiAlert>
+        </Snackbar>
+      </div>
+    );
 }
