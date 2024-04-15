@@ -97,7 +97,7 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     console.log('Faltan propiedades requeridas para crear el producto.');
     return null;
   }
-  const totalStock = Object.values(size).reduce((acc, curr) => acc + curr, 0);
+  const totalStock = Object.values(size).reduce((acc, curr) => acc + parseInt(curr), 0);
 
   const newProduct = { name, description, price, images, stock: totalStock, genero, category, size };
 
