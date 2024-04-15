@@ -72,38 +72,34 @@ const modifictProductStock = async (productId, quantity, size) => {
 const createOrder = async (req, res) => {
     try {
         const { userId, products, detalle } = req.body;
-        console.log('req.............', req.body)
-        console.log('User id:', userId);
+        console.log('req.body::::', req.body)
 
-        if (!userId) {
-            throw new Error('El identificador de usuario no se proporcionó en el cuerpo de la solicitud.');
+        if (!userId || !products) {
+            throw new Error('El UserID o los Productos no son enviados en el cuerpo de la solitud.');
         }
 
         const newOrder = await Order.create({
             detalle: detalle,
             UserId: userId
         });
-        console.log("Nueva orden creada:", newOrder);
 
         for (const product of products) {
-            const { productId, quantity, name, price } = product;
+            const { productId, quantity, name, price, size } = product;
 
-            // console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
 
             // await modifictProductStock(productId, quantity, size);
 
-            //detalle de la orden
             await OrderDetail.create({
                 OrderId: newOrder.id,
                 ProductId: productId,
                 quantity: quantity,
                 name: name,
-                price: price
+                price: price,
+                size: size
             })
-            console.log("Producto agregado a la orden:", name, quantity);
+            console.log("Producto agregado a la orden:", name, quantity, size);
         }
         await newOrder.setUser(userId);
-        console.log("Orden asociada al usuario:", userId);
         res.status(200).send(newOrder);
     } catch (error) {
         console.error('Error al crear la orden:', error);
@@ -113,7 +109,7 @@ const createOrder = async (req, res) => {
 const getAllOrder = async (req, res) => {
     try {
         const orders = await Order.findAll();
-       
+
         res.status(200).send(orders);
     } catch (error) {
         console.error('Error al obtener las órdenes:', error);
@@ -121,12 +117,17 @@ const getAllOrder = async (req, res) => {
     }
 };
 const deleteOrderDb = async (id) => {
-    const deleteOrder = Order.destroy({
-        where: {
-            id: id
-        }
-    });
-    return deleteOrder;
+    try {
+        const deletedOrderCount = await Order.destroy({
+            where: {
+                id: id
+            }
+        });
+        return deletedOrderCount; 
+    } catch (error) {
+        console.error('Error al eliminar la orden de la base de datos:', error);
+        throw error; 
+    }
 }
 
 const getOrderDetail = async (req, res) => {
