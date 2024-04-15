@@ -98,9 +98,9 @@ const Orders = () => {
         </thead>
                     
         <tbody>
-        {orders.map(order => (
+        {orders.map((order, index) => (
         <tr key={order.id}>
-          <td>{order.id}</td>
+          <td>{index}</td>
           <td>{editorder && editorder.id === order.id ? <input type="text" name="detalle" value={editorder.detalle} onChange={handleInputChange} /> : order.detalle}</td>
           <td>{editorder && editorder.id === order.id ? <input type="text" name="UserId" value={editorder.UserId} onChange={handleInputChange} /> : order.UserId}</td>
           <td>

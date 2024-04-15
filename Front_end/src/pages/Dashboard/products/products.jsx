@@ -17,13 +17,16 @@ export default function ProductsAdmin() {
     setEditproduct(productForEdit);
     console.log(productForEdit)
   }
-  const handleDelete = (productID) => {
-      //Ver despúes
+  const handleDelete = async (productID) => {
+    try {
+      const response = await axios.delete(`${API_URL}/admin/delete-product/${productID}`);
+      // const products = response.data.products;
+      getProducts()
+    } catch (error) {
+      console.error(error);
+    }
   }
   const handleSave = async () => {
-
-    // ========= no borrar, esperando la ruta put ==========
-
     if (!editproduct) return;
     setIsLoading(true);
     try {
@@ -48,8 +51,6 @@ export default function ProductsAdmin() {
     } finally {
       setIsLoading(false);
     }
-
-    // setEditproduct(null); 
   };
 
 
@@ -117,7 +118,7 @@ export default function ProductsAdmin() {
         <tbody>
         {products.map((product, index) => (
         <tr key={product.id}>
-          <td>{product.id}</td>
+          <td>{index}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="name" value={editproduct.name} onChange={handleInputChange} /> : product.name}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="image" value={editproduct.image} onChange={handleInputChange} /> : <img src={product.image} alt={product.name} />}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="number" name="stock" value={editproduct.stock} onChange={handleInputChange} /> : product.stock}</td>
