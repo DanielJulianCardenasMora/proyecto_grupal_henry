@@ -133,7 +133,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
     
     return {
       ...state,
-      alerts: true
+      alerts: payload
     }
 
     default:

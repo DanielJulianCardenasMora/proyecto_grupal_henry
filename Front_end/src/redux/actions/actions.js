@@ -194,9 +194,10 @@ export const updatePriceFilter = (sortOrder) => {
 };
 
 
-export const alertsActive = () => {
+export const alertsActive = (payload) => {
 
   return {
     type: ALERTS_ACTIVE,
+    payload: payload
   }
 }

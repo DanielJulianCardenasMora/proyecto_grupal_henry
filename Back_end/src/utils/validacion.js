@@ -27,11 +27,8 @@ const validate = (type, value) => {
   //     break;
 
     case "description":
-      if (!value && value && typeof value !== "string") {
+      if (!value && typeof value !== "string") {
         errors.push("La descripción debe ser una cadena de caracteres");
-      }
-      if (!value) {
-        errors.push("La descripción es requerida");
       }
       break;
     case "stock":

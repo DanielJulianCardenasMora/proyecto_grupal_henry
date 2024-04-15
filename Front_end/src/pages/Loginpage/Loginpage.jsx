@@ -11,13 +11,14 @@ import { RegisterDialog } from '../../Components';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
+import { useDispatch } from 'react-redux';
+import { alertsActive } from '../../redux/actions/actions';
 
 function Login ({setUsuario, usuario}) {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-
+  const dispatch = useDispatch()
 
 
   //! URL -------------------
@@ -65,7 +66,9 @@ function Login ({setUsuario, usuario}) {
       const { data } = await axios.post(`${URL}/users/api/login`, login);
       if (data.status === 'ok') {
         localStorage.setItem("usuario", login.email);
+        dispatch(alertsActive(true))
         navigate("/");
+        
       }
     } catch (error) {
       setSnackbarSeverity("error");

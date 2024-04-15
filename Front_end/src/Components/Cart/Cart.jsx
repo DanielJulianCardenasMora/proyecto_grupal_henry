@@ -47,8 +47,6 @@ const Cart = ({ carrito, agregarProducto }) => {
           price: item.price,
           size: item.size
         })),
-        
-        
 
       }))
 
@@ -63,7 +61,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   useEffect(() => {
-    dispatch(getOrders())
+    // dispatch(getOrders())
     getUserInfo()
     setTotalCompra(totalInicial)
   }, [carrito])
@@ -76,14 +74,14 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   const eliminarProducto = (item) => {
-    const filtrados = carrito.filter((p) => p.id !== item.id );
-    console.log(filtrados);
+    const filtrados = carrito.filter((p) => !(p.id === item.id && p.size === item.size));
     agregarProducto(filtrados);
   };
 
+
   const handleQuantityChange = (newQuantity, item) => {
     const updatedItems = carrito.map((cartItem) => {
-      if (cartItem.id === item.id) {
+      if (cartItem.id === item.id && cartItem.size === item.size) {
         return { ...cartItem, quantity: newQuantity };
       }
       return cartItem;
@@ -105,14 +103,13 @@ const Cart = ({ carrito, agregarProducto }) => {
 
   const handleSubmit = async (e) => {
     console.log("handlesubmit")
-    // dispatch(payment(totalCompra))
+    dispatch(payment(totalCompra))
     setOrder({
-        ...order,
-        detalle: order.detalle
-
+      ...order,
+      detalle: order.comments
 
     })
-    console.log(order)
+    console.log('Esta es la order que va al back', order)
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
     agregarProducto([])
@@ -156,7 +153,7 @@ const Cart = ({ carrito, agregarProducto }) => {
           <div className={style.buy}>
             <div className={style.comments}>
               <label >Comments:</label>
-              <textarea type="text" value={order.detalle} onChange={onChange} />
+              <textarea type="text" value={order.comments} onChange={onChange} />
             </div>
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
@@ -188,5 +185,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 };
 
 export default Cart
+
+
 
 
