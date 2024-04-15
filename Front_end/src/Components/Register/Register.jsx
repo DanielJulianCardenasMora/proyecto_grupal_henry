@@ -9,9 +9,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import axios from 'axios';
+import { register } from '../../redux/actions/actions';
+import { useDispatch } from 'react-redux';
 
 export default function RegisterDialog({ handleClose }) {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -70,9 +73,7 @@ export default function RegisterDialog({ handleClose }) {
     try {
       const response = await axios.post(`${URL}/users/api/register`, formData);
       if (response) {
-        setSnackbarSeverity('success');
-        setSnackbarMessage('User registered successfully!');
-        setSnackbarOpen(true);
+        dispatch(register(true))
       }
       handleClose();
     } catch (error) {
