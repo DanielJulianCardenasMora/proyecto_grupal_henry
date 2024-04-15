@@ -13,6 +13,8 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { alertsActive } from '../../redux/actions/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 function Login ({setUsuario, usuario}) {
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -114,15 +116,19 @@ function Login ({setUsuario, usuario}) {
     }
   }, [register])
 
-  
+
   return (
     <div className={styles.div}>
+      <button className={styles.closeButton} onClick={() => navigate("/")}>
+        <FontAwesomeIcon icon={faX} />
+      </button>
       <LoginPage style={{ height: 480 }}>
         <Title>Do you already have a WearFashion account? Log in</Title>
 
         <Logo>
           <LoginLogo />
         </Logo>
+
         <Input
           name="email"
           index={1}
@@ -137,36 +143,46 @@ function Login ({setUsuario, usuario}) {
           visible={true}
         />
         <Submit onClick={() => onClick()}>Login</Submit>
-  
-          <>
-            <br></br>
-            <button className={styles.googleLogin}onClick={() => loginWithRedirect()}>
-              Log in with Google
-            </button>
-          </>
+
+        <>
+          <br></br>
+          <button
+            className={styles.googleLogin}
+            onClick={() => loginWithRedirect()}
+          >
+            Log in with Google
+          </button>
+        </>
 
         <Footer>
           ¿Do yo want to register?
-          <button onClick={handleRegisterClick} className={styles.register}>Register</button>
+          <button onClick={handleRegisterClick} className={styles.register}>
+            Register
+          </button>
         </Footer>
 
-        {showRegisterDialog && <RegisterDialog handleOpen={handleOpen} isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
-
+        {showRegisterDialog && (
+          <RegisterDialog
+            handleOpen={handleOpen}
+            isAuthenticated={isAuthenticated}
+            handleClose={handleClose}
+          />
+        )}
 
         <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={() => setSnackbarOpen(false)}
-      >
-        <MuiAlert
-          elevation={6}
-          variant="filled"
+          open={snackbarOpen}
+          autoHideDuration={6000}
           onClose={() => setSnackbarOpen(false)}
-          severity={snackbarSeverity}
         >
-          {snackbarMessage}
-        </MuiAlert>
-      </Snackbar>
+          <MuiAlert
+            elevation={6}
+            variant="filled"
+            onClose={() => setSnackbarOpen(false)}
+            severity={snackbarSeverity}
+          >
+            {snackbarMessage}
+          </MuiAlert>
+        </Snackbar>
       </LoginPage>
     </div>
   );
