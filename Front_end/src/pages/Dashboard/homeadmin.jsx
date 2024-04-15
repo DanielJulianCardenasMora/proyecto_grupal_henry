@@ -35,7 +35,7 @@ export default function HomeAdmin(){
 <div className={style.side}>
     <h4>Recent clients</h4>
     {users.map((u, i) => (
-          <div>
+          <div key={u.id}>
          <p> {u.email}</p>
          <hr />
           </div>
