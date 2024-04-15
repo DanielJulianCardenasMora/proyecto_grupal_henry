@@ -106,6 +106,8 @@ const createProductDB = async (name, description, price, images, stock, genero, 
 
     if (totalStock !== stock) {
       console.log('El stock total de los tamanos no coincide al stock global.');
+      console.log('El stock total calculado:', totalStock);
+      console.log('El stock global proporcionado:', stock);
       stock = totalStock;
     }
 
