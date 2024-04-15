@@ -37,15 +37,6 @@ const { getCategory } = require("./categoryControllers");
 
 const productsDataBase = async () => {
   try {
-    // const productsApi = await getProducts();
-
-    // for (const product of productsApi) {
-    //   const category = await Category.findOne({ where: { name: product.category } });
-    //   if (category) {
-    //     product.category = category.name;
-    //   }
-    // }
-
     const existingProducts = await Product.findAll({
       include: [{
         model: Category,
@@ -54,12 +45,6 @@ const productsDataBase = async () => {
       }],
     });
     return existingProducts;
-    // if (!existingProducts.length) {
-    //   const createdProducts = await Product.bulkCreate();
-    //   return createdProducts;
-    // } else {
-    //   return existingProducts;
-    // }
   } catch (error) {
     console.error("Error al procesar los productos en la base de datos:", error);
     throw error;
@@ -107,17 +92,23 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   if (!size || Object.keys(size).length === 0) {
     size = {};
   }
-  const newProduct = { name, description, price, stock, genero, category, size };
+  if (!name || !description || !price || !stock || !genero || !category) {
+    console.log('Faltan propiedades requeridas para crear el producto.');
+    return null;
+  }
+  const totalStock = Object.values(size).reduce((acc, curr) => acc + curr, 0);
+
+  const newProduct = { name, description, price, stock: totalStock, genero, category, size };
   try {
     newProduct.images = [images];
 
-    const totalStock = Object.values(size).reduce((acc, curr) => acc + curr, 0);
-    if (totalStock !== stock){
-      console.log('El stock total de los tamanos no coincide al stock global.');
-      stock= totalStock;
-    }
-      const productCreatedDB = await Product.create(newProduct);
 
+    if (totalStock !== stock) {
+      console.log('El stock total de los tamanos no coincide al stock global.');
+      stock = totalStock;
+    }
+
+    const productCreatedDB = await Product.create(newProduct);
 
     const categoryName = await Category.findOne({ where: { name: category } });
     if (!categoryName) {
@@ -134,27 +125,27 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   }
 };
 
-const updateProductDB = async(id, productData) => {
+const updateProductDB = async (id, productData) => {
   try {
     // Busca el producto por id
     let product = await Product.findOne({ where: { id: id } });
 
     if (!product) {
-        throw new Error("Producto no encontrado");
+      throw new Error("Producto no encontrado");
     }
 
     // Actualiza los campos del producto con los nuevos datos
     Object.keys(productData).forEach((key) => {
-        product[key] = productData[key];
+      product[key] = productData[key];
     });
 
     // Guarda los cambios en la base de datos
     await product.save();
 
     return product; // Devuelve el producto actualizado
-} catch (error) {
+  } catch (error) {
     throw error;
-}
+  }
 }
 
 const deleteProductDB = async (id) => {
