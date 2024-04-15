@@ -1,18 +1,33 @@
 .main{
-    border-top: 1px solid black;
     background-color: rgba(255, 255, 255, 0.886);
-    height:100vh;
+    height:88.5vh;
     width: 85%;
     box-sizing: border-box;
-   
     display: flex;
+    border-radius: 10px;
+    height: 87.5vh;
+    margin-right: 1%;
 }
-
 .dashCont{
-    height: 100%;
+    height: 96%;
     width: 100%;
     box-sizing: border-box;
+    overflow-y: auto;
+    margin-top: 1%;
 }
+.dashCont::-webkit-scrollbar {
+    width: 12px; /* Adjust width as needed */
+    height: 80px; /* Allow for dynamic scrollbar height */
+    background-color: #9c95af;
+    border-radius: 10px; /* Background color of the scrollbar */
+    padding: 0 2px;
+}
+.dashCont::-webkit-scrollbar-thumb {
+    background-color: hsl(274, 54%, 18%); /* Color of the thumb */
+    border-radius: 10px; /* Add rounded corners */
+    margin: 0 2px;
+}
+
 
 .boxes{
     width: 92%;
@@ -21,7 +36,6 @@
     display: flex;
    margin: auto;
     justify-content: space-between;
-    margin-top: 1%;
     
 }
 

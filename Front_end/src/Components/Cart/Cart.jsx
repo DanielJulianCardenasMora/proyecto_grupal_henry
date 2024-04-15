@@ -74,14 +74,14 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   const eliminarProducto = (item) => {
-    const filtrados = carrito.filter((p) => p.id !== item.id);
-    console.log(filtrados);
+    const filtrados = carrito.filter((p) => !(p.id === item.id && p.size === item.size));
     agregarProducto(filtrados);
   };
+  
 
   const handleQuantityChange = (newQuantity, item) => {
     const updatedItems = carrito.map((cartItem) => {
-      if (cartItem.id === item.id) {
+      if (cartItem.id === item.id && cartItem.size === item.size) {
         return { ...cartItem, quantity: newQuantity };
       }
       return cartItem;
@@ -109,6 +109,7 @@ const Cart = ({ carrito, agregarProducto }) => {
       detalle: order.comments
 
     })
+    console.log(order)
     dispatch(enviarCarritoAlBackend(order));
     alert('Orden de compra creada')
     agregarProducto([])
@@ -184,5 +185,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 };
 
 export default Cart
+
+
 
 

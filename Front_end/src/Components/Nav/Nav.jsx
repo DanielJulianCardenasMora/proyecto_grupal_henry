@@ -7,11 +7,19 @@ import { useNavigate } from 'react-router-dom';
 function Nav({ setUsuario }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false)
   const { logout, isAuthenticated, user } = useAuth0(); // Obtener user de useAuth0
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('usuario');
+    const role = localStorage.getItem("role")
+
+
+    if(role == 'admin'){
+      setIsAdmin(true)
+    }
+
 
     if (storedEmail !== null) {
       setShowLogout(true);
@@ -21,6 +29,8 @@ function Nav({ setUsuario }) {
       setIsLoggedIn(false);
     }
   }, []);
+
+
 
   // Función para manejar el inicio de sesión
   const handleLogin = () => {
@@ -77,15 +87,22 @@ function Nav({ setUsuario }) {
           <Link to="/cart" className={style.link}>
             <li>Cart</li>
           </Link>
-          <Link to="/dashboard" className={style.link}>
-            <li>Dashboard</li>
-          </Link>
+          
+          {isAdmin ? (
+            <Link to="/dashboard" className={style.link}>
+              <li>Dashboard</li>
+            </Link>
+          ) : (
+            <li></li>
+          )}
         </ul>
       </div>
 
       {showLogout || isAuthenticated ? (
         <div className={style.logIn}>
-          <button className={style.logInB} onClick={handleLogout}>Log out</button>
+          <button className={style.logInB} onClick={handleLogout}>
+            Log out
+          </button>
         </div>
       ) : (
         <div className={style.logIn}>

@@ -8,41 +8,51 @@ import { Input } from '@react-login-page/page5';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './loginpage.module.css';
 import { RegisterDialog } from '../../Components';
-import config from '../../../config';
-
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 
 function Login ({setUsuario, usuario}) {
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  const { deployedBackendURL, localBackendURL } = config;
-  const URL = deployedBackendURL || localBackendURL;
 
-  const { loginWithRedirect, logout, isLoading, isAuthenticated, user } =
+
+  //! URL -------------------
+
+  // const URL = "http://localhost:3001"
+  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+
+  //! ------------------------
+
+  const navigate = useNavigate();
+  const { loginWithRedirect, isAuthenticated, user } =
     useAuth0();
-
 
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
 
-  const navigate = useNavigate();
-
-
   const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
 
   const handleClose = () => {
-    setShowRegisterDialog(false)
+    setShowRegisterDialog(false);
   }
 
   const handleOpen = () => {
-    setShowRegisterDialog(true)
+    setShowRegisterDialog(true);
   }
 
-  
   const onClick = async () => {
+    
+
     if (!credentials.email || !credentials.password) {
-      alert("You have uncompleted fields");
+      setSnackbarSeverity("error");
+      setSnackbarMessage('You have uncompleted fields')
+      setSnackbarOpen(true);
       return;
     }
     
@@ -51,25 +61,22 @@ function Login ({setUsuario, usuario}) {
       password: credentials.password
     }
     
-      
-    
     try {
-      const {data} = await axios.post(`${URL}users/api/login`, login)
-
-      if (data.status == 'ok') {
+      const { data } = await axios.post(`${URL}/users/api/login`, login);
+      if (data.status === 'ok') {
+        localStorage.setItem("usuario", login.email);
         navigate("/");
-        localStorage.setItem("usuario", login.email)
-        }
-
+      }
     } catch (error) {
-      alert("Email or password incorrect");
+      setSnackbarSeverity("error");
+      setSnackbarMessage('Email or password incorrect');
+      setSnackbarOpen(true);
       setCredentials({
         email: "",
         password: ""
       })
     }
   }
-
 
   const handleChangeEmail = (evento) => {
     const valor = evento.target.value;
@@ -131,6 +138,22 @@ function Login ({setUsuario, usuario}) {
         </Footer>
 
         {showRegisterDialog && <RegisterDialog handleOpen={handleOpen} isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
+
+
+        <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={() => setSnackbarOpen(false)}
+          severity={snackbarSeverity}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
       </LoginPage>
     </div>
   );

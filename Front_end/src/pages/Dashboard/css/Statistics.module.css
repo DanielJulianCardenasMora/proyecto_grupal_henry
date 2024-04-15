@@ -1,6 +1,5 @@
 .main{
   background-color: rgba(13, 2, 54, 0.745);
-  height:89vh;
   width: 85%;
   box-sizing: border-box;
   padding: 0.2% 0% 2% 0%;
@@ -8,8 +7,12 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
+  height: 87.5vh;
+  margin-right: 1%; 
+  border-radius: 10px;
 }
+
 .titlebox{
   display: flex;
   justify-content: space-around;
@@ -31,6 +34,18 @@
   overflow-y: auto;
   margin-top: 1%;
   padding-top: 1%;
+}
+.scrollseccion::-webkit-scrollbar {
+  width: 12px; 
+  height: 80px; 
+  background-color: #9c95af;
+  border-radius: 10px; 
+  padding: 0 2px;
+}
+.scrollseccion::-webkit-scrollbar-thumb {
+  background-color: hsl(253, 80%, 30%); 
+  border-radius: 10px; 
+  margin: 0 2px;
 }
 .seccion1,
 .seccion2,
@@ -97,10 +112,21 @@
   border-radius: 15px;
   overflow-y: auto;
 }
+.chart5_box::-webkit-scrollbar {
+  width: 12px; 
+  height: 80px; 
+  background-color: #9c95af;
+  border-radius: 10px; 
+  padding: 0 2px;
+}
+.chart5_box::-webkit-scrollbar-thumb {
+  background-color: hsl(253, 80%, 30%); 
+  border-radius: 10px; 
+  margin: 0 2px;
+}
 .chart5_2{
-  font-size: 1.5vw;
   display: flex;
-  align-items: center;
+  align-items: center; 
   width: 100%;
 }
 .chart6{

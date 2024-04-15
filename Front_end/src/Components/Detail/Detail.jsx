@@ -15,31 +15,82 @@ function Detail(props) {
   const [buttonClass, setButtonClass] = useState(true);
   const {description, name, images, price, stock, genero} = useSelector((state) => state.Detail)
   const product = useSelector((state)=>state.Detail)
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  let sizeWithoutTotal
 
 
-  const seleccionarProducto = (product) => {
-   
-    
-    const productoEnCarrito = carrito.find(producto => producto.id === product.id);
-    console.log(productoEnCarrito);
-    
-    if (!productoEnCarrito) {
-      // El producto no está en el carrito, así que lo agregamos
-      agregarProducto([...carrito, product]);
-      alert('Producto agregado')
-    } else {
-      // El producto ya está en el carrito
-      agregarProducto([...carrito])
-      alert("El producto ya está en el carrito");
+
+
+if (product.size) {
+   sizeWithoutTotal = Object.entries(product.size)
+  .filter(([key]) => key !== 'total')
+  };
+
+
+  const handleSizeChange = (event) => {
+    setSelectedSize(event.target.value);
+  };
+
+
+  const handleQuantityChange = (event) => {
+    setSelectedQuantity(parseInt(event.target.value));
+  };
+
+
+  const seleccionarProducto = () => {
+    if (!selectedSize) {
+      alert("Por favor, selecciona un tamaño");
+      return;
     }
-  }
+    const stockSeleccionado = product.size[selectedSize]; 
+    const productoEnCarrito = carrito.find(producto => producto.id === product.id && producto.size === selectedSize);
   
-
+    if (!productoEnCarrito) {
+      agregarProducto([...carrito, { ...product, size: selectedSize, quantity: selectedQuantity, stock:stockSeleccionado }]);
+      alert('Producto agregado');
+    } else {
+    
+      const totalQuantity = productoEnCarrito.quantity + selectedQuantity;
+      if (totalQuantity > stockSeleccionado) {
+        alert(`No hay suficiente stock disponible. Stock actual: ${stockSeleccionado}`);
+        return;
+      }
+  
+    
+      agregarProducto(
+        carrito.map(item =>
+          item.id === product.id && item.size === selectedSize
+            ? { ...item, quantity: totalQuantity }
+            : item
+        )
+      );
+      alert('Carrito actualizado');
+    }
+  };
+  
+  
+console.log(product);
 
   useEffect(() => {
 
     dispatch(getProductDetail(id))
   }, [id, carrito])
+
+  const [availableStock, setAvailableStock] = useState(0);
+const [quantityOptions, setQuantityOptions] = useState([]);
+
+// Actualiza el stock disponible y las opciones de cantidad cuando cambia el tamaño seleccionado
+useEffect(() => {
+  if (selectedSize && product.size[selectedSize]) {
+    const stockSeleccionado = parseInt(product.size[selectedSize]);
+    setAvailableStock(stockSeleccionado);
+    const newQuantityOptions = [...Array(stockSeleccionado).keys()].map(index => index + 1);
+    setQuantityOptions(newQuantityOptions);
+    // Restablecer la cantidad seleccionada si excede el nuevo stock disponible
+    setSelectedQuantity(Math.min(selectedQuantity, stockSeleccionado));
+  }
+}, [selectedSize]);
 
   const handleMouseEnter = () => {
     setButtonClass(!buttonClass);
@@ -101,6 +152,18 @@ function Detail(props) {
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>
         <div className={style.buy}>
+        <select value={selectedQuantity} onChange={handleQuantityChange}>
+  {quantityOptions.map(option => (
+    <option key={option} value={option}>{option}</option>
+  ))}
+</select>
+
+        <select onChange={handleSizeChange} value={selectedSize}>
+          <option value="all">SIZE</option>
+        {sizeWithoutTotal?.map(([size]) => (
+          <option key={size} value={size}>{size}</option>
+        ))}
+      </select>
           <button
           type="button"
           onClick={() => seleccionarProducto(product)}
@@ -112,3 +175,5 @@ function Detail(props) {
 }
 
 export default Detail
+
+

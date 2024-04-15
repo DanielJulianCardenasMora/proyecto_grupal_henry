@@ -12,12 +12,18 @@ import {
   UPDATE_CATEGORY_FILTER,
   UPDATE_GENDER_FILTER,
   ORDER_DETAIL,
-  PAYMENT
+  PAYMENT,
+  ALERTS_ACTIVE
 } from "./type";
 
- const URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'
-//  const URL = 'http://localhost:3001';
+  //! URL -------------------
 
+  // const URL = "http://localhost:3001"
+  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+
+  //! ------------------------
+
+  
 export const getAllProducts = (page, filters) => {
   const pageNumbers = page || 1;
   return async function (dispatch) {
@@ -186,3 +192,11 @@ export const updatePriceFilter = (sortOrder) => {
     payload: sortOrder,
   };
 };
+
+
+export const alertsActive = () => {
+
+  return {
+    type: ALERTS_ACTIVE,
+  }
+}

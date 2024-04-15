@@ -30,19 +30,6 @@ const Orders = () => {
           [name]: value
       }));
   }
-
-  // async function getOrders() {
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await axios.get(API_URL);
-  //     const orders = response.data;
-  //     setOrders(orders);
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
   
   useEffect(() => {
     // getOrders();
@@ -59,7 +46,7 @@ const Orders = () => {
   
   useEffect(() => {
     // Obtener todas las ordenes
-    axios.get(`${API_URL}admin/orders`)
+    axios.get(`${API_URL}`)
       .then((response) => setOrders(response.data));
   }, []);
   
