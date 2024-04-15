@@ -11,7 +11,7 @@ import { RegisterDialog } from '../../Components';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { alertsActive } from '../../redux/actions/actions';
 
 function Login ({setUsuario, usuario}) {
@@ -19,7 +19,7 @@ function Login ({setUsuario, usuario}) {
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const dispatch = useDispatch()
-
+  const register = useSelector((state) => state.register)
 
   //! URL -------------------
 
@@ -106,6 +106,15 @@ function Login ({setUsuario, usuario}) {
     handleGoogle()
   }, [isAuthenticated])
 
+  useEffect(() => {
+    if(register == true){
+      setSnackbarSeverity('success');
+      setSnackbarMessage('User registered successfully!');
+      setSnackbarOpen(true);
+    }
+  }, [register])
+
+  
   return (
     <div className={styles.div}>
       <LoginPage style={{ height: 480 }}>
