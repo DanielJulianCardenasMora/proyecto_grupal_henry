@@ -109,9 +109,6 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   }
   const newProduct = { name, description, price, stock, genero, category, size };
   try {
-
-    console.log('Images desde create', images)
-
     newProduct.images = [images];
 
     const totalStock = Object.values(size).reduce((acc, curr) => acc + curr, 0);
