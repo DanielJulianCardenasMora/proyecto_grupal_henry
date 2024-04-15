@@ -59,7 +59,6 @@ export default function RegisterDialog({ handleClose }) {
     }
 
     try {
-      console.log(formData)
       const response = await axios.post(`${URL}/users/api/register`, formData);
       if (response) {
         setSnackbarSeverity('success');
