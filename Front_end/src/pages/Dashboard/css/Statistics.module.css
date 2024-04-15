@@ -2,7 +2,7 @@
   background-color: rgba(255, 255, 255, 0.886);
   width: 85%;
   box-sizing: border-box;
-  padding: 0.2% 0% 2% 0%;
+  padding: 0.2% 0% .5% 0%;
   overflow-y: auto; 
   overflow: hidden;
   display: flex;
@@ -65,7 +65,7 @@
   background-color: #7ccfff;
   width: 30%;
   height: 100%;
-  box-shadow: 3px 3px 10px 1px rgb(13, 61, 113);
+  box-shadow: 3px 3px 5px 2px rgb(13, 61, 113);
   border-radius: 15px;
   color: black;
 }
@@ -75,13 +75,15 @@
 }
 .seccion2 .area{
   background-color: rgb(48, 67, 191);
+  box-shadow: 3px 3px 5px 2px rgb(13, 61, 113);
   width: 49%;
   height: 100%;
   border-radius: 15px;
 }
 .seccion3{
   display: flex;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+
 }
 .seccion3 div{
   background-color: rgb(48, 67, 191);
@@ -91,12 +93,17 @@
   margin: 0;
   overflow: hidden;
 }
+.product{
+  box-shadow: 3px 3px 5px 2px rgb(13, 61, 113);
+
+}
 .seccion4{
   display: flex;
   justify-content: space-evenly
 }
 .chart5{
   background-color: rgb(48, 67, 191);
+  box-shadow: 3px 3px 5px 2px rgb(13, 61, 113);
   width: 40%;
   height: 100%;
   border-radius: 15px;
@@ -130,6 +137,7 @@
 }
 .chart6{
   background-color: rgb(48, 67, 191);
+  box-shadow: 3px 3px 5px 2px rgb(13, 61, 113);
   width: 40%;
   height: 100%;
   border-radius: 15px;
