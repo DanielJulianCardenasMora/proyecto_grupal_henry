@@ -27,48 +27,7 @@ const modifictProductStock = async (productId, quantity, size) => {
         throw error;
     }
 }
-// const createOrder = async (req, res) => {
-//     try {
-//         const { userId, products, detalle } = req.body;
-//         console.log('req.............', req.body)
-//         console.log('User id:', userId);
 
-//         if (!userId) {
-//             throw new Error('El identificador de usuario no se proporcionó en el cuerpo de la solicitud.');
-//         }
-
-//         const newOrder = await Order.create({
-//             detalle: detalle,
-//             Id: userId
-//         });
-//         console.log("Nueva orden creada:", newOrder);
-
-//         for (const product of products) {
-//             const { productId, quantity, name, price, size } = product;
-
-//             // console.log("Agregando producto a la orden:", productId, quantity, name, price, size);
-
-//             await modifictProductStock(productId, quantity, size);
-
-//             //detalle de la orden
-//             await OrderDetail.create({
-//                 OrderId: newOrder.id,
-//                 ProductId: productId,
-//                 quantity: quantity,
-//                 name: name,
-//                 price: price,
-//                 size: size
-//             })
-//             console.log("Producto agregado a la orden:", name, quantity, size);
-//         }
-//         await newOrder.setUser(userId);
-//         console.log("Orden asociada al usuario:", userId);
-//         res.status(200).send(newOrder);
-//     } catch (error) {
-//         console.error('Error al crear la orden:', error);
-//         res.status(400).json({ error: error.message });
-//     }
-// }
 const createOrder = async (req, res) => {
     try {
         const { userId, products, detalle } = req.body;
@@ -85,8 +44,10 @@ const createOrder = async (req, res) => {
         for (const product of products) {
             const { productId, quantity, name, price, size } = product;
 
-            // Formatear el tamaño antes de guardarlo en la base de datos
-            const formattedSize = Object.entries(size).map(([key, value]) => `${key}:${value}`).join(', ');
+            const formattedSize = Object.keys(size)
+            .sort()
+            .map(key => `${size[key]}:${key}`)
+            .join(',');        
 
             let existeProduct = await OrderDetail.findOne({
                 where: {
