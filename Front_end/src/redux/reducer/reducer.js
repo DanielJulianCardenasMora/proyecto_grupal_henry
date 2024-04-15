@@ -8,7 +8,8 @@ import {
   ORDER_DETAIL,
   PRICE_FILTER,
   PAYMENT,
-  GET_USERS
+  GET_USERS,
+  ALERTS_ACTIVE
 } from "../actions/type";
 
 const initialstate = {
@@ -34,7 +35,8 @@ const initialstate = {
     gender: '', // Filtro de género
     category: '', // Filtro de categoría
     sortOrder: '' // Orden de precio
-  }
+  },
+  alerts: false
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -125,6 +127,14 @@ export default function rootReducer(state = initialstate, { type, payload }) {
 
     case 'PAYMENT':
       window.location.href = payload
+
+
+    case "ALERTS_ACTIVE": 
+    
+    return {
+      ...state,
+      alerts: true
+    }
 
     default:
       return { ...state };
