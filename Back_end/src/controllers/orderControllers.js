@@ -69,106 +69,58 @@ const modifictProductStock = async (productId, quantity, size) => {
 //         res.status(400).json({ error: error.message });
 //     }
 // }
-// const createOrder = async (req, res) => {
-//     try {
-//         const { userId, products, detalle } = req.body;
-//         console.log('req.body::::', req.body)
-
-//         if (!userId || !products) {
-//             throw new Error('El UserID o los Productos no son enviados en el cuerpo de la solitud.');
-//         }
-
-//         const newOrder = await Order.create({
-//             detalle: detalle,
-//             UserId: userId
-//         });
-
-//         for (const product of products) {
-//             const { productId, quantity, name, price, size } = product;
-
-
-//             let existeProduct = await OrderDetail.findOne({
-//                 where: {
-//                     OrderId: newOrder.id,
-//                     ProductId: productId,
-//                     name: name
-//                 }
-//             });
-//             if (existeProduct) {
-//                 existeProduct.quantity += quantity;
-//                 if (!existeProduct.size.includes(size)) {
-//                     existeProduct.size += `,${size}`;
-//                 }
-//                 await existeProduct.save();
-//             } else {
-
-//                 await OrderDetail.create({
-//                     OrderId: newOrder.id,
-//                     ProductId: productId,
-//                     quantity: quantity,
-//                     name: name,
-//                     price: price,
-//                     size: size
-//                 })
-//             }
-//             // await modifictProductStock(productId, quantity, size);
-
-//             // await OrderDetail.create({
-//             //     OrderId: newOrder.id,
-//             //     ProductId: productId,
-//             //     quantity: quantity,
-//             //     name: name,
-//             //     price: price,
-//             //     size: [size]
-//             // })
-//             console.log("Producto agregado a la orden:", name, quantity, size);
-//         }
-//         await newOrder.setUser(userId);
-//         res.status(200).send(newOrder);
-//     } catch (error) {
-//         console.error('Error al crear la orden:', error);
-//         res.status(400).json({ error: error.message });
-//     }
-// }
 const createOrder = async (req, res) => {
     try {
-      const { userId, products, detalle } = req.body;
-  
-      if (!userId || !products) {
-        throw new Error('El UserID o los Productos no son enviados en el cuerpo de la solicitud.');
-      }
-  
-      const newOrder = await Order.create({
-        detalle: detalle,
-        UserId: userId
-      });
-  
-      for (const product of products) {
-        const { productId, name, price, sizes } = product;
-  
-        for (const { sizeName, quantity } of sizes) {
-          await OrderDetail.create({
-            OrderId: newOrder.id,
-            ProductId: productId,
-            quantity: quantity,
-            name: name,
-            price: price,
-            size: sizeName
-          });
-  
-          console.log("Producto agregado a la orden:", name, quantity, sizeName);
+        const { userId, products, detalle } = req.body;
+
+        if (!userId || !products) {
+            throw new Error('El UserID o los Productos no son enviados en el cuerpo de la solicitud.');
         }
-      }
-  
-      await newOrder.setUser(userId);
-      res.status(200).send(newOrder);
+
+        const newOrder = await Order.create({
+            detalle: detalle,
+            UserId: userId
+        });
+
+        for (const product of products) {
+            const { productId, quantity, name, price, size } = product;
+
+            // Formatear el tamaño antes de guardarlo en la base de datos
+            const formattedSize = Object.entries(size).map(([key, value]) => `${key}:${value}`).join(', ');
+
+            let existeProduct = await OrderDetail.findOne({
+                where: {
+                    OrderId: newOrder.id,
+                    ProductId: productId,
+                    name: name
+                }
+            });
+            if (existeProduct) {
+                existeProduct.quantity += quantity;
+                if (!existeProduct.size.includes(formattedSize)) {
+                    existeProduct.size += `, ${formattedSize}`;
+                }
+                await existeProduct.save();
+            } else {
+                await OrderDetail.create({
+                    OrderId: newOrder.id,
+                    ProductId: productId,
+                    quantity: quantity,
+                    name: name,
+                    price: price,
+                    size: formattedSize
+                })
+            }
+            console.log("Producto agregado a la orden:", name, quantity, formattedSize);
+        }
+        await newOrder.setUser(userId);
+        res.status(200).send(newOrder);
     } catch (error) {
-      console.error('Error al crear la orden:', error);
-      res.status(400).json({ error: error.message });
+        console.error('Error al crear la orden:', error);
+        res.status(400).json({ error: error.message });
     }
-  }
-  
-  
+}
+
 const getAllOrder = async (req, res) => {
     try {
         const orders = await Order.findAll();
