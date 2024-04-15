@@ -168,6 +168,7 @@ const createOrder = async (req, res) => {
     }
   }
   
+  
 const getAllOrder = async (req, res) => {
     try {
         const orders = await Order.findAll();
