@@ -73,7 +73,7 @@ export const Menu = () => {
             <h2>Price order</h2>
             <h3 className={activeOptions.includes('asc') ? style.activeItem : ''} key='asc' onClick={() => handlePrice("asc")}>Lower to higher</h3>
             <h3 className={activeOptions.includes('desc') ? style.activeItem : ''} key='desc' onClick={() => handlePrice("desc")}>Higher to lower</h3>
-            <h3 className={style.reset}  onClick={resetFilters}>Reset</h3> {/* Botón de reset */}
+            <h3 className={style.reset}  onClick={resetFilters}>RESET</h3> {/* Botón de reset */}
             <h3 className={style.c3h3} onClick={toggleMenu}>BACK</h3>
           </div>
         </div>
