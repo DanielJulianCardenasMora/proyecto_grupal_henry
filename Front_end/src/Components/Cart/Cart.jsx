@@ -138,7 +138,8 @@ const Cart = ({ carrito, agregarProducto }) => {
             </div>
             <div className={style.desc}>
               <h4>{item.name}</h4>
-              <button onClick={() => eliminarProducto(item)}>Delete</button>
+              <span>Size: {item.size}</span>
+              <button className={style.dbtn} onClick={() => eliminarProducto(item)}>Delete</button>
             </div>
 
             <div className={style.count}>
