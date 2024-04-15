@@ -38,7 +38,7 @@ if (product.size) {
   };
 
 
-  const seleccionarProducto = () => {
+  const selectProducts = () => {
     if (!selectedSize) {
       alert("Por favor, selecciona un tamaño");
       return;
@@ -166,7 +166,7 @@ useEffect(() => {
       </select>
           <button
           type="button"
-          onClick={() => seleccionarProducto(product)}
+          onClick={() => selectProducts(product)}
           >Add to cart</button>
         </div>
       </div>
