@@ -19,7 +19,7 @@ function Nav({ setUsuario }) {
     const role = localStorage.getItem("role")
 
 
-    if(role == 'admin'){
+    if(role == 'admin' || role == 'superadmin'){
       setIsAdmin(true)
     }
 
