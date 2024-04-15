@@ -141,10 +141,10 @@ const Statistics = () => {
           </div>
         </div>
         <div className={style.seccion3}>
-          <div>product ranking - top 5 most sold
+          <div className={style.product}>Product ranking --- Top 5 most sold
             <Chart3 />
           </div>
-          <div>product ranking - total orders per product
+          <div className={style.product}>Product ranking --- Total orders per product
             <Chart4 />
           </div>
         </div>

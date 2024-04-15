@@ -11,15 +11,17 @@ import { RegisterDialog } from '../../Components';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { alertsActive } from '../../redux/actions/actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 function Login ({setUsuario, usuario}) {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const dispatch = useDispatch()
-
+  const register = useSelector((state) => state.register)
 
   //! URL -------------------
 
@@ -66,6 +68,7 @@ function Login ({setUsuario, usuario}) {
       const { data } = await axios.post(`${URL}/users/api/login`, login);
       if (data.status === 'ok') {
         localStorage.setItem("usuario", login.email);
+        localStorage.setItem("role", data.role)
         dispatch(alertsActive(true))
         navigate("/");
         
@@ -105,14 +108,27 @@ function Login ({setUsuario, usuario}) {
     handleGoogle()
   }, [isAuthenticated])
 
+  useEffect(() => {
+    if(register == true){
+      setSnackbarSeverity('success');
+      setSnackbarMessage('User registered successfully!');
+      setSnackbarOpen(true);
+    }
+  }, [register])
+
+
   return (
     <div className={styles.div}>
+      <button className={styles.closeButton} onClick={() => navigate("/")}>
+        <FontAwesomeIcon icon={faX} />
+      </button>
       <LoginPage style={{ height: 480 }}>
         <Title>Do you already have a WearFashion account? Log in</Title>
 
         <Logo>
           <LoginLogo />
         </Logo>
+
         <Input
           name="email"
           index={1}
@@ -127,36 +143,46 @@ function Login ({setUsuario, usuario}) {
           visible={true}
         />
         <Submit onClick={() => onClick()}>Login</Submit>
-  
-          <>
-            <br></br>
-            <button className={styles.googleLogin}onClick={() => loginWithRedirect()}>
-              Log in with Google
-            </button>
-          </>
+
+        <>
+          <br></br>
+          <button
+            className={styles.googleLogin}
+            onClick={() => loginWithRedirect()}
+          >
+            Log in with Google
+          </button>
+        </>
 
         <Footer>
           ¿Do yo want to register?
-          <button onClick={handleRegisterClick} className={styles.register}>Register</button>
+          <button onClick={handleRegisterClick} className={styles.register}>
+            Register
+          </button>
         </Footer>
 
-        {showRegisterDialog && <RegisterDialog handleOpen={handleOpen} isAuthenticated={isAuthenticated} handleClose={handleClose}/>}
-
+        {showRegisterDialog && (
+          <RegisterDialog
+            handleOpen={handleOpen}
+            isAuthenticated={isAuthenticated}
+            handleClose={handleClose}
+          />
+        )}
 
         <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={() => setSnackbarOpen(false)}
-      >
-        <MuiAlert
-          elevation={6}
-          variant="filled"
+          open={snackbarOpen}
+          autoHideDuration={6000}
           onClose={() => setSnackbarOpen(false)}
-          severity={snackbarSeverity}
         >
-          {snackbarMessage}
-        </MuiAlert>
-      </Snackbar>
+          <MuiAlert
+            elevation={6}
+            variant="filled"
+            onClose={() => setSnackbarOpen(false)}
+            severity={snackbarSeverity}
+          >
+            {snackbarMessage}
+          </MuiAlert>
+        </Snackbar>
       </LoginPage>
     </div>
   );
