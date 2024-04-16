@@ -37,7 +37,6 @@ const Cart = ({ carrito, agregarProducto }) => {
       const userInfo = localStorage.getItem('usuario')
       const url = `https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-info/${userInfo}`;
       const response = (await axios.get(url)).data
-      console.log('Response desde carrito', response);
 
       setOrder(prevOrder => ({
         ...prevOrder,
@@ -56,7 +55,6 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
     } catch (error) {
-      // Manejar errores
       console.error('Error al realizar la petición:', error);
     }
   }
@@ -65,7 +63,6 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   useEffect(() => {
-    // dispatch(getOrders())
     getUserInfo()
     setTotalCompra(totalInicial)
   }, [carrito])
@@ -106,20 +103,16 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   const handleSubmit = async (e) => {
-    console.log("handlesubmit")
     dispatch(payment(totalCompra))
     setOrder({
       ...order,
       detalle: order.comments
 
     })
-    console.log('Esta es la order que va al back', order)
     dispatch(enviarCarritoAlBackend(order));
-    alert('Orden de compra creada')
     agregarProducto([])
   };
 
-  console.log('esta es la order', order);
 
 
 
@@ -138,7 +131,8 @@ const Cart = ({ carrito, agregarProducto }) => {
             </div>
             <div className={style.desc}>
               <h4>{item.name}</h4>
-              <button onClick={() => eliminarProducto(item)}>Delete</button>
+              <span>Size: {item.size}</span>
+              <button className={style.dbtn} onClick={() => eliminarProducto(item)}>Delete</button>
             </div>
 
             <div className={style.count}>

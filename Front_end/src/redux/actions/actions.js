@@ -14,22 +14,23 @@ import {
   ORDER_DETAIL,
   PAYMENT,
   ALERTS_ACTIVE,
-  REGISTER
+  REGISTER,
 } from "./type";
 
-  //! URL -------------------
+//! URL -------------------
 
-  // const URL = "http://localhost:3001"
-  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+// const URL = "http://localhost:3001";
+const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
 
-  //! ------------------------
+//! ------------------------
 
-  
 export const getAllProducts = (page, filters) => {
   const pageNumbers = page || 1;
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${URL}/products?page=${pageNumbers}`, { params: filters });
+      const response = await axios.get(`${URL}/products?page=${pageNumbers}`, {
+        params: filters,
+      });
 
       dispatch({
         type: GET_PRODUCTS,
@@ -38,11 +39,10 @@ export const getAllProducts = (page, filters) => {
     } catch (error) {
       console.log(error.message);
     }
-  }
-}
+  };
+};
 
 export const getOrders = () => {
-
   return async function (dispatch) {
     try {
       const response = await axios.get(`${URL}/admin/orders`);
@@ -51,13 +51,10 @@ export const getOrders = () => {
     } catch (error) {
       alert(error.message);
     }
-  }
-}
-
-
+  };
+};
 
 export const getOrderDetail = (orderId) => {
-
   return async function (dispatch) {
     try {
       const response = await axios.get(`${URL}/orders/${orderId}`);
@@ -66,11 +63,10 @@ export const getOrderDetail = (orderId) => {
     } catch (error) {
       alert(error.message.response.data);
     }
-  }
-}
+  };
+};
 
 export const getUsers = () => {
-
   return async function (dispatch) {
     try {
       const response = await axios.get(`${URL}/admin/users-list`);
@@ -79,98 +75,92 @@ export const getUsers = () => {
     } catch (error) {
       console.error(error.message);
     }
-  }
-}
-
+  };
+};
 
 export function getProductDetail(id) {
   return async function (dispatch) {
-
     try {
-      const { data } = await axios.get(`${URL}/products/${id}`)
+      const { data } = await axios.get(`${URL}/products/${id}`);
 
       return dispatch({
         type: DETAIL,
-        payload: data
-      })
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log(error)
-    }
-
-  }
+  };
 }
-
 
 export function searchByName(name) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`${URL}/products?name=${name}`)
+      const response = await axios.get(`${URL}/products?name=${name}`);
 
       return dispatch({
         type: SEARCH_BY_NAME,
-        payload: response.data
-      })
+        payload: response.data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export const enviarCarritoAlBackend = (order) => {
-console.log(order);
+  console.log(order);
   return async (dispatch) => {
     try {
       const response = await axios.post(`${URL}/orders/create`, order);
-      console.log('Orden creada:', response.data);
-      alert('Orden de compra enviada')
+      console.log("Orden creada:", response.data);
+      alert("Orden de compra enviada");
 
-      dispatch({ type: ENVIAR_CARRITO_AL_BACKEND, payload: response })
-
+      dispatch({ type: ENVIAR_CARRITO_AL_BACKEND, payload: response });
     } catch (error) {
-
-      console.log('este es el error:', error)
+      console.log("este es el error:", error);
     }
   };
 };
 
 export const payment = (price) => {
-
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${URL}/create-order`, {totalPrice: price})
-      console.log(response.data)
-      dispatch({type: PAYMENT, payload: response.data.links[1].href})
+      const response = await axios.post(`${URL}/create-order`, {
+        totalPrice: price,
+      });
+      console.log(response.data);
+      dispatch({ type: PAYMENT, payload: response.data.links[1].href });
     } catch (error) {
-      console.log("error payment: " + error)
+      console.log("error payment: " + error);
     }
-  }
-}
+  };
+};
 
 export const addProduct = (formData) => async (dispatch) => {
-  console.log('FormData de actions:', formData);
+  console.log("FormData de actions:", formData);
   try {
     const config = {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        "Content-Type": "multipart/form-data",
+      },
     };
     const response = await axios.post(`${URL}/admin/create`, formData, config);
-    console.log('respuesta de action', response.data);
+    console.log("respuesta de action", response.data);
     dispatch({
       type: ADD_PRODUCT,
-      payload: response.data
+      payload: response.data,
     });
   } catch (error) {
     dispatch({
       type: PRODUCT_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
-
   }
 };
-
-
 
 export const updateGenderFilter = (gender) => ({
   type: UPDATE_GENDER_FILTER,
@@ -182,8 +172,7 @@ export const updateCategoryFilter = (category) => {
   return {
     type: UPDATE_CATEGORY_FILTER,
     payload: category,
-  }
-
+  };
 };
 
 export const updatePriceFilter = (sortOrder) => {
@@ -194,20 +183,16 @@ export const updatePriceFilter = (sortOrder) => {
   };
 };
 
-
 export const alertsActive = (payload) => {
-
   return {
     type: ALERTS_ACTIVE,
-    payload: payload
-  }
-}
-
+    payload: payload,
+  };
+};
 
 export const register = (payload) => {
-
   return {
     type: REGISTER,
-    payload: payload
-  }
-}
+    payload: payload,
+  };
+};
