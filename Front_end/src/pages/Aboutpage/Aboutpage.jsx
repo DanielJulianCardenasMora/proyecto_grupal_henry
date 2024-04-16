@@ -80,6 +80,9 @@ export const AboutPage = () => {
           </div>
         </div>
       </div>
+          <div className={style.footer}>
+           <Footer/>
+          </div>
     </>
   );
 }
