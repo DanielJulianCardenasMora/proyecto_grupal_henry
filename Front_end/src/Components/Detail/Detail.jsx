@@ -189,7 +189,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetail } from '../../redux/actions/actions';
 import style from './Detail.module.css';
-
+import fondo from '../../assets/Imagenes/Detail_fondo3_aplicar.png'
+import shape from '../../assets/Imagenes/Detail_shape_aplicar.png'
+let sizeWithoutTotal
 function Detail(props) {
   const dispatch = useDispatch();
   const { carrito, agregarProducto } = props;
@@ -199,7 +201,7 @@ function Detail(props) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const product = useSelector((state) => state.Detail);
   const { description, name, images, price, genero } = product;
-
+  const [buttonClass, setButtonClass] = useState(true);
   useEffect(() => {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
@@ -327,13 +329,15 @@ function Detail(props) {
             onClick={selectProducts}
           >Add to cart</button>
         </div>
-
         <div className={style.size}>
           <select className={style.size1} onChange={handleSizeChange} value={selectedSize}>
             <option value="all">SIZE</option>
-            {sizeWithoutTotal.map(([size]) => (
-              <option key={size} value={size}>{size}</option>
-            ))}
+            {product.size && product.size.map((sizeItem, index) => {
+              const sizeObject = JSON.parse(sizeItem);
+              return (
+                <option key={index} value={sizeObject.size}>{sizeObject.size}</option>
+              );
+            })}
           </select>
           {selectedSize && (
             <select value={selectedQuantity} onChange={handleQuantityChange}>
@@ -342,7 +346,14 @@ function Detail(props) {
               ))}
             </select>
           )}
+
+
         </div>
+
+
+
+
+
       </div>
     </div>
   );
