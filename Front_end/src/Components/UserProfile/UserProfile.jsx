@@ -125,7 +125,7 @@ const UserProfile = () => {
         </div>
       </div>
 
-      <div className={style.historial}>
+      {/* <div className={style.historial}>
         <div className={style.arriba}>
           <div className={style.total}>{`$'{ }'compras en total`}</div>
         </div>
@@ -155,7 +155,7 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

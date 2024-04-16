@@ -46,6 +46,7 @@ function Nav({ setUsuario }) {
     setUsuario(null);
     setIsLoggedIn(false);
     setShowLogout(false);
+    navigate("/")
     dispatch(alertsActive(false))
     dispatch(register(false))
     setIsAdmin(false)
