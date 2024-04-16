@@ -34,7 +34,7 @@ export default function HomeAdmin(){
       e.preventDefault();
 
       try {
-        const data = await axios.post('http://localhost:3001/admin/send-email', email)
+        const data = await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/send-email', email)
         console.log("enviado", data)
       } catch (error) {
         console.log(error)
