@@ -114,7 +114,7 @@ const Orders = () => {
               :
               <button onClick={() => handleEdit(order.id)} className={styles.iconoeditar}>Edit</button>
             }
-            <button onClick={() => handleDelete(order.id)} className={styles.iconoeliminar}>Delete</button>
+            {/* <button onClick={() => handleDelete(order.id)} className={styles.iconoeliminar}>Delete</button> */}
           </td>
         </tr>
         ))}
