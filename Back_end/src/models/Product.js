@@ -37,18 +37,36 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      category: { // Agregar la propiedad 'category'
-        type: DataTypes.STRING, // O el tipo de datos adecuado para el nombre de la categoría
+      category: {
+        type: DataTypes.STRING,
         allowNull: true,
       },
       active: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true // Por defecto, un producto está activo
+        defaultValue: true
       },
       size: {
-        type: DataTypes.ARRAY(DataTypes.JSON),
+        type: DataTypes.ARRAY(DataTypes.JSON), // Modificar el tipo de datos de STRING a JSON
         allowNull: true,
         defaultValue: [],
+        get() {
+          const size = this.getDataValue('size');
+          // Si `size` es una cadena, entonces es un array JSON serializado, así que lo convertimos a un array de objetos JSON
+          if (typeof size === 'string') {
+            return JSON.parse(size);
+          } else {
+            return size; // Si `size` ya es un array de objetos JSON, lo devolvemos como está
+          }
+        },
+        set(value) {
+          // Si el valor proporcionado es un array de objetos JSON, lo almacenamos como está
+          // Si no, lo convertimos a una cadena JSON antes de almacenarlo
+          if (Array.isArray(value) && value.every(item => typeof item === 'object')) {
+            this.setDataValue('size', value);
+          } else {
+            this.setDataValue('size', JSON.stringify(value));
+          }
+        }
       },
     },
     { timestamps: false }
