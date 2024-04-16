@@ -4,12 +4,14 @@
   justify-content:  center;  
   margin: auto;
   position: absolute;
-  top: 77%;
-  left: 0%;
-  height: 5vh;
-  width: 12vw;
-  flex-direction: column;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-bottom: 15px;
+  transform: translateX(-30%);
   flex-direction: column;
 }
 

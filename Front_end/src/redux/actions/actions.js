@@ -13,7 +13,8 @@ import {
   UPDATE_GENDER_FILTER,
   ORDER_DETAIL,
   PAYMENT,
-  ALERTS_ACTIVE
+  ALERTS_ACTIVE,
+  REGISTER
 } from "./type";
 
   //! URL -------------------
@@ -76,7 +77,7 @@ export const getUsers = () => {
 
       dispatch({ type: GET_USERS, payload: response.data });
     } catch (error) {
-      alert(error.message);
+      console.error(error.message);
     }
   }
 }
@@ -194,9 +195,19 @@ export const updatePriceFilter = (sortOrder) => {
 };
 
 
-export const alertsActive = () => {
+export const alertsActive = (payload) => {
 
   return {
     type: ALERTS_ACTIVE,
+    payload: payload
+  }
+}
+
+
+export const register = (payload) => {
+
+  return {
+    type: REGISTER,
+    payload: payload
   }
 }

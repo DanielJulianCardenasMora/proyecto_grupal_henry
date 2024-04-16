@@ -1,16 +1,33 @@
-.div{
+.div {
+    position: relative;
     width: 100%;
     height: 100vh;
 }
 
-.register{
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.closeButton :hover{
+    color: black;
+}
+
+.register {
     background: none;
     text-decoration: solid;
     color: rgb(255, 235, 235);
     padding: 5px;
 }
 
-.googleLogin{
+.googleLogin {
     background: none;
     text-decoration: solid;
     color: rgb(255, 235, 235);
