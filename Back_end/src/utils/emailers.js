@@ -19,14 +19,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendMail = (userCreatedDB) => {
-  const htmlTemplate = getEmailTemplate(userCreatedDB.name);
-  console.log("Recipient's Email:", userCreatedDB.email);
+const sendMail = (user, mensaje, titulo) => {
+  const htmlTemplate = getEmailTemplate(user, mensaje, titulo);
+  console.log("Recipient's Email:", user);
 
   const mailOptions = {
     from: '"Wearfashion" <wemolde@gmail.com>',
-    to: userCreatedDB.email,
-    subject: `Welcome ${userCreatedDB.name} to Wearfashion`,
+    to: user,
+    subject: `Welcome ${user} to Wearfashion`,
     html: htmlTemplate,
   };
 
@@ -34,9 +34,9 @@ const sendMail = (userCreatedDB) => {
     if (error) {
       console.log("Error Sending mail", error);
     } else {
-      console.log("Recipient's Email:", userCreatedDB.email);
+      console.log("Recipient's Email:", user.email);
     }
   });
 };
 
-exports.sendMail = (userCreatedDB) => sendMail(userCreatedDB);
+exports.sendMail = (user, mensaje, titulo) => sendMail(user, mensaje, titulo);

@@ -4,6 +4,7 @@ const { getUsers, getUserInfo, deleteUser } = require('./../handlers/usersHandle
 const { getOrder } = require('./../handlers/orderHandler')
 const upload = require('../utils/multerConfig');
 const { getAllOrder } = require('../controllers/orderControllers');
+const { adminSendEmail } = require('../controllers/sendEmail');
 const adminRouter = Router();
 
 // Rutas para Productos 
@@ -20,4 +21,6 @@ adminRouter.delete('/delete-users/:userEmail', deleteUser); // eliminar usuario 
 // Rutas para Ordenes
 adminRouter.get('/orders', getAllOrder); // Obtener todas las ordenes creadas por usuarios
 
+//Ruta para enviar email
+adminRouter.post('/send-email', adminSendEmail)
 module.exports = adminRouter;

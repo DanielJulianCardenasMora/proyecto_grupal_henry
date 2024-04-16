@@ -40,8 +40,9 @@ const register = async (req, res) => {
 
     // Update the user with the generated token
     await User.update({ token: token }, { where: { id: userCreatedDB.id } });
-
-    emailer.sendMail(userCreatedDB);
+    const mensaje = "Gracias por registrarte en WearFashion"
+    const titulo = "Registro exitoso"
+    emailer.sendMail(userCreatedDB.email, mensaje, titulo);
     return res.status(201).send({
       status: "ok",
       message: `The email ${userCreatedDB.email} has been registered successfully! `,
