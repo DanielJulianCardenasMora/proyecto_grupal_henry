@@ -104,14 +104,23 @@ const Statistics = () => {
           orders: user.Orders.length,
         };
       });
-      const userCountry = data.map((user) => {
-        return {
-          place: user.country,
-          orders: user.Orders.length,
-        };
-      });
+      const userCountry = data.reduce((acc, user) => {
+        const country = user.country;
+        const existingEntry = acc.find((entry) => entry.place === country);
+  
+        if (existingEntry) {
+          existingEntry.orders += user.Orders.length; // Add order count to existing entry
+        } else {
+          acc.push({ place: country, orders: user.Orders.length }); // Create new entry for unique country
+        }
+  
+        return acc;
+      }, []);
+  
       setUserOrder(userOrders)
       setUserCountry(userCountry)
+      console.log(userOrders)
+      console.log(userCountry)
     } catch (error) {
       console.error(error);
     }
@@ -163,19 +172,20 @@ const Statistics = () => {
    
 
         <div className={style.seccion2}>
-          <div className={style.area}>Sales per month
+          <div className={style.area}>{'Sales per month (first 12 orders)'} 
             <Chart priceOrder={priceOrder} />
           </div>
-          <div className={style.area}>Orders per month
-            <Chart2 priceOrder={priceOrder} />
+          <div className={style.area}>Product ranking --- Top 5 most sold
+            {/* <Chart2 priceOrder={priceOrder} /> */}
+            <Chart3 productQuantity={productQuantity} />
           </div>
         </div>
         <div className={style.seccion3}>
-          <div className={style.product}>Product ranking --- Top 5 most sold
-            <Chart3 productQuantity={productQuantity} />
-          </div>
-          <div className={style.product}>Product ranking --- Total orders per product
-            <Chart4 />
+          {/* <div className={style.product}>Product ranking --- Top 5 most sold
+       
+          </div> */}
+          <div className={style.product}>Product ranking --- Total units sold per all products
+            <Chart4 productQuantity={productQuantity} />
           </div>
         </div>
         <div className={style.seccion4}>

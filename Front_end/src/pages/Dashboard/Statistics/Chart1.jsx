@@ -15,7 +15,7 @@ const Chart = ({ priceOrder }) => {
 
   const createData = () => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const newData = orders.map((order, index) => {
+    const newData = orders.slice(0, 12).map((order, index) => {
       const monthIndex = index % months.length; // Handle cases with more orders than months
     const monthName = months[monthIndex];
       return {
