@@ -55,6 +55,8 @@
   margin-bottom: 3%;
   margin-left: 2%;
   margin-right: 2%;
+  font-size: 1vw;
+  line-height: 2vw;
 }
 .seccion1{
   display: flex;
