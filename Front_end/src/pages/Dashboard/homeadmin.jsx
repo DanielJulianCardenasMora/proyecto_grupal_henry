@@ -1,18 +1,28 @@
 import style from './css/HomeAdmin.module.css'
 import { getUsers } from '../../redux/actions/actions'
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 export default function HomeAdmin(){
     const navigate = useNavigate()
     const dispatch=useDispatch()
     const users= useSelector((s)=>s.users)
-    
+    const [email, setEmail] = useState({
+      user: "",
+      mensaje: "",
+      titulo: ""
+    })
+
+    const onChange = (e) => {
+      setEmail({ ...email, [e.target.name]: e.target.value });
+    };
+
+
     let mailUsers= users.map(u=> u.email)
 
     useEffect(() => {
     const rol = localStorage.getItem("role")
-    console.log(rol)
     if(rol === 'user' || rol === null){
         navigate("/")
     }
@@ -20,6 +30,17 @@ export default function HomeAdmin(){
     }, []);
 
 
+    const onSubmit = async (e) => {
+      e.preventDefault();
+
+      try {
+        const data = await axios.post('http://localhost:3001/admin/send-email', email)
+        console.log("enviado", data)
+      } catch (error) {
+        console.log(error)
+      }
+
+    }
     return (
       <div className={style.main}>
         <div className={style.dashCont}>
@@ -35,7 +56,25 @@ export default function HomeAdmin(){
 
           <div className={style.content}>
             <div className={style.principal}>
-              Aca se van a renderizar cards con las ordenes de compra
+
+              <h3>
+                Enviar mensaje a usuarios
+              </h3>
+
+              <form onSubmit={onSubmit}>
+                <label>Titutlo: </label>
+                <input type="text" name="titulo" value={email.titulo} onChange={onChange} />
+
+
+                <label>Mensaje: </label>
+                <input type="text" name="mensaje" value={email.mensaje} onChange={onChange} />
+
+
+                <label>Email: </label>
+                <input type="text" name="user" value={email.user} onChange={onChange} />
+              
+              <button type='submit'>Enviar correo</button>
+              </form>
             </div>
             <div className={style.side}>
               <h4>Recent clients</h4>
