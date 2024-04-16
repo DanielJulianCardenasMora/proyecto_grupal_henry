@@ -77,27 +77,18 @@ export default function HomeAdmin(){
 
           <div className={style.content}>
             <div className={style.principal}>
-              <h3>Enviar mensaje a usuarios</h3>
+              <p>Enviar mensaje a usuarios</p>
 
               <form onSubmit={onSubmit}>
+
+
+                <div className={style.formContent}>
                 <label>Titutlo: </label>
-                <input
-                  type="text"
-                  name="titulo"
-                  value={email.titulo}
-                  onChange={onChange}
-                />
-
-                <label>Mensaje: </label>
-                <input
-                  type="text"
-                  name="mensaje"
-                  value={email.mensaje}
-                  onChange={onChange}
-                />
-
-                <label>Users: </label>
-                <select>
+                <input type="text" name="titulo" value={email.titulo} onChange={onChange} />
+                </div>
+                <div className={style.formContent}>
+                <label>Para: </label>
+                <select >
                   <option value="all">Select user</option>
                   {users.map((user, index) => (
                     <option key={index} value={user.email}>
@@ -105,8 +96,20 @@ export default function HomeAdmin(){
                     </option>
                   ))}
                 </select>
+                </div>
+                <div className={style.formArea}>
+                <label>Mensaje: </label>
+                <textarea type="text" name="mensaje" value={email.mensaje} onChange={onChange} />
 
-                <button type="submit">Enviar correo</button>
+                </div>
+
+
+
+
+    
+
+              
+              <button className={style.emailB} type='submit'>Enviar correo</button>
               </form>
             </div>
             <div className={style.side}>

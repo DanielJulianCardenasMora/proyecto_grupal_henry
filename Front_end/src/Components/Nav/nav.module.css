@@ -185,7 +185,7 @@
         height: 99%;
         margin-top: 1%;
         background-image: url('../../assets/Imagenes/circulo-negro2.png');
-        
+        position: absolute;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -200,8 +200,25 @@
         width: 50%;
     }
     .boxList ul{
-display: none;
+        flex-direction: column;
+        position: absolute;
+        top:80%;
+        left: 50%
     }
+    .menuButton{
+        position: absolute;
+        left: 40%;
+        width: 40%;
+        background-color: brown;
+    }
+    .menuButtonIcon{
+        font-size: 2em;
+  
+        background: none;
+        color: white;
+ 
+    }
+  
     .boxList li{
         list-style-type: none;
         cursor: pointer;
