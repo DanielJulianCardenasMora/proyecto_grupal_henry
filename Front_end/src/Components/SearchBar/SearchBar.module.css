@@ -20,7 +20,7 @@
   border: 1px solid rgb(255, 255, 255);
   border-radius: 25px;
   margin-bottom: 4%;
-  background-color: rgba(244, 0, 158, 0.379);
+  background-color: rgba(0, 12, 244, 0.379);
   color: whitesmoke;
   padding: 0.6em;
   width: 75%;
@@ -34,7 +34,7 @@
   border: 1px solid azure;
   border-radius: 10px;
   height: 100%;
-  width: 35%;
+  width: 38%;
   padding: 2.5% 5% 3.5% 5%;
   font-size: 0.9vw;
   line-height: 1;

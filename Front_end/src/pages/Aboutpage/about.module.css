@@ -1,6 +1,6 @@
 .box{
   background-color: #6603a8;
-  height: 100%;
+  height: 190vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between
@@ -9,6 +9,8 @@
     height: 80vh;
     background: linear-gradient(180deg, rgba(102, 3, 168, 1) 20%, rgba(0, 0, 0, 1) 90%);    background-size: cover;
     padding-top: 5%;
+    position: relative;
+    z-index: 200;
 }
 .workteam{
     
@@ -34,7 +36,7 @@
     justify-content: space-evenly;
   width: 40%;
   height: 80%;
-  background-color: rgb(42, 39, 223);
+  background-color: rgb(126, 44, 233);
   box-shadow: 5px 6px 5px 0px rgba(255, 255, 255, 0.761);
   border-radius: 20px;
   margin-left: 5%;
@@ -42,9 +44,7 @@
 }
 .background{
   width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 72vh;
+    height: 120vh;
     background-image: url('../../assets/Imagenes/About_fondoInferior_aplicar.png');
     background-position: bottom;
     display: flex;
@@ -53,6 +53,8 @@
     padding-left: 5%;
     padding-top: 2%;
     box-sizing: border-box;
+    background-color: black;
+
 }
 
 .desc{
@@ -90,11 +92,11 @@
   margin-top: 5%;
 }
 .tecnologias{
-  height: 50%;
+  height: 71%;
   width: 30%;
-  background-color: rgb(151, 72, 255);
+  background-color: rgb(126, 44, 233);
   position: absolute;
-  top: 25%;
+  top: 20%;
   right: 10%;
   border-radius: 20px;
   padding-top: 1%;
@@ -103,11 +105,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around
 }
 .tecnologias h1{
   margin-bottom: 1%;
-  border: 1px solid black;
-  width: 70%;
+  border: 2px solid rgb(255, 255, 255);
+  
+  width: 60%;
+  padding: 1.5% 0;
+  font-size: 1.5vw;
   border-radius: 10px;
 }
 .techtext{
@@ -132,5 +138,11 @@
 .container :hover{
   transform: scale(1.05);
 
+}
+
+.footer{
+  position: relative;
+  top: 0;
+  z-index: 100;
 }
 

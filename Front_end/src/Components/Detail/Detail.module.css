@@ -108,11 +108,12 @@
 .box2{
   background-color: rgba(4, 7, 67, 0.489);
   height: 17%;
-  width: 25%;
+  width: 50%;
   position: absolute;
-  right: 22%;
+  right: 50%;
+  transform: translate(50%);
   top: 28%;
-  border-radius: 30px 5px 30px 5px;
+  border-radius: 5px 5px 5px 5px;
   border: 2px solid rgba(13, 178, 224, 0.956);
   line-height: 1;
   font-size: 0.9vw;
@@ -144,7 +145,7 @@
   top: 50%;
   right: 4%;
   color: rgb(0, 0, 75);
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   font-family: f4;
 }
 .detalle3{
@@ -165,7 +166,7 @@
 .boton{
   position: absolute;
   bottom: 4%;
-  right: 36%;
+  right: 30%;
   height: 18%;
   width: 30%;
   transform: translate(50%);
@@ -201,7 +202,7 @@
 }
 .buy{
   position: absolute;
-  left: 23.5%;
+  left: 28.9%;
   bottom: 12%;
 }
 .buy button{
@@ -222,7 +223,7 @@
   width: 10%;
   position: absolute;
   top: 72%;
-  left: 26.1%;
+  left: 31.5%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start
@@ -249,7 +250,7 @@
   width: 22%;
   position: absolute;
   top: 69%;
-  left: 20%;
+  left: 25%;
   background-color: #61b4f377;
   box-shadow: rgba(6, 6, 135, 0.615) 0px 20px 60px -12px inset, rgba(4, 7, 172, 0.566) 0px 18px 36px -18px inset, 4px 4px 5px 2px rgba(0, 0, 0, 0.385);
 }

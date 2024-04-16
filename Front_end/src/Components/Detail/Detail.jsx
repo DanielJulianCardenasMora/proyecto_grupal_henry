@@ -134,11 +134,11 @@ useEffect(() => {
       </div>
 
 
+
+      <div className={style.box_derecha}>
       <div className={style.box2}>
         <div className={style.difuminado2}>{description}</div>
       </div>
-
-      <div className={style.box_derecha}>
         <h1 className={style.name}>{name}</h1>
         <div className={style.boxDetalle}>
           <h1 className={style.detalle1}>Category</h1>
