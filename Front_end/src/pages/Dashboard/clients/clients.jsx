@@ -241,16 +241,13 @@ const clients = () => {
                       >
                         Delete
                       </button>
-                      {superAdmin ? (
+                      {/* {superAdmin ? (
                         <button
                           className={styles.iconoAdmin}
                           onClick={() => handleClickAdmin(user)}
                         >
                         </button>
-                      ) : (
-                        <></>
-                      )}
-                      {user.active ? (
+                        {user.active ? (
                         <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
                           <FontAwesomeIcon icon={faEyeSlash} style={{ marginRight: '5px' }} />
 
@@ -261,6 +258,30 @@ const clients = () => {
 
                         </button>
                       )}
+                      ) : (
+                      <></>
+                      )
+                    } */}
+                      {superAdmin && (
+                        <button
+                          className={styles.iconoAdmin}
+                          onClick={() => handleClickAdmin(user)}
+                        >
+                          {/* Icono de administrador */}
+                        </button>
+                      )}
+                      {user.active ? (
+                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
+                          <FontAwesomeIcon icon={faEyeSlash} style={{ marginRight: '5px' }} />
+                          {/* Icono de ojo con barra si el usuario está activo */}
+                        </button>
+                      ) : (
+                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
+                          <FontAwesomeIcon icon={faEye} style={{ marginRight: '5px' }} />
+                          {/* Icono de ojo si el usuario no está activo */}
+                        </button>
+                      )}
+
                     </td>
                   </tr>
                 ))}
