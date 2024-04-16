@@ -71,7 +71,7 @@
 }
 .seccion2{
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 .seccion2 .area{
   background-color: rgb(48, 67, 191);
@@ -87,7 +87,7 @@
 }
 .seccion3 div{
   background-color: rgb(48, 67, 191);
-  width: 40%;
+  width: 86.5%;
   height: 100%;
   border-radius: 15px;
   margin: 0;
