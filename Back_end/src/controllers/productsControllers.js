@@ -73,10 +73,10 @@ const createProductDB = async (name, description, price, images, stock, genero, 
 
   const newSizeArray = size.map(item => ({
     size: item.size,
-    stock: item.stock
+    stock: parseInt(item.stock)
   }));
-
-  const newProduct = { name, description, price, images, stock: totalStock, genero, category, size: JSON.stringify(newSizeArray)  };
+  const newSizeArrayJSON = JSON.stringify(newSizeArray);
+  const newProduct = { name, description, price, images, stock: totalStock, genero, category, size:newSizeArrayJSON  };
   console.log('NewProduct', newProduct);
   try {
     newProduct.images = [images];
