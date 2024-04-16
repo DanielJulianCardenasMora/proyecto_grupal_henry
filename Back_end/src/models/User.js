@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
       token: {
         type: DataTypes.STRING,
         allowNull: true
+      }, active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true, // Por defecto, los usuarios estarán activos
+        allowNull: false
       }
     },
     { timestamps: false }

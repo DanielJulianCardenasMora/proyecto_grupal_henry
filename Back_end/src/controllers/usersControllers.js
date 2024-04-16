@@ -55,9 +55,48 @@ const deleteUserDB = async (userEmail) => {
     return deleted
 }
 
+// En tu archivo de controladores de usuarios
+
+const activateUser = async (userEmail) => {
+    try {
+      const user = await User.findOne({ where: { email: userEmail } });
+  
+      if (!user) {
+        throw new Error("Usuario no encontrado");
+      }
+  
+      user.active = true; // Activamos al usuario
+      await user.save();
+  
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
+  const deactivateUser = async (userEmail) => {
+    try {
+      const user = await User.findOne({ where: { email: userEmail } });
+  
+      if (!user) {
+        throw new Error("Usuario no encontrado");
+      }
+  
+      user.active = false; // Desactivamos al usuario
+      await user.save();
+  
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
+
 module.exports = {
     getAllUsers,
     getUserInfoDB,
     updateUserDB,
-    deleteUserDB
+    deleteUserDB,
+    deactivateUser,
+    activateUser
 }
