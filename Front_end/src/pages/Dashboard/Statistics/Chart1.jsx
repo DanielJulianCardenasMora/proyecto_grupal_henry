@@ -24,7 +24,7 @@ const Chart = ({ priceOrder }) => {
       };
     });
     setNewMonthData(newData)
-    console.log(newMonthData);
+    ;
   };
 
   useEffect(() => {

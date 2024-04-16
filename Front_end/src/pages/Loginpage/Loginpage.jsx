@@ -99,9 +99,9 @@ function Login ({setUsuario, usuario}) {
   };
 
   const handleGoogle = () => {
-      console.log("entre al handle")
-      console.log(user)
-      console.log(isAuthenticated)
+      
+      
+      
   }
 
   useEffect(()=> {
