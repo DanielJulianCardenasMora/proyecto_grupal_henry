@@ -95,7 +95,7 @@ const Statistics = () => {
   }, [])
   useEffect(() => {
     individualOrder();
-  }, [allOrders])
+  }, [allOrders, totalSum])
   useEffect(() => {
     sumPrice();
     getQuantity()
