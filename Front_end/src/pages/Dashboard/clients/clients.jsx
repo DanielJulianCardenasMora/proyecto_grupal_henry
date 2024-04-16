@@ -116,7 +116,6 @@ const clients = () => {
 
   const handelactivited = async (user) => {
     try {
-
       if (!superAdmin) {
         alert('You do not have permissions to activate or deactivate users.');
         return;
@@ -131,27 +130,6 @@ const clients = () => {
     }
   };
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.mainContent}>
-        <h1>Our customers</h1>
-        {isLoading ? (
-          <p>Loading users...</p>
-        ) : (
-          users.length > 0 && (
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Phone</th>
-                  <th>Country</th>
-                  <th>Edit</th>
-                </tr>
-              </thead>
-
 
   return (
     <div className={styles.container}>
@@ -173,7 +151,6 @@ const clients = () => {
                   <th>Edit</th>
                 </tr>
               </thead>
-
 
               <tbody>
                 {users.map((user, index) => (
@@ -256,7 +233,6 @@ const clients = () => {
                           </button>
                         </div>
                       ) : (
-
                         <button
                           onClick={() => handleEdit(user.email)}
                           className={styles.iconoeditar}
