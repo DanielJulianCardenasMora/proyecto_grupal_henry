@@ -71,7 +71,7 @@
 }
 .seccion2{
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 .seccion2 .area{
   background-color: rgb(48, 67, 191);
