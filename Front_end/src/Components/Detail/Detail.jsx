@@ -152,13 +152,7 @@ useEffect(() => {
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>
         <div className={style.buy}>
-        {selectedSize && (
-    <select value={selectedQuantity} onChange={handleQuantityChange}>
-      {quantityOptions.map(option => (
-        <option key={option} value={option}>{option}</option>
-      ))}
-    </select>
-  )}
+
 
         <select onChange={handleSizeChange} value={selectedSize}>
           <option value="all">SIZE</option>
@@ -166,6 +160,14 @@ useEffect(() => {
           <option key={size} value={size}>{size}</option>
         ))}
       </select>
+      {selectedSize && (
+    <select value={selectedQuantity} onChange={handleQuantityChange}>
+      {quantityOptions.map(option => (
+        <option key={option} value={option}>{option}</option>
+      ))}
+    </select>
+  )}
+  
           <button
           type="button"
           onClick={() => selectProducts(product)}
