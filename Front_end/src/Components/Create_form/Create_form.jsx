@@ -69,7 +69,7 @@ const Form = ({ addProduct }) => {
       genero,
       category,
       images: UrlImagen,
-      size: size,
+      size,
     };
     console.log('estoes data', data)
     if (data.name == null) {
@@ -111,6 +111,7 @@ const Form = ({ addProduct }) => {
       return;
     }
     setFormData({ ...formData, size: [...size, { size: '', stock: '' }] }); // Agregar un nuevo objeto con valores predeterminados al array size
+    console.log(formData);
   };
 
   const removeSize = (index) => {

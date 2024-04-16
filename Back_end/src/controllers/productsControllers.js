@@ -64,6 +64,11 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   //   console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
   //   return null;
   // }
+  // Suponiendo que "sizeData" es el array que recibes en el backend
+  size.forEach(item => {
+    console.log("Size:", item.size);
+    console.log("Stock:", item.stock);
+  });
 
   console.log('Esto es size', size);
   console.log('esto es images', images)
@@ -91,14 +96,6 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     }
     await productCreatedDB.addCategory(categoryName);
 
-    await Promise.all(size.map(async (item) => {
-      // Crear cada tamaño en la base de datos y asociarlo al producto
-      await Size.create({
-        size: item.size,
-        stock: item.stock,
-        ProductId: productCreatedDB.id // Asignar el ID del producto creado
-      });
-    }));
 
     return productCreatedDB;
   } catch (error) {
@@ -147,3 +144,8 @@ module.exports = {
   deleteProductDB,
   updateProductDB
 };
+
+
+
+
+
