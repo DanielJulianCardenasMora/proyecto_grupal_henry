@@ -64,6 +64,8 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
     return null;
   }
+
+  console.log('Esto es size', size);
   if (!name || !description || !price || !genero || !category) {
     console.log('Faltan propiedades requeridas para crear el producto.');
     return null;
@@ -71,7 +73,7 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   const totalStock = size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
 
   const newProduct = { name, description, price, images, stock: totalStock, genero, category, size };
-
+  console.log('NewProduct', newProduct);
   try {
     newProduct.images = [images];
 
@@ -81,7 +83,7 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     const productCreatedDB = await Product.create(newProduct);
 
     const categoryName = await Category.findOne({ where: { name: category } });
-    
+
     if (!categoryName) {
       console.log("La categoría especificada no existe.");
       return null;
