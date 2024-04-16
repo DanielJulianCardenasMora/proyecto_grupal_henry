@@ -61,19 +61,42 @@ const postProduct = async (req, res) => {
 
   const { name, description, price, stock, genero, category, images, size } = req.body;
 
+  const errors = [];
+  const containsOnlyLetters = /^[a-zA-Z\s]*$/;
+
+  if (!name) { errors.push('Debes ingresar un name') }
+
+  if (name.length < 4) { errors.push("El nombre debe tener más de 4 caracteres") }
+  
+  if (!containsOnlyLetters.test(name)) { errors.push("El nombre solo puede contener letras") }
+  
+  if (!description) { errors.push('Debes ingresar un desciption') }
+  
+  if (!price || isNaN(price)) { errors.push('Debes ingresar un price valido') }
+  
+  if (price < 0) { errors.push('El precio debe ser mayor o igual que cero') }
+  
+  if (!stock || stock < 0) { errors.push('Debes ingresar un stock valido') }
+  
+  if (!genero) { errors.push('Debes ingresar un genero') }
+  
+  if (!category) { errors.push('Debes ingresar una cetegoria') }
+  
+  if (!size) { errors.push("No hay talles seleccionados") }
+
+  // Si existen errores
+  if (errors.length) {
+    return res.status(400).json({ errors })
+  }
+  // Si esta todo OK
   try {
-
-    validate("name", name);
-    validate("description", description);
-    validate("price", price);
-
     const newProduct = await createProductDB(name, description, price, images, stock, genero, category, size);
 
     console.log(`El producto ${name} fue creado con éxito!!`);
-    res.status(201).json(newProduct);
+    return res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Error al crear tu nuevo producto" });
+    return res.status(500).json({ error: "Error al crear tu nuevo producto" });
   }
 };
 
