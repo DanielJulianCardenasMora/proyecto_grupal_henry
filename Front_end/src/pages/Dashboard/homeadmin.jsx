@@ -38,8 +38,10 @@ export default function HomeAdmin(){
     dispatch(getUsers());
   }, []);
 
+
   const onSubmit = async (e) => {
     e.preventDefault();
+
 
     try {
       const data = await axios.post('https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/send-email', email)
