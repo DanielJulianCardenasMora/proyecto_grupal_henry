@@ -7,13 +7,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 2%;
-    padding-right:2% ;
+    padding-left: 0%;
+    padding-right:0% ;
     box-sizing: border-box;
     z-index: 1000;
 }
+
 .boxLogo{
-    width: 5%;
+    width: 10%;
     height: 99%;
     margin-top: 1%;
     background-image: url('../../assets/Imagenes/circulo-negro2.png');
@@ -35,6 +36,7 @@
 }
 .boxList ul{
     display: flex; justify-content: space-around;
+    padding: 0;
 }
 .boxList li{
     list-style-type: none;
@@ -73,7 +75,7 @@
 @media (max-width: 1350px){
 
     .nav{
-        height: 14%;
+        height: 8%;
 
     }
     .boxLogo{
@@ -90,7 +92,7 @@
 
 @media (max-width: 1050px){
     .nav{
-        height: 14%;
+        height: 10%;
 
     }
     .boxLogo{
@@ -99,23 +101,34 @@
     }
 
     .logIn{
-        width: 15%;
+        width: 10%;
+        padding-top: 2%;
+        
         /* background-color: chocolate; */
     }
+    .logInB{
+        background: none;
+        color: white;
+        border: 1px solid white;
+        border-radius: 1em;
+        padding-top: 4%;
+        padding-bottom: 4%;
+    }
+    
 
 }
 
 @media (max-width: 800px){
  .nav{
-    height: 15%;
+    height: 10%;
 
 }
 .boxLogo{
-    width: 10%;
-    height: 99%;
-    margin-top: 1%;
+    width: 12vw;
+    height: 8vw;
     background-image: url('../../assets/Imagenes/circulo-negro2.png');
-    
+    margin: 0;
+    padding: 0;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -127,7 +140,7 @@
 }
 .boxList{
     /* background-color: rgb(63, 63, 63); */
-    width: 45%;
+    width: 55%;
 
 }
 .boxList ul{
@@ -148,7 +161,7 @@
 }
 
 .logIn{
-    width: 7%;
+    width: 12vw;
     /* background-color: chocolate; */
 }
 
@@ -157,6 +170,8 @@
     color: white;
     border: 1px solid white;
     border-radius: 1em;
+    padding-top: 6%;
+    padding-bottom: 6%;
 }
 
 .logInB:hover{
@@ -166,7 +181,7 @@
 
 @media (max-width: 600px){
     .nav{
-        height: 15%;
+        height: 8%;
         width: 100%;
         /* background-color: brown; */
         position: absolute;
@@ -182,8 +197,8 @@
     }
     .boxLogo{
         width: 20%;
-        height: 99%;
-        margin-top: 1%;
+        height: 12vw;
+        margin-top: 5%;
         background-image: url('../../assets/Imagenes/circulo-negro2.png');
         
         background-size: contain;
@@ -227,6 +242,9 @@ display: none;
         color: white;
         border: 1px solid white;
         border-radius: 1em;
+        padding-top: 4%;
+        padding-bottom: 4%;
+        margin-top: 9%;
     }
     
     .logInB:hover{
