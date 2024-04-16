@@ -62,16 +62,27 @@ export default function HomeAdmin(){
               </h3>
 
               <form onSubmit={onSubmit}>
+
+
+                <div className={style.formContent}>
                 <label>Titutlo: </label>
                 <input type="text" name="titulo" value={email.titulo} onChange={onChange} />
-
-
-                <label>Mensaje: </label>
-                <input type="text" name="mensaje" value={email.mensaje} onChange={onChange} />
-
-
-                <label>Email: </label>
+                </div>
+                <div className={style.formContent}>
+                <label>Para: </label>
                 <input type="text" name="user" value={email.user} onChange={onChange} />
+                </div>
+                <div className={style.formArea}>
+                <label>Mensaje: </label>
+                <textarea type="text" name="mensaje" value={email.mensaje} onChange={onChange} />
+
+                </div>
+
+
+
+
+    
+
               
               <button type='submit'>Enviar correo</button>
               </form>
