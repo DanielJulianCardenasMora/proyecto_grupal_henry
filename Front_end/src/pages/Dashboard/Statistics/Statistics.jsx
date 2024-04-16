@@ -28,6 +28,7 @@ const Statistics = () => {
         };
       });
       setAllOrders(ordersId)
+      console.log(allOrders)
     } catch (error) {
       console.error(error);
     }
@@ -56,7 +57,7 @@ const Statistics = () => {
       let totalPrice = 0;
       order.forEach(item => {
         if (item.price !== undefined) {
-          totalPrice += item.price;
+          totalPrice += item.price * item.quantity;
         }
       });
       return {
