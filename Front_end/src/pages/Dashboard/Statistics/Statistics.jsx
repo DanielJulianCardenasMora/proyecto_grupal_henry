@@ -15,6 +15,7 @@ const Statistics = () => {
   const URL_EACH_ORDER = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/orders'
   const [allOrders, setAllOrders] = useState([]);
   const [eachOrder, setEachOrder] = useState([]);
+  const [productQuantity, setProductQuantity] = useState([]);
   const [priceOrder, setPriceOrder] = useState([]);
   const [totalSum, setTotalSum] = useState([]);
   
@@ -87,6 +88,7 @@ const Statistics = () => {
         }
       }
     }
+    setProductQuantity(uniqueOrders)
     console.log(uniqueOrders);
   }
 
@@ -107,7 +109,7 @@ const Statistics = () => {
     console.log(eachOrder)
     console.log(priceOrder)
     console.log(totalSum)
-  }, [allOrders])
+  }, [totalSum])
 
   
   return (
@@ -138,12 +140,12 @@ const Statistics = () => {
             <Chart priceOrder={priceOrder} />
           </div>
           <div className={style.area}>Orders per month
-            <Chart2 priceOrder={priceOrder}/>
+            <Chart2 priceOrder={priceOrder} />
           </div>
         </div>
         <div className={style.seccion3}>
           <div className={style.product}>Product ranking --- Top 5 most sold
-            <Chart3 />
+            <Chart3 productQuantity={productQuantity} />
           </div>
           <div className={style.product}>Product ranking --- Total orders per product
             <Chart4 />
