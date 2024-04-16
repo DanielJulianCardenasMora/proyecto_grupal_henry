@@ -65,20 +65,18 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   //   return null;
   // }
   // Suponiendo que "sizeData" es el array que recibes en el backend
-  size.forEach(item => {
-    console.log("Size:", item.size);
-    console.log("Stock:", item.stock);
-  });
-
-  console.log('Esto es size', size);
-  console.log('esto es images', images)
   if (!name || !description || !price || !genero || !category) {
     console.log('Faltan propiedades requeridas para crear el producto.');
     return null;
   }
   const totalStock = size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
 
-  const newProduct = { name, description, price, images, stock: totalStock, genero, category, size };
+  const newSizeArray = size.map(item => ({
+    size: item.size,
+    stock: item.stock
+  }));
+  
+  const newProduct = { name, description, price, images, stock: totalStock, genero, category, size: newSizeArray };
   console.log('NewProduct', newProduct);
   try {
     newProduct.images = [images];
