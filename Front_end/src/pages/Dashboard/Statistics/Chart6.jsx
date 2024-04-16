@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 const places = [
   {
     place: 'a@mail.com',
@@ -23,7 +23,15 @@ const places = [
 ]
 
 
-const Chart6 = () => {
+const Chart6 = ({userOrder}) => {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    setOrders(userOrder)
+    console.log(orders)
+  }, [userOrder, orders])
+
+
   return (
     <div style={{width:'80%'}}>
       <div className="table-container">
@@ -35,7 +43,7 @@ const Chart6 = () => {
             </tr>
           </thead>
           <tbody>
-            {places.map((place, index) => (
+            {orders.map((order, index) => (
               <tr key={index}>
                 <td
                 style={{
@@ -43,8 +51,8 @@ const Chart6 = () => {
                 width: '100%',
                 height: '100%',
                 textAlign: 'left'
-              }}>{place.place}</td>
-                <td>{place.amount}</td>
+              }}>{order.email}</td>
+                <td>{order.orders}</td>
               </tr>
             ))}
           </tbody>

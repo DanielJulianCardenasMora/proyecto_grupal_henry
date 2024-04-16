@@ -1,5 +1,5 @@
 import style from './Detail.module.css'
-import fondo from '../../assets/Imagenes/Detail_fondo_aplicar.png'
+import fondo from '../../assets/Imagenes/Detail_fondo3_aplicar.png'
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react'

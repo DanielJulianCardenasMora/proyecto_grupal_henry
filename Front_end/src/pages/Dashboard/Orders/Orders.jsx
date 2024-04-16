@@ -92,7 +92,8 @@ const Orders = () => {
           <tr>
             <th>Id</th>
             <th>Detalle</th>
-            <th>User Id</th>
+            <th>User name</th>
+            <th>User email</th>
             <th>Edit</th>
           </tr>
         </thead>
@@ -102,7 +103,8 @@ const Orders = () => {
         <tr key={order.id}>
           <td>{index}</td>
           <td>{editorder && editorder.id === order.id ? <input type="text" name="detalle" value={editorder.detalle} onChange={handleInputChange} /> : order.detalle}</td>
-          <td>{editorder && editorder.id === order.id ? <input type="text" name="UserId" value={editorder.UserId} onChange={handleInputChange} /> : order.UserId}</td>
+          <td>{editorder && editorder.id === order.id ? <input type="text" name="nameUser" value={editorder.nameUser} onChange={handleInputChange} /> : order.nameUser}</td>
+          <td>{editorder && editorder.id === order.id ? <input type="text" name="email" value={editorder.email} onChange={handleInputChange} /> : order.email}</td>
           <td>
             {editorder && editorder.id === order.id ?
               <>
@@ -112,7 +114,7 @@ const Orders = () => {
               :
               <button onClick={() => handleEdit(order.id)} className={styles.iconoeditar}>Edit</button>
             }
-            <button onClick={() => handleDelete(order.id)} className={styles.iconoeliminar}>Delete</button>
+            {/* <button onClick={() => handleDelete(order.id)} className={styles.iconoeliminar}>Delete</button> */}
           </td>
         </tr>
         ))}

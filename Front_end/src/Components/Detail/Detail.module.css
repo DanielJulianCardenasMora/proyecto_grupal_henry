@@ -28,11 +28,10 @@
 .producto{
   width: 100%;
   height:100%;
-  background-color: rgba(13, 118, 247, 0.544);
+  background-color: rgba(8, 39, 77, 0.283);
   position: absolute;
   top: 0;
   width: 50%;
-  border-right: px solid black;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -107,18 +106,19 @@
   line-height: .5;
 }
 .box2{
-  background-color: rgba(39, 29, 222, 0.183);
+  background-color: rgba(4, 7, 67, 0.489);
   height: 17%;
   width: 25%;
   position: absolute;
   right: 22%;
-  top: 33%;
+  top: 28%;
   border-radius: 30px 5px 30px 5px;
-  border: 2px solid rgba(0, 0, 0, 0.603);
+  border: 2px solid rgba(13, 178, 224, 0.956);
   line-height: 1;
   font-size: 0.9vw;
   color: rgb(255, 255, 255);
   text-align: left;
+  box-shadow: rgba(6, 6, 135, 0.615) 30px 50px 60px -12px inset, rgba(6, 6, 135, 0.615) -30px 0px 60px -12px inset, rgba(4, 7, 172, 0.566) 20px 38px 36px -18px inset, 4px 4px 5px 2px rgba(0, 0, 0, 0.385);
 }
 .difuminado2{
   height: 100%;
@@ -141,9 +141,9 @@
 .boxDetalle{
   text-align: right;
   position: absolute;
-  top: 57%;
+  top: 50%;
   right: 4%;
-  color: rgb(12, 6, 123);
+  color: rgb(0, 0, 75);
   font-size: 1.5vw;
   font-family: f4;
 }
@@ -153,19 +153,19 @@
 }
 .name{
   position: absolute;
-  top: 17%;
+  top: 12%;
   left: 7%;
-  color: rgb(16, 23, 225);
+  color: rgb(27, 103, 255);
   width: 85%;
   font-family: f3;
-  text-align: left;
-  text-shadow: 2px 2px 0px rgb(99, 167, 255);
+  text-align: center;
+  text-shadow: 2px 2px 0px rgb(171, 207, 255);
   font-size: 2.5vw;
 }
 .boton{
   position: absolute;
-  bottom: 0;
-  right: 50%;
+  bottom: 4%;
+  right: 36%;
   height: 18%;
   width: 30%;
   transform: translate(50%);
@@ -201,16 +201,55 @@
 }
 .buy{
   position: absolute;
-  left: 10%;
-  bottom: 18%;
+  left: 23.5%;
+  bottom: 12%;
 }
 .buy button{
   height: 5vh;
   width: 7.5vw;
   font-size: 1vw;
   border-radius: 20px;
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.15s ease-in-out; 
+  border: 1px solid rgb(166, 4, 166);
+  background-color: rgb(228, 50, 226);
+  box-shadow: 2px 2px 2px 2px black;
 }
 .buy button:hover{
-  box-shadow: 0px 0px 15px 15px rgb(122, 10, 227);
+  box-shadow: 2px 2px 2px 2px black, 0px 0px 11px 15px rgb(122, 10, 227);
+}
+.size{
+  height: 10vh;
+  width: 10%;
+  position: absolute;
+  top: 72%;
+  left: 26.1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start
+}
+.size select{
+  border-radius: 15px;
+  height: 4vh;
+  background-color: rgb(4, 4, 150);
+  text-align: center;
+  border: 1px solid white;
+  font-size: 1vw;
+  transition: all 0.15s ease-in-out; 
+}
+.size select:hover{
+  box-shadow: 0px 0px 10px 5px rgb(122, 10, 227);
+}
+.size1{
+  margin-bottom: 1vh;
+}
+.boxbuy{
+  border: 2px solid rgb(104, 2, 172);
+  border-radius: 30px;
+  height: 22%;
+  width: 22%;
+  position: absolute;
+  top: 69%;
+  left: 20%;
+  background-color: #61b4f377;
+  box-shadow: rgba(6, 6, 135, 0.615) 0px 20px 60px -12px inset, rgba(4, 7, 172, 0.566) 0px 18px 36px -18px inset, 4px 4px 5px 2px rgba(0, 0, 0, 0.385);
 }

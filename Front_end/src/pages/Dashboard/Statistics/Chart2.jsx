@@ -118,7 +118,7 @@ const Chart2 = ({ eachOrder }) => {
       color: 'black',
       width: '100%',
       height: '100%',
-      fontSize: '1vw',
+      fontSize: '.8vw',
     }}>
  <ResponsiveContainer width="100%" height="90%">
         <BarChart
