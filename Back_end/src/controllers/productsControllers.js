@@ -75,8 +75,8 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     size: item.size,
     stock: item.stock
   }));
-  
-  const newProduct = { name, description, price, images, stock: totalStock, genero, category, size: newSizeArray };
+
+  const newProduct = { name, description, price, images, stock: totalStock, genero, category, size: JSON.stringify(newSizeArray)  };
   console.log('NewProduct', newProduct);
   try {
     newProduct.images = [images];
