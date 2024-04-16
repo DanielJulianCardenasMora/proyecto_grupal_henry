@@ -11,7 +11,8 @@ import {
   PAYMENT,
   GET_USERS,
   ALERTS_ACTIVE,
-  REGISTER
+  REGISTER,
+  PRODUCT_ERROR
 } from "../actions/type";
 
 const initialstate = {
@@ -39,7 +40,8 @@ const initialstate = {
     sortOrder: '' // Orden de precio
   },
   alerts: false,
-  register: false
+  register: false,
+  productError: []
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -145,6 +147,13 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       ...state,
       register: payload
     }
+
+    case PRODUCT_ERROR:
+
+      return{
+        ...state,
+        productError: payload
+      }
     default:
       return { ...state };
   }
