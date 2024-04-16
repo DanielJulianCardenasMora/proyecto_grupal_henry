@@ -65,14 +65,11 @@ const Form = ({ addProduct }) => {
       name,
       description,
       price: parseInt(price),
-      stock: parseInt(stock),
+      stock: totalStock,
       genero,
       category,
       images: UrlImagen,
-      size: formData.size.reduce((acc, curr) => {
-        acc[curr.size] = parseInt(curr.stock);
-        return acc;
-      }, {})
+      size: formData.size,
     };
 
     if (data.name == null) {

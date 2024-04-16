@@ -48,7 +48,7 @@ const Cart = ({ carrito, agregarProducto }) => {
           quantity: item.quantity,
           name: item.name,
           price: item.price,
-          size: item.size
+          size: [{ size: item.size, quantity: item.quantity }]
         })),
 
       }))

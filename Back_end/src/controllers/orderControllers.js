@@ -15,6 +15,7 @@ const modifictProductStock = async (productId, quantity, size) => {
         }
 
         existingProduct.stock -= quantity;
+        
         for (const [sizeKey, sizeStock] of Object.entries(size)) {
             if (existingProduct.size[sizeKey] < sizeStock) {
                 throw new Error({ error: `No hay suficiente stock disponible para la talla ${sizeKey} del producto ${existingProduct.name}` })
@@ -46,10 +47,7 @@ const createOrder = async (req, res) => {
         for (const product of products) {
             const { productId, quantity, name, price, size } = product;
 
-            const formattedSize = Object.keys(size)
-                .sort()
-                .map(key => `${size[key]}`)
-                .join(',');
+            const formattedSize = size.map(({ size: sizeKey, stock }) => `${sizeKey}: ${stock}`).join(', ');
 
             let existeProduct = await OrderDetail.findOne({
                 where: {
