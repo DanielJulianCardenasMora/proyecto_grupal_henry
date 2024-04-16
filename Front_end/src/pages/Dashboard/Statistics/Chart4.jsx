@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -46,7 +46,22 @@ const data = [
   },
 ];
   
-const Chart4 = () => {
+const Chart4 = ({productQuantity}) => {
+  const [top, setTop] = useState([]);
+  const [orders, setOrders] = useState([]);
+
+  const getTop = () => {
+    const items = orders
+    .sort((a, b) => b.quantity - a.quantity) // Sort in descending order based on quantity
+    setTop(items)
+    console.log(top)
+  }
+
+  useEffect(() => {
+    setOrders(productQuantity)
+    getTop()
+  }, [productQuantity, orders])
+
   return (
     <div style={{
       color: 'black',
@@ -58,7 +73,7 @@ const Chart4 = () => {
     <BarChart
       width={500}
       height={300}
-      data={data}
+      data={top}
       margin={{
         top: 5,
         right: 30,
@@ -72,7 +87,7 @@ const Chart4 = () => {
       <Tooltip />
       <Legend />
       <CartesianGrid strokeDasharray="2 3" stroke="#7ccfff"/>
-      <Bar dataKey="pv" fill="#8884d8" background={{ fill: '#eee' }} />
+      <Bar dataKey="quantity" fill="#8884d8" background={{ fill: '#eee' }} />
     </BarChart>
       </ResponsiveContainer>
     </div>
