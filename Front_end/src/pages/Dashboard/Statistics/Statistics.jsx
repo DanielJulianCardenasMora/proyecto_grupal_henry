@@ -100,7 +100,7 @@ const Statistics = () => {
       const { data } = await axios.get(`${URL_USERS}`);
       const userOrders = data.map((user) => {
         return {
-          name: user.name,
+          email: user.email,
           orders: user.Orders.length,
         };
       });
