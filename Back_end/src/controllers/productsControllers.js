@@ -61,11 +61,11 @@ const getProductsByName = async (name) => {
 
 const createProductDB = async (name, description, price, images, stock, genero, category, size) => {
   if (!size || Object.keys(size).length === 0 || !Object.values(size).some(stock => stock > 0)) {
-    console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
+    ;
     return null;
   }
   if (!name || !description || !price || !genero || !category) {
-    console.log('Faltan propiedades requeridas para crear el producto.');
+    ;
     return null;
   }
   const totalStock = Object.values(size).reduce((acc, curr) => acc + parseInt(curr), 0);
@@ -83,13 +83,13 @@ const createProductDB = async (name, description, price, images, stock, genero, 
     const categoryName = await Category.findOne({ where: { name: category } });
     
     if (!categoryName) {
-      console.log("La categoría especificada no existe.");
+      ;
       return null;
     }
     await productCreatedDB.addCategory(categoryName);
     return productCreatedDB;
   } catch (error) {
-    console.log(error);
+    ;
     throw new Error('Error al crear el producto en la base de datos.');
   }
 };

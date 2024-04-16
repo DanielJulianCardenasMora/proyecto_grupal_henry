@@ -25,7 +25,7 @@ router.get("/cancel-order", cancelOrder);
 router.use('/admin', adminRouter)
 
 router.post('/carrito/comprar', async (req, res) => {
-    console.log(req.body);
+    ;
     if (req.body && req.body.length > 0) {
         return res.sendStatus(200)
     }
