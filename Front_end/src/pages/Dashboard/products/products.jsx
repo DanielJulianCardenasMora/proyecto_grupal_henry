@@ -106,7 +106,7 @@ export default function ProductsAdmin() {
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Image</th>
+            {/* <th>Image</th> */}
             <th>Stock</th>
             <th>Price</th>
             <th>Genero</th>
@@ -120,7 +120,7 @@ export default function ProductsAdmin() {
         <tr key={product.id}>
           <td>{index}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="name" value={editproduct.name} onChange={handleInputChange} /> : product.name}</td>
-          <td>{editproduct && editproduct.id === product.id ? <input type="text" name="image" value={editproduct.image} onChange={handleInputChange} /> : <img src={product.image} alt={product.name} />}</td>
+          {/* <td>{editproduct && editproduct.id === product.id ? <input type="text" name="image" value={editproduct.image} onChange={handleInputChange} /> : <img src={product.image} alt={product.name} />}</td> */}
           <td>{editproduct && editproduct.id === product.id ? <input type="number" name="stock" value={editproduct.stock} onChange={handleInputChange} /> : product.stock}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="number" name="price" value={editproduct.price} onChange={handleInputChange} /> : product.price}</td>
           <td>{editproduct && editproduct.id === product.id ? <input type="text" name="genero" value={editproduct.genero} onChange={handleInputChange} /> : product.genero}</td>
