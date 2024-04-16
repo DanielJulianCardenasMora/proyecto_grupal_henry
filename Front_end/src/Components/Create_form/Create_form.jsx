@@ -71,7 +71,7 @@ const Form = ({ addProduct }) => {
       images: UrlImagen,
       size: size,
     };
-
+    console.log('estoes data', data)
     if (data.name == null) {
 
     }
@@ -100,21 +100,18 @@ const Form = ({ addProduct }) => {
       console.error('El estado "size" no es un array.');
       return;
     }
-  
-    const newSizes = [...size]; 
-    newSizes[index] = { ...newSizes[index], [event.target.name]: event.target.value }; 
-    setFormData({ ...formData, size: newSizes }); 
+    const newSizes = [...size];
+    newSizes[index] = { ...newSizes[index], [event.target.name]: event.target.value };
+    setFormData({ ...formData, size: newSizes });
   };
-  
+
   const addSize = () => {
     if (!Array.isArray(size)) {
       console.error('El estado "size" no es un array.');
       return;
     }
-  
     setFormData({ ...formData, size: [...size, { size: '', stock: '' }] }); // Agregar un nuevo objeto con valores predeterminados al array size
   };
-  
 
   const removeSize = (index) => {
     const newSizes = [...size];

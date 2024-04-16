@@ -60,12 +60,13 @@ const getProductsByName = async (name) => {
 };
 
 const createProductDB = async (name, description, price, images, stock, genero, category, size) => {
-  if (!Array.isArray(size) || size.length === 0 || !size.some(item => item.stock > 0)) {
-    console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
-    return null;
-  }
+  // if (!Array.isArray(size) || size.length === 0 || !size.some(item => item.stock > 0)) {
+  //   console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
+  //   return null;
+  // }
 
   console.log('Esto es size', size);
+  console.log('esto es images', images)
   if (!name || !description || !price || !genero || !category) {
     console.log('Faltan propiedades requeridas para crear el producto.');
     return null;
@@ -89,7 +90,7 @@ const createProductDB = async (name, description, price, images, stock, genero, 
       return null;
     }
     await productCreatedDB.addCategory(categoryName);
-    
+
     await Promise.all(size.map(async (item) => {
       // Crear cada tamaño en la base de datos y asociarlo al producto
       await Size.create({
