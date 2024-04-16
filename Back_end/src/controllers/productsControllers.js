@@ -71,10 +71,10 @@ const createProductDB = async (name, description, price, images, stock, genero, 
   }
   const totalStock = size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
 
-  const newSizeArray = size.map(item => ({
+  const newSizeArray = size.map(item => JSON.stringify({
     size: item.size,
     stock: parseInt(item.stock)
-  }));
+}));
   
 
   const newProduct = { name, description, price, images, stock: totalStock, genero, category, size:newSizeArray  };
