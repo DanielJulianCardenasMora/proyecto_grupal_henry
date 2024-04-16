@@ -21,7 +21,7 @@ const modifictProductStock = async (productId, quantity, size) => {
             }
             existingProduct.size[sizeKey] -= sizeStock;
         }
-        await existingProduct.save();    //save se usa para actualizar el stock en la bd. 
+        await existingProduct.save();
     } catch (error) {
         console.error('No se pudo actualizar el stock en la Base de Datos:', error);
         throw error;
@@ -48,7 +48,7 @@ const createOrder = async (req, res) => {
 
             const formattedSize = Object.keys(size)
                 .sort()
-                .map(key => `${size[key]}:${key}`)
+                .map(key => `${size[key]}`)
                 .join(',');
 
             let existeProduct = await OrderDetail.findOne({
@@ -76,6 +76,11 @@ const createOrder = async (req, res) => {
             }
             console.log("Producto agregado a la orden:", name, quantity, formattedSize);
         }
+
+        for (const product of products) {
+            await modifictProductStock(product.productId, product.quantity, product.size);
+        }
+
         await newOrder.setUser(userId);
         res.status(200).send(newOrder);
     } catch (error) {
