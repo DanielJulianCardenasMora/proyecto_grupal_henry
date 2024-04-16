@@ -19,8 +19,8 @@ import {
 
 //! URL -------------------
 
-// const URL = "http://localhost:3001";
-const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+const URL = "http://localhost:3001";
+// const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
 
 //! ------------------------
 
@@ -138,7 +138,6 @@ export const payment = (price) => {
 };
 
 export const addProduct = (formData) => async (dispatch) => {
-  console.log("FormData de actions:", formData);
   try {
     const config = {
       headers: {
@@ -146,18 +145,17 @@ export const addProduct = (formData) => async (dispatch) => {
       },
     };
     const response = await axios.post(`${URL}/admin/create`, formData, config);
-    console.log("respuesta de action", response.data);
+    
     dispatch({
       type: ADD_PRODUCT,
       payload: response.data,
     });
   } catch (error) {
+    console.log(error.response.data.errors);
+    const response = error.response.data.errors
     dispatch({
       type: PRODUCT_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
+      payload: response
     });
   }
 };

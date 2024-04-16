@@ -25,8 +25,8 @@ function Login ({setUsuario, usuario}) {
 
   //! URL -------------------
 
-  // const URL = "http://localhost:3001"
-  const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+  const URL = "http://localhost:3001"
+  // const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
 
   //! ------------------------
 
@@ -39,7 +39,7 @@ function Login ({setUsuario, usuario}) {
     password: "",
   });
 
-  const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
+  const [showRegisterDialog, setShowRegisterDialog] = useState(false);
 
   const handleClose = () => {
     setShowRegisterDialog(false);
