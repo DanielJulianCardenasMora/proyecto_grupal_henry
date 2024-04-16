@@ -1,5 +1,5 @@
 .main{
-    background-color: rgba(255, 255, 255, 0.886);
+    background-color: rgb(238, 238, 238);
     width: 85%;
     box-sizing: border-box;
     display: flex;
@@ -31,7 +31,7 @@
 .boxes{
     width: 92%;
     height: 22%;
- 
+
     display: flex;
    margin: auto;
     justify-content: space-between;
@@ -42,6 +42,11 @@
     background-color: white;
     width: 23%;
   color: black;
+  box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+  -webkit-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+  -moz-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+  border-radius: 7px;
+  border: 1px solid rgb(195, 195, 195);
   
 }
 
@@ -56,21 +61,27 @@ box-sizing: border-box;
   justify-content: space-between;
   color: black;
 
+
 }
 
 .principal, .side{
     height: 100%;
+    background-color: white;
+    box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+    -webkit-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+    -moz-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+    border-radius: 7px;
+    border: 1px solid rgb(195, 195, 195);
  
 }
 
 .principal{
     width: 74%;
 
-    border: 1px solid gray;
    
 }
 
 .side{
     width: 25%;
-    border: 1px solid gray;
+
 }
