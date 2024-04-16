@@ -60,7 +60,7 @@ const getProductsByName = async (name) => {
 };
 
 const createProductDB = async (name, description, price, images, stock, genero, category, size) => {
-  if (!size || size.length === 0 || !size.some(size => size.stock > 0)) {
+  if (!Array.isArray(size) || size.length === 0 || !size.some(item => item.stock > 0)) {
     console.log('Debe proporcionar al menos un tamaño con un stock definido para crear el producto.');
     return null;
   }

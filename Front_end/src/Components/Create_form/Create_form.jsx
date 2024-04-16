@@ -69,7 +69,7 @@ const Form = ({ addProduct }) => {
       genero,
       category,
       images: UrlImagen,
-      size: formData.size,
+      size: size,
     };
 
     if (data.name == null) {
@@ -96,13 +96,25 @@ const Form = ({ addProduct }) => {
   };
 
   const sizeChange = (event, index) => {
+    if (!Array.isArray(size)) {
+      console.error('El estado "size" no es un array.');
+      return;
+    }
+  
     const newSizes = [...size];
     newSizes[index] = { ...newSizes[index], [event.target.name]: event.target.value };
-    setFormData({ ...formData, size: newSizes }); // Cambio aquí
+    setFormData({ ...formData, size: newSizes });
   };
+  
   const addSize = () => {
+    if (!Array.isArray(size)) {
+      console.error('El estado "size" no es un array.');
+      return;
+    }
+  
     setFormData({ ...formData, size: [...formData.size, { size: '', stock: '' }] });
-  }
+  };
+  
 
   const removeSize = (index) => {
     const newSizes = [...size];
