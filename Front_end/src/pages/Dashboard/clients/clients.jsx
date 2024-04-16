@@ -95,7 +95,6 @@ const clients = () => {
           userData
         );
         getUsers();
-
         return;
       }
     } else {
