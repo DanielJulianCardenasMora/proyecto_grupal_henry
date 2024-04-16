@@ -55,9 +55,11 @@ const deleteUserDB = async (userEmail) => {
     return deleted
 }
 
+// En tu archivo de controladores de usuarios
+
 module.exports = {
     getAllUsers,
     getUserInfoDB,
     updateUserDB,
-    deleteUserDB
+    deleteUserDB,
 }
