@@ -10,6 +10,7 @@ const clients = () => {
   const [isLoading, setIsLoading] = useState(false);
   const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app';
   const [superAdmin, setSuperAdmin] = useState(false)
+  const [activated, setActivated] = useState(false)
   const handleEdit = (userID) => {
     const userForEdit = users.find(user => user.email === userID)
     setEdituser(userForEdit);
@@ -81,7 +82,9 @@ const clients = () => {
     if (rol == 'superadmin') {
       setSuperAdmin(true)
     }
-
+    if (activated === false) {
+      setActivated(true)
+    }
   }, []);
 
 
@@ -110,32 +113,18 @@ const clients = () => {
       }
     }
   };
-  const handleActivateDeactivate = async (user) => {
-    const isActive = user.active;
 
-    if (isActive) {
-      if (confirm(`¿Estás seguro de que deseas desactivar ${user.email}?`)) {
-        const userData = { active: false };
-        await updateUser(user.email, userData);
-        getUsers();
-      }
-    } else {
-      if (confirm(`¿Estás seguro de que deseas activar ${user.email}?`)) {
-        const userData = { active: true };
-        await updateUser(user.email, userData);
-        getUsers();
-      }
+  const handelactivited = async (user) => {
+    try {
+      const newActiveState = !user.active; // Cambiar el estado activo
+      const userData = { active: newActiveState };
+      await axios.put(`${API_URL}/users/${user.email}`, userData);
+      getUsers(); // Actualizar lista de usuarios
+      setActivated(newActiveState); // Actualizar el estado activated
+    } catch (error) {
+      console.error('Error al activar/desactivar usuario:', error);
     }
   };
-
-  const handleDeactivateUser = async (user) => {
-    if (confirm(`¿Estás seguro de que deseas desactivar ${user.email}?`)) {
-      const userData = { active: false };
-      await updateUser(user.email, userData);
-      getUsers();
-    }
-  };
-
 
   return (
     <div className={styles.container}>
@@ -262,14 +251,14 @@ const clients = () => {
                         <></>
                       )}
                       {user.active ? (
-                        <button onClick={() => handleActivateDeactivate(user)} className={styles.iconDesac}>
-                          <FontAwesomeIcon icon={faEye} style={{ marginRight: '5px' }} />
-                          {user.active ? "Desactivar" : "Activar"}
+                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
+                          <FontAwesomeIcon icon={faEyeSlash} style={{ marginRight: '5px' }} />
+
                         </button>
                       ) : (
-                        <button onClick={() => handleDeactivateUser(user)} className={styles.iconDesac}>
-                          <FontAwesomeIcon icon={faEyeSlash} style={{ marginRight: '5px' }} />
-                          Desactivar
+                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
+                          <FontAwesomeIcon icon={faEye} style={{ marginRight: '5px' }} />
+
                         </button>
                       )}
                     </td>

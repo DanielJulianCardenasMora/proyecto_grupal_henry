@@ -7,7 +7,5 @@ const usersRouter = Router();
 usersRouter.post('/api/register', register);
 usersRouter.post('/api/login', login);
 usersRouter.put('/:userEmail', editUser);
-usersRouter.put('/activate/:userEmail', activateUser);
-usersRouter.put('/deactivate/:userEmail', deactivateUser);
 
 module.exports = usersRouter;
