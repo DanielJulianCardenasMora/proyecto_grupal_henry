@@ -89,6 +89,16 @@ const createProductDB = async (name, description, price, images, stock, genero, 
       return null;
     }
     await productCreatedDB.addCategory(categoryName);
+    
+    await Promise.all(size.map(async (item) => {
+      // Crear cada tamaño en la base de datos y asociarlo al producto
+      await Size.create({
+        size: item.size,
+        stock: item.stock,
+        ProductId: productCreatedDB.id // Asignar el ID del producto creado
+      });
+    }));
+
     return productCreatedDB;
   } catch (error) {
     console.log(error);

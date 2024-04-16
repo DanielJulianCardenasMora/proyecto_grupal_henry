@@ -101,9 +101,9 @@ const Form = ({ addProduct }) => {
       return;
     }
   
-    const newSizes = [...size];
-    newSizes[index] = { ...newSizes[index], [event.target.name]: event.target.value };
-    setFormData({ ...formData, size: newSizes });
+    const newSizes = [...size]; 
+    newSizes[index] = { ...newSizes[index], [event.target.name]: event.target.value }; 
+    setFormData({ ...formData, size: newSizes }); 
   };
   
   const addSize = () => {
@@ -112,7 +112,7 @@ const Form = ({ addProduct }) => {
       return;
     }
   
-    setFormData({ ...formData, size: [...formData.size, { size: '', stock: '' }] });
+    setFormData({ ...formData, size: [...size, { size: '', stock: '' }] }); // Agregar un nuevo objeto con valores predeterminados al array size
   };
   
 
