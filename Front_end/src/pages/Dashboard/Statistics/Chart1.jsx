@@ -15,7 +15,7 @@ const Chart = ({ priceOrder }) => {
 
   const createData = () => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const newData = orders.map((order, index) => {
+    const newData = orders.slice(0, 12).map((order, index) => {
       const monthIndex = index % months.length; // Handle cases with more orders than months
     const monthName = months[monthIndex];
       return {
@@ -39,7 +39,7 @@ const Chart = ({ priceOrder }) => {
         color: 'black',
         width: '100%',
         height: '100%',
-        fontSize: '1vw',
+        fontSize: '.8vw',
       }}>
     <ResponsiveContainer width="100%" height="90%" >
         <LineChart

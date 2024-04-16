@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const places = [
   {
@@ -32,7 +32,15 @@ const places = [
 ]
 
 
-const Chart5 = () => {
+const Chart5 = ({ userCountry }) => {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    setOrders(userCountry)
+    console.log(orders)
+  }, [userCountry, orders])
+
+  
   return (
     <div style={{width:'90%'}}>
       <div className="table-container">
@@ -44,7 +52,7 @@ const Chart5 = () => {
           </tr>
         </thead>
         <tbody>
-          {places.map((place, index) => (
+          {orders.map((place, index) => (
             <tr key={index}>
               <td
                style={{
@@ -53,7 +61,7 @@ const Chart5 = () => {
                 height: '100%',
                 textAlign: 'left'
               }}>{place.place}</td>
-              <td>{place.amount}</td>
+              <td>{place.orders}</td>
             </tr>
           ))}
         </tbody>

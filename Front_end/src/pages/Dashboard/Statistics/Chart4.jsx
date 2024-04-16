@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -46,13 +46,34 @@ const data = [
   },
 ];
   
-const Chart4 = () => {
+const Chart4 = ({productQuantity}) => {
+  const [top, setTop] = useState([]);
+  const [orders, setOrders] = useState([]);
+
+  const getTop = () => {
+    const items = orders
+    .sort((a, b) => b.quantity - a.quantity) // Sort in descending order based on quantity
+    setTop(items)
+    console.log(top)
+  }
+
+  useEffect(() => {
+    setOrders(productQuantity)
+    getTop()
+  }, [productQuantity, orders])
+
   return (
+    <div style={{
+      color: 'black',
+      width: '100%',
+      height: '100%',
+      fontSize: '.8vw',
+    }}>
     <ResponsiveContainer width="100%" height="100%">
     <BarChart
       width={500}
       height={300}
-      data={data}
+      data={top}
       margin={{
         top: 5,
         right: 30,
@@ -61,14 +82,15 @@ const Chart4 = () => {
       }}
       barSize={20}
     >
-      <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
-      <YAxis />
+      <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} stroke="#ffffff" />
+      <YAxis stroke="#ffffff"/>
       <Tooltip />
       <Legend />
-      <CartesianGrid strokeDasharray="3 3" />
-      <Bar dataKey="pv" fill="#8884d8" background={{ fill: '#eee' }} />
+      <CartesianGrid strokeDasharray="2 3" stroke="#7ccfff"/>
+      <Bar dataKey="quantity" fill="#8884d8" background={{ fill: '#eee' }} />
     </BarChart>
-  </ResponsiveContainer>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
