@@ -88,20 +88,23 @@
   position: absolute;
   top: 20%;
   left: 3.7%;
-  height: 4%;
-  width: 4%;
+  height: 5%;
+  width: 5%;
   /* background-image: url("../../assets/Imagenes/Products_burger_aplicar.png"); */
   background-repeat: no-repeat;
   background-size: contain;
   z-index: 100;
   font-family: f5;
   font-size: 2vw;
-  color: rgb(21, 6, 188);
+  color: rgb(0, 3, 105);
+  border-bottom: 1px solid rgb(0, 3, 105);
+  transition: all ease 0.2s
 }
 .boton:hover,
 .botton_hidden:hover{
   cursor: pointer;
-  color: rgb(90, 10, 166);
+  color: rgb(182, 10, 191);
+  border-bottom: 1px solid rgb(182, 10, 191)
 }
 .botton_hidden{
   opacity: 0;
