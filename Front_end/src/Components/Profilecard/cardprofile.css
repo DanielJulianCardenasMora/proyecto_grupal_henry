@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: space-around;
     margin-bottom: 5%;
-    background-color: rgb(53, 125, 242);
+    background-color: rgb(100, 31, 227);
 }
 
 .card-header {
@@ -25,6 +25,8 @@
     height: 60%;
     font-size: 20px;
     padding-top: 3%;
+
+
 }
 
 
@@ -38,7 +40,7 @@
 
 .card-social {
     background-color: #ffffff21;
-    padding-top: 3%;
+    padding-top: 1%;
     box-sizing: border-box;
     margin-bottom: 0;
     line-height: 0;
@@ -54,7 +56,7 @@
 
 .social-icons a {
     color: #1743d3;
-    font-size: 25px;
+    font-size: 1.5vw;
     text-align: center;
 }
 
@@ -65,4 +67,10 @@
 .card-container p,
 .card-container h3{
     margin: 0;
+}
+.card-container p{
+    font-size: 1vw;
+}
+.card-container h3{
+    font-size: 1.2vw;
 }
