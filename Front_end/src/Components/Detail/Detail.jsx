@@ -1,5 +1,5 @@
 import style from './Detail.module.css'
-import fondo from '../../assets/Imagenes/Detail_fondo_aplicar.png'
+import fondo from '../../assets/Imagenes/Detail_fondo3_aplicar.png'
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react'
@@ -151,26 +151,29 @@ useEffect(() => {
           <div className={buttonClass ? style.boton_img : style.boton_img_hover }></div>
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>
-        <div className={style.buy}>
-        {selectedSize && (
-    <select value={selectedQuantity} onChange={handleQuantityChange}>
-      {quantityOptions.map(option => (
-        <option key={option} value={option}>{option}</option>
-      ))}
-    </select>
-  )}
+            <div className={style.boxbuy}></div>
+          <div className={style.buy}>
+            <button
+            type="button"
+            onClick={() => selectProducts(product)}
+            >Add to cart</button>
+          </div>
 
-        <select onChange={handleSizeChange} value={selectedSize}>
-          <option value="all">SIZE</option>
-        {sizeWithoutTotal?.map(([size]) => (
-          <option key={size} value={size}>{size}</option>
-        ))}
-      </select>
-          <button
-          type="button"
-          onClick={() => selectProducts(product)}
-          >Add to cart</button>
-        </div>
+          <div className={style.size}>
+            <select className={style.size1} onChange={handleSizeChange} value={selectedSize}>
+              <option value="all">SIZE</option>
+            {sizeWithoutTotal?.map(([size]) => (
+              <option key={size} value={size}>{size}</option>
+            ))}
+            </select>
+            {selectedSize && (
+            <select value={selectedQuantity} onChange={handleQuantityChange}>
+              {quantityOptions.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+            )}
+          </div>
       </div>
     </div>
   )

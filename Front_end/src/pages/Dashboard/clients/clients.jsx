@@ -50,8 +50,8 @@ const clients = () => {
     }
   }
   const handleCancelEdit = () => {
-      setEdituser(null);
-  }
+    setEdituser(null);
+  };
   const handleInputChange = (e) => {
       const { name, value } = e.target;
       setEdituser(prevState => ({
@@ -64,11 +64,10 @@ const clients = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(`${API_URL}/admin/users-list`);
-      const users = response.data
+      const users = response.data;
       setUsers(users);
-      console.log(users)
     } catch (error) {
-      console.error(error);
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -84,7 +83,32 @@ const clients = () => {
 
   }, []);
 
-  console.log(users);
+
+  const handleClickAdmin = async (user) => {
+    if (user.role == "admin") {
+      if (
+        confirm(`Are you sure you want to remove the admin from ${user.email} ?`)
+      ) {
+        const userData = { role: "user" };
+        const { data } = await axios.put(
+          `https://proyectogrupalhenry-production-e8a4.up.railway.app/users/${user.email}`,
+          userData
+        );
+        getUsers();
+        return;
+      }
+    } else {
+      if (confirm(`Are you sure you want to make admin to ${user.email} ?`)) {
+        const userData = { role: "admin" };
+        const { data } = await axios.put(
+          `https://proyectogrupalhenry-production-e8a4.up.railway.app/users/${user.email}`,
+          userData
+        );
+        getUsers();
+        return;
+      }
+    }
+  };
 
 
 
@@ -105,7 +129,6 @@ const clients = () => {
                     <th>Password</th>
                     <th>Phone</th>
                     <th>Country</th>
-                    {/* <th>Orders</th> */}
                     <th>Edit</th>
                   </tr>
                 </thead>
@@ -174,7 +197,6 @@ const clients = () => {
                           user.country
                         )}
                       </td>
-                      {/* <td>{edituser && edituser.id === user.id ? <input type="text" name="orders" value={edituser.Orders.length} onChange={handleInputChange} /> : user.Orders.length}</td> */}
                       <td>
                         {edituser && edituser.id === user.id ? (
                           <div>
@@ -190,16 +212,6 @@ const clients = () => {
                             >
                               Cancel
                             </button>
-                            {superAdmin ? (
-                              <button
-                                className={styles.editbuttons}
-                                onClick={handleCancelEdit}
-                              >
-                                Admin
-                              </button>
-                            ) : (
-                              <></>
-                            )}
                           </div>
                         ) : (
                           <button
@@ -215,6 +227,15 @@ const clients = () => {
                         >
                           Delete
                         </button>
+                        {superAdmin ? (
+                              <button
+                                className={styles.iconoAdmin}
+                                onClick={() => handleClickAdmin(user)}
+                              >
+                              </button>
+                            ) : (
+                              <></>
+                            )}
                       </td>
                     </tr>
                   ))}

@@ -12,8 +12,8 @@ export default function HomeAdmin(){
 
     useEffect(() => {
     const rol = localStorage.getItem("role")
-
-    if(rol === 'user'){
+    console.log(rol)
+    if(rol === 'user' || rol === null){
         navigate("/")
     }
       dispatch(getUsers());
