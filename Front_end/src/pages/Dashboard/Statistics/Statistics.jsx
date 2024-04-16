@@ -13,10 +13,13 @@ import axios from 'axios'
 const Statistics = () => {
   const URL_ALL_ORDERS = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/orders'
   const URL_EACH_ORDER = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/orders'
+  const URL_USERS = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-list'
   const [allOrders, setAllOrders] = useState([]);
   const [eachOrder, setEachOrder] = useState([]);
   const [productQuantity, setProductQuantity] = useState([]);
   const [priceOrder, setPriceOrder] = useState([]);
+  const [userOrder, setUserOrder] = useState([]);
+  const [userCountry, setUserCountry] = useState([]);
   const [totalSum, setTotalSum] = useState([]);
   
 
@@ -92,8 +95,32 @@ const Statistics = () => {
     console.log(uniqueOrders);
   }
 
+  const getUsers = async () => {
+    try {
+      const { data } = await axios.get(`${URL_USERS}`);
+      const userOrders = data.map((user) => {
+        return {
+          name: user.name,
+          orders: user.Orders.length,
+        };
+      });
+      const userCountry = data.map((user) => {
+        return {
+          place: user.country,
+          orders: user.Orders.length,
+        };
+      });
+      setUserOrder(userOrders)
+      setUserCountry(userCountry)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
   useEffect(() => {
     getOrders();
+    getUsers()
   }, [])
   useEffect(() => {
     individualOrder();
@@ -155,13 +182,13 @@ const Statistics = () => {
           <div className={style.chart5}>Location sales
             <div className={style.chart5_box}>
               <div className={style.chart5_2}>
-                <Chart5 />
+                <Chart5 userCountry={userCountry} />
               </div>
             </div>
           </div>
           <div className={style.chart6}>Top 5 customers
 
-              <Chart6 />
+            <Chart6 userOrder={userOrder} />
     
           </div>
         </div>

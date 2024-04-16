@@ -48,6 +48,12 @@ const data = [
   
 const Chart4 = () => {
   return (
+    <div style={{
+      color: 'black',
+      width: '100%',
+      height: '100%',
+      fontSize: '.8vw',
+    }}>
     <ResponsiveContainer width="100%" height="100%">
     <BarChart
       width={500}
@@ -61,14 +67,15 @@ const Chart4 = () => {
       }}
       barSize={20}
     >
-      <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
-      <YAxis />
+      <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} stroke="#ffffff" />
+      <YAxis stroke="#ffffff"/>
       <Tooltip />
       <Legend />
-      <CartesianGrid strokeDasharray="3 3" />
+      <CartesianGrid strokeDasharray="2 3" stroke="#7ccfff"/>
       <Bar dataKey="pv" fill="#8884d8" background={{ fill: '#eee' }} />
     </BarChart>
-  </ResponsiveContainer>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
