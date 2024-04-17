@@ -20,6 +20,6 @@ const upload = multer({
     }
 }).array('images');
 
-// console.log("Middleware de Multer ejecutado");
+// ;
 
 module.exports = upload;

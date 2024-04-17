@@ -32,7 +32,7 @@ const clients = () => {
       const updatedProduct = {
         ...edituser,
       };
-      console.log(edituser)
+      
       const response = await axios.put(`${API_URL}/users/${edituser.email}`, updatedProduct);
 
       if (response.status === 200) {
@@ -69,7 +69,7 @@ const clients = () => {
       const users = response.data;
       setUsers(users);
     } catch (error) {
-      console.log(error);
+      ;
     } finally {
       setIsLoading(false);
     }

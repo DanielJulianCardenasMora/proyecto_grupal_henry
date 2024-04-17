@@ -21,11 +21,11 @@ const getProducts = async (req, res) => {
     filteredProducts = filtrarPorGenero(filteredProducts, gender);
     filteredProducts = filtrarPorCategoria(filteredProducts, category);
     filteredProducts = filtrarPorPrecio(filteredProducts, sortOrder);
-    console.log('sortorder', sortOrder);
+    ;
     if (name) {
       // Llamar a getProductsByName y verificar el resultado
       const productsByName = await getProductsByName(name);
-      console.log("Products by name:", productsByName); // Imprime el resultado
+      ; // Imprime el resultado
       filteredProducts = productsByName;
     }
 
@@ -64,25 +64,27 @@ const postProduct = async (req, res) => {
   const errors = [];
   const containsOnlyLetters = /^[a-zA-Z\s]*$/;
 
-  if (!name) { errors.push('Debes ingresar un name') }
+  if (!name) { errors.push('You must enter a name') }
 
-  if (name.length < 4) { errors.push("El nombre debe tener más de 4 caracteres") }
+  if (name.length < 4) { errors.push("The name must be more than 4 characters") }
   
-  if (!containsOnlyLetters.test(name)) { errors.push("El nombre solo puede contener letras") }
+  if (!containsOnlyLetters.test(name)) { errors.push("The name can only contain letters") }
   
-  if (!description) { errors.push('Debes ingresar un desciption') }
+  if (!description) { errors.push('You must enter a description') }
+
+  if (!containsOnlyLetters.test(description)) { errors.push('The description can only contain letters') }
   
-  if (!price || isNaN(price)) { errors.push('Debes ingresar un price valido') }
+  if (!price || isNaN(price)) { errors.push('You must enter a valid price') }
   
-  if (price < 0) { errors.push('El precio debe ser mayor o igual que cero') }
+  if (price < 0) { errors.push('The price must be greater than or equal to zero') }
   
-  if (!stock || stock < 0) { errors.push('Debes ingresar un stock valido') }
+  if (!stock || stock < 0) { errors.push('You must enter a valid stock') }
   
-  if (!genero) { errors.push('Debes ingresar un genero') }
+  if (!genero) { errors.push('You must enter a gender') }
   
-  if (!category) { errors.push('Debes ingresar una cetegoria') }
+  if (!category) { errors.push('You must enter a category') }
   
-  if (!size) { errors.push("No hay talles seleccionados") }
+  if (!size) { errors.push("There are no sizes selected") }
 
   // Si existen errores
   if (errors.length) {
@@ -92,10 +94,10 @@ const postProduct = async (req, res) => {
   try {
     const newProduct = await createProductDB(name, description, price, images, stock, genero, category, size);
 
-    console.log(`El producto ${name} fue creado con éxito!!`);
+    ;
     return res.status(201).json(newProduct);
   } catch (error) {
-    console.log(error);
+    ;
     return res.status(500).json({ error: "Error al crear tu nuevo producto" });
   }
 };

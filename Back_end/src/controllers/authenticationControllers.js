@@ -48,7 +48,6 @@ const register = async (req, res) => {
       message: `The email ${userCreatedDB.email} has been registered successfully! `,
     });
   } catch (error) {
-    console.log(error);
     return res
       .status(500)
       .send({ status: "Error", message: "Error creating the user" });
@@ -67,8 +66,8 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ where: { email: email } });
 
-    // console.log(user.token);
-    // console.log(user.role);
+    // ;
+    // ;
 
     if (!user) {
       return res
@@ -104,7 +103,7 @@ const login = async (req, res) => {
     // If there is a correct login, return the token
     res.send({ status: "ok", message: "User logged in", role: user.role });
   } catch (error) {
-    console.log("An error occurred:", error);
+    ;
     return res.status(500).send(error);
   }
 };

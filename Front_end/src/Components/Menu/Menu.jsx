@@ -18,7 +18,7 @@ export const Menu = () => {
   };
 
   const handleOptionClick = (optionValue) => {
-    console.log('option handle', optionValue)
+    
     const newActiveOptions = [...activeOptions];
     const index = newActiveOptions.indexOf(optionValue);
     if (index !== -1) {
@@ -38,7 +38,7 @@ export const Menu = () => {
     dispatch(updateCategoryFilter(category))
   }
   const handlePrice = (sortOrder) => {
-    console.log('sortOrder menu', sortOrder);
+    ;
     handleOptionClick(sortOrder)
     dispatch(updatePriceFilter(sortOrder))
   }

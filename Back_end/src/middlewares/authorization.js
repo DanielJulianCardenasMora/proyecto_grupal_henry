@@ -7,17 +7,17 @@ const { User } = require('../db')
 
 const soloAdmin = async (req, res, next) => {
     try {
-        // console.log('reques general ' + req.headers.cookie);
+        // ;
         // Verifica si el usuario esta autenticado y tiene rol de administrador
         const { user, role } = await revisarCookie(req);
-        console.log('aca estoy en funcion solo admin ' + user, role);
+        ;
         if (role === 'admin') {
             return next();
         } else {
             return res.status(403).send({status: 'Error', message: 'Unauthorized access'})
         }
     } catch (error) {
-            console.log(error);
+            ;
             return res.status(404).send({status: 'Error', message: error})
     }
 }
@@ -32,7 +32,7 @@ function soloPublico(req, res, next) {
             return res.status(403).send({status: 'Error', message: 'Unauthorized access'})
         }
     } catch (error) {
-            console.log(error);
+            ;
             return res.status(404).send({status: 'Error', message: error})
     }
 }
@@ -50,8 +50,8 @@ const revisarCookie = async(req) => {
 
         return {user, role: user.role};
     } catch (error) {
-        console.log(error);
-        console.log(error.message);
+        ;
+        ;
         return null
     }
 }

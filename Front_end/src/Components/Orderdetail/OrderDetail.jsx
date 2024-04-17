@@ -7,9 +7,9 @@ export const OrderDetail = (id) => {
     const Detail = async () => {
         try {
             const detalle = await axios.get(`https://proyectogrupalhenry-production-e8a4.up.railway.app/orders/${id}`)
-            console.log(detalle)
+            
         } catch (error) {
-            console.log(error)
+            
         }
     }
 

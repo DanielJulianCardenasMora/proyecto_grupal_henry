@@ -5,7 +5,7 @@ function filtrarPorNombre(products, sortBy) {
 }
 
 function filtrarPorPrecio(products, sortOrder) {
-  console.log('sortorder desde dilter', sortOrder);
+  ;
   if (sortOrder === "asc") {
     return products.sort((a, b) => a.price - b.price);
   } else if (sortOrder === "desc") {
@@ -22,7 +22,7 @@ function filtrarPorGenero(products, gender) {
 }
 
 function filtrarPorCategoria(products, category) {
-  console.log('category desde filter',category)
+  
   if (category) {
     return products.filter(product => product.category.toLowerCase() === category.toLowerCase() ||  product.Categories.some(cat => cat.name.toLowerCase() === category.toLowerCase()));
   }

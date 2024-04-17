@@ -9,7 +9,7 @@ const getOrder = async (req, res) => {
             res.status(200).send(responseOrder);
         }
     } catch (error) {
-        console.log('Error al solicitar la order');
+        ;
         res.status(500).json({ error: error.message });
     }
 }
@@ -23,7 +23,7 @@ const postOrder = async (req, res) => {
 
         res.status(201).json(newOrder);
     } catch (error) {
-        console.log('Error al crear la order');
+        ;
         res.status(500).json({ error: error.message });
     }
 }
