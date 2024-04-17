@@ -32,7 +32,6 @@ const Statistics = () => {
         };
       });
       setAllOrders(ordersId)
-      
     } catch (error) {
       console.error(error);
     }
@@ -141,10 +140,8 @@ const Statistics = () => {
 
   // // Solo para comprobar
   useEffect(() => {
-    
-    
-    
-    
+    console.log(allOrders)
+    console.log(eachOrder)
   }, [totalSum])
 
   
