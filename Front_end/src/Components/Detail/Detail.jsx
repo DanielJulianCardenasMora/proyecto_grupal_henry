@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react'
 import { getProductDetail } from '../../redux/actions/actions'
 import shape from '../../assets/Imagenes/Detail_shape_aplicar.png'
-import ItemCount from '../Cart/ItemCount';
+import { Link } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 
 function Detail(props) {
   const dispatch = useDispatch()
@@ -18,9 +21,15 @@ function Detail(props) {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   let sizeWithoutTotal
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
-
-
+  const showSnackbar = (severity, message) => {
+    setSnackbarSeverity(severity);
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
+  };
 
   if (product.size) {
     sizeWithoutTotal = Object.entries(product.size)
@@ -40,7 +49,7 @@ function Detail(props) {
 
   const selectProducts = () => {
     if (!selectedSize) {
-      alert("Please select a size");
+      showSnackbar('error', 'Please select a size');
       return;
     }
     const stockSeleccionado = product.size[selectedSize];
@@ -48,12 +57,12 @@ function Detail(props) {
 
     if (!productoEnCarrito) {
       agregarProducto([...carrito, { ...product, size: selectedSize, quantity: selectedQuantity, stock: stockSeleccionado }]);
-      alert('Product added');
+      showSnackbar('success', 'Product added');
     } else {
 
       const totalQuantity = productoEnCarrito.quantity + selectedQuantity;
       if (totalQuantity > stockSeleccionado) {
-        alert(`There is not enough stock available. Current stock: ${stockSeleccionado}`);
+        showSnackbar('error', `There is not enough stock available. Current stock: ${stockSeleccionado}`);
         return;
       }
 
@@ -65,7 +74,7 @@ function Detail(props) {
             : item
         )
       );
-      alert('Updated cart');
+      showSnackbar('success', 'Updated cart');
     }
   };
 
@@ -92,88 +101,85 @@ function Detail(props) {
     }
   }, [selectedSize]);
 
-  const handleMouseEnter = () => {
-    setButtonClass(!buttonClass);
-  };
 
-  const handleMouseLeave = () => {
-    setButtonClass('default');
-  };
-
-  const handleBackClick = () => {
-    navigate(-1);
-  };
 
   return (
     <div className={style.container}>
 
-      <h1 className={style.texto2}>DETAIL</h1>
-      <h1 className={style.texto3}>STORE</h1>
-      <h1 className={style.texto4}>IN</h1>
 
-      <div className={style.box_fondo}>
-        <img className={style.fondo} src={fondo} />
-      </div>
+      <div className={style.content}>
+        <div className={style.producto}>
+          <div className={style.boton}>
 
-      <div className={style.producto}>
-        <img src={images} alt="" />
-        <div className={style.shape}>
-          <img className={style.shape} src={shape} alt="" />
-        </div>
-        <div className={style.texto5_cont}>
-          <h1 className={style.texto5}>C</h1>
-          <h1 className={style.texto5}>O</h1>
-          <h1 className={style.texto5}>L</h1>
-          <h1 className={style.texto5}>E</h1>
-          <h1 className={style.texto5}>C</h1>
-          <h1 className={style.texto5}>T</h1>
-          <h1 className={style.texto5}>I</h1>
-          <h1 className={style.texto5}>O</h1>
-          <h1 className={style.texto5}>N</h1>
-        </div>
-      </div>
+            <Link to={'/products'} className={style.boton_img} >  Back</Link>
 
 
+          </div>
+          <img src={images} alt="" className={style.img1} />
 
-      <div className={style.box_derecha}>
-        <div className={style.box2}>
-          <div className={style.difuminado2}>{description}</div>
-        </div>
-        <h1 className={style.name}>{name}</h1>
-        <div className={style.boxDetalle}>
-          <h1 className={style.detalle1}>Category</h1>
-          <h1 className={style.detalle2}>{genero}</h1>
-          <h1 className={style.detalle3}>${price}</h1>
+          <div className={style.des}>
+            <span>About this</span>
+            <br />
+            <p>    {product.description}</p>
+
+          </div>
+
+
         </div>
 
 
-        <div className={style.boton}>
-          <div className={buttonClass ? style.boton_img : style.boton_img_hover}></div>
-          <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
-        </div>
-        <div className={style.buy}>
+
+        <div className={style.box_derecha}>
+          <h2>{name}</h2>
+          <span> ${price}</span>
 
 
-          <select onChange={handleSizeChange} value={selectedSize}>
-            <option value="all">SIZE</option>
-            {sizeWithoutTotal?.map(([size]) => (
-              <option key={size} value={size}>{size}</option>
-            ))}
-          </select>
-          {selectedSize && (
-            <select value={selectedQuantity} onChange={handleQuantityChange}>
-              {quantityOptions.map(option => (
-                <option key={option} value={option}>{option}</option>
+          <div className={style.buy}>
+
+
+            <select onChange={handleSizeChange} value={selectedSize || ""} className={style.selectS}>
+              <option value="all">SIZE</option>
+              {sizeWithoutTotal?.map(([size]) => (
+                <option key={size} value={size}>{size}</option>
               ))}
             </select>
-          )}
+            {selectedSize && (
+              <select value={selectedQuantity} onChange={handleQuantityChange}>
+                {quantityOptions.map(option => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            )}
 
-          <button
-            type="button"
-            onClick={() => selectProducts(product)}
-          >Add to cart</button>
+            <button
+              className={style.cart}
+              type="button"
+              onClick={() => selectProducts(product)}
+            >Add to cart</button>
+          </div>
+
+          <div className={style.sizes}>
+
+          </div>
+
+
+
         </div>
       </div>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={() => setSnackbarOpen(false)}
+          severity={snackbarSeverity}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
     </div>
   )
 }

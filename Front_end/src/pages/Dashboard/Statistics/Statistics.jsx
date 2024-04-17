@@ -21,7 +21,7 @@ const Statistics = () => {
   const [userOrder, setUserOrder] = useState([]);
   const [userCountry, setUserCountry] = useState([]);
   const [totalSum, setTotalSum] = useState([]);
-  
+
 
   const getOrders = async () => {
     try {
@@ -42,15 +42,19 @@ const Statistics = () => {
   const individualOrder = async () => {
     const individualOrders = []
     for (const obj of allOrders) {
+
       const orderId = obj.idOrder;
       const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
       if (data) {
+
         individualOrders.push(data);
       }
     }
     setEachOrder(individualOrders);
   }
-  
+
+
+
   const sumPrice = () => {
     const results = eachOrder.map((order, index) => {
       if (order.length === 0) {
@@ -91,7 +95,7 @@ const Statistics = () => {
       }
     }
     setProductQuantity(uniqueOrders)
-    ;
+      ;
   }
 
   const getUsers = async () => {
@@ -106,20 +110,20 @@ const Statistics = () => {
       const userCountry = data.reduce((acc, user) => {
         const country = user.country;
         const existingEntry = acc.find((entry) => entry.place === country);
-  
+
         if (existingEntry) {
           existingEntry.orders += user.Orders.length; // Add order count to existing entry
         } else {
           acc.push({ place: country, orders: user.Orders.length }); // Create new entry for unique country
         }
-  
+
         return acc;
       }, []);
-  
+
       setUserOrder(userOrders)
       setUserCountry(userCountry)
-      
-      
+
+
     } catch (error) {
       console.error(error);
     }
@@ -145,7 +149,7 @@ const Statistics = () => {
     console.log(userOrder)
   }, [totalSum])
 
-  
+
   return (
     <div className={style.main} >
       <div className={style.titlebox}>
@@ -167,11 +171,13 @@ const Statistics = () => {
             <h1>{allOrders.length}</h1>
           </div>
         </div>
-   
+
 
         <div className={style.seccion2}>
-          <div className={style.area}>{'Sales per month (first 12 orders)'} 
-      <Chart priceOrder={priceOrder} />
+
+          <div className={style.area}>{'Sales per month (first 12 orders)'}
+            <Chart priceOrder={priceOrder} />
+
           </div>
           <div className={style.area}>Product ranking --- Top 5 most sold
             {/* <Chart2 priceOrder={priceOrder} /> */}
@@ -197,11 +203,11 @@ const Statistics = () => {
           <div className={style.chart6}>Top 5 customers
 
             <Chart6 userOrder={userOrder} />
-    
+
           </div>
         </div>
       </div>
-    
+
     </div>
   )
 }

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, resolvePath } from "react-router-dom";
+import { Link } from "react-router-dom";
 import style from "./Cart.module.css";
 import ItemCount from './ItemCount';
 import { useDispatch, useSelector } from 'react-redux';
-import { enviarCarritoAlBackend, getOrders, payment } from "../../redux/actions/actions";
-import axios from "axios"
+import { enviarCarritoAlBackend, payment } from "../../redux/actions/actions";
+import axios from "axios";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
-
   const totalInicial = carrito.reduce((total, item) => total + item.price * item.quantity, 0);
   const [totalCompra, setTotalCompra] = useState(totalInicial);
   const [order, setOrder] = useState({
@@ -23,9 +24,11 @@ const Cart = ({ carrito, agregarProducto }) => {
       size: item.size
     })),
     detalle: ''
-  })
+  });
 
-
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const onChange = (e) => {
     setOrder({ ...order, detalle: e.target.value });
@@ -33,7 +36,6 @@ const Cart = ({ carrito, agregarProducto }) => {
 
   async function getUserInfo() {
     try {
-
       const userInfo = localStorage.getItem('usuario')
       const url = `https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/users-info/${userInfo}`;
       const response = (await axios.get(url)).data
@@ -50,35 +52,25 @@ const Cart = ({ carrito, agregarProducto }) => {
           price: item.price,
           size: item.size
         })),
-
       }))
-
-
     } catch (error) {
       console.error('Error al realizar la petición:', error);
     }
   }
 
-
-
-
   useEffect(() => {
-    getUserInfo()
-    setTotalCompra(totalInicial)
-  }, [carrito])
-
-
+    getUserInfo();
+    setTotalCompra(totalInicial);
+  }, [carrito]);
 
   const agregarItem = (item) => {
     agregarProducto([...carrito, { ...item, quantity: 1 }]);
   };
 
-
   const eliminarProducto = (item) => {
     const filtrados = carrito.filter((p) => !(p.id === item.id && p.size === item.size));
     agregarProducto(filtrados);
   };
-
 
   const handleQuantityChange = (newQuantity, item) => {
     const updatedItems = carrito.map((cartItem) => {
@@ -87,39 +79,55 @@ const Cart = ({ carrito, agregarProducto }) => {
       }
       return cartItem;
     });
-    agregarProducto(updatedItems)
+    agregarProducto(updatedItems);
 
-    // Actualiza el total de la compra restando el precio del artículo eliminado
     const totalPrice = updatedItems.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
     setTotalCompra(totalPrice);
   };
 
   const vaciarCarrito = () => {
     agregarProducto([]);
-
   };
-
-
-
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    if (!order.userId || !order.detalle || order.products.length === 0) {
-      alert("Please fill in all required fields (userId, detalle, products) before placing the order.");
+    if (!order.userId) {
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Please fill in the user ID field before placing the order.');
+      setSnackbarOpen(true);
       return;
     }
-    dispatch(payment(totalCompra))
-    setOrder({
-      ...order,
-      detalle: order.comments
 
-    })
-    dispatch(enviarCarritoAlBackend(order));
-    agregarProducto([])
+    if (!order.detalle) {
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Please fill in the description field before placing the order.');
+      setSnackbarOpen(true);
+      return;
+    }
+
+    if (order.products.length === 0) {
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Please add at least one product before placing the order.');
+      setSnackbarOpen(true);
+      return;
+    }
+
+    try {
+      dispatch(payment(totalCompra));
+      setOrder({
+        ...order,
+        detalle: order.comments
+      });
+      await dispatch(enviarCarritoAlBackend(order));
+      agregarProducto([]);
+    } catch (error) {
+      console.error("Error placing order:", error);
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Error creating order');
+      setSnackbarOpen(true);
+    }
   };
-
-
-
 
   return (
     <div className={style.boxCart}>
@@ -133,7 +141,7 @@ const Cart = ({ carrito, agregarProducto }) => {
           <div className={style.cards} key={i}>
             <div className={style.image}>
               {item.images[0] == null ? (
-                <p>Imagen no disponible</p>
+                <p>Image not available</p>
               ) : (
                 <img src={item.images[0]} alt="" />
               )}
@@ -182,7 +190,7 @@ const Cart = ({ carrito, agregarProducto }) => {
               onSubmit={(e) => handleSubmit(e)}
             >
               <button className={style.back} type="submit">
-                START SHOPING
+                START SHOPPING
               </button>
               <button
                 className={style.vaciar}
@@ -194,7 +202,7 @@ const Cart = ({ carrito, agregarProducto }) => {
             </form>
           </div>
         ) : (
-          <div>
+          <div className={style.void}>
             <button className={style.back}>
               <Link className={style.link} to="/products">
                 Check available products
@@ -203,12 +211,22 @@ const Cart = ({ carrito, agregarProducto }) => {
           </div>
         )}
       </div>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={() => setSnackbarOpen(false)}
+          severity={snackbarSeverity}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 };
 
-export default Cart
-
-
-
-
+export default Cart;
