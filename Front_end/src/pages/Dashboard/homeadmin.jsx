@@ -80,7 +80,7 @@ export default function HomeAdmin(){
                </div>
           
             <div className={style.box}>
-           <p>Usiario actual:</p>
+           <p>Usuario actual:</p>
            <h3>{actualUser}</h3>
 
             </div>
