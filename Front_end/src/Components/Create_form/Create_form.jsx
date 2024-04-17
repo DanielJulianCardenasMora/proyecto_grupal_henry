@@ -67,7 +67,7 @@ const Form = ({ addProduct }) => {
       return;
     }
 
-    if(errors.length === 0){
+    if (errors.length === 0) {
       setFormData({
         name: '',
         description: '',
@@ -85,13 +85,13 @@ const Form = ({ addProduct }) => {
       setSnackbarOpen(true);
     }
 
-    
-    
-    
-    
+
+
+
+
     const totalStock = formData.size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
-    
-    
+
+
     const data = {
       name,
       description,
@@ -105,8 +105,8 @@ const Form = ({ addProduct }) => {
         return acc;
       }, {})
     };
-    
-    
+
+
     try {
       await addProduct(data);
 
@@ -131,7 +131,7 @@ const Form = ({ addProduct }) => {
   };
 
   useEffect(() => {
-    if(errors.length > 0){
+    if (errors.length > 0) {
       setSnackbarSeverity('error');
       setSnackbarMessage(errors[0]);
       setSnackbarOpen(true);
@@ -247,12 +247,12 @@ const Form = ({ addProduct }) => {
 
                 {Genres
                   ? Genres.map((option, i) => {
-                      return (
-                        <option key={i} name={option} value={option}>
-                          {option}
-                        </option>
-                      );
-                    })
+                    return (
+                      <option key={i} name={option} value={option}>
+                        {option}
+                      </option>
+                    );
+                  })
                   : null}
               </select>
             </div>
@@ -266,21 +266,18 @@ const Form = ({ addProduct }) => {
               <select
                 className={style.select}
                 name="category"
-                defaultValue="All"
+                value={category}
                 onChange={onChange}
               >
-                <option name="category" value={category}>
-                  {" "}
-                  Category{" "}
-                </option>
+                <option value="">Category</option>
                 {Category
                   ? Category.map((option, i) => {
-                      return (
-                        <option key={i} name={category} value={option}>
-                          {option}
-                        </option>
-                      );
-                    })
+                    return (
+                      <option key={i} value={option}>
+                        {option}
+                      </option>
+                    );
+                  })
                   : null}
               </select>
             </div>

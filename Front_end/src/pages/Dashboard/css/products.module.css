@@ -1,6 +1,6 @@
-.main{
+.main {
     background-color: rgba(255, 255, 255, 0.886);
-    height:88.5vh;
+    height: 88.5vh;
     width: 85%;
     box-sizing: border-box;
     display: flex;
@@ -8,7 +8,8 @@
     height: 87.5vh;
     margin-right: 1%;
 }
-.container{
+
+.container {
     color: black;
     width: 80%;
     height: 96%;
@@ -17,15 +18,17 @@
     overflow-y: auto;
     padding: 0 10%;
 }
+
 .container::-webkit-scrollbar {
-    width: 12px; 
+    width: 12px;
     background-color: #9c95af;
-    border-radius: 10px; 
+    border-radius: 10px;
     padding: 0 2px;
 }
+
 .container::-webkit-scrollbar-thumb {
-    background-color: hsl(274, 54%, 18%); 
-    border-radius: 10px; 
+    background-color: hsl(274, 54%, 18%);
+    border-radius: 10px;
     margin: 0 2px;
 }
 
@@ -53,31 +56,36 @@
 
 .iconoeliminar {
     background-image: url('../../../assets/icons/icons8-basura-64.png');
-    
+
 }
 
 .iconoeditar,
 .iconoeliminar {
-    width: 30px; /* Ancho */
-    height: 30px; /* Alto */
-    background-repeat: no-repeat; /* Evita que se repita el fondo */
-    background-position: center; /* Centra el icono dentro del botón */
-    text-indent: -9999px; /* Que no sobreescriba */
+    width: 30px;
+    /* Ancho */
+    height: 30px;
+    /* Alto */
+    background-repeat: no-repeat;
+    /* Evita que se repita el fondo */
+    background-position: center;
+    /* Centra el icono dentro del botón */
+    text-indent: -9999px;
+    /* Que no sobreescriba */
     background-size: contain;
 }
 
-td input{
+td input {
     width: 100%;
     height: 2em;
     border-radius: 5px;
-  }
-  
-  td button{
+}
+
+td button {
     background: none;
-  
-  }
-  
-  td .editbuttons{
+
+}
+
+td .editbuttons {
     background-color: rgba(128, 128, 128, 0.399);
     height: 2em;
     font-size: 15px;
@@ -86,4 +94,54 @@ td input{
     color: black;
     margin-bottom: 5%;
     width: 100%;
-  }
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(248, 248, 248);
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: rgb(31, 31, 31);
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /* Agregar box-shadow a la transición */
+    box-shadow: 0px 4px 8px rgba(38, 70, 134, 0.931);
+
+}
+
+.icon:hover {
+    background-color: #1e4a78;
+    box-shadow: 0px 6px 12px rgb(23, 92, 161);
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2px;
+    padding-top: 20px;
+}
+
+.pageText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(248, 248, 248);
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: rgb(31, 31, 31);
+    width: 80px;
+    /* Ajusta el ancho según sea necesario */
+    height: 40px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(38, 70, 134, 0.931);
+    margin: 0 10px;
+    /* Agrega margen a los lados para separar los botones */
+}
+
+/* .pageText:hover {
+    background-color: #606e7c;
+    box-shadow: 0px 6px 12px rgb(23, 92, 161);
+} */

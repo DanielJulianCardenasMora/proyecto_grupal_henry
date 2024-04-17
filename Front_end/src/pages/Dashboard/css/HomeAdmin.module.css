@@ -115,6 +115,7 @@ outline: none;
 background: none;
 padding: 1%;
 box-sizing: border-box;
+color: white;
 }
 
 .formContent select{
@@ -149,6 +150,7 @@ outline: none;
 border-radius: 5px;
 padding: 1%;
 box-sizing: border-box;
+background-color: white;
 }
 
 
