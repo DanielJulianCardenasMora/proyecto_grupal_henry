@@ -92,7 +92,7 @@ const ProductsAdmin = () => {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th>#</th>
+                  {/* <th>#</th> */}
                   <th>Name</th>
                   <th>Stock</th>
                   <th>Price</th>
@@ -104,7 +104,7 @@ const ProductsAdmin = () => {
               <tbody>
                 {products.map((product, index) => (
                   <tr key={product.id}>
-                    <td>{index}</td>
+                    {/* <td>{index}</td> */}
                     <td>{editproduct && editproduct.id === product.id ? <input type="text" name="name" value={editproduct.name} onChange={handleInputChange} /> : product.name}</td>
                     <td>{editproduct && editproduct.id === product.id ? <input type="number" name="stock" value={editproduct.stock} onChange={handleInputChange} /> : product.stock}</td>
                     <td>{editproduct && editproduct.id === product.id ? <input type="number" name="price" value={editproduct.price} onChange={handleInputChange} /> : product.price}</td>
