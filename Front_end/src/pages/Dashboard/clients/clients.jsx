@@ -231,47 +231,31 @@ const clients = () => {
                           >
                             Cancel
                           </button>
-                        </div>
-                      ) : (
-                        <button
-                          onClick={() => handleEdit(user.email)}
-                          className={styles.iconoeditar}
+                        )}
+                        {/* <button
+                          onClick={() => handleDelete(user.email)}
+                          className={styles.iconoeliminar}
                         >
-                          Edit
-                        </button>
-                      )}
-                      <button
-                        onClick={() => handleDelete(user.email)}
-                        className={styles.iconoeliminar}
-                      >
-                        Delete
-                      </button>
-                      {superAdmin && (
-                        <button
-                          className={styles.iconoAdmin}
-                          onClick={() => handleClickAdmin(user)}
-                        >
-                        </button>
-                      )}
-                      {user.active ? (
-                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
-                          <FontAwesomeIcon icon={faEyeSlash} style={{ marginRight: '5px' }} />
-                          {/* Icono de ojo con barra si el usuario está activo */}
-                        </button>
-                      ) : (
-                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
-                          <FontAwesomeIcon icon={faEye} style={{ marginRight: '5px' }} />
-                          {/* Icono de ojo si el usuario no está activo */}
-                        </button>
-                      )}
+                          Delete
+                        </button> */}
+                        {superAdmin ? (
+                              <button
+                                className={styles.iconoAdmin}
+                                onClick={() => handleClickAdmin(user)}
+                              >
+                              </button>
+                            ) : (
+                              <></>
+                            )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )
+          )}
+        </div>
 
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )
-        )}
       </div>
     </div>
   );
