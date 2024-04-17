@@ -74,7 +74,9 @@ const createOrder = async (req, res) => {
                     size: formattedSize
                 })
             }
-            ;
+
+       
+            await modifictProductStock(productId, quantity, size);
         }
         await newOrder.setUser(userId);
         res.status(200).send(newOrder);
