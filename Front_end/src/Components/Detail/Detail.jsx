@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { getProductDetail } from '../../redux/actions/actions'
 import shape from '../../assets/Imagenes/Detail_shape_aplicar.png'
 import { Link } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 
 function Detail(props) {
@@ -19,9 +21,15 @@ function Detail(props) {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   let sizeWithoutTotal
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
-
-
+  const showSnackbar = (severity, message) => {
+    setSnackbarSeverity(severity);
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
+  };
 
   if (product.size) {
     sizeWithoutTotal = Object.entries(product.size)
@@ -41,7 +49,7 @@ function Detail(props) {
 
   const selectProducts = () => {
     if (!selectedSize) {
-      alert("Please select a size");
+      showSnackbar('error', 'Please select a size');
       return;
     }
     const stockSeleccionado = product.size[selectedSize];
@@ -49,12 +57,12 @@ function Detail(props) {
 
     if (!productoEnCarrito) {
       agregarProducto([...carrito, { ...product, size: selectedSize, quantity: selectedQuantity, stock: stockSeleccionado }]);
-      alert('Product added');
+      showSnackbar('success', 'Product added');
     } else {
 
       const totalQuantity = productoEnCarrito.quantity + selectedQuantity;
       if (totalQuantity > stockSeleccionado) {
-        alert(`There is not enough stock available. Current stock: ${stockSeleccionado}`);
+        showSnackbar('error', `There is not enough stock available. Current stock: ${stockSeleccionado}`);
         return;
       }
 
@@ -66,7 +74,7 @@ function Detail(props) {
             : item
         )
       );
-      alert('Updated cart');
+      showSnackbar('success', 'Updated cart');
     }
   };
 
@@ -97,67 +105,81 @@ function Detail(props) {
 
   return (
     <div className={style.container}>
-
-
- <div className= {style.content}>
- <div className={style.producto}>
- <div className={style.boton}>
-
-       <Link to={'/products'} className={style.boton_img} >  Back</Link>
-  
-         
-        </div>
-        <img src={images} alt=""  className={style.img1}/>  
-
-        <div className={style.des}>
-         <span>About this</span>
-          <br />
-          <p>    {product.description}</p>
-      
-        </div>
       
 
-      </div>
+      <div className={style.content}>
+        <div className={style.producto}>
+          <div className={style.boton}>
+
+            <Link to={'/products'} className={style.boton_img} >  Back</Link>
 
 
+          </div>
+          <img src={images} alt="" className={style.img1} />
 
-      <div className={style.box_derecha}>
-      <h2>{name}</h2>
-      <span> ${price}</span>
+          <div className={style.des}>
+            <span>About this</span>
+            <br />
+            <p>    {product.description}</p>
 
-    
-        <div className={style.buy}>
+          </div>
 
 
-        <select onChange={handleSizeChange} value={selectedSize || ""} className={style.selectS}>
-          <option value="all">SIZE</option>
-        {sizeWithoutTotal?.map(([size]) => (
-          <option key={size} value={size}>{size}</option>
-        ))}
-      </select>
-      {selectedSize && (
-    <select value={selectedQuantity} onChange={handleQuantityChange}>
-      {quantityOptions.map(option => (
-        <option key={option} value={option}>{option}</option>
-      ))}
-    </select>
-  )}
-  
-          <button
-          className={style.cart}
-          type="button"
-          onClick={() => selectProducts(product)}
-          >Add to cart</button>
         </div>
 
-      <div className={style.sizes}>
 
-      </div>
-        
-      
 
+        <div className={style.box_derecha}>
+          <h2>{name}</h2>
+          <span> ${price}</span>
+
+
+          <div className={style.buy}>
+
+
+            <select onChange={handleSizeChange} value={selectedSize || ""} className={style.selectS}>
+              <option value="all">SIZE</option>
+              {sizeWithoutTotal?.map(([size]) => (
+                <option key={size} value={size}>{size}</option>
+              ))}
+            </select>
+            {selectedSize && (
+              <select value={selectedQuantity} onChange={handleQuantityChange}>
+                {quantityOptions.map(option => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            )}
+
+            <button
+              className={style.cart}
+              type="button"
+              onClick={() => selectProducts(product)}
+            >Add to cart</button>
+          </div>
+
+          <div className={style.sizes}>
+
+          </div>
+
+
+
+        </div>
       </div>
- </div>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={() => setSnackbarOpen(false)}
+          severity={snackbarSeverity}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
     </div>
   )
 }
