@@ -71,8 +71,6 @@ const postProduct = async (req, res) => {
   if (!containsOnlyLetters.test(name)) { errors.push("The name can only contain letters") }
   
   if (!description) { errors.push('You must enter a description') }
-
-  if (!containsOnlyLetters.test(description)) { errors.push('The description can only contain letters') }
   
   if (!price || isNaN(price)) { errors.push('You must enter a valid price') }
   
