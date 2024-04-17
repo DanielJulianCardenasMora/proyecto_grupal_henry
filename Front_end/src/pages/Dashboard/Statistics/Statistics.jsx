@@ -42,11 +42,15 @@ const Statistics = () => {
   const individualOrder = async () => {
     const individualOrders = []
     for (const obj of allOrders) {
+
       const orderId = obj.idOrder;
       const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
       if (data) {
+
         individualOrders.push(data);
       }
+      }
+      
     }
     setEachOrder(individualOrders);
   }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react'
 import { getProductDetail } from '../../redux/actions/actions'
 import shape from '../../assets/Imagenes/Detail_shape_aplicar.png'
+import { Link } from 'react-router-dom';
 
 
 function Detail(props) {
@@ -92,17 +93,7 @@ function Detail(props) {
     }
   }, [selectedSize]);
 
-  const handleMouseEnter = () => {
-    setButtonClass(!buttonClass);
-  };
 
-  const handleMouseLeave = () => {
-    setButtonClass('default');
-  };
-
-  const handleBackClick = () => {
-    navigate(-1);
-  };
 
   return (
     <div className={style.container}>
@@ -111,7 +102,9 @@ function Detail(props) {
  <div className= {style.content}>
  <div className={style.producto}>
  <div className={style.boton}>
-          <div className={buttonClass ? style.boton_img : style.boton_img_hover }>   <button className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></button></div>
+
+       <Link to={'/products'} className={style.boton_img} >  Back</Link>
+  
          
         </div>
         <img src={images} alt=""  className={style.img1}/>  
@@ -136,7 +129,7 @@ function Detail(props) {
         <div className={style.buy}>
 
 
-        <select onChange={handleSizeChange} value={selectedSize} className={style.selectS}>
+        <select onChange={handleSizeChange} value={selectedSize || ""} className={style.selectS}>
           <option value="all">SIZE</option>
         {sizeWithoutTotal?.map(([size]) => (
           <option key={size} value={size}>{size}</option>
