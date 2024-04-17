@@ -228,13 +228,13 @@ const Form = ({ addProduct }) => {
                 <option> Gender </option>
 
                 {Genres
-                  ? Genres.map((option, i) => {
-                      return (
+                  ? Genres.map((option, i) => 
+                       (
                         <option key={i} name={option} value={option}>
                           {option}
                         </option>
-                      );
-                    })
+                      )
+                    )
                   : null}
               </select>
             </div>
@@ -254,13 +254,12 @@ const Form = ({ addProduct }) => {
                   Category
                 </option>
                 {Category
-                  ? Category.map((option, i) => {
-                      return (
+                  ? Category.map((option, i) => (
                         <option key={i} name={option} value={option}>
                           {option}
                         </option>
-                      );
-                    })
+                      )
+                    )
                   : null}
               </select>
             </div>

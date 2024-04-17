@@ -10,7 +10,6 @@ import Follow from "./Dashboard/products/follow";
 import { UserProfilePage } from "./UserProfilePage/UserProfilePage";
 import {CaptureOrder} from "./Capturepage/CaptureOrder";
 
-
 export {AboutPage, LandingPage, DetailPage, CreatePage, 
         ProductsPage, HomeAdmin,ProductsAdmin ,CreateProducts ,Follow, UserProfilePage, CaptureOrder} 
 
