@@ -2,19 +2,19 @@ import styles from '../css/Clients.module.css'
 import Sidebar from "../../../Components/Dashboard/sidebar";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const clients = () => {
   const [edituser, setEdituser] = useState(null);
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app'; 
+  const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app';
   const [superAdmin, setSuperAdmin] = useState(false)
+  const [activated, setActivated] = useState(false)
   const handleEdit = (userID) => {
-      const userForEdit = users.find(user => user.email === userID)
-      setEdituser(userForEdit);
+    const userForEdit = users.find(user => user.email === userID)
+    setEdituser(userForEdit);
   }
-
-
   const handleDelete = async (userEmail) => {
     try {
       const response = await axios.delete(`${API_URL}/admin/delete-users/${userEmail}`);
@@ -23,7 +23,7 @@ const clients = () => {
       console.error(error);
     }
   }
-  const handleSave = async() => {
+  const handleSave = async () => {
     if (!edituser) return;
     setIsLoading(true);
     try {
@@ -32,7 +32,6 @@ const clients = () => {
       };
       console.log(edituser)
       const response = await axios.put(`${API_URL}/users/${edituser.email}`, updatedProduct);
-
       if (response.status === 200) {
         const updatedProducts = users.map(product =>
           product.id === edituser.id ? response.data : product // Replace edited product
@@ -53,13 +52,12 @@ const clients = () => {
     setEdituser(null);
   };
   const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setEdituser(prevState => ({
-          ...prevState,
-          [name]: value
-      }));
+    const { name, value } = e.target;
+    setEdituser(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   }
-
   async function getUsers() {
     setIsLoading(true);
     try {
@@ -72,18 +70,16 @@ const clients = () => {
       setIsLoading(false);
     }
   }
-  
   useEffect(() => {
     getUsers();
     const rol = localStorage.getItem("role")
-
-    if(rol == 'superadmin'){
+    if (rol == 'superadmin') {
       setSuperAdmin(true)
     }
-
+    if (activated === false) {
+      setActivated(true)
+    }
   }, []);
-
-
   const handleClickAdmin = async (user) => {
     if (user.role == "admin") {
       if (
@@ -109,144 +105,159 @@ const clients = () => {
       }
     }
   };
-
-
-
-    return (
-      <div className={styles.container}>
-        <div className={styles.mainContent}>
-          <h1>Our customers</h1>
-          {isLoading ? (
-            <p>Loading users...</p>
-          ) : (
-            users.length > 0 && (
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Phone</th>
-                    <th>Country</th>
-                    <th>Edit</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {users.map((user, index) => (
-                    <tr key={user.id}>
-                      <td>{index}</td>
-                      <td>
-                        {edituser && edituser.id === user.id ? (
-                          <input
-                            type="text"
-                            name="name"
-                            value={edituser.name}
-                            onChange={handleInputChange}
-                          />
-                        ) : (
-                          user.name
-                        )}
-                      </td>
-                      <td>
-                        {edituser && edituser.id === user.id ? (
-                          <input
-                            type="text"
-                            name="email"
-                            value={edituser.email}
-                            onChange={handleInputChange}
-                          />
-                        ) : (
-                          user.email
-                        )}
-                      </td>
-                      <td>
-                        {edituser && edituser.id === user.id ? (
-                          <input
-                            type="number"
-                            name="password"
-                            value={edituser.password}
-                            onChange={handleInputChange}
-                          />
-                        ) : (
-                          "********"
-                        )}
-                      </td>
-                      <td>
-                        {edituser && edituser.id === user.id ? (
-                          <input
-                            type="number"
-                            name="phone"
-                            value={edituser.phone}
-                            onChange={handleInputChange}
-                          />
-                        ) : (
-                          user.phone
-                        )}
-                      </td>
-                      <td>
-                        {edituser && edituser.id === user.id ? (
-                          <input
-                            type="text"
-                            name="country"
-                            value={edituser.country}
-                            onChange={handleInputChange}
-                          />
-                        ) : (
-                          user.country
-                        )}
-                      </td>
-                      <td>
-                        {edituser && edituser.id === user.id ? (
-                          <div>
-                            <button
-                              className={styles.editbuttons}
-                              onClick={handleSave}
-                            >
-                              Save
-                            </button>
-                            <button
-                              className={styles.editbuttons}
-                              onClick={handleCancelEdit}
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                        ) : (
+  const handelactivited = async (user) => {
+    try {
+      const newActiveState = !user.active; // Cambiar el estado activo
+      const userData = { active: newActiveState };
+      await axios.put(`${API_URL}/users/${user.email}`, userData);
+      getUsers(); // Actualizar lista de usuarios
+      setActivated(newActiveState); // Actualizar el estado activated
+    } catch (error) {
+      console.error('Error al activar/desactivar usuario:', error);
+    }
+  };
+  return (
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
+        <h1>Our customers</h1>
+        {isLoading ? (
+          <p>Loading users...</p>
+        ) : (
+          users.length > 0 && (
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th>Phone</th>
+                  <th>Country</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user, index) => (
+                  <tr key={user.id}>
+                    <td>{index}</td>
+                    <td>
+                      {edituser && edituser.id === user.id ? (
+                        <input
+                          type="text"
+                          name="name"
+                          value={edituser.name}
+                          onChange={handleInputChange}
+                        />
+                      ) : (
+                        user.name
+                      )}
+                    </td>
+                    <td>
+                      {edituser && edituser.id === user.id ? (
+                        <input
+                          type="text"
+                          name="email"
+                          value={edituser.email}
+                          onChange={handleInputChange}
+                        />
+                      ) : (
+                        user.email
+                      )}
+                    </td>
+                    <td>
+                      {edituser && edituser.id === user.id ? (
+                        <input
+                          type="number"
+                          name="password"
+                          value={edituser.password}
+                          onChange={handleInputChange}
+                        />
+                      ) : (
+                        "********"
+                      )}
+                    </td>
+                    <td>
+                      {edituser && edituser.id === user.id ? (
+                        <input
+                          type="number"
+                          name="phone"
+                          value={edituser.phone}
+                          onChange={handleInputChange}
+                        />
+                      ) : (
+                        user.phone
+                      )}
+                    </td>
+                    <td>
+                      {edituser && edituser.id === user.id ? (
+                        <input
+                          type="text"
+                          name="country"
+                          value={edituser.country}
+                          onChange={handleInputChange}
+                        />
+                      ) : (
+                        user.country
+                      )}
+                    </td>
+                    <td>
+                      {edituser && edituser.id === user.id ? (
+                        <div>
                           <button
-                            onClick={() => handleEdit(user.email)}
-                            className={styles.iconoeditar}
+                            className={styles.editbuttons}
+                            onClick={handleSave}
                           >
-                            Edit
+                            Save
                           </button>
-                        )}
-                        {/* <button
-                          onClick={() => handleDelete(user.email)}
-                          className={styles.iconoeliminar}
+                          <button
+                            className={styles.editbuttons}
+                            onClick={handleCancelEdit}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => handleEdit(user.email)}
+                          className={styles.iconoeditar}
                         >
-                          Delete
-                        </button> */}
-                        {superAdmin ? (
-                              <button
-                                className={styles.iconoAdmin}
-                                onClick={() => handleClickAdmin(user)}
-                              >
-                              </button>
-                            ) : (
-                              <></>
-                            )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )
-          )}
-        </div>
+                          Edit
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleDelete(user.email)}
+                        className={styles.iconoeliminar}
+                      >
+                        Delete
+                      </button>
+                      {superAdmin && (
+                        <button
+                          className={styles.iconoAdmin}
+                          onClick={() => handleClickAdmin(user)}
+                        >
+                          {/* Icono de administrador */}
+                        </button>
+                      )}
+                      {user.active ? (
+                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
+                          <FontAwesomeIcon icon={faEyeSlash} style={{ marginRight: '5px' }} />
+                        </button>
+                      ) : (
+                        <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
+                          <FontAwesomeIcon icon={faEye} style={{ marginRight: '5px' }} />
+
+                        </button>
+                      )}
+
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )
+        )}
       </div>
-    );
+    </div>
+  );
 }
-
-
 export default clients
