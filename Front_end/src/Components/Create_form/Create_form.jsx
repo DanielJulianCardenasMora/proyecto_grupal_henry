@@ -148,7 +148,7 @@ const Form = ({ addProduct }) => {
 
           <div className={style.formDiv}>
             <label>Images:</label>
-            <input type="file" name="images" onChange={uploadtImage} multiple />
+            <input className={style.addImage} type="file" name="images" onChange={uploadtImage} multiple />
           </div>
 
           {/* <div className={style.formDiv}>
@@ -163,8 +163,8 @@ const Form = ({ addProduct }) => {
             <button className={style.addSize} type="button" onClick={addSize}>Add</button>
             <div className={style.stock}>
               {size.map((item, index) => (
-                <div key={index} className={style.input}>
-                  <select
+                <div key={index} className={style.inputSizeBox}>
+                  <select className={style.sizeSelect}
                     name="size"
                     value={item.size}
                     onChange={(event) => sizeChange(event, index)}
