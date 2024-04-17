@@ -13,6 +13,17 @@
     z-index: 1000;
 }
 
+
+.navButton{
+    position:relative;
+display: none;
+    right: 50%;
+    background-color: wheat;
+}
+.sub{
+    display: none;
+}
+
 .boxLogo{
     width: 10%;
     height: 99%;
@@ -67,6 +78,8 @@
     padding-left: 10%;
     padding-right: 10%;
 }
+
+
 
 .logInB:hover{
     background-color: rgba(255, 255, 255, 0.16);
@@ -189,16 +202,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-left: 3%;
-        padding-right:3% ;
+padding-right: 3%;
         box-sizing: border-box;
         z-index: 1000;
+
     
     }
     .boxLogo{
         width: 20%;
+
         height: 12vw;
         margin-top: 5%;
+
         background-image: url('../../assets/Imagenes/circulo-negro2.png');
         position: absolute;
         background-size: contain;
@@ -207,18 +222,16 @@
         display:flex ;
         align-items: center;
       justify-content: space-around;
-      font-size: 1em;
+      font-size: 2em;
       font-weight: bold;
+      right: 0;
     }
     .boxList{
         /* background-color: rgb(63, 63, 63); */
         width: 50%;
     }
     .boxList ul{
-        flex-direction: column;
-        position: absolute;
-        top:80%;
-        left: 50%
+display: none;
     }
     .menuButton{
         position: absolute;
@@ -248,23 +261,65 @@
         text-decoration: none;
     }
     
-    .logIn{
-        width: 50%;
+    .log{
+        width: 30%;
+        margin-left: 10%;
+        height: 10%;
         /* background-color: chocolate; */
+    
+        
     }
     
     .logInB{
         height: 80%;
+        width: 100%;
         background: none;
         color: white;
         border: 1px solid white;
         border-radius: 1em;
+
         padding-top: 4%;
         padding-bottom: 4%;
         margin-top: 9%;
+
     }
     
     .logInB:hover{
         background-color: rgba(255, 255, 255, 0.16);
     }
+    .navButton{
+        position:absolute;
+display: block;
+top: 35%;
+  left: 0;
+padding: 1%;
+    color: white;
+    font-size: 35px;
+    background: none;
+    font-weight: bold;
     }
+
+    .sub{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: rgb(21, 21, 21);
+        position: absolute;
+    left: 0;
+        top:93%;
+        height: 87vh;
+        width: 60%;
+    }
+
+    .sub  li{
+        list-style-type: none;
+
+    }
+    }
+
+.sub li{
+    height: 4em;
+    text-align: left;
+    
+}
+

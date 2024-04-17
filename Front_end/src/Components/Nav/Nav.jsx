@@ -14,6 +14,18 @@ function Nav({ setUsuario }) {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
+  const [subMenu, setSubMenu] = useState(new Set());
+
+  const toggleMenu = (event) => {
+      const menu = new Set(subMenu);
+      if (menu.has(event)) {
+          menu.delete(event);
+      } else {
+          menu.add(event);
+      }
+      setSubMenu(menu);
+  };
+
   useEffect(() => {
     const storedEmail = localStorage.getItem('usuario');
     const role = localStorage.getItem("role")
@@ -117,8 +129,118 @@ function Nav({ setUsuario }) {
           </Link>
         </div>
       )}
+
+<button className={style.navButton} onClick={() => toggleMenu('menu')}>☰</button>
+
+
+                {subMenu.has('menu') && (
+                 
+                  
+                  <div className={style.sub}>
+      <div >
+        <ul>
+          <Link to="/products" className={style.link}>
+            <li>Products</li>
+          </Link>
+          <Link to="/about" className={style.link}>
+            <li>About</li>
+          </Link>
+          {isLoggedIn ? (
+            <Link to="/myprofile" className={style.link}>
+              <li>My Profile</li>
+            </Link>
+          ) : (
+            <li className={style.link} onClick={handleLogin}>
+              My Profile
+            </li>
+          )}
+          <Link to="/cart" className={style.link}>
+            <li>Cart</li>
+          </Link>
+          
+          {isAdmin ? (
+            <Link to="/dashboard" className={style.link}>
+              <li>Dashboard</li>
+            </Link>
+          ) : (
+            <li></li>
+          )}
+        </ul>
+      </div>
+
+      {showLogout || isAuthenticated ? (
+        <div className={style.log}>
+          <button className={style.logInB} onClick={handleLogout}>
+            Log out
+          </button>
+        </div>
+      ) : (
+        <div className={style.log}>
+          <Link to="/login" className={style.link}>
+            <button className={style.logInB}>Log In</button>
+          </Link>
+        </div>
+      )}
+      </div>
+
+                       
+               
+                )}
+
+
+
+
     </nav>
   );
 }
 
 export default Nav;
+
+/*
+      <div className={style.submenu}>
+      <div >
+        <ul>
+          <Link to="/products" className={style.link}>
+            <li>Products</li>
+          </Link>
+          <Link to="/about" className={style.link}>
+            <li>About</li>
+          </Link>
+          {isLoggedIn ? (
+            <Link to="/myprofile" className={style.link}>
+              <li>My Profile</li>
+            </Link>
+          ) : (
+            <li className={style.link} onClick={handleLogin}>
+              My Profile
+            </li>
+          )}
+          <Link to="/cart" className={style.link}>
+            <li>Cart</li>
+          </Link>
+          
+          {isAdmin ? (
+            <Link to="/dashboard" className={style.link}>
+              <li>Dashboard</li>
+            </Link>
+          ) : (
+            <li></li>
+          )}
+        </ul>
+      </div>
+
+      {showLogout || isAuthenticated ? (
+        <div className={style.logIn}>
+          <button className={style.logInB} onClick={handleLogout}>
+            Log out
+          </button>
+        </div>
+      ) : (
+        <div className={style.logIn}>
+          <Link to="/login" className={style.link}>
+            <button className={style.logInB}>Log In</button>
+          </Link>
+        </div>
+      )}
+      </div>
+*/
