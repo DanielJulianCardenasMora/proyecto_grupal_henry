@@ -136,7 +136,7 @@ function Detail(props) {
         <div className={style.buy}>
 
 
-        <select onChange={handleSizeChange} value={selectedSize} className={style.selectS}>
+        <select onChange={handleSizeChange} value={selectedSize || ""} className={style.selectS}>
           <option value="all">SIZE</option>
         {sizeWithoutTotal?.map(([size]) => (
           <option key={size} value={size}>{size}</option>
