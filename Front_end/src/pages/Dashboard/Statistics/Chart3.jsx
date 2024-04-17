@@ -18,7 +18,7 @@ const Chart3 = ({ productQuantity }) => {
     .sort((a, b) => b.quantity - a.quantity) // Sort in descending order based on quantity
       .slice(0, 5); // Get the first 5 items
     setTop(top5Items)
-    console.log(top)
+    
   }
 
   useEffect(() => {

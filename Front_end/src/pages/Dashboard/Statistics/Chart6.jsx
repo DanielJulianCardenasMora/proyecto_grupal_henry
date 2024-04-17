@@ -28,7 +28,7 @@ const Chart6 = ({userOrder}) => {
 
   useEffect(() => {
     setOrders(userOrder)
-    console.log(orders)
+    
   }, [userOrder, orders])
 
 

@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 
 const sendMail = (user, mensaje, titulo) => {
   const htmlTemplate = getEmailTemplate(user, mensaje, titulo);
-  console.log("Recipient's Email:", user);
+  ;
 
   const mailOptions = {
     from: '"Wearfashion" <wemolde@gmail.com>',
@@ -32,9 +32,9 @@ const sendMail = (user, mensaje, titulo) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log("Error Sending mail", error);
+      ;
     } else {
-      console.log("Recipient's Email:", user.email);
+      ;
     }
   });
 };

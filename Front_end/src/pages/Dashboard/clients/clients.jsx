@@ -221,12 +221,12 @@ const clients = () => {
                             Edit
                           </button>
                         )}
-                        <button
+                        {/* <button
                           onClick={() => handleDelete(user.email)}
                           className={styles.iconoeliminar}
                         >
                           Delete
-                        </button>
+                        </button> */}
                         {superAdmin ? (
                               <button
                                 className={styles.iconoAdmin}

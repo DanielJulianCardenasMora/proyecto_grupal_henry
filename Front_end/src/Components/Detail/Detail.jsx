@@ -70,7 +70,7 @@ if (product.size) {
   };
   
   
-console.log(product);
+;
 
   useEffect(() => {
 

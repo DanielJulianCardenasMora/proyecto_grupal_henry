@@ -11,7 +11,8 @@ import {
   PAYMENT,
   GET_USERS,
   ALERTS_ACTIVE,
-  REGISTER
+  REGISTER,
+  PRODUCT_ERROR
 } from "../actions/type";
 
 const initialstate = {
@@ -39,7 +40,8 @@ const initialstate = {
     sortOrder: '' // Orden de precio
   },
   alerts: false,
-  register: false
+  register: false,
+  productError: []
 };
 
 export default function rootReducer(state = initialstate, { type, payload }) {
@@ -61,7 +63,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       };
 
     case ENVIAR_CARRITO_AL_BACKEND:
-      console.log(payload);
+      ;
       return {
         ...state,
         orders: [...payload],
@@ -75,7 +77,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       }
 
     case ORDER_DETAIL:
-      console.log(payload);
+      ;
       return {
         ...state,
         orderDetail: [...payload]
@@ -93,7 +95,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         Detail: payload,
       };
     case ADD_PRODUCT:
-      console.log('Payload de add reducer', payload);
+      ;
       return {
         ...state,
         Products: [payload, ...state.Products], // Agrega el nuevo producto al principio del array
@@ -101,7 +103,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         loading: false
       };
     case 'UPDATE_GENDER_FILTER':
-      console.log('gender reduce:', payload);
+      ;
       return {
         ...state,
         filters: {
@@ -110,7 +112,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         },
       };
     case 'UPDATE_CATEGORY_FILTER':
-      console.log('category', state.filters);
+      ;
       return {
         ...state,
         filters: {
@@ -119,7 +121,7 @@ export default function rootReducer(state = initialstate, { type, payload }) {
         },
       };
     case 'UPDATE_PRICE_FILTER':
-      console.log("Sorting order received in reducer:", payload);
+      ;
       return {
         ...state,
         filters: {
@@ -145,6 +147,13 @@ export default function rootReducer(state = initialstate, { type, payload }) {
       ...state,
       register: payload
     }
+
+    case PRODUCT_ERROR:
+
+      return{
+        ...state,
+        productError: payload
+      }
     default:
       return { ...state };
   }
