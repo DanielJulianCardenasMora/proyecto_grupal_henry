@@ -6,6 +6,7 @@ import { addProduct } from '../../redux/actions/actions';
 import axios from 'axios'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { resetErrors } from "../../redux/actions/actions";
 
 const Form = ({ addProduct }) => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -75,10 +76,10 @@ const Form = ({ addProduct }) => {
         genero: '',
         category: '',
         images: "",
-        size: [] // Envía el array de tamaños y su stock al backend
+        size: []
       })
       setUrlImagen("");
-
+      resetErrors()
       setSnackbarSeverity('success');
       setSnackbarMessage("Product added");
       setSnackbarOpen(true);
@@ -135,8 +136,6 @@ const Form = ({ addProduct }) => {
       setSnackbarMessage(errors[0]);
       setSnackbarOpen(true);
     }
-
-
   }, [errors])
 
 

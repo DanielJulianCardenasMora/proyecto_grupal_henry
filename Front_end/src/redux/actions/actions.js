@@ -151,7 +151,6 @@ export const addProduct = (formData) => async (dispatch) => {
       payload: response.data,
     });
   } catch (error) {
-    ;
     const response = error.response.data.errors
     dispatch({
       type: PRODUCT_ERROR,
@@ -194,3 +193,11 @@ export const register = (payload) => {
     payload: payload,
   };
 };
+
+export const resetErrors = () => {
+
+  return {
+    type: PRODUCT_ERROR,
+    payload: []
+  }
+}
