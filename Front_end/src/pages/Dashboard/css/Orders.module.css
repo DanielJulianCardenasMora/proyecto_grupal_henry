@@ -50,7 +50,9 @@
 }
 
 .iconoeliminar {
-  background-image: url('../../../assets/icons/icons8-basura-64.png');
+  height: 10vh;
+  color: black;
+  width: 10vw;
 }
 
 .iconoeditar,
@@ -83,4 +85,13 @@ td .editbuttons{
   color: black;
   margin-bottom: 5%;
   width: 100%;
+}
+
+.check{
+  font-size: 1vw;
+  color: rgb(3, 3, 151);
+  border-bottom: none;
+}
+.table a{
+  text-decoration: none;
 }

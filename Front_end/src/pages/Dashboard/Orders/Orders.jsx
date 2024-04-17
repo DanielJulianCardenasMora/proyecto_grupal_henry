@@ -3,6 +3,7 @@ import Sidebar from "../../../Components/Dashboard/sidebar";
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Orders = () => {
   const [editorder, setEditorder] = useState(null);
@@ -94,7 +95,7 @@ const Orders = () => {
                   <th>Detalle</th>
                   <th>User name</th>
                   <th>User email</th>
-                  <th>Edit</th>
+                  <th>Review</th>
                 </tr>
               </thead>
 
@@ -106,15 +107,18 @@ const Orders = () => {
                     <td>{editorder && editorder.id === order.id ? <input type="text" name="nameUser" value={editorder.nameUser} onChange={handleInputChange} /> : order.nameUser}</td>
                     <td>{editorder && editorder.id === order.id ? <input type="text" name="email" value={editorder.email} onChange={handleInputChange} /> : order.email}</td>
                     <td>
-                      {editorder && editorder.id === order.id ?
+                      {/* {editorder && editorder.id === order.id ?
                         <>
                           <button onClick={handleSave}>Save</button>
                           <button onClick={handleCancelEdit}>Cancel</button>
                         </>
                         :
                         <button onClick={() => handleEdit(order.id)} className={styles.iconoeditar}>Edit</button>
-                      }
-                      {/* <button onClick={() => handleDelete(order.id)} className={styles.iconoeliminar}>Delete</button> */}
+                      } */}
+                      <Link to="/">
+                        <h3 className={styles.check}>Check detail</h3>
+                      </Link>
+                      {/* <button className={styles.iconoeliminar}>Check detail</button> */}
                     </td>
                   </tr>
                 ))}
