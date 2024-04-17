@@ -15,18 +15,15 @@ export const AboutPage = () => {
         <div className={style.abBg}>
 
           {/* <img  className={style.figuras} src={figuras}/> */}
-          <h2 className={style.workteam}>WORKTEAM</h2>
-          <h2 className={style.techtext}>TECHNOLOGIES</h2>
-          <div className={style.tecnologias}>
-            <h1>Node JS</h1>
-            <h1>JavaScript</h1>
-            <h1>Express</h1>
-            <h1>PostgreSQL</h1>
-            <h1>Sequelize</h1>
-            <h1>React</h1>
-            <h1>Redux</h1>
-            <h1>CSS</h1>
+          <div className={style.title}>
+          <h3 className={style.workteam}>WORKTEAM</h3>
+          <h3 className={style.techtext}>TECHNOLOGIES</h3>
+
           </div>
+          <div className={style.containerbox}>
+
+          
+
           <div className={style.container}>
             <CardProfile
               nombre="Alejo Borracci"
@@ -65,7 +62,18 @@ export const AboutPage = () => {
               github="https://github.com/Jerebrrs"
             />
 
+            </div>
+            <div className={style.tecnologias}>
+            <h1>Node JS</h1>
+            <h1>JavaScript</h1>
+            <h1>Express</h1>
+            <h1>PostgreSQL</h1>
+            <h1>Sequelize</h1>
+            <h1>React</h1>
+            <h1>Redux</h1>
+            <h1>CSS</h1>
           </div>
+            </div>
           <div className={style.background}>
             <div className={style.runner}></div>
             <div className={style.desc}>
