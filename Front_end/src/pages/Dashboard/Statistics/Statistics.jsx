@@ -142,6 +142,7 @@ const Statistics = () => {
   useEffect(() => {
     console.log(allOrders)
     console.log(eachOrder)
+    console.log(userOrder)
   }, [totalSum])
 
   
@@ -170,7 +171,7 @@ const Statistics = () => {
 
         <div className={style.seccion2}>
           <div className={style.area}>{'Sales per month (first 12 orders)'} 
-            <Chart priceOrder={priceOrder} />
+      <Chart priceOrder={priceOrder} />
           </div>
           <div className={style.area}>Product ranking --- Top 5 most sold
             {/* <Chart2 priceOrder={priceOrder} /> */}
@@ -180,9 +181,9 @@ const Statistics = () => {
         <div className={style.seccion3}>
           {/* <div className={style.product}>Product ranking --- Top 5 most sold
        
-          </div> */}
+      </div> */}
           <div className={style.product}>Product ranking --- Total units sold per all products
-            <Chart4 productQuantity={productQuantity} />
+        <Chart4 productQuantity={productQuantity} />
           </div>
         </div>
         <div className={style.seccion4}>
