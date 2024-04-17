@@ -1,4 +1,4 @@
-.main{
+.main {
     background-color: rgb(255, 255, 255);
     width: 85%;
     box-sizing: border-box;
@@ -8,81 +8,89 @@
     margin-right: 1%;
     padding: 0.2% 0% 1% 0%;
 }
-.dashCont{
+
+.dashCont {
     height: 96%;
     width: 100%;
     box-sizing: border-box;
     overflow-y: auto;
     margin-top: 1%;
 }
+
 .dashCont::-webkit-scrollbar {
-    width: 12px; /* Adjust width as needed */
+    width: 12px;
+    /* Adjust width as needed */
     background-color: #9c95af;
-    border-radius: 10px; /* Background color of the scrollbar */
+    border-radius: 10px;
+    /* Background color of the scrollbar */
     padding: 0 2px;
 }
+
 .dashCont::-webkit-scrollbar-thumb {
-    background-color: hsl(274, 54%, 18%); /* Color of the thumb */
-    border-radius: 10px; /* Add rounded corners */
+    background-color: hsl(274, 54%, 18%);
+    /* Color of the thumb */
+    border-radius: 10px;
+    /* Add rounded corners */
     margin: 0 2px;
 }
 
 
-.boxes{
+.boxes {
     width: 80%;
     height: 22%;
 
     display: flex;
-   margin: auto;
+    margin: auto;
     justify-content: space-between;
-    
+
 }
 
-.box{
+.box {
     background-color: white;
     width: 25%;
-  color: black;
-  box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
-  -webkit-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
-  -moz-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
-  border-radius: 7px;
-  border: 1px solid rgb(195, 195, 195);
-  margin-top: 1%;
+    color: black;
+    box-shadow: 6px 7px 7px -2px rgba(201, 201, 201, 0.75);
+    -webkit-box-shadow: 6px 7px 7px -2px rgba(201, 201, 201, 0.75);
+    -moz-box-shadow: 6px 7px 7px -2px rgba(201, 201, 201, 0.75);
+    border-radius: 7px;
+    border: 1px solid rgb(195, 195, 195);
+    margin-top: 1%;
 }
 
-.content{
+.content {
     height: 75%;
-padding: 1%;
-box-sizing: border-box;
+    padding: 1%;
+    box-sizing: border-box;
     width: 95%;
     margin: auto;
     margin-top: 1%;
     display: flex;
-  justify-content: space-between;
-  color: black;
+    justify-content: space-between;
+    color: black;
 
 
 }
 
-.principal, .side{
+.principal,
+.side {
     height: 100%;
     background-color: white;
-    box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
-    -webkit-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
-    -moz-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
+    box-shadow: 6px 7px 7px -2px rgba(201, 201, 201, 0.75);
+    -webkit-box-shadow: 6px 7px 7px -2px rgba(201, 201, 201, 0.75);
+    -moz-box-shadow: 6px 7px 7px -2px rgba(201, 201, 201, 0.75);
     border-radius: 7px;
     border: 1px solid rgb(195, 195, 195);
- 
+
 }
 
-.principal{
+.principal {
     width: 74%;
 
 
-   
+
 }
 
-.principal form{
+.principal form {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -92,46 +100,48 @@ box-sizing: border-box;
     margin: auto;
 }
 
-.formContent{
+.formContent {
     /* background-color: blueviolet; */
     width: 100%;
-     display: flex;
-     height: 2em;
-     margin-bottom: 5px;
+    display: flex;
+    height: 2em;
+    margin-bottom: 5px;
 
 }
 
-.formContent label{
+.formContent label {
     width: 9%;
     text-align: left;
+    color: black
 }
 
-.formContent input,select {
+.formContent input,
+select {
     height: 32px;
     width: 90%;
     border-radius: 5px;
-border: 1px solid rgb(175, 175, 175);
-outline: none;
-background: none;
-padding: 1%;
-box-sizing: border-box;
-color: white;
+    border: 1px solid rgb(175, 175, 175);
+    outline: none;
+    background: none;
+    padding: 1%;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
 }
 
-.formContent select{
+.formContent select {
     padding: 2px;
     padding-left: 3px;
     color: rgb(116, 115, 115);
     background-color: white;
 }
 
-select option{
+select option {
     color: black;
     background-color: white;
 }
 
 .formArea {
-    height: 12em ;
+    height: 12em;
     /* background-color: #9c95af; */
     width: 100%;
     display: flex;
@@ -143,24 +153,25 @@ select option{
 
 }
 
-.formArea textarea{
+.formArea textarea {
     width: 90%;
     border: 1px solid rgb(175, 175, 175);
-outline: none;
-border-radius: 5px;
-padding: 1%;
-box-sizing: border-box;
-background-color: white;
+    outline: none;
+    border-radius: 5px;
+    padding: 1%;
+    box-sizing: border-box;
+    background-color: white;
 }
 
 
 
 
-.side{
+.side {
     width: 25%;
     overflow-y: auto;
 }
-.emailB{
+
+.emailB {
     background-color: rgba(128, 128, 128, 0.63);
     margin-top: 1%;
 }
