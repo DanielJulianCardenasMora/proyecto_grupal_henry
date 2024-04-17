@@ -53,10 +53,12 @@
 }
 
 .iconoAdmin {
-  background-image: url('../../../assets/icons/admin.jpg');
+  padding: 0;
+  padding-left: 10%;
+  color: rgb(0, 0, 142);
+  font-size: 0.8vw;
 }
 .iconoeditar,
-.iconoAdmin,
 .iconoeliminar {
   width: 30px; /* Ancho */
   height: 30px; /* Alto */
@@ -97,4 +99,10 @@ td .editbuttons{
   background-position: center; /* Centra el icono dentro del botón */
   background-size: contain;
   color: #000000;
+  padding-left: 15%;
+  font-size: 1.5vw;
+}
+
+.iconsBox{
+  width: 10vw;
 }

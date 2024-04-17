@@ -3,7 +3,7 @@ import Sidebar from "../../../Components/Dashboard/sidebar";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 const clients = () => {
   const [edituser, setEdituser] = useState(null);
   const [users, setUsers] = useState([]);
@@ -204,7 +204,7 @@ const clients = () => {
                         user.country
                       )}
                     </td>
-                    <td>
+                    <td  className={styles.iconsBox}>
                       {edituser && edituser.id === user.id ? (
                         <div>
                           <button
@@ -232,17 +232,17 @@ const clients = () => {
                         <button
                           className={styles.iconoAdmin}
                           onClick={() => handleClickAdmin(user)}
-                        >
+                        >admin
                         </button>
                       )}
                       {user.active ? (
                         <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
-                          <FontAwesomeIcon icon={faEyeSlash} style={{ marginRight: '5px' }} />
+                          <FontAwesomeIcon icon={faToggleOff} style={{ marginRight: '5px' }} />
                         </button>
                       ) : (
                         <button onClick={() => handelactivited(user)} className={styles.iconDesac}>
-                          <FontAwesomeIcon icon={faEye} style={{ marginRight: '5px' }} />
-
+                          <FontAwesomeIcon icon={faToggleOn} style={{ marginRight: '5px' }} />
+                          
                         </button>
                       )}
 
