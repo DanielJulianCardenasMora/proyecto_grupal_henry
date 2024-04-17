@@ -94,7 +94,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
     if (!order.userId) {
       setSnackbarSeverity('error');
-      setSnackbarMessage('Please fill in the user ID field before placing the order.');
+      setSnackbarMessage('You must log in first. ');
       setSnackbarOpen(true);
       return;
     }
