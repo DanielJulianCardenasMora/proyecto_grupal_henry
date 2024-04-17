@@ -18,7 +18,7 @@ const createOrder = async (req, res) => {
     ],
     application_context: {
       brand_name: "Wearfashion",
-      landing_page: "NO_PREFERENCE", // Cambiado a un valor válido
+      landing_page: "NO_PREFERENCE", 
       user_action: "PAY_NOW",
       return_url: `${HOST}/capture_order`,
       cancel_url: `${HOST}/cancel_order`,
