@@ -10,11 +10,11 @@
 }
 .content{
     height: 90%;
-    background-color: rgba(255, 255, 255, 0.349);
+    background-color: rgba(255, 255, 255, 0.603);
     width: 70%;
     margin: auto;
     margin-top: 2%;
-    border-radius: 1em;
+
     padding: 2%;
     padding-top: 1%;
     box-sizing: border-box;
@@ -138,9 +138,13 @@
     text-decoration: none;
    
 }
+.void{
+    width: 50%;
 
+}
 .back{
-    height: 47%;
+    height: 100%;
+    width: 100%;
     padding: 1%;
     box-sizing: border-box;
     background-color: blueviolet;
