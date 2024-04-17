@@ -1,12 +1,13 @@
-.container{
-  background: url('../../assets/Imagenes/Landing_fondo_aplicar - copy.png');
+.container {
+  background-image: url('../../assets/Imagenes/alejo3.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
   width: 100%;
   color: rgb(0, 0, 0);
-  
   margin: auto;
-
   padding-top: 7%;
+  position: relative; /* Añadido para permitir superponer elementos */
 }
 
 .content{
