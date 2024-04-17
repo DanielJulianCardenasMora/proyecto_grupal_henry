@@ -28,11 +28,10 @@ const Statistics = () => {
       const { data } = await axios.get(`${URL_ALL_ORDERS}`);
       const ordersId = data.map((obj, index) => {
         return {
-          [`orderid_${index + 1}`]: obj.id
+          idOrder: obj.id
         };
       });
       setAllOrders(ordersId)
-      
     } catch (error) {
       console.error(error);
     }
@@ -43,12 +42,11 @@ const Statistics = () => {
   const individualOrder = async () => {
     const individualOrders = []
     for (const obj of allOrders) {
-      const orderId = obj[`orderid_${Object.keys(obj)[0].slice(-1)}`];
 
-      if(orderId !== undefined){
-        const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
+      const orderId = obj.idOrder;
+      const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
+      if (data) {
 
-         if (data) {
         individualOrders.push(data);
       }
       }
@@ -146,10 +144,8 @@ const Statistics = () => {
 
   // // Solo para comprobar
   useEffect(() => {
-    
-    
-    
-    
+    console.log(allOrders)
+    console.log(eachOrder)
   }, [totalSum])
 
   

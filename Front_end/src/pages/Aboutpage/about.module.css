@@ -1,5 +1,5 @@
 .box{
-  background-color: #6603a8;
+  background-color: #000000;
   height: 190vh;
   display: flex;
   flex-direction: column;
@@ -8,11 +8,11 @@
 .abBg{
     height: 80vh;
     background: linear-gradient(180deg, rgba(102, 3, 168, 1) 20%, rgba(0, 0, 0, 1) 90%);    background-size: cover;
-    padding-top: 5%;
+    padding-top: 6%;
     position: relative;
     z-index: 200;
 }
-.workteam{
+/* .workteam{
     
     margin: 0;
     margin-bottom: 1%;
@@ -20,7 +20,7 @@
     font-size: 2vw;
     transform: translate(+75%);
     top: 13%;
-}
+} */
 .figuras{
     position: relative;
     top: 5%;
@@ -39,7 +39,6 @@
   background-color: rgb(126, 44, 233);
   box-shadow: 5px 6px 5px 0px rgba(255, 255, 255, 0.761);
   border-radius: 20px;
-  margin-left: 5%;
   position: relative;
 }
 .background{
@@ -92,37 +91,29 @@
   margin-top: 5%;
 }
 .tecnologias{
-  height: 71%;
+  height: 79%;
   width: 30%;
   background-color: rgb(126, 44, 233);
-  position: absolute;
-  top: 20%;
+  top: 10vh;
   right: 10%;
   border-radius: 20px;
-  padding-top: 1%;
+  padding-top: 0.5%;
   box-sizing: border-box;
   box-shadow: 5px 6px 5px 0px rgba(255, 255, 255, 0.761);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around
+  justify-content: space-evenly
 }
 .tecnologias h1{
-  margin-bottom: 1%;
+  margin-bottom: 0%;
   border: 2px solid rgb(255, 255, 255);
-  
   width: 60%;
-  padding: 1.5% 0;
-  font-size: 1.5vw;
+  padding: 0.5% 0;
+  font-size: 1.2vw;
   border-radius: 10px;
 }
-.techtext{
-  position: absolute;
-  top: 7%;
-  font-size: 2vw;
-  left: 68%;
 
-}
 .runner{
     height: 90%;
     /* background-color: bisque; */
@@ -146,3 +137,22 @@
   z-index: 100;
 }
 
+.containerbox{
+  display: flex;
+  width: 100%;
+  height: 70vh;
+  justify-content: space-around
+}
+
+.title{
+  display: flex;
+  width: 100%;
+  height: 9%;
+  justify-content: space-around;
+  align-items: flex-end
+}
+.title h3{
+  margin-top: 0;
+  padding-left: 5%;
+  font-size: 1.5vw;
+}
