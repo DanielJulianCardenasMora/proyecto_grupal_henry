@@ -90,7 +90,6 @@ const Form = ({ addProduct }) => {
 
     const totalStock = formData.size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
 
-
     const data = {
       name,
       description,
@@ -104,8 +103,6 @@ const Form = ({ addProduct }) => {
         return acc;
       }, {})
     };
-
-
     try {
       await addProduct(data);
       setFormData({
@@ -253,6 +250,7 @@ const Form = ({ addProduct }) => {
                 <option> Gender </option>
 
                 {Genres
+
                   ? Genres.map((option, i) => {
                     return (
                       <option key={i} name={option} value={option}>
@@ -260,6 +258,7 @@ const Form = ({ addProduct }) => {
                       </option>
                     );
                   })
+
                   : null}
               </select>
             </div>
@@ -273,6 +272,7 @@ const Form = ({ addProduct }) => {
               <select
                 className={style.select}
                 name="category"
+
                 value={category}
                 onChange={onChange}
               >
@@ -285,6 +285,7 @@ const Form = ({ addProduct }) => {
                       </option>
                     );
                   })
+
                   : null}
               </select>
             </div>
