@@ -48,7 +48,7 @@ const createOrder = async (req, res) => {
       }
     );
 
-    console.log(response.data);
+    ;
 
     return res.json(response.data);
   } catch (error) {
@@ -71,7 +71,7 @@ const captureOrder = async (req, res) => {
     }
   );
 
-  console.log(response.data);
+  ;
 
   return res.send("Pagado");
 };

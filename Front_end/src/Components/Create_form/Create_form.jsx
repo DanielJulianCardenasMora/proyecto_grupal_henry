@@ -1,11 +1,17 @@
 import style from "./Create_form.module.css";
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { connect, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addProduct } from '../../redux/actions/actions';
 import axios from 'axios'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const Form = ({ addProduct }) => {
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const errors = useSelector((state) => state.productError)
   const Genres = ['Men', 'Women', 'Unisex']
   const Category = [
     "Pants",
@@ -53,14 +59,38 @@ const Form = ({ addProduct }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
     if (!UrlImagen) {
-      alert('Please, choose an image');
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Choose a image');
+      setSnackbarOpen(true);
       return;
     }
+
+    if(errors.length === 0){
+      setFormData({
+        name: '',
+        description: '',
+        price: '',
+        stock: '',
+        genero: '',
+        category: '',
+        images: "",
+        size: [] // Envía el array de tamaños y su stock al backend
+      })
+      setUrlImagen("");
+
+      setSnackbarSeverity('success');
+      setSnackbarMessage("Product added");
+      setSnackbarOpen(true);
+    }
+
+    
+    
+    
+    
     const totalStock = formData.size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
-
-
+    
+    
     const data = {
       name,
       description,
@@ -74,25 +104,11 @@ const Form = ({ addProduct }) => {
         return acc;
       }, {})
     };
-
-    if (data.name == null) {
-
-    }
+    
+    
     try {
-      const response = await addProduct(data);
+      await addProduct(data);
 
-      alert('Product added');
-      setFormData({
-        name: '',
-        description: '',
-        price: '',
-        stock: '',
-        genero: '',
-        category: '',
-        images: "",
-        size: [] // Envía el array de tamaños y su stock al backend
-      })
-      setUrlImagen("");
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
@@ -112,16 +128,33 @@ const Form = ({ addProduct }) => {
     newSizes.splice(index, 1);
     setFormData({ ...formData, size: newSizes }); // Cambio aquí
   };
+
+  useEffect(() => {
+    if(errors.length > 0){
+      setSnackbarSeverity('error');
+      setSnackbarMessage(errors[0]);
+      setSnackbarOpen(true);
+    }
+
+
+  }, [errors])
+
+
   return (
-    <div className={style.background} >
+    <div className={style.background}>
       <form className={style.background} onSubmit={onSubmit}>
         <div className={style.cont}>
           <div className={style.formDiv}>
             <label>Name:</label>
             <div className={style.input}>
-              <input className={style.inp} type="text" name="name" value={name} onChange={onChange} />
+              <input
+                className={style.inp}
+                type="text"
+                name="name"
+                value={name}
+                onChange={onChange}
+              />
             </div>
-
           </div>
 
           <div className={style.formDiv}>
@@ -133,17 +166,20 @@ const Form = ({ addProduct }) => {
                 value={description}
                 onChange={onChange}
               />
-
             </div>
-
           </div>
 
           <div className={style.formDiv}>
             <label>Price:</label>
             <div className={style.input}>
-              <input type="number" className={style.inp} name="price" value={price} onChange={onChange} />
+              <input
+                type="number"
+                className={style.inp}
+                name="price"
+                value={price}
+                onChange={onChange}
+              />
             </div>
-
           </div>
 
           <div className={style.formDiv}>
@@ -160,7 +196,9 @@ const Form = ({ addProduct }) => {
 
           <div className={style.formDiv}>
             <label>Size and Stock</label>
-            <button className={style.addSize} type="button" onClick={addSize}>Add</button>
+            <button className={style.addSize} type="button" onClick={addSize}>
+              Add
+            </button>
             <div className={style.stock}>
               {size.map((item, index) => (
                 <div key={index} className={style.inputSizeBox}>
@@ -169,9 +207,11 @@ const Form = ({ addProduct }) => {
                     value={item.size}
                     onChange={(event) => sizeChange(event, index)}
                   >
-                    <option value=''>SIZE</option>
+                    <option value="">SIZE</option>
                     {Sizes.map((size, idx) => (
-                      <option key={idx} value={size}>{size}</option>
+                      <option key={idx} value={size}>
+                        {size}
+                      </option>
                     ))}
                   </select>
                   <input
@@ -181,14 +221,17 @@ const Form = ({ addProduct }) => {
                     value={item.stock}
                     onChange={(event) => sizeChange(event, index)}
                   />
-                  <button className={style.sizeButton} type="button" onClick={() => removeSize(index)}>X</button>
+                  <button
+                    className={style.sizeButton}
+                    type="button"
+                    onClick={() => removeSize(index)}
+                  >
+                    X
+                  </button>
                 </div>
               ))}
-
             </div>
-
           </div>
-
 
           <div className={style.formDiv}>
             <label className={style.genero} htmlFor="genre">
@@ -205,12 +248,12 @@ const Form = ({ addProduct }) => {
 
                 {Genres
                   ? Genres.map((option, i) => {
-                    return (
-                      <option key={i} name={option} value={option}>
-                        {option}
-                      </option>
-                    );
-                  })
+                      return (
+                        <option key={i} name={option} value={option}>
+                          {option}
+                        </option>
+                      );
+                    })
                   : null}
               </select>
             </div>
@@ -219,39 +262,64 @@ const Form = ({ addProduct }) => {
           <div className={style.formDiv}>
             <label className={style.genero} htmlFor="category">
               Category:
-
             </label>
             <div className={style.input}>
-              <select className={style.select} name='category' defaultValue='All' onChange={onChange}>
-                <option name='category' value={category}> Category </option>
-                {Category ? Category.map((option, i) => {
-                  return (
-                    <option key={i} name={category} value={option}>{option}</option>
-                  )
-                })
+              <select
+                className={style.select}
+                name="category"
+                defaultValue="All"
+                onChange={onChange}
+              >
+                <option name="category" value={category}>
+                  {" "}
+                  Category{" "}
+                </option>
+                {Category
+                  ? Category.map((option, i) => {
+                      return (
+                        <option key={i} name={category} value={option}>
+                          {option}
+                        </option>
+                      );
+                    })
                   : null}
               </select>
             </div>
           </div>
 
-          <button type="submit" className={style.buttonForm}>Submit</button>
+          <button type="submit" className={style.buttonForm}>
+            Submit
+          </button>
         </div>
       </form>
-      {UrlImagen ?
-
+      {UrlImagen ? (
         <div className={style.imageContainer}>
           <h4>Preview</h4>
           <img src={UrlImagen} className={style.imgForm} />
-          <button onClick={() => deleteImagen()} className={style.buttonImage}>X</button>
+          <button onClick={() => deleteImagen()} className={style.buttonImage}>
+            X
+          </button>
         </div>
-
-        : <div className={style.imageContainer}>
+      ) : (
+        <div className={style.imageContainer}>
           <h4>Preview</h4>
           <p>select an image</p>
-
         </div>
-      }
-
+      )}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={() => setSnackbarOpen(false)}
+          severity={snackbarSeverity}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 };

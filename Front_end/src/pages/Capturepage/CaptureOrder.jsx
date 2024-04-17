@@ -14,10 +14,10 @@ export const CaptureOrder = () => {
     const getOrder = async () => {
         try {
             const response = await axios.get(`https://proyectogrupalhenry-production-e8a4.up.railway.app/capture-order?token=${token}&PayerID=${payerID}`);
-            console.log(response.data);
+            ;
             setPayed(response.data);
         } catch (error) {
-            console.log(error);
+            ;
         }
     };
 

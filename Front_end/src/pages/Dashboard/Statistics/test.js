@@ -34,7 +34,7 @@ const transformPriceOrder = () => {
     };
   });
 
-  console.log(transformedData)
+  
 };
 
 transformPriceOrder()

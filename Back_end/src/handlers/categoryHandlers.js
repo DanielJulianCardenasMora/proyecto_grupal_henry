@@ -8,7 +8,7 @@ const handlerCategory = async (req, res) => {
 
         if (category) {
             categories = categories.filter(cat => cat.name === category)
-            console.log(categories)
+            
         }
         res.status(200).json(categories);
     } catch (error) {

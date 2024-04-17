@@ -16,11 +16,11 @@ export default function RegisterDialog({ handleClose }) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch()
   const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    password: '',
-    country: '',
-    phone: ''
+    email: "",
+    name: "",
+    password: "",
+    country: "",
+    phone: "",
   });
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -28,6 +28,8 @@ export default function RegisterDialog({ handleClose }) {
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
   const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app";
+  // const URL = "http://localhost:3001";
+
 
   useEffect(() => {
     setOpen(true);

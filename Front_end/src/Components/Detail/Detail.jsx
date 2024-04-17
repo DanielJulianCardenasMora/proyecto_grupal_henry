@@ -70,7 +70,7 @@ if (product.size) {
   };
   
   
-console.log(product);
+;
 
   useEffect(() => {
 
@@ -151,29 +151,28 @@ useEffect(() => {
           <div className={buttonClass ? style.boton_img : style.boton_img_hover }></div>
           <div className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></div>
         </div>
-            <div className={style.boxbuy}></div>
-          <div className={style.buy}>
-            <button
-            type="button"
-            onClick={() => selectProducts(product)}
-            >Add to cart</button>
-          </div>
+        <div className={style.buy}>
 
-          <div className={style.size}>
-            <select className={style.size1} onChange={handleSizeChange} value={selectedSize}>
-              <option value="all">SIZE</option>
-            {sizeWithoutTotal?.map(([size]) => (
-              <option key={size} value={size}>{size}</option>
-            ))}
-            </select>
-            {selectedSize && (
-            <select value={selectedQuantity} onChange={handleQuantityChange}>
-              {quantityOptions.map(option => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-            )}
-          </div>
+
+        <select onChange={handleSizeChange} value={selectedSize}>
+          <option value="all">SIZE</option>
+        {sizeWithoutTotal?.map(([size]) => (
+          <option key={size} value={size}>{size}</option>
+        ))}
+      </select>
+      {selectedSize && (
+    <select value={selectedQuantity} onChange={handleQuantityChange}>
+      {quantityOptions.map(option => (
+        <option key={option} value={option}>{option}</option>
+      ))}
+    </select>
+  )}
+  
+          <button
+          type="button"
+          onClick={() => selectProducts(product)}
+          >Add to cart</button>
+        </div>
       </div>
     </div>
   )

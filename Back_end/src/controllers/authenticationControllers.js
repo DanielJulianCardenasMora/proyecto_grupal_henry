@@ -2,7 +2,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const { User, Order } = require("../db");
-// const emailer = require("../utils/emailers");
+const emailer = require("../utils/emailers");
 
 dotenv.config();
 
@@ -33,18 +33,21 @@ const register = async (req, res) => {
     const userCreatedDB = await User.create(newUser);
 
     // Generate token for the new user
-    const dataUser = { user: { id: userCreatedDB.id } }
-    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, { expiresIn: 3600 })
+    const dataUser = { user: { id: userCreatedDB.id } };
+    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, {
+      expiresIn: 3600,
+    });
 
     // Update the user with the generated token
     await User.update({ token: token }, { where: { id: userCreatedDB.id } });
-
+    const mensaje = "Gracias por registrarte en WearFashion"
+    const titulo = "Registro exitoso"
+    emailer.sendMail(userCreatedDB.email, mensaje, titulo);
     return res.status(201).send({
       status: "ok",
-      message: `The email ${userCreatedDB.email} has been registered successfully! `
+      message: `The email ${userCreatedDB.email} has been registered successfully! `,
     });
   } catch (error) {
-    console.log(error);
     return res
       .status(500)
       .send({ status: "Error", message: "Error creating the user" });
@@ -63,8 +66,8 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ where: { email: email } });
 
-    // console.log(user.token);
-    // console.log(user.role);
+    // ;
+    // ;
 
     if (!user) {
       return res
@@ -83,14 +86,16 @@ const login = async (req, res) => {
     }
 
     // If password is correct, we generate the token
-    const dataUser = { user: { id: user.id } }
-    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, { expiresIn: 3600 })
-    
+    const dataUser = { user: { id: user.id } };
+    const token = jwt.sign(dataUser, `${process.env.JWT_SECRET}`, {
+      expiresIn: 3600,
+    });
+
     const cookieOption = {
       expires: new Date(
         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-      )
-    }
+      ),
+    };
 
     // We configure the new cookie wtih the JWT token
     res.cookie("jwt", token, cookieOption);
@@ -98,7 +103,7 @@ const login = async (req, res) => {
     // If there is a correct login, return the token
     res.send({ status: "ok", message: "User logged in", role: user.role });
   } catch (error) {
-    console.log("An error occurred:", error);
+    ;
     return res.status(500).send(error);
   }
 };

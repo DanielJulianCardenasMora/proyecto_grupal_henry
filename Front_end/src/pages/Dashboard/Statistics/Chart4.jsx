@@ -54,7 +54,7 @@ const Chart4 = ({productQuantity}) => {
     const items = orders
     .sort((a, b) => b.quantity - a.quantity) // Sort in descending order based on quantity
     setTop(items)
-    console.log(top)
+    
   }
 
   useEffect(() => {
