@@ -12,17 +12,16 @@ const clients = () => {
   const [superAdmin, setSuperAdmin] = useState(false)
   const [activated, setActivated] = useState(false)
   const handleEdit = (userID) => {
+    if (!superAdmin) {
+      alert('Only superadmin can edit user data.');
+      return;
+    }
+
     const userForEdit = users.find(user => user.email === userID)
     setEdituser(userForEdit);
   }
-  const handleDelete = async (userEmail) => {
-    try {
-      const response = await axios.delete(`${API_URL}/admin/delete-users/${userEmail}`);
-      getUsers()
-    } catch (error) {
-      console.error(error);
-    }
-  }
+
+
   const handleSave = async () => {
     if (!edituser) return;
     setIsLoading(true);
@@ -107,13 +106,18 @@ const clients = () => {
   };
   const handelactivited = async (user) => {
     try {
-      const newActiveState = !user.active; // Cambiar el estado activo
+      if (!superAdmin) {
+        alert('You do not have permissions to activate or deactivate users.');
+        return;
+      }
+
+      const newActiveState = !user.active;
       const userData = { active: newActiveState };
       await axios.put(`${API_URL}/users/${user.email}`, userData);
-      getUsers(); // Actualizar lista de usuarios
-      setActivated(newActiveState); // Actualizar el estado activated
+      getUsers();
+      setActivated(newActiveState);
     } catch (error) {
-      console.error('Error al activar/desactivar usuario:', error);
+      console.error('Error activating/deactivating user:', error);
     }
   };
   return (
@@ -224,18 +228,11 @@ const clients = () => {
                           Edit
                         </button>
                       )}
-                      <button
-                        onClick={() => handleDelete(user.email)}
-                        className={styles.iconoeliminar}
-                      >
-                        Delete
-                      </button>
                       {superAdmin && (
                         <button
                           className={styles.iconoAdmin}
                           onClick={() => handleClickAdmin(user)}
                         >
-                          {/* Icono de administrador */}
                         </button>
                       )}
                       {user.active ? (
