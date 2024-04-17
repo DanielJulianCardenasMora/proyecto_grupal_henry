@@ -1,5 +1,5 @@
 .main{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(244, 243, 243);
     width: 85%;
     box-sizing: border-box;
     display: flex;
@@ -29,8 +29,8 @@
 
 
 .boxes{
-    width: 80%;
-    height: 22%;
+    width: 67%;
+    height: 25%;
 
     display: flex;
    margin: auto;
@@ -40,7 +40,7 @@
 
 .box{
     background-color: white;
-    width: 25%;
+    width: 32%;
   color: black;
   box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
   -webkit-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
