@@ -8,7 +8,7 @@ const {PORT} = require('./config.js')
 
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(PORT || `http://localhost:3001` , async () => {
     console.log(`Server listening on port ${PORT}`);
     await productsDataBase(), await categoryDataBase();
