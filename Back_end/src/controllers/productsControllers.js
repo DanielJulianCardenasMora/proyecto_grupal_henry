@@ -3,8 +3,7 @@ const axios = require("axios");
 const { Op } = require('sequelize');
 require('dotenv').config();
 const { URL_PRODUCTS } = process.env;
-const cloudinary = require('../utils/cloudinaryConfig'); // Importa la configuración de Cloudinary
-const { getCategory } = require("./categoryControllers");
+const cloudinary = require('../utils/cloudinaryConfig'); 
 
 const productsDataBase = async () => {
   try {
@@ -96,22 +95,20 @@ const createProductDB = async (name, description, price, images, stock, genero, 
 
 const updateProductDB = async (id, productData) => {
   try {
-    // Busca el producto por id
+  
     let product = await Product.findOne({ where: { id: id } });
 
     if (!product) {
       throw new Error("Producto no encontrado");
     }
 
-    // Actualiza los campos del producto con los nuevos datos
     Object.keys(productData).forEach((key) => {
       product[key] = productData[key];
     });
 
-    // Guarda los cambios en la base de datos
     await product.save();
 
-    return product; // Devuelve el producto actualizado
+    return product; 
   } catch (error) {
     throw error;
   }

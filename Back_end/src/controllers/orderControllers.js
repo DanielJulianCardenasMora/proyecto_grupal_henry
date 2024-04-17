@@ -1,6 +1,5 @@
-const { where } = require('sequelize');
 const { Order, User, OrderDetail, Product } = require('../db')
-const Sequelize = require('sequelize');
+
 
 const modifictProductStock = async (productId, quantity, size) => {
     try {
@@ -21,7 +20,7 @@ const modifictProductStock = async (productId, quantity, size) => {
             }
             existingProduct.size[sizeKey] -= sizeStock;
         }
-        await existingProduct.save();    //save se usa para actualizar el stock en la bd. 
+        await existingProduct.save();  
     } catch (error) {
         console.error('No se pudo actualizar el stock en la Base de Datos:', error);
         throw error;
