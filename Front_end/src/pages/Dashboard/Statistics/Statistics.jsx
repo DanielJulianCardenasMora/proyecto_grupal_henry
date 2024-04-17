@@ -44,10 +44,15 @@ const Statistics = () => {
     const individualOrders = []
     for (const obj of allOrders) {
       const orderId = obj[`orderid_${Object.keys(obj)[0].slice(-1)}`];
-      const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
-      if (data) {
+
+      if(orderId !== undefined){
+        const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
+
+         if (data) {
         individualOrders.push(data);
       }
+      }
+      
     }
     setEachOrder(individualOrders);
   }
