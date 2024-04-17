@@ -98,6 +98,7 @@ background-repeat: no-repeat;
 background-size: contain;
 box-sizing: border-box;
 position: relative;
+color: black;
 }
 
 .boton_img_hover {
