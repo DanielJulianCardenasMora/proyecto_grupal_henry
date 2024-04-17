@@ -18,31 +18,6 @@ const Orders = () => {
   const [allDetails, setAllDetails] = useState([]); // Definir estado para almacenar detalles de todas las órdenes
   const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app/admin/orders';
 
-  const handleEdit = (orderID) => {
-    const orderForEdit = orders.find(order => order.id === orderID);
-    setEditorder(orderForEdit);
-  };
-
-  const handleDelete = (orderID) => {
-    // Ver después
-  };
-
-  const handleSave = () => {
-    setEditorder(null);
-  };
-
-  const handleCancelEdit = () => {
-    setEditorder(null);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditorder(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
   useEffect(() => {
     axios.get(API_URL)
       .then((response) => setOrders(response.data));
