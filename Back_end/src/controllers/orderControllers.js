@@ -75,6 +75,7 @@ const createOrder = async (req, res) => {
                 })
             }
             console.log("Producto agregado a la orden:", name, quantity, formattedSize);
+            await modifictProductStock(productId, quantity, size);
         }
         await newOrder.setUser(userId);
         res.status(200).send(newOrder);
