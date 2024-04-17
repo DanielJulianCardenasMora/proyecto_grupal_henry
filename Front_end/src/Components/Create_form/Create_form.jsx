@@ -84,12 +84,6 @@ const Form = ({ addProduct }) => {
       setSnackbarOpen(true);
     }
 
-
-
-
-
-    const totalStock = formData.size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
-
     const data = {
       name,
       description,
