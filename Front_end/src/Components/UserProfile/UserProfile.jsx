@@ -23,7 +23,7 @@ const UserProfile = () => {
   
   useEffect(() => {
     obtenerDatosUsuario();
-    console.log(datosUsuario)
+    
   }, [])
 
   const manejarClicEditar = (campo) => {
@@ -38,11 +38,11 @@ const UserProfile = () => {
     try {
       const datosActualizados = { ...datosUsuario };
       delete datosActualizados.modoEdicion; 
-      console.log(datosUsuario)
+      
 
       const respuesta = await axios.put(`${URL_USUARIO_FIND}/users/${datosUsuario.email}`, datosActualizados);
 
-      console.log('Datos del usuario actualizados:', respuesta.data);
+      ;
       setModoEdicion({ ...modoEdicion, [campo]: false });
     } catch (error) {
       console.error('Error al actualizar los datos del usuario:', error);

@@ -87,3 +87,14 @@ td .editbuttons{
   margin-bottom: 5%;
   width: 100%;
 }
+
+
+
+.iconDesac {
+  width: 30px; /* Ancho */
+  height: 30px; /* Alto */
+  background-repeat: no-repeat; /* Evita que se repita el fondo */
+  background-position: center; /* Centra el icono dentro del botón */
+  background-size: contain;
+  color: #000000;
+}

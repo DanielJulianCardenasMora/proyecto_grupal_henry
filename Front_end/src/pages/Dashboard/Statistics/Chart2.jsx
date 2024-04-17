@@ -98,12 +98,12 @@ const Chart2 = ({ eachOrder }) => {
   //     };
   //   });
   //   setNewMonthData(newData)
-  //   console.log(newMonthData);
+  //   ;
   // };
 
   useEffect(() => {
     setOrders(eachOrder)
-    console.log(orders)
+    
     // createData()
   }, [eachOrder, orders])
 

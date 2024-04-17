@@ -25,7 +25,7 @@ function Login ({setUsuario, usuario}) {
 
   //! URL -------------------
 
-  // const URL = "http://localhost:3001"
+  //const URL = "http://localhost:3001"
   const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
 
   //! ------------------------
@@ -39,7 +39,7 @@ function Login ({setUsuario, usuario}) {
     password: "",
   });
 
-  const [showRegisterDialog, setShowRegisterDialog] = useState(false); // Estado para controlar la visibilidad del diálogo
+  const [showRegisterDialog, setShowRegisterDialog] = useState(false);
 
   const handleClose = () => {
     setShowRegisterDialog(false);
@@ -99,9 +99,9 @@ function Login ({setUsuario, usuario}) {
   };
 
   const handleGoogle = () => {
-      console.log("entre al handle")
-      console.log(user)
-      console.log(isAuthenticated)
+      
+      
+      
   }
 
   useEffect(()=> {

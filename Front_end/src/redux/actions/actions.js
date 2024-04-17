@@ -19,8 +19,8 @@ import {
 
 //! URL -------------------
 
-// const URL = "http://localhost:3001";
-const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
+//const URL = "http://localhost:3001";
+ const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app"
 
 //! ------------------------
 
@@ -37,7 +37,7 @@ export const getAllProducts = (page, filters) => {
         payload: [response.data.products, response.data.totalPage],
       });
     } catch (error) {
-      console.log(error.message);
+      ;
     }
   };
 };
@@ -88,7 +88,7 @@ export function getProductDetail(id) {
         payload: data,
       });
     } catch (error) {
-      console.log(error);
+      ;
     }
   };
 }
@@ -103,22 +103,22 @@ export function searchByName(name) {
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      ;
     }
   };
 }
 
 export const enviarCarritoAlBackend = (order) => {
-  console.log(order);
+  ;
   return async (dispatch) => {
     try {
       const response = await axios.post(`${URL}/orders/create`, order);
-      console.log("Orden creada:", response.data);
+      ;
       alert("Orden de compra enviada");
 
       dispatch({ type: ENVIAR_CARRITO_AL_BACKEND, payload: response });
     } catch (error) {
-      console.log("este es el error:", error);
+      ;
     }
   };
 };
@@ -129,16 +129,15 @@ export const payment = (price) => {
       const response = await axios.post(`${URL}/create-order`, {
         totalPrice: price,
       });
-      console.log(response.data);
+      ;
       dispatch({ type: PAYMENT, payload: response.data.links[1].href });
     } catch (error) {
-      console.log("error payment: " + error);
+      ;
     }
   };
 };
 
 export const addProduct = (formData) => async (dispatch) => {
-  console.log("FormData de actions:", formData);
   try {
     const config = {
       headers: {
@@ -146,18 +145,17 @@ export const addProduct = (formData) => async (dispatch) => {
       },
     };
     const response = await axios.post(`${URL}/admin/create`, formData, config);
-    console.log("respuesta de action", response.data);
+    
     dispatch({
       type: ADD_PRODUCT,
       payload: response.data,
     });
   } catch (error) {
+    ;
+    const response = error.response.data.errors
     dispatch({
       type: PRODUCT_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
+      payload: response
     });
   }
 };
@@ -168,7 +166,7 @@ export const updateGenderFilter = (gender) => ({
 });
 
 export const updateCategoryFilter = (category) => {
-  console.log("Sorting category:", category);
+  ;
   return {
     type: UPDATE_CATEGORY_FILTER,
     payload: category,
@@ -176,7 +174,7 @@ export const updateCategoryFilter = (category) => {
 };
 
 export const updatePriceFilter = (sortOrder) => {
-  console.log("Sorting order:", sortOrder);
+  ;
   return {
     type: UPDATE_PRICE_FILTER,
     payload: sortOrder,

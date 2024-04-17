@@ -56,7 +56,7 @@ export default function HomeAdmin(){
       setSnackbarMessage('Correo enviado con exito')
       setSnackbarOpen(true);
     } catch (error) {
-      console.log(error)
+      
       setSnackbarSeverity("error");
       setSnackbarMessage('Error al enviar el correo')
       setSnackbarOpen(true);
