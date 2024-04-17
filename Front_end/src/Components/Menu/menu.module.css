@@ -1,5 +1,5 @@
 .container{
-  background: linear-gradient(90deg, rgb(70, 175, 207) 0%, rgb(255, 255, 255) 100%);  height: 100vh;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.596) 0%, rgb(59, 59, 59) 100%);  height: 100vh;
   width: 25%;
   transition: all 0.3s ease-out; 
   position: absolute;
@@ -21,10 +21,10 @@
 }
 .columnas h1:hover,
 .columnas h3:hover{
-  color: aqua;
+  color: rgb(255, 0, 0);
 }
 .columna3 h2{
-  color: rgb(1, 3, 110);
+  color: rgb(255, 255, 255);
   cursor: default;
   font-size: 1.9vw;
   line-height: 1;
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: black;
+  color: rgb(252, 252, 252);
   padding-top: 5%;
   padding-bottom: 5%;
   box-sizing: border-box;
@@ -46,12 +46,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-left: 1px solid rgb(140, 0, 255);
-  border-right: 1px solid rgb(140, 0, 255);
-  color: black;
+  border-left: 1px solid rgb(255, 255, 255);
+  border-right: 1px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 .columna2 h1{
-  padding: 15% 0;
+  padding: 20%;
 }
 .columna3{
   height: 100%;
@@ -59,23 +59,26 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 .c3h3{
   position: absolute;
   bottom: -1.9%;
   right: 5.5%;
-  color: rgb(0, 3, 152);
+  color: rgb(0, 0, 0);
   cursor: pointer;
   font-size: 2vw;
 }
 .reset{
   position: absolute;
-  bottom: 2.2%;
+  bottom: 5%;
   right: 5.5%;
-  color: rgb(27, 3, 101);
+  color: rgb(0, 0, 0);
   cursor: pointer;
   font-size: 1.8vw;
+  margin-bottom: 10%;
+  font-size: 2vw;
+
 }
 .hidden{
   background-color: black;
@@ -111,6 +114,6 @@
   position: absolute;
 }
 .activeItem {
-  color: rgb(128, 14, 198);
+  color: rgb(255, 3, 3);
 }
 
