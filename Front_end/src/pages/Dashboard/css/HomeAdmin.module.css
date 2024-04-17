@@ -1,5 +1,5 @@
 .main{
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(255, 255, 255);
     width: 85%;
     box-sizing: border-box;
     display: flex;
@@ -29,7 +29,7 @@
 
 
 .boxes{
-    width: 92%;
+    width: 80%;
     height: 22%;
 
     display: flex;
@@ -40,14 +40,14 @@
 
 .box{
     background-color: white;
-    width: 23%;
+    width: 25%;
   color: black;
-  box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
-  -webkit-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
-  -moz-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+  box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
+  -webkit-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
+  -moz-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
   border-radius: 7px;
   border: 1px solid rgb(195, 195, 195);
-  
+  margin-top: 1%;
 }
 
 .content{
@@ -67,9 +67,9 @@ box-sizing: border-box;
 .principal, .side{
     height: 100%;
     background-color: white;
-    box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
-    -webkit-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
-    -moz-box-shadow: 8px 8px 7px -5px rgba(106,105,105,0.75);
+    box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
+    -webkit-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
+    -moz-box-shadow: 6px 7px 7px -2px rgba(201,201,201,0.75);
     border-radius: 7px;
     border: 1px solid rgb(195, 195, 195);
  
@@ -147,6 +147,8 @@ select option{
     border: 1px solid rgb(175, 175, 175);
 outline: none;
 border-radius: 5px;
+padding: 1%;
+box-sizing: border-box;
 }
 
 

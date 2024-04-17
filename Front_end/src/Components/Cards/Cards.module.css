@@ -6,20 +6,19 @@
   display: flex;
   align-items: flex-start;
   position: absolute;
-  width:72%;
+  width:78%;
   left: 48.5%;
   transform: translate(-45%, -65%);
 }
 
 .btnNav{
   height: 8vh;
-  width: 38%;
+  width: 26%;
   position: absolute;
   bottom: 5%;
-  right: 0;
   display: flex;
   z-index: 00;
-  left:52.5%;
+  left:52.2%;
   transform: translate(-50%);
   justify-content: space-between;
 }
