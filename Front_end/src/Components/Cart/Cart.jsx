@@ -118,7 +118,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
   return (
     <div className={style.boxCart}>
-      <div className={style.content} >
+      <div className={style.content}>
         {carrito.length ? (
           <h3>Check your shopping</h3>
         ) : (
@@ -127,12 +127,21 @@ const Cart = ({ carrito, agregarProducto }) => {
         {carrito.map((item, i) => (
           <div className={style.cards} key={i}>
             <div className={style.image}>
-              {item.images[0] == null ? <p>Imagen no disponible</p> : <img src={item.images[0]} alt="" />}
+              {item.images[0] == null ? (
+                <p>Imagen no disponible</p>
+              ) : (
+                <img src={item.images[0]} alt="" />
+              )}
             </div>
             <div className={style.desc}>
               <h4>{item.name}</h4>
               <span>Size: {item.size}</span>
-              <button className={style.dbtn} onClick={() => eliminarProducto(item)}>Delete</button>
+              <button
+                className={style.dbtn}
+                onClick={() => eliminarProducto(item)}
+              >
+                Delete
+              </button>
             </div>
 
             <div className={style.count}>
@@ -141,7 +150,9 @@ const Cart = ({ carrito, agregarProducto }) => {
                 initial={1}
                 item={item}
                 agregarItem={() => agregarItem(item)}
-                onQuantityChange={(newQuantity) => handleQuantityChange(newQuantity, item)}
+                onQuantityChange={(newQuantity) =>
+                  handleQuantityChange(newQuantity, item)
+                }
               />
             </div>
           </div>
@@ -150,32 +161,41 @@ const Cart = ({ carrito, agregarProducto }) => {
         {carrito.length ? (
           <div className={style.buy}>
             <div className={style.comments}>
-              <label >Comments:</label>
-              <textarea type="text" value={order.comments} onChange={onChange} />
+              <label>Comments:</label>
+              <textarea
+                type="text"
+                value={order.comments}
+                onChange={onChange}
+              />
             </div>
             <div className={style.total}>
               <span>Total: ${totalCompra}</span>
             </div>
 
-            <form className={style.buttonsDiv} onSubmit={e => handleSubmit(e)}  >
-
-              <button className={style.back} type='submit'>START SHOPING</button>
-              <button className={style.vaciar} type="button" onClick={() => vaciarCarrito(carrito)}>
+            <form
+              className={style.buttonsDiv}
+              onSubmit={(e) => handleSubmit(e)}
+            >
+              <button className={style.back} type="submit">
+                START SHOPING
+              </button>
+              <button
+                className={style.vaciar}
+                type="button"
+                onClick={() => vaciarCarrito(carrito)}
+              >
                 Empty cart
               </button>
             </form>
           </div>
         ) : (
-          <div>          <button className={style.back}>
-            <Link className={style.link} to="/products">
-              Check available products
-            </Link>
-          </button>
-            <button className={style.orders}>
-              <Link className={style.link} to="/orders">
-                Check the bill
+          <div>
+            <button className={style.back}>
+              <Link className={style.link} to="/products">
+                Check available products
               </Link>
-            </button></div>
+            </button>
+          </div>
         )}
       </div>
     </div>
