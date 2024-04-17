@@ -32,7 +32,7 @@ const Statistics = () => {
         };
       });
       setAllOrders(ordersId)
-      console.log(allOrders)
+      
     } catch (error) {
       console.error(error);
     }
@@ -92,7 +92,7 @@ const Statistics = () => {
       }
     }
     setProductQuantity(uniqueOrders)
-    console.log(uniqueOrders);
+    ;
   }
 
   const getUsers = async () => {
@@ -119,8 +119,8 @@ const Statistics = () => {
   
       setUserOrder(userOrders)
       setUserCountry(userCountry)
-      console.log(userOrders)
-      console.log(userCountry)
+      
+      
     } catch (error) {
       console.error(error);
     }
@@ -141,10 +141,10 @@ const Statistics = () => {
 
   // // Solo para comprobar
   useEffect(() => {
-    console.log(allOrders)
-    console.log(eachOrder)
-    console.log(priceOrder)
-    console.log(totalSum)
+    
+    
+    
+    
   }, [totalSum])
 
   

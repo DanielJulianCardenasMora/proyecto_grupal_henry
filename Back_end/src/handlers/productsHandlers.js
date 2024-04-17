@@ -21,11 +21,11 @@ const getProducts = async (req, res) => {
     filteredProducts = filtrarPorGenero(filteredProducts, gender);
     filteredProducts = filtrarPorCategoria(filteredProducts, category);
     filteredProducts = filtrarPorPrecio(filteredProducts, sortOrder);
-    console.log('sortorder', sortOrder);
+    ;
     if (name) {
       // Llamar a getProductsByName y verificar el resultado
       const productsByName = await getProductsByName(name);
-      console.log("Products by name:", productsByName); // Imprime el resultado
+      ; // Imprime el resultado
       filteredProducts = productsByName;
     }
 
@@ -92,10 +92,10 @@ const postProduct = async (req, res) => {
   try {
     const newProduct = await createProductDB(name, description, price, images, stock, genero, category, size);
 
-    console.log(`El producto ${name} fue creado con éxito!!`);
+    ;
     return res.status(201).json(newProduct);
   } catch (error) {
-    console.log(error);
+    ;
     return res.status(500).json({ error: "Error al crear tu nuevo producto" });
   }
 };

@@ -19,10 +19,8 @@ let sequelize = new Sequelize({
 
       sequelize.authenticate()
       .then(() => {
-          console.log('Conexion con la base de datos establecida');
       })
       .catch(err => {
-          console.error('Error al conectar con la base de datos: ', err);
       });
 
 const basename = path.basename(__filename);

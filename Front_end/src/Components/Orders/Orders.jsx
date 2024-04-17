@@ -7,7 +7,7 @@ import { getOrders, getOrderDetail } from "../../redux/actions/actions";
 
 const Orders = () => {
   const ordersDetail= useSelector((state)=>state.orders)
-  console.log(ordersDetail);
+  ;
 
  const dispatch= useDispatch()
 
