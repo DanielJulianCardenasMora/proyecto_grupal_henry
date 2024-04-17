@@ -111,7 +111,9 @@ function Detail(props) {
  <div className= {style.content}>
  <div className={style.producto}>
  <div className={style.boton}>
-          <div className={buttonClass ? style.boton_img : style.boton_img_hover }>   <button className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></button></div>
+          <div className={buttonClass ? style.boton_img : style.boton_img_hover }>  
+           <button className={style.action} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleBackClick}></button>
+  </div>
          
         </div>
         <img src={images} alt=""  className={style.img1}/>  
