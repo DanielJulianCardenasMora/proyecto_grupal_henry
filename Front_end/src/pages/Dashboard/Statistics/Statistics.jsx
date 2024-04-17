@@ -28,7 +28,7 @@ const Statistics = () => {
       const { data } = await axios.get(`${URL_ALL_ORDERS}`);
       const ordersId = data.map((obj, index) => {
         return {
-          [`orderid_${index + 1}`]: obj.id
+          idOrder: obj.id
         };
       });
       setAllOrders(ordersId)
@@ -42,7 +42,7 @@ const Statistics = () => {
   const individualOrder = async () => {
     const individualOrders = []
     for (const obj of allOrders) {
-      const orderId = obj[`orderid_${Object.keys(obj)[0].slice(-1)}`];
+      const orderId = obj.idOrder;
       const { data } = await axios.get(`${URL_EACH_ORDER}/${orderId}`);
       if (data) {
         individualOrders.push(data);
