@@ -14,8 +14,8 @@ export const Cards = () => {
   const dispatch = useDispatch();
   const [currentFilters, setCurrentFilters] = useState({});
   const filters = useSelector((state) => state.filters);
+  
   useEffect(() => {
-    // Si los filtros han cambiado, reiniciar la página a 1
     if (JSON.stringify(filters) !== JSON.stringify(currentFilters)) {
       setCurrentPage(1);
       setCurrentFilters(filters);
