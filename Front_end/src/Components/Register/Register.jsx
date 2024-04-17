@@ -28,7 +28,7 @@ export default function RegisterDialog({ handleClose }) {
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
   const URL = "https://proyectogrupalhenry-production-e8a4.up.railway.app";
-    // const URL = "http://localhost:3001";
+  // const URL = "http://localhost:3001";
 
 
   useEffect(() => {

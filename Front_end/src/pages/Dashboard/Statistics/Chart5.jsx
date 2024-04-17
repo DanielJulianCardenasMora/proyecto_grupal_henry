@@ -37,7 +37,7 @@ const Chart5 = ({ userCountry }) => {
 
   useEffect(() => {
     setOrders(userCountry)
-    console.log(orders)
+    
   }, [userCountry, orders])
 
   

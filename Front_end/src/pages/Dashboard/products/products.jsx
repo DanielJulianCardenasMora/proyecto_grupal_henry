@@ -15,7 +15,7 @@ export default function ProductsAdmin() {
   const handleEdit = (productID) => {
     const productForEdit = products.find(product => product.id === productID)
     setEditproduct(productForEdit);
-    console.log(productForEdit)
+    
   }
   const handleDelete = async (productID) => {
     try {
@@ -33,7 +33,7 @@ export default function ProductsAdmin() {
       const updatedProduct = {
         ...editproduct,
       };
-      console.log(editproduct)
+      
       const response = await axios.put(`${API_URL}/admin/edit-product/${editproduct.id}`, updatedProduct);
 
       if (response.status === 200) {

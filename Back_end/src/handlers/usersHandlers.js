@@ -37,7 +37,7 @@ const getUsers = async (req, res) => {
       res.status(200).json(users);
     }
   } catch (error) {
-    console.log("Error al obtener los usuarios:", error);
+    ;
     res.status(500).json({ error: "Error al obtener las usuarios" });
   }
 };
@@ -54,7 +54,7 @@ const getUserInfo = async (req, res) => {
       res.status(200).json(user);
     }
   } catch (error) {
-    console.log("Error al obtener los usuarios:", error);
+    ;
     res.status(500).json({ error: "Error al obtener las usuarios" });
   }
 };

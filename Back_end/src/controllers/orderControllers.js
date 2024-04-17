@@ -74,7 +74,9 @@ const createOrder = async (req, res) => {
                     size: formattedSize
                 })
             }
-            console.log("Producto agregado a la orden:", name, quantity, formattedSize);
+
+       
+            await modifictProductStock(productId, quantity, size);
         }
         await newOrder.setUser(userId);
         res.status(200).send(newOrder);
@@ -117,7 +119,7 @@ const getOrderDetail = async (req, res) => {
                 OrderId: orderId
             }
         })
-        console.log('orderDetail:', orderDetail);
+        ;
         res.status(200).send(orderDetail)
     } catch (error) {
         console.error('Error al obtener los detalles de la orden:', error);
