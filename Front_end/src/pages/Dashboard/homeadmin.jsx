@@ -71,16 +71,16 @@ export default function HomeAdmin(){
         <div className={style.dashCont}>
           <div className={style.boxes}>
             <div className={style.box}>
-              <p>Clientes activos:</p>
+              <p>Active customers:</p>
               <h1> {users.length}</h1>
             </div>
-            <div className={style.box}>
-              <p>Ordenes de comra:</p>
+            {/* <div className={style.box}>
+              <p>Total orders:</p>
               <h1>{orders.length}</h1>
-               </div>
+               </div> */}
           
             <div className={style.box}>
-           <p>Usuario actual:</p>
+           <p>Actual user:</p>
            <h3>{actualUser}</h3>
 
             </div>
@@ -88,17 +88,17 @@ export default function HomeAdmin(){
 
           <div className={style.content}>
             <div className={style.principal}>
-              <p>Enviar mensaje a usuarios</p>
+              <p>Send a message to users</p>
 
               <form onSubmit={onSubmit}>
 
 
                 <div className={style.formContent}>
-                <label>Titutlo: </label>
+                <label>Title: </label>
                 <input type="text" name="titulo" value={email.titulo} onChange={onChange} />
                 </div>
                 <div className={style.formContent}>
-                <label>Para: </label>
+                <label>To: </label>
                 <select >
                   <option value="all">Select user</option>
                   {users.map((user, index) => (
@@ -109,7 +109,7 @@ export default function HomeAdmin(){
                 </select>
                 </div>
                 <div className={style.formArea}>
-                <label>Mensaje: </label>
+                <label>Message: </label>
                 <textarea type="text" name="mensaje" value={email.mensaje} onChange={onChange} />
 
                 </div>
@@ -120,11 +120,11 @@ export default function HomeAdmin(){
     
 
               
-              <button className={style.emailB} type='submit'>Enviar correo</button>
+              <button className={style.emailB} type='submit'>Send email</button>
               </form>
             </div>
             <div className={style.side}>
-              <h4>Recent clients</h4>
+              <h4>Recent customers</h4>
               {users.map((u, i) => (
                 <div key={u.id}>
                   <p> {u.email}</p>

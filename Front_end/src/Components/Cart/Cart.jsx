@@ -103,6 +103,11 @@ const Cart = ({ carrito, agregarProducto }) => {
 
 
   const handleSubmit = async (e) => {
+
+    if (!order.userId || !order.detalle || order.products.length === 0) {
+      alert("Please fill in all required fields (userId, detalle, products) before placing the order.");
+      return;
+    }
     dispatch(payment(totalCompra))
     setOrder({
       ...order,
