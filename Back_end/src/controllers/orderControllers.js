@@ -20,7 +20,7 @@ const modifictProductStock = async (productId, quantity, size) => {
             }
             existingProduct.size[sizeKey] -= sizeStock;
         }
-        await existingProduct.save();  
+        await existingProduct.save();
     } catch (error) {
         console.error('No se pudo actualizar el stock en la Base de Datos:', error);
         throw error;
@@ -30,6 +30,19 @@ const modifictProductStock = async (productId, quantity, size) => {
 const createOrder = async (req, res) => {
     try {
         const { userId, email, nameUser, products, detalle } = req.body;
+
+
+        const errors = [];
+
+        if (!detalle) { errors.push('You must enter a description') }
+        if (!products) { errors.push('You must enter a Products') }
+        if (!userId) { errors.push('You must enter a userId') }
+
+
+        if (errors.length) {
+            return res.status(400).json({ errors })
+        }
+
 
         if (!userId || !products) {
             throw new Error('El UserID o los Productos no son enviados en el cuerpo de la solicitud.');
@@ -74,7 +87,7 @@ const createOrder = async (req, res) => {
                 })
             }
 
-       
+
             await modifictProductStock(productId, quantity, size);
         }
         await newOrder.setUser(userId);
@@ -118,7 +131,7 @@ const getOrderDetail = async (req, res) => {
                 OrderId: orderId
             }
         })
-        ;
+            ;
         res.status(200).send(orderDetail)
     } catch (error) {
         console.error('Error al obtener los detalles de la orden:', error);
