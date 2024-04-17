@@ -1,5 +1,5 @@
 import style from './css/HomeAdmin.module.css'
-import { getUsers } from '../../redux/actions/actions'
+import { getUsers, getOrders } from '../../redux/actions/actions'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,9 @@ export default function HomeAdmin(){
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const users= useSelector((s)=>s.users)
+  const orders = useSelector((s)=>s.orders)
+  const actualUser= localStorage.getItem('usuario')
+
   const [email, setEmail] = useState({
     user: "",
     mensaje: "",
@@ -35,6 +38,7 @@ export default function HomeAdmin(){
   if(rol === 'user' || rol === null){
       navigate("/")
   }
+  dispatch(getOrders())
     dispatch(getUsers());
   }, []);
 
@@ -70,9 +74,16 @@ export default function HomeAdmin(){
               <p>Clientes activos:</p>
               <h1> {users.length}</h1>
             </div>
-            <div className={style.box}>Aca va la cantidad de ordenes </div>
-            <div className={style.box}>Aca van las ganancias semanales</div>
-            <div className={style.box}>Aca va un calendario decorativo</div>
+            <div className={style.box}>
+              <p>Ordenes de comra:</p>
+              <h1>{orders.length}</h1>
+               </div>
+          
+            <div className={style.box}>
+           <p>Usiario actual:</p>
+           <h3>{actualUser}</h3>
+
+            </div>
           </div>
 
           <div className={style.content}>
