@@ -194,7 +194,7 @@ const Cart = ({ carrito, agregarProducto }) => {
             </form>
           </div>
         ) : (
-          <div>
+          <div className={style.void}>
             <button className={style.back}>
               <Link className={style.link} to="/products">
                 Check available products
