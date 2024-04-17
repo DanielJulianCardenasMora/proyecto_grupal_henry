@@ -66,32 +66,7 @@ const Form = ({ addProduct }) => {
       setSnackbarOpen(true);
       return;
     }
-
-    if(errors.length === 0){
-      setFormData({
-        name: '',
-        description: '',
-        price: '',
-        stock: '',
-        genero: '',
-        category: '',
-        images: "",
-        size: []
-      })
-      setUrlImagen("");
-      resetErrors()
-      setSnackbarSeverity('success');
-      setSnackbarMessage("Product added");
-      setSnackbarOpen(true);
-    }
-
-    
-    
-    
-    
-    const totalStock = formData.size.reduce((acc, curr) => acc + parseInt(curr.stock), 0);
-    
-    
+  
     const data = {
       name,
       description,
@@ -105,11 +80,23 @@ const Form = ({ addProduct }) => {
         return acc;
       }, {})
     };
-    
-    
+  
     try {
       await addProduct(data);
-
+      setFormData({
+        name: '',
+        description: '',
+        price: '',
+        stock: '',
+        genero: '',
+        category: '',
+        images: "",
+        size: []
+      });
+      setUrlImagen("");
+      setSnackbarSeverity('success');
+      setSnackbarMessage("Product added");
+      setSnackbarOpen(true);
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
@@ -118,7 +105,7 @@ const Form = ({ addProduct }) => {
   const sizeChange = (event, index) => {
     const newSizes = [...size];
     newSizes[index] = { ...newSizes[index], [event.target.name]: event.target.value };
-    setFormData({ ...formData, size: newSizes }); // Cambio aquí
+    setFormData({ ...formData, size: newSizes });
   };
   const addSize = () => {
     setFormData({ ...formData, size: [...formData.size, { size: '', stock: '' }] });
@@ -127,7 +114,7 @@ const Form = ({ addProduct }) => {
   const removeSize = (index) => {
     const newSizes = [...size];
     newSizes.splice(index, 1);
-    setFormData({ ...formData, size: newSizes }); // Cambio aquí
+    setFormData({ ...formData, size: newSizes });
   };
 
   useEffect(() => {
@@ -138,6 +125,7 @@ const Form = ({ addProduct }) => {
     }
   }, [errors])
 
+  console.log("formdata" + formData)
 
   return (
     <div className={style.background}>
@@ -186,12 +174,6 @@ const Form = ({ addProduct }) => {
             <input type="file" name="images" onChange={uploadtImage} multiple />
           </div>
 
-          {/* <div className={style.formDiv}>
-            <label>Stock Global:</label>
-            <div className={style.input}>
-              <input className={style.inp} type="number" name="stock" value={stock} onChange={onChange} />
-            </div>
-          </div> */}
 
           <div className={style.formDiv}>
             <label>Size and Stock</label>
@@ -234,7 +216,7 @@ const Form = ({ addProduct }) => {
 
           <div className={style.formDiv}>
             <label className={style.genero} htmlFor="genre">
-              Genre:{""}
+              Genre:
             </label>
             <div className={style.input}>
               <select
@@ -266,17 +248,15 @@ const Form = ({ addProduct }) => {
               <select
                 className={style.select}
                 name="category"
-                defaultValue="All"
                 onChange={onChange}
               >
                 <option name="category" value={category}>
-                  {" "}
-                  Category{" "}
+                  Category
                 </option>
                 {Category
                   ? Category.map((option, i) => {
                       return (
-                        <option key={i} name={category} value={option}>
+                        <option key={i} name={option} value={option}>
                           {option}
                         </option>
                       );
