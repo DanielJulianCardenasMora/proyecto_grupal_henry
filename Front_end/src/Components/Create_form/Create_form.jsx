@@ -35,7 +35,6 @@ const Form = ({ addProduct }) => {
   });
   const [UrlImagen, setUrlImagen] = useState("");
 
-  console.log('Estos son los errors', errors);
   const uploadtImage = async (event) => {
     const file = event.target.files[0];
 
