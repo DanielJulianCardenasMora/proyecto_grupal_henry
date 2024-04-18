@@ -105,7 +105,7 @@ function Detail(props) {
 
   return (
     <div className={style.container}>
-
+      
 
       <div className={style.content}>
         <div className={style.producto}>

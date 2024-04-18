@@ -7,6 +7,8 @@ import { enviarCarritoAlBackend, payment } from "../../redux/actions/actions";
 import axios from "axios";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import image from "../../assets/Imagenes/alejo3.png"
+
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
@@ -94,7 +96,7 @@ const Cart = ({ carrito, agregarProducto }) => {
 
     if (!order.userId) {
       setSnackbarSeverity('error');
-      setSnackbarMessage('Please fill in the user ID field before placing the order.');
+      setSnackbarMessage('You must log in first. ');
       setSnackbarOpen(true);
       return;
     }
@@ -225,6 +227,7 @@ const Cart = ({ carrito, agregarProducto }) => {
           {snackbarMessage}
         </MuiAlert>
       </Snackbar>
+<img className={style.background} src={image}></img>
     </div>
   );
 };

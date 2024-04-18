@@ -8,9 +8,9 @@ export default function SearchBar() {
   const [searchString, setSearchString] = useState("");
   const [inputsErrors, setInputsErrors] = useState();
 
-  function validate (searchString) {
+  function validate(searchString) {
 
-    const errors= {}
+    const errors = {}
 
 
     if (!isNaN(searchString.search)) {
@@ -18,9 +18,6 @@ export default function SearchBar() {
     }
     return errors
   }
-
-
-
   function handleSearch(e) {
     e.preventDefault();
 
@@ -37,7 +34,7 @@ export default function SearchBar() {
 
   function handleSubmit(e) {
     e.preventDefault();
-  
+
     // Verificar si inputsErrors tiene un valor antes de usar Object.keys
     if (inputsErrors) {
       let aux = Object.keys(inputsErrors);
@@ -47,21 +44,21 @@ export default function SearchBar() {
         return alert('Check info');
       }
     }
-  
+
     dispatch(searchByName(searchString));
-  
+
     setSearchString({
       search: '',
     });
   }
-  
+
 
 
   return (
     <div className={style.box} >
 
-      <input className={style.inputS} name='search' type='search' onChange={(e) => handleSearch(e)} />
-      <button type='submit' onClick={(e) => handleSubmit(e)} >Search</button>
+      <input className={style.inputS} name='search' type='search' placeholder='Search...' onChange={(e) => handleSearch(e)} />
+      <button  className={style.boton} type='submit' onClick={(e) => handleSubmit(e)} >🔍︎</button>
 
 
     </div>

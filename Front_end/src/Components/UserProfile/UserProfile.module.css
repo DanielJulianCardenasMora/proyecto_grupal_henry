@@ -1,141 +1,121 @@
-.container{
-  line-height: 0;
-  
-}
-/* .profilePic{
-  height: 35%;
-  width: 14%;
-  background-color: red;
-  position: absolute;
-  top: 12%;
-  left: 9.1%;
-} */
-.fondo{
-  height: 150vh;
-  width: 100%;
-}
-.iconos_box{
-  position: absolute;
-  top: 44.4%;
-  right: 33.1%;
-  width: 5%;
+.container {
   display: flex;
-  justify-content: flex-end
-}
-.iconos_box2{
-  position: absolute;
-  right: 33.1%;
-  width: 5%;
-  display: flex;
-  justify-content: flex-end;
-  top: 65%;
-}
-.iconos_box3{
-  position: absolute;
-  right: 33.1%;
-  width: 5%;
-  display: flex;
-  justify-content: flex-end;
-  top: 85.5%;
-}
-.iconos_box4{
-  position: absolute;
-  right: 33.1%;
-  width: 5%;
-  display: flex;
-  justify-content: flex-end;
-  top: 106%;
-}
-.iconos_box div,
-.iconos_box2 div,
-.iconos_box3 div,
-.iconos_box4 div{
-  height: 3vh;
-  width: 1.3vw;
-  margin-left: 5%;
-  /* background-color: red; */
-}
-.textos{
-  position: absolute;
-  top: 41%;
-  left: 35%;
-  height: 82vh;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around
-}
-.textos div{
-  box-sizing: border-box;
-  padding-top: 0%;
-  text-align: left;
-  height: 100%;
-  width: 100%;
-  word-wrap: break-word;
-  line-height: 1;
-  align-items: stretch;
   justify-content: center;
-  display: flex;
-  flex-direction: column;
-  /* background-color: rgb(255, 0, 0); */
+  align-items: center;
+  height: 100vh;
+  position: relative;
 }
-.historial{
-  height: 16%;
-  width: 22%;
+
+.fondo {
   position: absolute;
-  top: 100%;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.4;
 }
-.arriba{
-  height: 15%;
+
+
+.content {
+  z-index: 1;
+  position: relative;
+  background-color: aliceblue;
+  height: 65vh;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.email{
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  height: 3em;
+  background-color: white;
+  margin-bottom: 1em;
+  text-align: left;
+  padding: 1%;
+  padding-top: 2%;
+  font-size: large;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+label {
+  text-transform: uppercase;
+  color: black;
+  font-weight: 500;
+}
+
+span{
+  color: #000;
+  margin-left: 32%;
+}
+
+h2{
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.propertyContainer {
+  margin-bottom: 20px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 8px;
+  width: 800px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.propertyContainer label {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.propertyContainer > .inputContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.propertyContainer > .inputContainer > .inline {
   display: flex;
   align-items: center;
-  text-align: right;
-  justify-content: flex-end
 }
-.abajo{
-  box-sizing: border-box;
-  height: 70%;
+
+.propertyContainer > .inputContainer > .inline > input,
+.propertyContainer > .inputContainer > .inline > div {
+  margin-right: 10px;
+}
+
+.propertyContainer > .inputContainer > .inline > button {
+  margin-right: 10px;
+}
+
+.propertyContainer > div {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  align-items: center;
 }
-.derecha{
-  display: flex;
-  width: 8vw;
-  justify-content: space-evenly
+
+.propertyContainer > div > input,
+.propertyContainer > div > div {
+  margin-right: 10px;
+  flex-grow: 1;
 }
-.izquierda{
-  display: flex;
-  width: 8vw;
-  justify-content: space-evenly
+
+.propertyContainer > div > button {
+  flex-shrink: 0;
+  margin-right: 10px;
 }
-.numero{
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-around;
-  font-size: 1vw;
-  text-align: left;
+
+.propertyContainer {
+  font-weight: 500;
+  font-size: large;
 }
-.letra{
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-around;
-  font-size: 1vw;
-  text-align: left;
+button{
+  color: white;
+
 }
-.edit1{
-  z-index: 100;
-  cursor: pointer;
-}
-.save1{
-  z-index: 100;
-  cursor: pointer;
-}
+
