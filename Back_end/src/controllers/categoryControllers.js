@@ -49,4 +49,4 @@ const categoryDataBase = async () => {
 };
 
 
-module.exports = { categoryDataBase, getCategory };
+module.exports = { categoryDataBase };
