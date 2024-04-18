@@ -52,10 +52,10 @@ const UserProfile = () => {
     <div className={style.container}>
       <img className={style.fondo} src={fondo} alt="Fondo" />
       <div className={style.content}>
-        <h2>Edit your profile</h2>
+        <h2 className={style.h2}>Edit your profile</h2>
         <div className={style.email}>
           <label htmlFor="">Email:</label>
-          <span> {datosUsuario.email}</span>
+          <span className={style.span}> {datosUsuario.email}</span>
         </div>
         <div className={style.propertyContainer}>
           <label className={style.text}>Name:</label>
