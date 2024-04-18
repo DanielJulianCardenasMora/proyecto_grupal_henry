@@ -51,11 +51,11 @@ export default function HomeAdmin() {
         });
       }
       setSnackbarSeverity("success");
-      setSnackbarMessage('Correo enviado con éxito');
+      setSnackbarMessage('Email sent successfully');
       setSnackbarOpen(true);
     } catch (error) {
       setSnackbarSeverity("error");
-      setSnackbarMessage('Error al enviar el correo');
+      setSnackbarMessage('Error sending email');
       setSnackbarOpen(true);
     }
   };
