@@ -35,7 +35,6 @@ const Form = ({ addProduct }) => {
   });
   const [UrlImagen, setUrlImagen] = useState("");
 
-
   const uploadtImage = async (event) => {
     const file = event.target.files[0];
 
@@ -99,20 +98,23 @@ const Form = ({ addProduct }) => {
     };
     try {
       await addProduct(data);
-      setFormData({
-        name: '',
-        description: '',
-        price: '',
-        stock: '',
-        genero: '',
-        category: '',
-        images: "",
-        size: []
-      });
-      setUrlImagen("");
-      setSnackbarSeverity('success');
-      setSnackbarMessage("Product added");
-      setSnackbarOpen(true);
+      if (errors.length === 0) {
+        setFormData({
+          name: '',
+          description: '',
+          price: '',
+          stock: '',
+          genero: '',
+          category: '',
+          images: "",
+          size: []
+        });
+        setUrlImagen("");
+        resetErrors()
+        setSnackbarSeverity('success');
+        setSnackbarMessage("Product added");
+        setSnackbarOpen(true);
+      }
     } catch (error) {
       console.error('Error al agregar el producto:', error);
     }
@@ -141,7 +143,6 @@ const Form = ({ addProduct }) => {
     }
   }, [errors])
 
-  console.log("formdata" + formData)
 
   return (
     <div className={style.background}>
