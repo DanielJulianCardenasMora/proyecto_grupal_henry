@@ -144,9 +144,9 @@ const Statistics = () => {
 
   // // Solo para comprobar
   useEffect(() => {
-    console.log(allOrders)
-    console.log(eachOrder)
-    console.log(userOrder)
+    // console.log(allOrders)
+    // console.log(eachOrder)
+    // console.log(userOrder)
   }, [totalSum])
 
 
