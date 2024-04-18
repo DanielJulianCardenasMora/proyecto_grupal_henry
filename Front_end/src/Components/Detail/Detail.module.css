@@ -1,5 +1,5 @@
 .container {
-  background-image: url('../../assets/Imagenes/alejo3.png');
+  background-image: linear-gradient(#01000aaf 70%, #4e4e4f), url('../../assets/Imagenes/alejo3.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -7,7 +7,7 @@
   color: rgb(0, 0, 0);
   margin: auto;
   padding-top: 7%;
-  position: relative; /* Añadido para permitir superponer elementos */
+  position: relative;
 }
 
 .content{

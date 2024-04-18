@@ -20,7 +20,7 @@ export const AboutPage = () => {
       <div className={style.box}>
         <div className={style.abBg}>
           <div className={style.title}>
-            <h3 className={style.workteam}>WORKTEAM</h3>
+            <h3 className={style.workteam}>📚 WORKTEAM</h3>
           </div>
           <div className={style.containerbox}>
             <div className={style.container}>
