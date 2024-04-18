@@ -25,9 +25,16 @@ const places = [
 
 const Chart6 = ({userOrder}) => {
   const [orders, setOrders] = useState([]);
+  const [top, setTop] = useState([]);
+
+
+
 
   useEffect(() => {
     setOrders(userOrder)
+    const dataSort = orders.sort((a, b) => b.orders - a.orders);
+    const top5 = dataSort.slice(0, 5);
+    setTop(top5)
     
   }, [userOrder, orders])
 
@@ -43,7 +50,7 @@ const Chart6 = ({userOrder}) => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
+            {top.map((order, index) => (
               <tr key={index}>
                 <td
                 style={{

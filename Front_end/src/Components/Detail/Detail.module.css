@@ -1,5 +1,5 @@
 .container {
-  background-image: url('../../assets/Imagenes/alejo3.png');
+  background-image: linear-gradient(#01000aaf 70%, #4e4e4f), url('../../assets/Imagenes/alejo3.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -7,7 +7,7 @@
   color: rgb(0, 0, 0);
   margin: auto;
   padding-top: 7%;
-  position: relative; /* Añadido para permitir superponer elementos */
+  position: relative;
 }
 
 .content{
@@ -29,9 +29,10 @@
   display: flex;
   flex-direction: column;
   padding: 1%;
+  border-radius: 20px 0px 0px 20px;
 }
 .producto .img1{
- 
+  border-radius: 10px;
   width: 70%;
   height: 70%;
   object-fit: contain;
@@ -52,6 +53,7 @@
   padding: 3%;
   box-sizing: border-box;
   border-left: 1px solid gray;
+  border-radius: 0px 20px 20px 0px;
 }
 
 .box_derecha h2{
@@ -109,7 +111,6 @@ cursor: pointer;
 background-image: url('../../assets/Imagenes/arrowheads-of-thin-outline-to-the-left.png');
 background-repeat: no-repeat;
 background-size: contain;
-color: black;
 padding-bottom: 1%;
 
 }
@@ -139,7 +140,7 @@ margin-top: 2%;
 
 
 .cart{
-  background-color: rgb(67, 0, 103);
+  background-color: rgba(23, 35, 255, 0.849);
   width: 100%;
   border-radius: 1em;
   height: 35px;
