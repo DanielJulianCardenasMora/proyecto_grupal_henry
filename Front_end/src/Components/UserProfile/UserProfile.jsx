@@ -69,7 +69,7 @@ const UserProfile = () => {
             ) : (
               <div>{datosUsuario.name}</div>
             )}
-            <button onClick={() => manejarClicEditar('name')}>Editar</button>
+            <button className={style.Ub} onClick={() => manejarClicEditar('name')}>Editar</button>
             <button onClick={() => manejarClicGuardar('name')}>Guardar</button>
           </div>
         </div>
