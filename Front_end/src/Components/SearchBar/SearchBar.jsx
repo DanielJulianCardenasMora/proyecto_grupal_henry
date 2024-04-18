@@ -18,9 +18,6 @@ export default function SearchBar() {
     }
     return errors
   }
-
-
-
   function handleSearch(e) {
     e.preventDefault();
 
