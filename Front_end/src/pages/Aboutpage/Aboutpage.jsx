@@ -21,6 +21,8 @@ export const AboutPage = () => {
         <div className={style.abBg}>
           <div className={style.title}>
             <h3 className={style.workteam}>WORKTEAM</h3>
+            <h3 className={style.techtext}>⚙️ TECHNOLOGIES</h3>
+
           </div>
           <div className={style.containerbox}>
             <div className={style.container}>
@@ -62,7 +64,6 @@ export const AboutPage = () => {
               />
             </div>
             <div className={style.tecnologiasContainer}>
-              <h3 className={style.techtext}>⚙️ TECHNOLOGIES</h3>
               <div className={style.tecnologiasLine}>
                 <img className={style.icons} src={nodeIcon} alt="Node.js" />
                 <img
