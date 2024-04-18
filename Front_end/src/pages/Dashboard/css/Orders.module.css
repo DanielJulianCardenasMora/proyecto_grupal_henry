@@ -43,6 +43,7 @@
 
 .table th {
   background-color: #68a1ea;
+  
 }
 
 .iconoeditar {
@@ -91,6 +92,8 @@ td .editbuttons{
   font-size: 1vw;
   color: rgb(3, 3, 151);
   border-bottom: none;
+  padding-left: 0;
+  
 }
 .table a{
   text-decoration: none;

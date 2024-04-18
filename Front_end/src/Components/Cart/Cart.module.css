@@ -24,7 +24,8 @@
     background-color: rgba(255, 255, 255, 0.854);
     width: 70%;
     margin: auto;
-    margin-top: 2%;
+    margin-top: 2%; 
+border-radius: 20px;
     padding: 2%;
     padding-top: 1%;
     box-sizing: border-box;
