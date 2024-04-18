@@ -31,8 +31,8 @@
   align-items: center;
   overflow: hidden;
   justify-content: space-evenly;
-  width: 40%;
-  height: 80%;
+  width: 45%;
+  height: 100%;
   position: relative;
 }
 
@@ -54,6 +54,7 @@
   height: 60px;
   padding: 20%;
   align-content: center;
+  
 }
 
 .desc {
@@ -95,7 +96,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 25%;
+  align-items: flex-start;
 }
 
 .tecnologiasLine {
@@ -121,6 +123,7 @@
   height: 70vh;
   justify-content: space-around;
   border-bottom: 2px solid white;
+  
 }
 
 .title {
@@ -141,4 +144,11 @@
   display: flex;
   align-content: center;
   right: 20px;
+}
+.tecnologiasLine{
+  padding: 0;
+}
+
+.workteam{
+  margin-left: 5%;
 }

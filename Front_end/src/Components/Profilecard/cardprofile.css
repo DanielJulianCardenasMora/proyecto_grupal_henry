@@ -1,7 +1,7 @@
 .card-container {
     display: flex;
     width: 40%;
-    height: 30%;
+    height: 25%;
     border: 2px solid #ffffff;
     border-radius: 10px;
     overflow: hidden;
@@ -74,3 +74,4 @@
 .card-container h3{
     font-size: 1.2vw;
 }
+
