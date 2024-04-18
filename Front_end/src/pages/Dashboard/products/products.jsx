@@ -6,6 +6,7 @@ const ProductsAdmin = () => {
   const [editproduct, setEditproduct] = useState(null);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [saved, setSaved] = useState(false);
   const API_URL = 'https://proyectogrupalhenry-production-e8a4.up.railway.app';
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1); // Añadimos el estado de totalPages
@@ -42,6 +43,7 @@ const ProductsAdmin = () => {
       console.error('Error saving product:', error);
     } finally {
       setIsLoading(false);
+      setSaved(!saved)
     }
   };
 
@@ -72,7 +74,7 @@ const ProductsAdmin = () => {
 
   useEffect(() => {
     getProducts(currentPage);
-  }, [currentPage]);
+  }, [currentPage, saved]);
 
   const siguientePagina = () => {
     setCurrentPage(currentPage + 1);
