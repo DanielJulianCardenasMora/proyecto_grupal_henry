@@ -21,7 +21,7 @@
 }
 .columnas h1:hover,
 .columnas h3:hover{
-  color: rgb(255, 0, 0);
+  color: rgb(4, 0, 255);
 }
 .columna3 h2{
   color: rgb(255, 255, 255);
@@ -114,6 +114,6 @@
   position: absolute;
 }
 .activeItem {
-  color: rgb(255, 3, 3);
+  color: rgb(53, 3, 255);
 }
 

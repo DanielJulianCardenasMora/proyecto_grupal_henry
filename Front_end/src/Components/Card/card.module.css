@@ -16,9 +16,8 @@
 
 .imgContainer {
   line-height: 0;
-
   border-radius: 1vw;
-  width: 16vw;
+  width: 15.9vw;
   height: 65vh;
 }
 
@@ -33,6 +32,10 @@
 
 .container {
   position: relative;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  border-image: linear-gradient(to right, transparent, white, transparent) 1 1; /* Gradiente para el borde */
 }
 
 .card {

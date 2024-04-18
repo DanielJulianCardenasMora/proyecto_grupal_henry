@@ -75,7 +75,6 @@ const Orders = () => {
                     <td>{order.detalle}</td>
                     <td>{order.nameUser}</td>
                     <td>{order.email}</td>
-                    <td>{order.review}</td>
                     <td>
                       <button className={styles.check} onClick={() => onClick(order.id)}>
                         Check detail
