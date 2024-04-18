@@ -109,7 +109,6 @@ cursor: pointer;
 background-image: url('../../assets/Imagenes/arrowheads-of-thin-outline-to-the-left.png');
 background-repeat: no-repeat;
 background-size: contain;
-color: black;
 padding-bottom: 1%;
 
 }
@@ -139,7 +138,7 @@ margin-top: 2%;
 
 
 .cart{
-  background-color: rgb(67, 0, 103);
+  background-color: rgba(23, 35, 255, 0.849);
   width: 100%;
   border-radius: 1em;
   height: 35px;

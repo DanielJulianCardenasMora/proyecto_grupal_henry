@@ -1,80 +1,81 @@
-.box{
+.box {
   background-color: #000000;
-  height: 190vh;
+  height: 192vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
-.abBg{
-    height: 80vh;
-    background: linear-gradient(180deg, rgba(102, 3, 168, 1) 20%, rgba(0, 0, 0, 1) 90%);    background-size: cover;
-    padding-top: 6%;
-    position: relative;
-    z-index: 200;
+
+
+.abBg {
+  height: 80vh;
+  background: linear-gradient(180deg, rgba(87, 109, 255, 0.502) 20%, rgba(0, 0, 0, 1) 90%);
+  background-size: cover;
+  padding-top: 6%;
+  position: relative;
+  z-index: 200;
 }
-/* .workteam{
-    
-    margin: 0;
-    margin-bottom: 1%;
-    width: 20%;
-    font-size: 2vw;
-    transform: translate(+75%);
-    top: 13%;
-} */
-.figuras{
-    position: relative;
-    top: 5%;
-    left: 35%;
-    width: 20%;
-    height: 12%;
+
+.figuras {
+  position: relative;
+  top: 5%;
+  left: 35%;
+  width: 20%;
+  height: 12%;
 }
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    overflow: hidden;
-    justify-content: space-evenly;
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow: hidden;
+  justify-content: space-evenly;
   width: 40%;
   height: 80%;
-  background-color: rgb(126, 44, 233);
-  box-shadow: 5px 6px 5px 0px rgba(255, 255, 255, 0.761);
-  border-radius: 20px;
   position: relative;
 }
-.background{
+
+.background {
   width: 100%;
-    height: 120vh;
-    background-image: url('../../assets/Imagenes/About_fondoInferior_aplicar.png');
-    background-position: bottom;
-    display: flex;
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding-left: 5%;
-    padding-top: 2%;
-    box-sizing: border-box;
-    background-color: black;
-
+  height: 120vh;
+  background-position: bottom;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 5%;
+  padding-top: 2%;
+  box-sizing: border-box;
+  background-color: black;
 }
 
-.desc{
-    height:100%;
-    width: 55%;
-    
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    box-sizing: border-box;
+.icons {
+  width: 600px;
+  height: 60px;
+  padding: 20%;
+  align-content: center;
 }
-.desc h1{
-    font-size: 60px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: white;
-    color: rgba(255, 255, 255, 0);
-    line-height: 1.2;
-    letter-spacing: 1px;
-    margin-top: 2%;
+
+.desc {
+  height: 100%;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
-.desc button{
+
+.desc h1 {
+  font-size: 60px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  color: rgba(255, 255, 255, 0);
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin-top: 2%;
+}
+
+.desc button {
   width: 40%;
   background: none;
   color: white;
@@ -82,77 +83,62 @@
   margin: auto;
 }
 
-
-.desc button:hover{
+.desc button:hover {
   background-color: rgba(255, 192, 203, 0.207);
 }
 
-.desc p{
+.desc p {
   margin-top: 5%;
 }
-.tecnologias{
-  height: 79%;
-  width: 30%;
-  background-color: rgb(126, 44, 233);
-  top: 10vh;
-  right: 10%;
-  border-radius: 20px;
-  padding-top: 0.5%;
-  box-sizing: border-box;
-  box-shadow: 5px 6px 5px 0px rgba(255, 255, 255, 0.761);
+
+.tecnologiasContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly
-}
-.tecnologias h1{
-  margin-bottom: 0%;
-  border: 2px solid rgb(255, 255, 255);
-  width: 60%;
-  padding: 0.5% 0;
-  font-size: 1.2vw;
-  border-radius: 10px;
+  width: 50%;
 }
 
-.runner{
-    height: 90%;
-    /* background-color: bisque; */
-   
-   box-sizing: border-box;
-    width: 45%;
-  margin-top: 8%;
-    background-image: url('../../assets/Imagenes/running.png');
-
-  background-size:contain;
-    background-repeat: no-repeat;
-}
-.container :hover{
-  transform: scale(1.05);
-
+.tecnologiasLine {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
 }
 
-.footer{
+.tecnologiasLine img {
+  width: 40px;
+  height: 40px;
+}
+
+.footer {
   position: relative;
   top: 0;
   z-index: 100;
 }
 
-.containerbox{
+.containerbox {
   display: flex;
   width: 100%;
   height: 70vh;
-  justify-content: space-around
+  justify-content: space-around;
+  border-bottom: 2px solid white;
 }
 
-.title{
+.title {
   display: flex;
   width: 100%;
   height: 9%;
   justify-content: space-around;
-  align-items: flex-end
+  align-items: flex-end;
 }
-.title h3{
+
+.title h3 {
   margin-top: 0;
   padding-left: 5%;
   font-size: 1.5vw;
+}
+
+.techtext{
+  display: flex;
+  align-content: center;
+  right: 20px;
 }

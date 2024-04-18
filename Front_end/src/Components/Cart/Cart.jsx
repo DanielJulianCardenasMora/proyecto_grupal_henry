@@ -7,6 +7,8 @@ import { enviarCarritoAlBackend, payment } from "../../redux/actions/actions";
 import axios from "axios";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import image from "../../assets/Imagenes/alejo3.png"
+
 
 const Cart = ({ carrito, agregarProducto }) => {
   const dispatch = useDispatch();
@@ -225,6 +227,7 @@ const Cart = ({ carrito, agregarProducto }) => {
           {snackbarMessage}
         </MuiAlert>
       </Snackbar>
+<img className={style.background} src={image}></img>
     </div>
   );
 };
