@@ -40,6 +40,9 @@
     color: rgb(255, 255, 255);
 }
 
+/* h2{
+    color: white;
+} */
 
 /* Footer.module.css */
 
@@ -66,4 +69,8 @@
 .redes a:hover {
     color: #80bcc7;
     /* Cambiar color al pasar el mouse */
+}
+
+.location{
+    color: white;
 }
