@@ -20,13 +20,9 @@ export const AboutPage = () => {
       <div className={style.box}>
         <div className={style.abBg}>
           <div className={style.title}>
-<<<<<<< HEAD
             <h3 className={style.workteam}>📚 WORKTEAM</h3>
-=======
-            <h3 className={style.workteam}>WORKTEAM</h3>
             <h3 className={style.techtext}>⚙️ TECHNOLOGIES</h3>
 
->>>>>>> 1461c4193f936de68e75dc06acd42b54984c92cb
           </div>
           <div className={style.containerbox}>
             <div className={style.container}>
