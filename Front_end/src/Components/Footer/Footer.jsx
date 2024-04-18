@@ -15,7 +15,7 @@ function Footer() {
         <footer className={style.footer} >
 
             <div className={style.ubi}>
-                <h2>Location</h2>
+                <h2 className={style.location}>Location</h2>
                 <p><FontAwesomeIcon  className={style.stylosIcons}icon={faLocationDot} />Argentina</p>
 
                 <li><Link className={style.liLinks} to="/products">Products</Link></li>
